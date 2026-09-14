@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+# Block any future portal/admin areas from indexing
+Disallow: /farmer/
+Disallow: /fpo/
+Disallow: /distributor/
+Disallow: /admin/
+Disallow: /login/
+
+Sitemap: https://www.kotwari.com/sitemap.xml

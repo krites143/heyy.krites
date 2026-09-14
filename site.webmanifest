@@ -1,0 +1,21 @@
+{
+  "name": "Kotwari International",
+  "short_name": "Kotwari",
+  "description": "Gao Se Global Tak — Building India's Farmer-to-Market-to-Global Ecosystem.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#092840",
+  "theme_color": "#092840",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
