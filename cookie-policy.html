@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -19,8 +19,12 @@
     .eyebrow{font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;font-weight:bold;color:#8b682b;margin-bottom:14px}
     header{background:#092840;color:white;padding:0}
     .header-inner{display:flex;align-items:center;justify-content:space-between;min-height:72px;width:min(1180px,calc(100% - 48px));margin:auto}
-    .brand{display:inline-flex;align-items:center;font:1.7rem Georgia,serif;color:white;text-decoration:none;letter-spacing:-.04em}
-    .brand small{display:block;font:9px Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#dfbf83;margin-top:2px}
+    .brand{display:inline-flex;align-items:center;gap:14px;text-decoration:none;color:white}
+    .brand img{height:56px;width:auto;object-fit:contain;flex-shrink:0;filter:drop-shadow(0 2px 8px rgba(188,148,79,.38))}
+    .brand-text{display:inline-flex;flex-direction:column;justify-content:center}
+    .brand-name{font:2.15rem/1 Georgia,serif;color:white;letter-spacing:-.035em;display:inline-flex;align-items:flex-start}
+    .brand-name sup{font-size:11px;vertical-align:top;margin-left:2px;font-family:Arial,sans-serif;color:#dfbf83;font-weight:600}
+    .brand-tag{display:block;font:9.5px Arial,sans-serif;letter-spacing:.22em;text-transform:uppercase;color:#dfbf83;margin-top:4px}
     .nav-back{color:#dfbf83;text-decoration:none;font-size:.88rem;border:1px solid #466073;border-radius:4px;padding:8px 16px}
     footer{background:#062034;color:#d2dce4;padding:32px 0;margin-top:60px;font-size:.85rem}
     .footer-inner{width:min(860px,calc(100% - 48px));margin:auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px}
@@ -40,7 +44,7 @@
 <body>
 <header>
   <div class="header-inner">
-    <a class="brand" href="index.html"><img src="kotwari_eagle_transparent.png" alt="Kotwari" style="width:40px;height:40px;border-radius:50%;object-fit:cover;margin-right:10px;vertical-align:middle"><span>Kotwari<sup>™</sup><small>Gao Se Global Tak</small></span></a>
+    <a class="brand" href="index.html"><img src="kotwari_eagle_transparent.png" alt="Kotwari logo"><span class="brand-text"><span class="brand-name">Kotwari<sup>&trade;</sup></span><small class="brand-tag">Gao Se Global Tak</small></span></a>
     <a class="nav-back" href="index.html">← Back to home</a>
   </div>
 </header>

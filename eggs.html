@@ -16,18 +16,31 @@
     .eyebrow{font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;font-weight:bold;color:#8b682b;margin-bottom:14px;display:block}
     header{background:#faf8f1;border-bottom:1px solid #dedfd9;position:sticky;top:0;z-index:10}
     .header-inner{display:flex;align-items:center;justify-content:space-between;min-height:76px}
-    .brand{display:inline-flex;align-items:center;font:1.8rem Georgia,serif;text-decoration:none;color:#183143;letter-spacing:-.04em}
-    .brand small{display:block;font:9px Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#8b682b;margin-top:2px}
+    .brand{display:inline-flex;align-items:center;gap:14px;text-decoration:none;color:#183143}
+    .brand img{height:58px;width:auto;object-fit:contain;flex-shrink:0;filter:drop-shadow(0 2px 8px rgba(188,148,79,.38))}
+    .brand-text{display:inline-flex;flex-direction:column;justify-content:center}
+    .brand-name{font:2.15rem/1 Georgia,serif;color:#183143;letter-spacing:-.035em;display:inline-flex;align-items:flex-start}
+    .brand-name sup{font-size:11px;vertical-align:top;margin-left:2px;font-family:Arial,sans-serif;color:#8b682b;font-weight:600}
+    .brand-tag{display:block;font:9.5px Arial,sans-serif;letter-spacing:.22em;text-transform:uppercase;color:#8b682b;margin-top:4px}
     .topbar{background:#092840;color:#d9e3e8;font-size:.78rem;padding:7px 0;text-align:center}
-    .hero-section{background:#092840;color:white;padding:90px 0 100px;position:relative;overflow:hidden}
-    .hero-section::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,#092840 60%,#123f62)}
+    .hero-section{background:#092840 url('products/kotwari-eggs-farm-collection-banner.jpeg') center/cover no-repeat;color:white;padding:90px 0 100px;position:relative;overflow:hidden}
+    .hero-section::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,#092840 0%,rgba(9,40,64,0.92) 55%,rgba(9,40,64,0.65) 100%)}
     .hero-section .wrap{position:relative;z-index:1}
+    .hero-split{display:grid;grid-template-columns:1.2fr 0.8fr;gap:48px;align-items:center}
+    .hero-card{background:rgba(255,255,255,0.08);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(223,191,131,0.4);border-radius:18px;padding:20px;box-shadow:0 18px 40px rgba(0,0,0,0.45);text-align:center}
+    .hero-card img{width:100%;max-height:240px;object-fit:cover;border-radius:12px;margin-bottom:14px;box-shadow:0 8px 24px rgba(0,0,0,0.3)}
+    .hero-card-tag{display:inline-block;padding:4px 12px;background:#bc944f;color:#092840;border-radius:20px;font-size:.78rem;font-weight:bold;letter-spacing:.05em;text-transform:uppercase;margin-bottom:8px}
+    .hero-card h3{font-size:1.25rem;color:white;margin-bottom:6px}
+    .hero-card p{font-size:.85rem;color:#cbdbe4;margin-bottom:12px}
+    @media(max-width:850px){.hero-split{grid-template-columns:1fr}}
     .hero-section h1{font-size:clamp(2.4rem,5vw,4rem);color:white;max-width:700px}
     .hero-section h1 em{color:#e8c987;font-style:normal}
     .hero-section p{color:#c5d8e0;max-width:600px;font-size:1.05rem}
     .hero-section .eyebrow{color:#dfbf83}
     section{padding:72px 0;border-bottom:1px solid #dedfd9}section:last-of-type{border:none}
-    .dark-section{background:#092840;color:white;border-color:#2a4a5c}.dark-section h2,.dark-section h3{color:white}.dark-section p{color:#bdcbd5}.dark-section .eyebrow{color:#dfbf83}
+    .dark-section{background:#092840;color:white;border-color:#2a4a5c}
+    .ecosystem-bg{background:linear-gradient(rgba(9,40,64,0.92), rgba(9,40,64,0.92)), url('products/kotwari-eggs-logistics-truck-banner.jpeg') center/cover no-repeat}
+    .dark-section h2,.dark-section h3{color:white}.dark-section p{color:#bdcbd5}.dark-section .eyebrow{color:#dfbf83}
     .band-section{background:#eeede5}
     .card{background:white;padding:28px;border:1px solid #dedfd9;border-radius:14px}
     .grid{display:grid;gap:22px}
@@ -65,10 +78,10 @@
 </head>
 <body>
 
-<div class="topbar">KOTWARI INTERNATIONAL LTD. — Gao Se Global Tak</div>
+<div class="topbar">KOTWARI INTERNATIONAL LTD. &mdash; Gao Se Global Tak</div>
 <header>
   <div class="wrap header-inner">
-    <a class="brand" href="index.html"><img src="kotwari_eagle_transparent.png" alt="Kotwari" style="width:40px;height:40px;border-radius:50%;object-fit:cover;margin-right:10px;vertical-align:middle"><span>Kotwari<sup>™</sup><small>Gao Se Global Tak</small></span></a>
+    <a class="brand" href="index.html"><img src="kotwari_eagle_transparent.png" alt="Kotwari logo"><span class="brand-text"><span class="brand-name">Kotwari<sup>&trade;</sup></span><small class="brand-tag">Gao Se Global Tak</small></span></a>
     <nav style="display:flex;gap:20px;font-size:.88rem">
       <a href="index.html#businesses" style="color:#596977;text-decoration:none">Businesses</a>
       <a href="index.html#partners" style="color:#596977;text-decoration:none">Partner</a>
@@ -81,18 +94,31 @@
 <!-- HERO -->
 <div class="hero-section">
   <div class="wrap">
-    <span class="eyebrow">Business 01 — Kotwari Eggs</span>
-    <h1>A stronger connection.<br>A better egg journey.</h1>
-    <p>Farmer-integrated egg sourcing, grading, packaging and branded distribution.</p>
-    <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:32px">
-      <a class="btn btn-gold" href="index.html#partners">Become an Egg Farmer Partner ↗</a>
-      <a class="btn btn-outline" href="tel:+919978648583" style="color:white;border-color:rgba(255,255,255,0.4)">Talk to Kotwari</a>
+    <div class="hero-split">
+      <div>
+        <span class="eyebrow">Business 01 &mdash; Kotwari Eggs</span>
+        <h1>A stronger connection.<br>A better egg journey.</h1>
+        <p>Farmer-integrated egg sourcing, grading, packaging and branded distribution.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:32px">
+          <a class="btn btn-gold" href="index.html#partners">Become an Egg Farmer Partner ↗</a>
+          <a class="btn btn-outline" href="tel:+919978648583" style="color:white;border-color:rgba(255,255,255,0.4)">Talk to Kotwari</a>
+        </div>
+      </div>
+      <div>
+        <div class="hero-card">
+          <img src="products/kotwari-eggs-arabian-collection-12pack.jpeg" alt="Kotwari Arabian Collection Premium Eggs">
+          <span class="hero-card-tag">Arabian Collection &bull; 12-Pack</span>
+          <h3>Farm-Fresh Brown Eggs</h3>
+          <p>Electronically graded, UV-sanitised, and packaged for maximum shelf-life and nutrient density.</p>
+          <a class="btn btn-gold" href="product-kotwari-eggs.html" style="min-height:38px;padding:8px 16px;font-size:.82rem">View Product Detail Page &rarr;</a>
+        </div>
+      </div>
     </div>
   </div>
 </div>
 
 <!-- THE EGG ECOSYSTEM -->
-<section class="dark-section">
+<section class="dark-section ecosystem-bg">
   <div class="wrap">
     <span class="eyebrow">Supply Chain</span>
     <h2>The Egg Ecosystem</h2>
@@ -148,6 +174,13 @@
         <a class="btn btn-gold" href="index.html#partners">Register as a Farmer Partner</a>
       </div>
       <div>
+        <div class="card" style="padding:0;overflow:hidden;margin-bottom:20px;border-color:#dedfd9;box-shadow:0 8px 24px rgba(9,40,64,.06)">
+          <img src="products/kotwari-eggs-farm-collection-banner.jpeg" alt="Kotwari Farmer Partnership Network" style="width:100%;height:190px;object-fit:cover">
+          <div style="padding:16px 20px">
+            <span class="eyebrow" style="margin-bottom:4px">Poultry Farmer Network</span>
+            <p style="font-size:.86rem;margin:0;color:#596977">Direct farm gate aggregation, standard feed guidance, and prompt digital accounts with local FPOs.</p>
+          </div>
+        </div>
         <div class="card">
           <span class="eyebrow">Featured FPO</span>
           <h3>Sahebganj Eggs Producer Organisation Ltd.</h3>
@@ -173,26 +206,30 @@
     <span class="eyebrow">Products</span>
     <h2>Kotwari Premium Eggs</h2>
     <div class="grid three" style="margin-bottom:32px">
-      <div class="card">
+      <div class="card" style="display:flex;flex-direction:column">
+        <img src="products/kotwari-eggs-arabian-collection-12pack.jpeg" alt="Premium Brown Eggs" style="width:100%;height:190px;object-fit:cover;border-radius:10px;margin-bottom:16px">
         <h3>Premium Brown Eggs</h3>
         <p>Farm-fresh brown eggs, quality-graded and packed for organised retail and distribution.</p>
-        <div style="margin-top:12px">
+        <div style="margin-top:auto;padding-top:12px">
           <span class="pill">4-Pack</span>
           <span class="pill">6-Pack</span>
           <span class="pill">12-Pack</span>
         </div>
       </div>
-      <div class="card">
+      <div class="card" style="display:flex;flex-direction:column">
+        <img src="products/kotwari-eggs-farm-collection-banner.jpeg" alt="Kotwari Gold Eggs" style="width:100%;height:190px;object-fit:cover;border-radius:10px;margin-bottom:16px">
         <h3>Kotwari Gold Eggs</h3>
         <p>Premium grade eggs selected for superior size and shell quality, for discerning retail and institutional buyers.</p>
-        <div style="margin-top:12px">
+        <div style="margin-top:auto;padding-top:12px">
           <span class="pill">Retail Tray</span>
+          <span class="pill">Farm Direct</span>
         </div>
       </div>
-      <div class="card">
+      <div class="card" style="display:flex;flex-direction:column">
+        <img src="products/kotwari-eggs-retail-tray.jpeg" alt="Retail Egg Trays" style="width:100%;height:190px;object-fit:cover;border-radius:10px;margin-bottom:16px">
         <h3>Retail Egg Trays</h3>
         <p>Standard 30-count retail trays for grocery, kirana and wholesale supply. Ideal for high-volume distribution partnerships.</p>
-        <div style="margin-top:12px">
+        <div style="margin-top:auto;padding-top:12px">
           <span class="pill">30-Count Tray</span>
           <span class="pill">Wholesale</span>
         </div>
@@ -204,6 +241,9 @@
       <li>Distributor supply programmes</li>
       <li>Digital farmer records <em style="color:#596977;font-size:.82rem">(planned)</em></li>
     </ul>
+    <div style="margin-top:28px">
+      <a class="btn btn-gold" href="product-kotwari-eggs.html">View Dedicated Egg Packaging &amp; Specs Page &rarr;</a>
+    </div>
   </div>
 </section>
 
@@ -261,7 +301,7 @@
   <div class="wrap">
     <div class="footer-grid">
       <div>
-        <a class="brand" href="index.html" style="color:white;text-decoration:none;font:1.6rem Georgia,serif">Kotwari<sup>™</sup></a>
+        <a class="brand" href="index.html"><img src="kotwari_eagle_transparent.png" alt="Kotwari logo"><span class="brand-text"><span class="brand-name">Kotwari<sup>&trade;</sup></span><small class="brand-tag">Gao Se Global Tak</small></span></a>
         <p style="margin-top:14px;font-size:.85rem;color:#a3b8c2">Kotwari International Ltd.<br>Kotwari House, Jankipuram-III<br>Kursi Road, Lucknow – 226021<br>Uttar Pradesh, India</p>
       </div>
       <div>
