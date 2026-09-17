@@ -64,7 +64,9 @@
     .footer-bottom{border-top:1px solid #334c5d;padding-top:18px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:.78rem}
     .footer-bottom a{color:#dfbf83;text-decoration:none}
     disclosure{display:block;background:#e8e5d8;border-left:3px solid #bc944f;padding:14px 18px;font-size:.84rem;color:#596977;margin:20px 0;border-radius:0 6px 6px 0}
-    @media(max-width:850px){.split,.three{grid-template-columns:1fr}.two{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr 1fr}}
+    .btn-home{display:inline-flex;align-items:center;gap:6px;min-height:40px;padding:8px 18px;border:1.5px solid #bc944f;border-radius:4px;background:#fdfcf9;color:#092840;font-weight:bold;font-size:.84rem;text-decoration:none;transition:all .2s ease;box-shadow:0 2px 6px rgba(188,148,79,.15)}
+    .btn-home:hover{background:#bc944f;color:#092840;transform:translateY(-1px);box-shadow:0 4px 12px rgba(188,148,79,.3)}
+    @media(max-width:850px){.header-inner{flex-wrap:wrap;padding:12px 0;gap:12px}.header-inner nav{flex-wrap:wrap;gap:10px}.split,.three{grid-template-columns:1fr}.two{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr 1fr}}
     @media(max-width:520px){.wrap{width:calc(100% - 32px)}.hero-section{padding:60px 0 70px}.footer-grid{grid-template-columns:1fr}}
     .dark-section .step-flow span{background:#0d3a5c;border-color:#2a4a5c;color:#d9e8f0}
     .dark-section .card{background:#0d3a5c;border-color:#2a4a5c}
@@ -82,8 +84,10 @@
 <header>
   <div class="wrap header-inner">
     <a class="brand" href="index.html"><img src="kotwari_eagle_transparent.png" alt="Kotwari logo"><span class="brand-text"><span class="brand-name">Kotwari<sup>&trade;</sup></span><small class="brand-tag">Gao Se Global Tak</small></span></a>
-    <nav style="display:flex;gap:20px;font-size:.88rem">
+    <nav style="display:flex;align-items:center;gap:16px;font-size:.88rem">
+      <a class="btn-home" href="index.html">&#8962; Home</a>
       <a href="index.html#businesses" style="color:#596977;text-decoration:none">Businesses</a>
+      <a href="index.html#products" style="color:#596977;text-decoration:none">Products</a>
       <a href="index.html#partners" style="color:#596977;text-decoration:none">Partner</a>
       <a href="index.html#contact" style="color:#596977;text-decoration:none">Contact</a>
       <a class="btn" href="index.html#partners" style="font-size:.82rem;min-height:40px;padding:9px 16px">Partner With Kotwari ↗</a>

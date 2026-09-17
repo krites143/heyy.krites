@@ -39,6 +39,8 @@ header{position:sticky;top:0;z-index:30;background:rgba(250,248,241,.98);border-
 .header-nav a:hover{color:var(--gold)}
 .btn-nav{padding:8px 16px;border:1px solid var(--navy);border-radius:4px;background:var(--navy);color:#fff;font-weight:bold;font-size:.82rem;transition:.2s}
 .btn-nav:hover{background:var(--blue)}
+.btn-home{display:inline-flex;align-items:center;gap:6px;padding:7px 16px;border:1.5px solid var(--gold);border-radius:4px;background:#fdfcf9;color:var(--navy);font-weight:bold;font-size:.84rem;text-decoration:none;transition:all .2s ease;box-shadow:0 2px 6px rgba(188,148,79,.12)}
+.btn-home:hover{background:var(--gold);color:#092840;transform:translateY(-1px);box-shadow:0 4px 12px rgba(188,148,79,.3)}
 
 /* Breadcrumbs */
 .breadcrumbs{padding:18px 0;font-size:.84rem;color:var(--muted);border-bottom:1px solid var(--line)}
@@ -126,6 +128,8 @@ footer{padding:54px 0 25px;background:#062034;color:#d2dce4}
 .footer-bottom a{color:#dfbf83}
 
 @media(max-width:900px){
+  .header-row{flex-wrap:wrap;padding:12px 0;gap:14px}
+  .header-nav{flex-wrap:wrap;gap:12px}
   .product-layout{grid-template-columns:1fr;gap:36px}
   .gallery-wrap{position:static}
   .assurance-grid{grid-template-columns:1fr 1fr}
@@ -134,6 +138,8 @@ footer{padding:54px 0 25px;background:#062034;color:#d2dce4}
 }
 @media(max-width:560px){
   .wrap{width:calc(100% - 32px)}
+  .header-row{gap:10px}
+  .header-nav{gap:8px}
   .assurance-grid{grid-template-columns:1fr}
   .footer-grid{grid-template-columns:1fr}
   .cta-group{flex-direction:column}
@@ -159,7 +165,7 @@ footer{padding:54px 0 25px;background:#062034;color:#d2dce4}
       </span>
     </a>
     <nav class="header-nav">
-      <a href="index.html">Home</a>
+      <a class="btn-home" href="index.html">&#8962; Home Page</a>
       <a href="index.html#businesses">Businesses</a>
       <a href="index.html#products" style="color:#8b682b;font-weight:bold">Products</a>
       <a href="index.html#partners">Partner</a>
@@ -171,7 +177,7 @@ footer{padding:54px 0 25px;background:#062034;color:#d2dce4}
 
 <div class="breadcrumbs">
   <div class="wrap">
-    <a href="index.html">Home</a>
+    <a href="index.html" style="font-weight:bold;color:var(--navy)">&#8962; Home</a>
     <span>/</span>
     <a href="index.html#products">Products</a>
     <span>/</span>
@@ -261,7 +267,10 @@ footer{padding:54px 0 25px;background:#062034;color:#d2dce4}
           </a>
         </div>
 
-        <a class="back-link" href="index.html#products">&larr; Back to All Kotwari Products</a>
+        <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:20px">
+          <a class="btn-home" href="index.html">&#8962; Go to Home Page</a>
+          <a class="back-link" href="index.html#products" style="margin-top:0">&larr; Back to All Kotwari Products</a>
+        </div>
       </div>
 
     </div>

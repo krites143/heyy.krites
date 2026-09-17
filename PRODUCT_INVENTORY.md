@@ -1,4 +1,4 @@
-﻿# Kotwari & KooA Product Catalog & Image Inventory Record
+# Kotwari & KooA Product Catalog & Image Inventory Record
 
 *Last Updated: 2026-09-16*
 
@@ -38,3 +38,25 @@ This inventory maintains a permanent record of all products and associated image
 | **26** | Wood Pressed Yellow Mustard Oil | Kotwari | Oils | `kotwari-oils-wood-pressed-yellow-mustard-1l.jpeg` | `wood pressed mustard oil.jpeg` | **Added Today** | [`product-kotwari-yellow-mustard-oil.html`](product-kotwari-yellow-mustard-oil.html) |
 | **27** | Wood Pressed Black Mustard Oil | Kotwari | Oils | `kotwari-oils-wood-pressed-black-mustard-1l.jpeg` | `black mustard oil.jpeg` | **Added Today** | [`product-kotwari-black-mustard-oil.html`](product-kotwari-black-mustard-oil.html) |
 | **28** | Kachi Ghani Mustard Oil (5L & 1L) | Kotwari | Oils | `kotwari-oils-kachi-ghani-mustard-5l-canister.jpeg` | `mustard oil 5 ltr.jpeg`, `mustard oil 5ltr.jpeg`, `kotwari mustard oil 1 ltr.jpeg`, `mustard oil 2.jpeg` | **Added Today** | [`product-kotwari-kachi-ghani-5l.html`](product-kotwari-kachi-ghani-5l.html) |
+
+---
+
+## Folder Asset Limit Policy & Structure Rules
+
+> [!IMPORTANT]
+> **Strict Folder Structure Rules**:
+> 1. **Single Flat Folder**: The `products` folder is a single standalone folder. **NO folders/sub-folders are allowed inside the `products` folder** (`other folder should not be inside product folder`).
+> 2. **Strict Quota (Max 70 Assets Per Folder)**: Keep a maximum of **70 files** in any single folder (`max 70 in a folder`).
+
+### Current Status:
+- **`d:\kotwari\products\` Directory Count**: **Exactly 70 files** (Fully capped at the 70-file ceiling).
+- **Sub-folders Inside `products/`**: **0** (Strictly flat structure; no nested folders).
+- **Total Products Documented**: 28 distinct products spanning 6 primary categories (Water, Dairy, Eggs, Spices, Staples, Snacks, Pickles, Oils).
+
+### Protocol for Future Products / Assets:
+- **Do NOT create folders inside `products/`**.
+- If new products or images are added in the future beyond the current 70 items:
+  - Create a new, separate root-level folder (such as `products2/` or `products_pack2/` at `d:\kotwari\`).
+  - Keep each folder strictly $\le 70$ items with a flat structure.
+  - Record and organize each batch cleanly in this inventory.
+
