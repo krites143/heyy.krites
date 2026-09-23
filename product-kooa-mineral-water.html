@@ -31,13 +31,14 @@ header{position:sticky;top:0;z-index:30;background:rgba(250,248,241,.98);border-
 .header-row{display:flex;align-items:center;justify-content:space-between;min-height:102px;gap:20px;transition:min-height .3s ease}
 header.scrolled{background:rgba(250,248,241,.92);border-bottom:1px solid rgba(188,148,79,.35);box-shadow:0 8px 25px rgba(9,40,64,.06);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
 header.scrolled .header-row{min-height:94px}
-.brand{display:inline-flex;flex-direction:column;text-decoration:none;position:relative;padding-top:46px;padding-bottom:4px;color:inherit}
-.brand-name{font:2.35rem/1 Georgia,serif;color:var(--ink);letter-spacing:-.035em;display:inline-flex;align-items:baseline}
-.brand-name sup{font-size:11px;vertical-align:top;margin-left:2px;font-family:Arial,sans-serif;color:#8b682b;font-weight:600}
-.brand-tag{display:block;font:9.5px Arial,sans-serif;letter-spacing:.24em;text-transform:uppercase;color:#8b682b;margin-top:4px;font-weight:700}
-.k-falcon-anchor{position:relative;display:inline-block}
-.k-falcon-img{position:absolute;bottom:85%;left:36%;transform:translateX(-50%);width:62px;height:auto;filter:drop-shadow(0 2px 6px rgba(188,148,79,.6));pointer-events:none;transition:transform .3s ease}
-.brand:hover .k-falcon-img{transform:translateX(-50%) translateY(-3px) scale(1.06)}
+.brand{display:inline-flex;flex-direction:column;align-items:center;text-align:center;text-decoration:none;position:relative;padding:4px 0;color:inherit;transition:transform .2s ease}
+.brand-emblem-img{width:46px;height:auto;display:block;margin:0 auto 2px;filter:drop-shadow(0 2px 5px rgba(188,148,79,.35));transition:transform .3s ease}
+.brand:hover .brand-emblem-img{transform:translateY(-2px) scale(1.06)}
+.brand-name{font:2.15rem/1 Georgia,serif;color:var(--ink);letter-spacing:-.035em;display:inline-flex;align-items:baseline}
+.brand-name sup{font-size:10px;vertical-align:top;margin-left:2px;font-family:Arial,sans-serif;color:#8b682b;font-weight:600}
+.brand-tag{display:block;font:8.5px Arial,sans-serif;letter-spacing:.22em;text-transform:uppercase;color:#8b682b;margin-top:3px;font-weight:700}
+footer .brand{align-items:flex-start;text-align:left}
+footer .brand .brand-emblem-img{margin:0 0 4px 0}
 footer .brand .brand-name{color:#fff}
 footer .brand .brand-name sup{color:#dfbf83}
 footer .brand .brand-tag{color:#dfbf83}
@@ -145,10 +146,10 @@ footer{padding:54px 0 25px;background:#062034;color:#d2dce4}
 @media(max-width:560px){
   .wrap{width:calc(100% - 32px)}
   .header-row{gap:10px;min-height:88px}
-  .brand{padding-top:34px;padding-bottom:4px}
-  .brand-name{font-size:1.65rem}
-  .brand-tag{font-size:7.5px;letter-spacing:.18em}
-  .k-falcon-img{width:46px;bottom:85%;left:36%}
+  .brand{padding:3px 0}
+  .brand-emblem-img{width:36px;margin-bottom:2px}
+  .brand-name{font-size:1.6rem}
+  .brand-tag{font-size:7px;letter-spacing:.16em;margin-top:2px}
   .header-nav{gap:8px}
   .assurance-grid{grid-template-columns:1fr}
   .footer-grid{grid-template-columns:1fr}
@@ -182,12 +183,8 @@ footer{padding:54px 0 25px;background:#062034;color:#d2dce4}
 <header>
   <div class="wrap header-row">
     <a class="brand" href="index.html">
-      <span class="brand-name">
-        <span class="k-falcon-anchor">
-          <img class="k-falcon-img" src="kotwari_eagle_transparent.png" alt="Kotwari Golden Falcon">
-          K
-        </span>otwari<sup>&trade;</sup>
-      </span>
+      <img class="brand-emblem-img" src="kotwari_emblem_new.png" alt="Kotwari Golden Emblem">
+      <span class="brand-name">Kotwari<sup>&trade;</sup></span>
       <small class="brand-tag">Gao Se Global Tak</small>
     </a>
     <nav class="header-nav">
@@ -376,12 +373,8 @@ footer{padding:54px 0 25px;background:#062034;color:#d2dce4}
     <div class="footer-grid">
       <div>
         <a class="brand" href="index.html">
-          <span class="brand-name">
-            <span class="k-falcon-anchor">
-              <img class="k-falcon-img" src="kotwari_eagle_transparent.png" alt="Kotwari Golden Falcon">
-              K
-            </span>otwari<sup>&trade;</sup>
-          </span>
+          <img class="brand-emblem-img" src="kotwari_emblem_new.png" alt="Kotwari Golden Emblem">
+          <span class="brand-name">Kotwari<sup>&trade;</sup></span>
           <small class="brand-tag">Gao Se Global Tak</small>
         </a>
         <p style="margin-top:14px;font-size:.85rem;color:#a3b8c2">

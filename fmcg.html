@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#092840">
+  <title>Kotwari FMCG | Spices, Staples, Sattu, Snacks & Oils &mdash; Kotwari International</title>
+  <meta name="description" content="Explore Kotwari FMCG: pure Himalayan spices, authentic Chana Satua superfood, basmati rice, wood-pressed mustard oils, gourmet makhana and handcrafted pickles.">
+  <link rel="canonical" href="https://www.kotwari.com/fmcg.html">
+  <meta property="og:type" content="business.business">
+  <meta property="og:title" content="Kotwari FMCG | Pure Spices, Staples, Superfoods & Oils">
+  <meta property="og:description" content="Authentic Indian foods sourced directly from village farmers: cold-pressed oils, pure spices, stone-ground sattu, and premium snacks.">
+  <meta property="og:url" content="https://www.kotwari.com/fmcg.html">
+  <meta property="og:image" content="https://www.kotwari.com/products/kotwari-spices-garam-masala-range-banner.jpeg">
+
+  <style>
+    *,*:before,*:after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --navy:#092840;
+      --navy-light:#123f62;
+      --gold:#bc944f;
+      --gold-light:#e2c58d;
+      --gold-soft:#f5eee0;
+      --ivory:#fbfaf6;
+      --cream:#f4f2ea;
+      --body:#1e293b;
+      --muted:#596977;
+      --line:#dedfd9;
+      --card-bg:#ffffff;
+    }
+    body{font-family:Arial,system-ui,sans-serif;color:var(--body);background:var(--ivory);line-height:1.6;font-size:16px}
+    h1,h2,h3{font-family:Georgia,serif;font-weight:normal;color:var(--navy);line-height:1.25}
+    .wrap{width:min(1180px,calc(100% - 48px));margin:0 auto}
+    .topbar{background:#062034;color:#cbdbe4;font-size:.78rem;padding:7px 0;letter-spacing:.08em;text-align:center}
+    header{background:rgba(251,250,246,0.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:30}
+    .header-inner{display:flex;align-items:center;justify-content:space-between;min-height:74px;gap:20px}
+    .brand{display:inline-flex;flex-direction:column;align-items:center;text-decoration:none;padding:4px 0}
+    .brand-emblem-img{width:44px;height:auto;display:block;margin-bottom:3px}
+    .brand-name{font:bold 1.85rem Georgia,serif;color:var(--navy);letter-spacing:.04em;line-height:1}
+    .brand-name sup{font-size:.45em;font-weight:normal;vertical-align:super}
+    .brand-tag{font-size:8px;font-family:Arial,sans-serif;letter-spacing:.22em;color:var(--gold);text-transform:uppercase;margin-top:3px}
+    nav{display:flex;align-items:center;gap:16px;font-size:.88rem}
+    nav a{color:var(--muted);text-decoration:none;font-weight:600;transition:color .2s}
+    nav a:hover{color:var(--navy)}
+    .btn-home{display:inline-flex;align-items:center;gap:6px;min-height:38px;padding:6px 14px;border:1.5px solid var(--gold);border-radius:4px;background:#ffffff;color:var(--navy);font-weight:bold;font-size:.82rem;text-decoration:none;transition:all .2s ease;box-shadow:0 2px 6px rgba(188,148,79,.15)}
+    .btn-home:hover{background:var(--gold);color:var(--navy);transform:translateY(-1px)}
+    
+    .hero-section{background:linear-gradient(rgba(9,40,64,0.85), rgba(9,40,64,0.92)), url('products/kotwari-spices-garam-masala-range-banner.jpeg') center/cover no-repeat;padding:84px 0 96px;color:white;position:relative}
+    .hero-split{display:grid;grid-template-columns:1.2fr 0.8fr;gap:48px;align-items:center}
+    .hero-section h1{font-size:clamp(2.4rem,4.8vw,3.8rem);color:white;margin:12px 0 16px}
+    .hero-section h1 em{color:var(--gold-light);font-style:normal}
+    .hero-section p{color:#d1e0ea;font-size:1.06rem;max-width:620px;margin-bottom:28px}
+    .eyebrow{color:var(--gold);font-size:.82rem;font-weight:bold;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px}
+    
+    .hero-card{background:rgba(255,255,255,0.08);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(223,191,131,0.4);border-radius:18px;padding:24px;box-shadow:0 20px 48px rgba(0,0,0,0.45);text-align:center}
+    .hero-card img{width:100%;max-height:260px;object-fit:contain;background:#ffffff;border-radius:12px;margin-bottom:14px;padding:12px}
+    .hero-card-tag{display:inline-block;padding:4px 14px;background:var(--gold);color:var(--navy);border-radius:20px;font-size:.76rem;font-weight:bold;letter-spacing:.05em;text-transform:uppercase;margin-bottom:8px}
+    .hero-card h3{font-size:1.3rem;color:white;margin-bottom:6px}
+    .hero-card p{font-size:.85rem;color:#cbdbe4;margin-bottom:16px}
+    
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:10px 22px;border:1px solid var(--navy);border-radius:4px;background:var(--navy);color:white;font-weight:bold;font-size:.88rem;text-decoration:none;cursor:pointer;transition:all .2s ease}
+    .btn:hover{background:var(--navy-light);transform:translateY(-1px)}
+    .btn-gold{background:var(--gold);color:var(--navy);border-color:var(--gold)}
+    .btn-gold:hover{background:#cda661;border-color:#cda661}
+    .btn-outline{background:transparent;color:var(--navy);border-color:var(--navy)}
+    .btn-outline:hover{background:var(--navy);color:white}
+    .btn-white{background:white;color:var(--navy);border-color:white}
+    .btn-white:hover{background:#f0eee4}
+    
+    section{padding:72px 0;border-bottom:1px solid var(--line)}
+    section:last-of-type{border-bottom:none}
+    .band-section{background:var(--cream)}
+    .dark-section{background:var(--navy);color:white;border-color:#2a4a5c}
+    .dark-section h2,.dark-section h3{color:white}
+    .dark-section p{color:#bdcbd5}
+    .dark-section .eyebrow{color:var(--gold)}
+    
+    .grid{display:grid;gap:24px}
+    .three{grid-template-columns:repeat(3,1fr)}
+    .two{grid-template-columns:repeat(2,1fr)}
+    .four{grid-template-columns:repeat(4,1fr)}
+    .split{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+    
+    .cat-nav{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:40px}
+    .cat-nav a{padding:8px 18px;border-radius:30px;background:white;border:1px solid var(--line);color:var(--navy);font-weight:bold;font-size:.88rem;text-decoration:none;transition:all .2s}
+    .cat-nav a:hover{background:var(--gold);color:var(--navy);border-color:var(--gold)}
+    
+    .product-box{background:white;border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;transition:all .3s ease}
+    .product-box:hover{transform:translateY(-6px);box-shadow:0 16px 36px rgba(9,40,64,.12);border-color:var(--gold)}
+    .product-box-img{width:100%;height:220px;object-fit:contain;background:#ffffff;padding:16px;border-bottom:1px solid #f0eee4}
+    .product-box-body{padding:20px;flex:1;display:flex;flex-direction:column}
+    .product-box-cat{font-size:.74rem;color:var(--gold);text-transform:uppercase;font-weight:bold;letter-spacing:.06em}
+    .product-box h4{font-size:1.18rem;margin:6px 0 4px;color:var(--navy)}
+    .product-box p{font-size:.86rem;color:var(--muted);flex:1;margin-bottom:16px}
+    
+    .pill{display:inline-block;padding:4px 12px;background:var(--cream);border:1px solid var(--line);border-radius:40px;font-size:.78rem;font-weight:600;margin:3px 2px}
+    .feature-list{list-style:none;padding:0}
+    .feature-list li{padding:10px 0;border-bottom:1px solid var(--line);font-size:.9rem}
+    .feature-list li::before{content:'✓ ';color:var(--gold);font-weight:bold;margin-inline-end:6px}
+    
+    .sattu-box{background:linear-gradient(135deg,#fffbf2,#f5eee0);border:2px solid var(--gold);border-radius:16px;padding:36px;box-shadow:0 12px 30px rgba(188,148,79,.12)}
+    
+    .stat-box{padding:24px;text-align:center;border:1px solid var(--line);background:white;border-radius:12px}
+    .stat-box strong{display:block;font:2.2rem Georgia,serif;color:var(--navy);margin-bottom:4px}
+    .stat-box span{font-size:.84rem;color:var(--muted)}
+    
+    .cta-strip{background:linear-gradient(135deg,var(--navy),#103858);color:white;padding:56px 0;text-align:center}
+    .cta-strip h2{color:white;font-size:clamp(1.8rem,3.6vw,2.6rem);margin-bottom:12px}
+    .cta-strip p{color:#d1e0ea;max-width:620px;margin:0 auto 24px;font-size:1.02rem}
+    
+    footer{background:#062034;color:#cbdbe4;padding:48px 0 24px}
+    .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:36px;margin-bottom:32px}
+    .footer-grid h3{color:var(--gold-light);font-size:.92rem;margin-bottom:14px;letter-spacing:.04em}
+    .footer-grid a{display:block;font-size:.85rem;color:#a3b8c2;text-decoration:none;margin-bottom:8px;transition:color .2s}
+    .footer-grid a:hover{color:white}
+    .footer-bottom{border-top:1px solid #234053;padding-top:20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:.8rem}
+    .footer-bottom a{color:var(--gold-light);text-decoration:none}
+    
+    @media(max-width:900px){
+      .hero-split,.split{grid-template-columns:1fr}
+      .three,.four{grid-template-columns:repeat(2,1fr)}
+      .footer-grid{grid-template-columns:1fr 1fr}
+    }
+    @media(max-width:600px){
+      .three,.four,.two{grid-template-columns:1fr}
+      .footer-grid{grid-template-columns:1fr}
+      .header-inner{flex-wrap:wrap;padding:10px 0}
+      .wrap{width:calc(100% - 32px)}
+    }
+  </style>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="manifest" href="site.webmanifest">
+</head>
+<body>
+
+<div class="topbar">KOTWARI INTERNATIONAL LTD. &mdash; Gao Se Global Tak &bull; Official FMCG & Food Division</div>
+
+<header>
+  <div class="wrap header-inner">
+    <a class="brand" href="index.html">
+      <img class="brand-emblem-img" src="kotwari_emblem_new.png" alt="Kotwari Golden Emblem">
+      <span class="brand-name">Kotwari<sup>&trade;</sup></span>
+      <small class="brand-tag">Gao Se Global Tak</small>
+    </a>
+    <nav>
+      <a class="btn-home" href="index.html">&#8962; Home</a>
+      <a href="#spices">Spices</a>
+      <a href="#staples">Staples & Sattu</a>
+      <a href="#snacks">Snacks & Dry Fruits</a>
+      <a href="#oils">Wood Pressed Oils</a>
+      <a href="index.html#partners">Trade Inquiry</a>
+      <a class="btn btn-gold" href="https://wa.me/919978648583?text=Hello%20Kotwari%2C%20I%20am%20interested%20in%20Kotwari%20FMCG%20products%20distribution." target="_blank" rel="noopener noreferrer">B2B FMCG WhatsApp &rarr;</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="wrap hero-split">
+      <div>
+        <p class="eyebrow">Good Food &bull; Everyday Essentials &bull; Farm Direct</p>
+        <h1>Pure Village Nutrition.<br><em>Global Standards of Trust.</em></h1>
+        <p>Kotwari FMCG curates India's finest agricultural harvest: organic-rich Himalayan spices, cold-pressed wood oils, authentic chana sattu superfood, and gourmet roasted makhana &mdash; packaged with uncompromised freshness.</p>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <a class="btn btn-gold" href="#catalog">View Product Catalog &rarr;</a>
+          <a class="btn btn-white" href="index.html#partners" data-role="Distributor">Apply for FMCG Distributorship</a>
+          <a class="btn btn-outline" style="color:white;border-color:white" href="tel:+919978648583">+91 99786 48583</a>
+        </div>
+      </div>
+      <div>
+        <div class="hero-card">
+          <img src="products/kotwari-spices-himalayan-haldi-showcase.jpeg" alt="Himalayan Desi Haldi">
+          <span class="hero-card-tag">High Curcumin Blend</span>
+          <h3>Himalayan Desi Haldi & Spices</h3>
+          <p>Stone-ground whole turmeric with unextracted essential oils &bull; 100% adulterant free</p>
+          <div style="display:flex;justify-content:center;gap:8px">
+            <span class="pill">Spices</span>
+            <span class="pill">Sattu</span>
+            <span class="pill">Mustard Oil</span>
+            <span class="pill">Makhana</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- At a glance stats -->
+  <section style="padding:36px 0;background:#ffffff">
+    <div class="wrap grid four">
+      <div class="stat-box">
+        <strong>100% Pure</strong>
+        <span>Zero Chemical Fillers or Dyes</span>
+      </div>
+      <div class="stat-box">
+        <strong>Wood-Pressed</strong>
+        <span>Kachi Ghani Cold Extraction</span>
+      </div>
+      <div class="stat-box">
+        <strong>Direct Source</strong>
+        <span>Farmer Collection Centres</span>
+      </div>
+      <div class="stat-box">
+        <strong>20+ SKUs</strong>
+        <span>Spices, Staples, Oils & Snacks</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Category Filter Bar -->
+  <section id="catalog" style="padding-bottom:0">
+    <div class="wrap">
+      <div style="text-align:center;max-width:700px;margin:0 auto 32px">
+        <p class="eyebrow">Explore Products by Category</p>
+        <h2>The Kotwari Food Pantry</h2>
+        <p style="color:var(--muted)">Select any product to inspect detailed laboratory specifications, pack sizes, ingredients, and trade inquiry forms.</p>
+      </div>
+
+      <div class="cat-nav">
+        <a href="#spices">🌶️ Himalayan Spices</a>
+        <a href="#staples">🌾 Staples & Sattu</a>
+        <a href="#snacks">🥜 Snacks & Dry Fruits</a>
+        <a href="#oils">🫒 Cold-Pressed Oils</a>
+        <a href="#pickles">🫙 Traditional Pickles</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 1. SPICES -->
+  <section id="spices" class="band-section">
+    <div class="wrap">
+      <div style="margin-bottom:32px">
+        <p class="eyebrow">Aromatic & Therapeutic</p>
+        <h2>Himalayan Pure Spices</h2>
+        <p style="color:var(--muted)">Sun-dried, carefully sorted, and ground at low temperatures to lock in volatile essential oils.</p>
+      </div>
+
+      <div class="grid four">
+        <div class="product-box">
+          <img class="product-box-img" src="products/kotwari-spices-himalayan-haldi-showcase.jpeg" alt="Himalayan Desi Haldi" loading="lazy">
+          <div class="product-box-body">
+            <span class="product-box-cat">Spices &bull; Turmeric</span>
+            <h4>Himalayan Desi Haldi</h4>
+            <p>High natural curcumin content (3.8%+), vibrant golden hue, pure immunity booster with no artificial color.</p>
+            <div style="margin-bottom:12px"><span class="pill">200g Jar</span><span class="pill">500g Pouch</span></div>
+            <a class="btn btn-outline" href="product-kotwari-himalayan-haldi.html">Product Specs &rarr;</a>
+          </div>
+        </div>
+
+        <div class="product-box">
+          <img class="product-box-img" src="products/kotwari-spices-garam-masala-showcase.jpeg" alt="Himalayan Garam Masala" loading="lazy">
+          <div class="product-box-body">
+            <span class="product-box-cat">Spices &bull; Blend</span>
+            <h4>Himalayan Garam Masala</h4>
+            <p>Royal 12-spice artisanal recipe with whole black cardamom, cinnamon, cloves, mace and nutmeg.</p>
+            <div style="margin-bottom:12px"><span class="pill">100g Pouch</span><span class="pill">250g Jar</span></div>
+            <a class="btn btn-outline" href="product-kotwari-garam-masala.html">Product Specs &rarr;</a>
+          </div>
+        </div>
+
+        <div class="product-box">
+          <img class="product-box-img" src="products/kotwari-spices-kashmiri-red-chilli-200g-jar.jpeg" alt="Kashmiri Red Chilli" loading="lazy">
+          <div class="product-box-body">
+            <span class="product-box-cat">Spices &bull; Chilli</span>
+            <h4>Kashmiri Red Chilli Powder</h4>
+            <p>Mild gentle pungency with stunning natural crimson red color. Ideal for rich Indian curries.</p>
+            <div style="margin-bottom:12px"><span class="pill">200g Jar</span><span class="pill">500g Pouch</span></div>
+            <a class="btn btn-outline" href="product-kotwari-kashmiri-red-chilli.html">Product Specs &rarr;</a>
+          </div>
+        </div>
+
+        <div class="product-box">
+          <img class="product-box-img" src="products/kotwari-spices-whole-red-chilli-showcase.jpeg" alt="Whole Red Chilli" loading="lazy">
+          <div class="product-box-body">
+            <span class="product-box-cat">Spices &bull; Whole</span>
+            <h4>Himalayan Whole Red Chilli</h4>
+            <p>Hand-picked sun-cured sabut lal mirch with intact stem and fiery, authentic desi aroma.</p>
+            <div style="margin-bottom:12px"><span class="pill">200g Pouch</span><span class="pill">500g Canister</span></div>
+            <a class="btn btn-outline" href="product-kotwari-whole-red-chilli.html">Product Specs &rarr;</a>
+          </div>
+        </div>
+
+        <div class="product-box">
+          <img class="product-box-img" src="products/kotwari-spices-desi-garlic-showcase.jpeg" alt="Desi Garlic" loading="lazy">
+          <div class="product-box-body">
+            <span class="product-box-cat">Spices &bull; Garlic</span>
+            <h4>Himalayan Dry Desi Garlic</h4>
+            <p>Small-clove native mountain garlic rich in therapeutic allicin with intense, fragrant flavor.</p>
+            <div style="margin-bottom:12px"><span class="pill">200g Pouch</span><span class="pill">500g Jar</span></div>
+            <a class="btn btn-outline" href="product-kotwari-desi-garlic.html">Product Specs &rarr;</a>
+          </div>
+        </div>
+
+        <div class="product-box">
+          <img class="product-box-img" src="products/kotwari-spices-desi-adrak-showcase.jpeg" alt="Desi Adrak" loading="lazy">
+          <div class="product-box-body">
+            <span class="product-box-cat">Spices &bull; Ginger</span>
+            <h4>Himalayan Dry Desi Adrak (Sonth)</h4>
+            <p>Stone-crushed dried native ginger roots. Powerful digestive and warm culinary staple.</p>
+            <div style="margin-bottom:12px"><span class="pill">150g Pouch</span><span class="pill">300g Jar</span></div>
+            <a class="btn btn-outline" href="product-kotwari-desi-adrak.html">Product Specs &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. STAPLES & SATTU -->
+  <section id="staples">
+    <div class="wrap">
+      <div style="margin-bottom:32px">
+        <p class="eyebrow">Heritage Staples & Superfoods</p>
+        <h2>Nourishing India with Purity</h2>
+      </div>
+
+      <div class="grid two" style="margin-bottom:32px">
+        <!-- Chana Satua Special Box -->
+        <div class="sattu-box">
+          <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px">
+            <span style="font-size:2.2rem">🌾</span>
+            <div>
+              <span class="eyebrow" style="color:#8b682b">Hero Superfood Identity</span>
+              <h3 style="font-size:1.6rem;color:var(--navy);margin:0">Chana Satua (Sattu Superfood)</h3>
+            </div>
+          </div>
+          <p style="font-size:1.02rem;color:#334155;margin-bottom:14px">
+            <em>&ldquo;Taakat Bhi, Sehat Bhi &bull; Purkhon Ka Swad, Aaj Ki Takat &bull; Roz Ka Sattu, Roz Ki Shakti&rdquo;</em>
+          </p>
+          <p style="font-size:.9rem;color:var(--muted);margin-bottom:18px">
+            Crafted from roasted Bengal gram chickpeas stone-ground using slow traditional processes. Naturally high in plant-based protein (20g+ per 100g), high insoluble fibre, and low glycemic index.
+          </p>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px">
+            <span class="pill">500g Airtight Canister</span>
+            <span class="pill">1kg Pack</span>
+            <span class="pill">Low GI &bull; Diabetes Friendly</span>
+            <span class="pill">Prebiotic Fibre</span>
+          </div>
+          <a class="btn btn-gold" href="product-kotwari-chana-sattu.html">Explore Sattu Nutritional Specs &rarr;</a>
+        </div>
+
+        <!-- Basmati Rice -->
+        <div class="card" style="display:flex;flex-direction:column;justify-content:space-between">
+          <div>
+            <span class="eyebrow">Aged Himalayan Grains</span>
+            <h3>Premium Basmati Rice</h3>
+            <p style="color:var(--muted);font-size:.92rem;margin:12px 0 16px">
+              Naturally aged for 18+ months in ventilated silos. Slender pearlescent grains that elongate up to 2.5x upon cooking with captivating royal aroma.
+            </p>
+            <ul class="feature-list" style="margin-bottom:18px">
+              <li>Purity & Grain Length &gt; 8.35mm</li>
+              <li>Aged Traditional Basmati Variety</li>
+              <li>Non-sticky, fluffy texture for Biryanis & Pulaos</li>
+            </ul>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px">
+            <div>
+              <span class="pill">1kg Pack</span>
+              <span class="pill">5kg Royal Bag</span>
+            </div>
+            <a class="btn btn-outline" href="product-kotwari-basmati-rice.html">View Rice Specs &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. COLD PRESSED OILS -->
+  <section id="oils" class="dark-section">
+    <div class="wrap">
+      <div style="margin-bottom:36px;text-align:center;max-width:700px;margin-inline:auto">
+        <p class="eyebrow">Cold Pressed Kachi Ghani</p>
+        <h2>Pure Wood Pressed Mustard Oils</h2>
+        <p>Extracted from village-procured black and yellow mustard seeds without chemical solvents, refining, or high heat.</p>
+      </div>
+
+      <div class="grid three">
+        <div class="card" style="background:#0d3a5c;border-color:#2a4a5c">
+          <img src="products/kotwari-oils-wood-pressed-yellow-mustard-1l.jpeg" alt="Yellow Mustard Oil" style="width:100%;height:220px;object-fit:contain;background:#ffffff;border-radius:10px;padding:12px;margin-bottom:16px">
+          <span class="eyebrow">Wood Pressed &bull; Kolhu</span>
+          <h4 style="color:white;font-size:1.2rem;margin-bottom:6px">Wood Pressed Yellow Mustard Oil</h4>
+          <p style="color:#cbdbe4;font-size:.86rem;margin-bottom:16px">Milder, sweet-pungent mustard aroma from heritage yellow seeds. Rich in healthy Monounsaturated Fatty Acids (MUFA) and natural Omega-3.</p>
+          <div style="margin-bottom:14px"><span class="pill" style="background:#062034;color:white;border-color:#2a4a5c">1 Litre Bottle</span></div>
+          <a class="btn btn-gold" href="product-kotwari-yellow-mustard-oil.html" style="width:100%">Oil Specifications &rarr;</a>
+        </div>
+
+        <div class="card" style="background:#0d3a5c;border-color:#2a4a5c">
+          <img src="products/kotwari-oils-wood-pressed-black-mustard-1l.jpeg" alt="Black Mustard Oil" style="width:100%;height:220px;object-fit:contain;background:#ffffff;border-radius:10px;padding:12px;margin-bottom:16px">
+          <span class="eyebrow">Wood Pressed &bull; Kolhu</span>
+          <h4 style="color:white;font-size:1.2rem;margin-bottom:6px">Wood Pressed Black Mustard Oil</h4>
+          <p style="color:#cbdbe4;font-size:.86rem;margin-bottom:16px">Robust, bold traditional pungency from dark native mustard seeds. Perfect for slow-cooked North Indian curries and authentic pickles.</p>
+          <div style="margin-bottom:14px"><span class="pill" style="background:#062034;color:white;border-color:#2a4a5c">1 Litre Bottle</span></div>
+          <a class="btn btn-gold" href="product-kotwari-black-mustard-oil.html" style="width:100%">Oil Specifications &rarr;</a>
+        </div>
+
+        <div class="card" style="background:#0d3a5c;border-color:#2a4a5c">
+          <img src="products/kotwari-oils-kachi-ghani-mustard-5l-canister.jpeg" alt="Kachi Ghani 5L" style="width:100%;height:220px;object-fit:contain;background:#ffffff;border-radius:10px;padding:12px;margin-bottom:16px">
+          <span class="eyebrow">Family Pack &bull; Kachi Ghani</span>
+          <h4 style="color:white;font-size:1.2rem;margin-bottom:6px">Kachi Ghani Mustard Oil (5L)</h4>
+          <p style="color:#cbdbe4;font-size:.86rem;margin-bottom:16px">Heavy-duty food grade canister with ergonomic pour spout. Triple-filtered pure mustard oil for household and bulk culinary use.</p>
+          <div style="margin-bottom:14px"><span class="pill" style="background:#062034;color:white;border-color:#2a4a5c">5 Litre Canister</span><span class="pill" style="background:#062034;color:white;border-color:#2a4a5c">15L Tin</span></div>
+          <a class="btn btn-gold" href="product-kotwari-kachi-ghani-5l.html" style="width:100%">Oil Specifications &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. SNACKS, MAKHANA & DRY FRUITS -->
+  <section id="snacks" class="band-section">
+    <div class="wrap">
+      <div style="margin-bottom:36px">
+        <p class="eyebrow">Snacks & Superfoods</p>
+        <h2>Roasted Makhana & Gourmet Dry Fruits</h2>
+        <p style="color:var(--muted)">Roasted gently in pure deshi ghee with zero trans-fats and natural mineral seasonings.</p>
+      </div>
+
+      <div class="grid four">
+        <div class="product-box">
+          <img class="product-box-img" src="products/kotwari-snacks-mithla-makhana-200g-jar.jpeg" alt="Mithla Makhana" loading="lazy">
+          <div class="product-box-body">
+            <span class="product-box-cat">Makhana &bull; Pure Ghee</span>
+            <h4>Mithla Makhana (Deshi Ghee)</h4>
+            <p>Jumbo fox nuts roasted in authentic Deshi Ghee. Super crunchy, calcium rich, and guilt-free snacking.</p>
+            <div style="margin-bottom:12px"><span class="pill">200g Jar</span></div>
+            <a class="btn btn-outline" href="product-kotwari-mithla-makhana.html">Specs &rarr;</a>
+          </div>
+        </div>
+
+        <div class="product-box">
+          <img class="product-box-img" src="products/kotwari-snacks-roasted-makhana-200g-jar.jpeg" alt="Roasted Makhana" loading="lazy">
+          <div class="product-box-body">
+            <span class="product-box-cat">Makhana &bull; Salt & Pepper</span>
+            <h4>Roasted Makhana</h4>
+            <p>Seasoned with crushed Himalayan black pepper and pink rock salt in pure cow ghee.</p>
+            <div style="margin-bottom:12px"><span class="pill">200g Jar</span></div>
+            <a class="btn btn-outline" href="product-kotwari-roasted-makhana.html">Specs &rarr;</a>
+          </div>
+        </div>
+
+        <div class="product-box">
+          <img class="product-box-img" src="products/kotwari-snacks-dry-fruits-dubai-canister.jpeg" alt="Dry Fruits" loading="lazy">
+          <div class="product-box-body">
+            <span class="product-box-cat">Snacks &bull; Royal Selection</span>
+            <h4>Dubai Golden Dry Fruits</h4>
+            <p>Premium assortment of royal almonds, cashews, pistachios, and golden raisins in luxury packaging.</p>
+            <div style="margin-bottom:12px"><span class="pill">500g Canister</span><span class="pill">Gift Pack</span></div>
+            <a class="btn btn-outline" href="product-kotwari-dry-fruits.html">Specs &rarr;</a>
+          </div>
+        </div>
+
+        <div class="product-box">
+          <img class="product-box-img" src="products/kotwari-snacks-medjool-dates-500g-canister.jpeg" alt="Medjool Dates" loading="lazy">
+          <div class="product-box-body">
+            <span class="product-box-cat">Snacks &bull; Dates</span>
+            <h4>Royal Medjool Dates</h4>
+            <p>Handpicked large caramel-sweet Medjool dates. 100% natural, no added glucose or sugar syrups.</p>
+            <div style="margin-bottom:12px"><span class="pill">500g Canister</span></div>
+            <a class="btn btn-outline" href="product-kotwari-medjool-dates.html">Specs &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. PICKLES -->
+  <section id="pickles">
+    <div class="wrap split">
+      <div>
+        <p class="eyebrow">Deshi Sudh Swad</p>
+        <h2>Handcrafted Whole Red Chilli Achar</h2>
+        <p style="color:var(--muted);font-size:1.02rem">
+          Prepared using heirloom recipes from rural Awadh and Bihar. Stuffed with crushed mustard, fennel, kalonji, amchur, and matured naturally under Indian sunlight in cold-pressed mustard oil.
+        </p>
+        <ul class="feature-list" style="margin:20px 0">
+          <li>Traditional Stuffed Lal Mirch Recipe</li>
+          <li>Sun-Matured in Pure Wood Pressed Mustard Oil</li>
+          <li>No Artificial Acidulants or Synthetic Preservatives</li>
+          <li>Airtight Sealed Glass Jar for Lasting Crunch</li>
+        </ul>
+        <div style="display:flex;gap:12px">
+          <a class="btn btn-gold" href="product-kotwari-red-chilli-achar.html">Achar Specifications &rarr;</a>
+          <a class="btn btn-outline" href="index.html#partners">Enquire for Retail Distribution</a>
+        </div>
+      </div>
+
+      <div class="card" style="text-align:center">
+        <img src="products/kotwari-pickles-red-chilli-achar-jar.jpeg" alt="Red Chilli Achar" style="max-height:280px;object-fit:contain;margin-bottom:16px">
+        <h3>Whole Red Chilli Achar (Deshi Swad)</h3>
+        <p style="font-size:.85rem;color:var(--muted)">Available in 500g and 1kg hermetic glass jars.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- B2B CTA Strip -->
+  <section class="cta-strip">
+    <div class="wrap">
+      <h2>Become a Kotwari FMCG Partner</h2>
+      <p>Join our rapidly expanding distribution network across modern retail, Kirana chains, supermarkets, and international export corridors.</p>
+      <div style="display:flex;justify-content:center;gap:14px;flex-wrap:wrap">
+        <a class="btn btn-gold" href="https://wa.me/919978648583?text=Hello%20Kotwari%2C%20I%20am%20interested%20in%20becoming%20an%20FMCG%20distributor." target="_blank" rel="noopener noreferrer">WhatsApp B2B Inquiry &rarr;</a>
+        <a class="btn btn-white" href="index.html#partners">Submit Trade Form</a>
+        <a class="btn btn-outline" style="color:white;border-color:white" href="tel:+919978648583">Call Commercial Desk</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="index.html" style="align-items:flex-start">
+          <img class="brand-emblem-img" src="kotwari_emblem_new.png" alt="Kotwari Golden Emblem">
+          <span class="brand-name" style="color:white">Kotwari<sup>&trade;</sup></span>
+          <small class="brand-tag">Gao Se Global Tak</small>
+        </a>
+        <p style="margin-top:16px;font-size:.85rem;color:#a3b8c2">
+          Kotwari International Ltd.<br>
+          Kotwari House, Jankipuram-III, Kursi Road<br>
+          Lucknow &ndash; 226021, Uttar Pradesh, India
+        </p>
+      </div>
+
+      <div>
+        <h3>Kotwari Businesses</h3>
+        <a href="eggs.html">Kotwari Eggs</a>
+        <a href="water.html">KooA Mineral Water</a>
+        <a href="dairy.html">Kotwari Dairy</a>
+        <a href="fmcg.html" style="color:var(--gold-light);font-weight:bold">&bull; Kotwari FMCG</a>
+        <a href="exports.html">Kotwari Global Exports</a>
+        <a href="investors.html">Investor Relations</a>
+      </div>
+
+      <div>
+        <h3>Corporate & Trade</h3>
+        <a href="index.html#partners">Partner With Us</a>
+        <a href="sustainability.html">Farmer Impact & ESG</a>
+        <a href="careers.html">Careers</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Service</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>&copy; 2026 Kotwari International Ltd. All rights reserved. &ldquo;Gao Se Global Tak&rdquo; is a trademark of Kotwari International Ltd.</span>
+      <span style="display:flex;gap:14px">
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="cookie-policy.html">Cookies</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

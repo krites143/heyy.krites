@@ -1,10 +1,10 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Investor Relations | Kotwari International</title>
-  <meta name="description" content="Investor Relations page for Kotwari International Ltd. � business overview, model, governance and contact.">
+  <meta name="description" content="Investor Relations page for Kotwari International Ltd. &mdash; business overview, model, governance and contact.">
   <link rel="canonical" href="https://www.kotwari.com/investors.html">
   <meta property="og:title" content="Investor Relations | Kotwari International">
   <meta property="og:description" content="Investor Relations for Kotwari International Ltd.">
@@ -18,13 +18,14 @@
     .header-inner{display:flex;align-items:center;justify-content:space-between;min-height:102px;transition:min-height .3s ease}
     header.scrolled{background:rgba(250,248,241,.92);border-bottom:1px solid rgba(188,148,79,.35);box-shadow:0 8px 25px rgba(9,40,64,.06);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
     header.scrolled .header-inner{min-height:94px}
-    .brand{display:inline-flex;flex-direction:column;text-decoration:none;position:relative;padding-top:46px;padding-bottom:4px;color:#183143}
-    .brand-name{font:2.35rem/1 Georgia,serif;color:#183143;letter-spacing:-.035em;display:inline-flex;align-items:baseline}
-    .brand-name sup{font-size:11px;vertical-align:top;margin-left:2px;font-family:Arial,sans-serif;color:#8b682b;font-weight:600}
-    .brand-tag{display:block;font:9.5px Arial,sans-serif;letter-spacing:.24em;text-transform:uppercase;color:#8b682b;margin-top:5px;font-weight:600}
-    .k-falcon-anchor{position:relative;display:inline-block}
-    .k-falcon-img{position:absolute;bottom:85%;left:36%;transform:translateX(-50%);width:62px;height:auto;filter:drop-shadow(0 2px 6px rgba(188,148,79,.6));pointer-events:none;transition:transform .3s ease}
-    .brand:hover .k-falcon-img{transform:translateX(-50%) translateY(-3px) scale(1.06)}
+    .brand{display:inline-flex;flex-direction:column;align-items:center;text-align:center;text-decoration:none;position:relative;padding:4px 0;color:#183143;transition:transform .2s ease}
+    .brand-emblem-img{width:46px;height:auto;display:block;margin:0 auto 2px;filter:drop-shadow(0 2px 5px rgba(188,148,79,.35));transition:transform .3s ease}
+    .brand:hover .brand-emblem-img{transform:translateY(-2px) scale(1.06)}
+    .brand-name{font:2.15rem/1 Georgia,serif;color:#183143;letter-spacing:-.035em;display:inline-flex;align-items:baseline}
+    .brand-name sup{font-size:10px;vertical-align:top;margin-left:2px;font-family:Arial,sans-serif;color:#8b682b;font-weight:600}
+    .brand-tag{display:block;font:8.5px Arial,sans-serif;letter-spacing:.22em;text-transform:uppercase;color:#8b682b;margin-top:3px;font-weight:700}
+    footer .brand{align-items:flex-start;text-align:left}
+    footer .brand .brand-emblem-img{margin:0 0 4px 0}
     footer .brand .brand-name{color:#fff}
     footer .brand .brand-name sup{color:#dfbf83}
     footer .brand .brand-tag{color:#dfbf83}
@@ -60,7 +61,7 @@
     .btn-home{display:inline-flex;align-items:center;gap:6px;min-height:40px;padding:8px 18px;border:1.5px solid #bc944f;border-radius:4px;background:#fdfcf9;color:#092840;font-weight:bold;font-size:.84rem;text-decoration:none;transition:all .2s ease;box-shadow:0 2px 6px rgba(188,148,79,.15)}
     .btn-home:hover{background:#bc944f;color:#092840;transform:translateY(-1px);box-shadow:0 4px 12px rgba(188,148,79,.3)}
     @media(max-width:850px){.header-inner{flex-wrap:wrap;padding:12px 0;gap:12px}.header-inner nav{flex-wrap:wrap;gap:10px}.split,.three{grid-template-columns:1fr}.two{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr 1fr}}
-    @media(max-width:520px){.wrap{width:calc(100% - 32px)}.header-inner{min-height:88px}.brand{padding-top:34px;padding-bottom:4px}.brand-name{font-size:1.65rem}.brand-tag{font-size:7.5px;letter-spacing:.18em}.k-falcon-img{width:46px;bottom:85%;left:36%}.hero-section{padding:60px 0 70px}.footer-grid{grid-template-columns:1fr}}
+    @media(max-width:520px){.wrap{width:calc(100% - 32px)}.header-inner{min-height:88px}.brand{padding:3px 0}.brand-emblem-img{width:36px;margin-bottom:2px}.brand-name{font-size:1.6rem}.brand-tag{font-size:7px;letter-spacing:.16em;margin-top:2px}.hero-section{padding:60px 0 70px}.footer-grid{grid-template-columns:1fr}}
     .dark-section .card{background:#0d3a5c;border-color:#2a4a5c}
     .dark-section .card h3{color:white}
     .dark-section .step-flow span{background:#0d3a5c;border-color:#2a4a5c;color:#d9e8f0}
@@ -98,12 +99,8 @@
 <header>
   <div class="wrap header-inner">
     <a class="brand" href="index.html">
-      <span class="brand-name">
-        <span class="k-falcon-anchor">
-          <img class="k-falcon-img" src="kotwari_eagle_transparent.png" alt="Kotwari Golden Falcon">
-          K
-        </span>otwari<sup>&trade;</sup>
-      </span>
+      <img class="brand-emblem-img" src="kotwari_emblem_new.png" alt="Kotwari Golden Emblem">
+      <span class="brand-name">Kotwari<sup>&trade;</sup></span>
       <small class="brand-tag">Gao Se Global Tak</small>
     </a>
     <nav style="display:flex;align-items:center;gap:16px;font-size:.88rem">
@@ -112,7 +109,7 @@
       <a href="index.html#products" style="color:#596977;text-decoration:none">Products</a>
       <a href="index.html#partners" style="color:#596977;text-decoration:none">Partner</a>
       <a href="index.html#contact" style="color:#596977;text-decoration:none">Contact</a>
-      <a class="btn" href="index.html#partners" style="font-size:.82rem;min-height:40px;padding:9px 16px">Partner With Kotwari ?</a>
+      <a class="btn" href="index.html#partners" style="font-size:.82rem;min-height:40px;padding:9px 16px">Partner With Kotwari ↗</a>
     </nav>
   </div>
 </header>
@@ -144,7 +141,7 @@
     <div class="split">
       <div>
         <p>Kotwari International Ltd. is building an integrated agriculture, food, FMCG, distribution and retail ecosystem that connects village production to organised markets across India and internationally.</p>
-        <p>Operating through multiple business verticals � from farmer-integrated egg supply to premium mineral water, dairy, FMCG, organised retail and export � Kotwari is designed to create value at every point in the agricultural supply chain.</p>
+        <p>Operating through multiple business verticals &mdash; from farmer-integrated egg supply to premium mineral water, dairy, FMCG, organised retail and export &mdash; Kotwari is designed to create value at every point in the agricultural supply chain.</p>
         <p>Our model is rooted in rural India: sourcing from farmers and farmer producer organisations (FPOs), adding value through processing, grading, branding and packaging, and connecting this production to wider distribution, retail and export markets.</p>
       </div>
       <div>
@@ -170,21 +167,21 @@
     <h2>How Kotwari creates value</h2>
     <div class="step-flow">
       <span>Production</span>
-      <span class="step-arrow">?</span>
+      <span class="step-arrow">&rarr;</span>
       <span>Aggregation</span>
-      <span class="step-arrow">?</span>
+      <span class="step-arrow">&rarr;</span>
       <span>Collection</span>
-      <span class="step-arrow">?</span>
+      <span class="step-arrow">&rarr;</span>
       <span>Quality Addition</span>
-      <span class="step-arrow">?</span>
+      <span class="step-arrow">&rarr;</span>
       <span>Brand</span>
-      <span class="step-arrow">?</span>
+      <span class="step-arrow">&rarr;</span>
       <span>Distribution</span>
-      <span class="step-arrow">?</span>
+      <span class="step-arrow">&rarr;</span>
       <span>Retail</span>
-      <span class="step-arrow">?</span>
+      <span class="step-arrow">&rarr;</span>
       <span>Consumer</span>
-      <span class="step-arrow">?</span>
+      <span class="step-arrow">&rarr;</span>
       <span>Export</span>
     </div>
     <div class="grid three" style="margin-top:32px">
@@ -245,8 +242,8 @@
       <div>
         <p><strong>Phone:</strong> <a href="tel:+919978648583">+91 99786 48583</a></p>
         <p><strong>Email:</strong> <a href="mailto:kotwarigroup18@gmail.com">kotwarigroup18@gmail.com</a></p>
-        <p><strong>Address:</strong><br>Kotwari International Ltd.<br>Kotwari House, Jankipuram-III<br>Kursi Road, Lucknow � 226021<br>Uttar Pradesh, India</p>
-        <a class="btn btn-gold" href="mailto:kotwarigroup18@gmail.com?subject=Investor Enquiry � Kotwari International" style="margin-top:16px">Send an Investor Enquiry</a>
+        <p><strong>Address:</strong><br>Kotwari International Ltd.<br>Kotwari House, Jankipuram-III<br>Kursi Road, Lucknow &ndash; 226021<br>Uttar Pradesh, India</p>
+        <a class="btn btn-gold" href="mailto:kotwarigroup18@gmail.com?subject=Investor%20Enquiry%20%E2%80%94%20Kotwari%20International" style="margin-top:16px">Send an Investor Enquiry</a>
       </div>
       <div>
         <div class="card">
@@ -264,15 +261,11 @@
     <div class="footer-grid">
       <div>
         <a class="brand" href="index.html">
-          <span class="brand-name">
-            <span class="k-falcon-anchor">
-              <img class="k-falcon-img" src="kotwari_eagle_transparent.png" alt="Kotwari Golden Falcon">
-              K
-            </span>otwari<sup>&trade;</sup>
-          </span>
-          <small class="brand-tag">Gao Se Global Tak</small>
-        </a>
-        <p style="margin-top:14px;font-size:.85rem;color:#a3b8c2">Kotwari International Ltd.<br>Kotwari House, Jankipuram-III<br>Kursi Road, Lucknow � 226021<br>Uttar Pradesh, India</p>
+      <img class="brand-emblem-img" src="kotwari_emblem_new.png" alt="Kotwari Golden Emblem">
+      <span class="brand-name">Kotwari<sup>&trade;</sup></span>
+      <small class="brand-tag">Gao Se Global Tak</small>
+    </a>
+        <p style="margin-top:14px;font-size:.85rem;color:#a3b8c2">Kotwari International Ltd.<br>Kotwari House, Jankipuram-III<br>Kursi Road, Lucknow &ndash; 226021<br>Uttar Pradesh, India</p>
       </div>
       <div>
         <h3>Businesses</h3>
@@ -294,7 +287,7 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <span>� 2026 Kotwari International Ltd.</span>
+      <span>&copy; 2026 Kotwari International Ltd.</span>
       <span style="display:flex;gap:16px"><a href="privacy.html">Privacy</a> <a href="terms.html">Terms</a> <a href="cookie-policy.html">Cookies</a></span>
     </div>
     <p style="margin-top:18px;font-size:.75rem;color:#6a7f8a;border-top:1px solid #334c5d;padding-top:14px">This page is for informational purposes only and does not constitute an offer to invest or a guarantee of returns. Kotwari International Ltd. is a private company. All financial and corporate details are subject to independent verification.</p>
