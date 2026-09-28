@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
   <meta charset="UTF-8">
@@ -229,33 +229,114 @@
     </div>
   </section>
 
-  <!-- Corporate Philosophy: The Value Chain -->
+  <!-- Corporate Philosophy: Interactive Value Chain Visualizer -->
   <section id="philosophy" class="dark-section">
     <div class="wrap">
-      <div style="text-align:center;max-width:700px;margin:0 auto 36px">
+      <div style="text-align:center;max-width:760px;margin:0 auto 36px">
         <p class="eyebrow">The Kotwari Architecture</p>
-        <h2>Village &rarr; Farmer &rarr; Processing &rarr; Brand &rarr; Retail &rarr; Global</h2>
+        <h2>Interactive Value Chain: From Village Soil to Global Tables</h2>
+        <p style="color:#cbdbe4;font-size:1.02rem">Click any node in the flow below to explore how each stage adds quality, digital transparency, and fair value.</p>
       </div>
 
-      <div class="grid three">
-        <div class="card" style="background:#0d3a5c;border-color:#2a4a5c">
-          <h4 style="color:white;margin-bottom:10px">1. Production & Aggregation</h4>
-          <p style="color:#cbdbe4;font-size:.88rem">Working directly with individual farmers and self-help FPOs across layer poultry, dairy, mustard, pulses, and spices.</p>
-        </div>
+      <!-- Interactive Supply Chain Nodes -->
+      <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-bottom:32px">
+        <button type="button" class="chain-btn active" onclick="showChainNode(0, this)" style="padding:10px 18px;border-radius:30px;background:var(--gold);color:var(--navy);font-weight:bold;border:none;cursor:pointer;font-size:.88rem;transition:all .2s">1. Smallholder Farmer</button>
+        <button type="button" class="chain-btn" onclick="showChainNode(1, this)" style="padding:10px 18px;border-radius:30px;background:rgba(255,255,255,0.12);color:white;font-weight:bold;border:1px solid rgba(255,255,255,0.25);cursor:pointer;font-size:.88rem;transition:all .2s">2. Village Collection</button>
+        <button type="button" class="chain-btn" onclick="showChainNode(2, this)" style="padding:10px 18px;border-radius:30px;background:rgba(255,255,255,0.12);color:white;font-weight:bold;border:1px solid rgba(255,255,255,0.25);cursor:pointer;font-size:.88rem;transition:all .2s">3. Laboratory Testing</button>
+        <button type="button" class="chain-btn" onclick="showChainNode(3, this)" style="padding:10px 18px;border-radius:30px;background:rgba(255,255,255,0.12);color:white;font-weight:bold;border:1px solid rgba(255,255,255,0.25);cursor:pointer;font-size:.88rem;transition:all .2s">4. Processing &amp; Packaging</button>
+        <button type="button" class="chain-btn" onclick="showChainNode(4, this)" style="padding:10px 18px;border-radius:30px;background:rgba(255,255,255,0.12);color:white;font-weight:bold;border:1px solid rgba(255,255,255,0.25);cursor:pointer;font-size:.88rem;transition:all .2s">5. Kotwari One &amp; Exports</button>
+      </div>
 
-        <div class="card" style="background:#0d3a5c;border-color:#2a4a5c">
-          <h4 style="color:white;margin-bottom:10px">2. Processing & Value Addition</h4>
-          <p style="color:#cbdbe4;font-size:.88rem">Cold chilling, stone-milling, automated egg grading, HTST dairy pasteurisation, and hermetic barrier packaging.</p>
+      <!-- Node Detail Showcase Card -->
+      <div id="chainDisplayCard" style="background:#0d3a5c;border:1.5px solid var(--gold);border-radius:16px;padding:32px;box-shadow:0 14px 40px rgba(0,0,0,0.3);max-width:860px;margin:0 auto">
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:12px">
+          <span id="chainIcon" style="font-size:2.4rem">&#128104;&#8205;&#127806;</span>
+          <div>
+            <span id="chainStep" style="font-size:.78rem;text-transform:uppercase;letter-spacing:.12em;color:var(--gold-light);font-weight:bold;display:block">Stage 01 &bull; Primary Village Production</span>
+            <h3 id="chainTitle" style="color:white;font-size:1.4rem;margin:0">Smallholder Farmer &amp; FPO Network</h3>
+          </div>
         </div>
-
-        <div class="card" style="background:#0d3a5c;border-color:#2a4a5c">
-          <h4 style="color:white;margin-bottom:10px">3. Brand & Distribution</h4>
-          <p style="color:#cbdbe4;font-size:.88rem">Kotwari™, KooA™ and Kotwari One retail networks delivering wholesome nutrition to Indian consumers and overseas buyers.</p>
+        <p id="chainDesc" style="color:#cbdbe4;font-size:1rem;line-height:1.7;margin-bottom:20px">Direct partnership with poultry rearers, dairy smallholders, and organic cultivators across Uttar Pradesh with fair input support, veterinary care, and pre-agreed off-take.</p>
+        <div id="chainPills" style="display:flex;flex-wrap:wrap;gap:8px">
+          <span style="background:rgba(255,255,255,0.1);color:white;padding:4px 12px;border-radius:20px;font-size:.78rem">&#10003; Fair Guaranteed Off-Take</span>
+          <span style="background:rgba(255,255,255,0.1);color:white;padding:4px 12px;border-radius:20px;font-size:.78rem">&#10003; Technical Veterinary Advice</span>
+          <span style="background:rgba(255,255,255,0.1);color:white;padding:4px 12px;border-radius:20px;font-size:.78rem">&#10003; No Intermediary Exploitation</span>
         </div>
       </div>
     </div>
   </section>
 </main>
+
+<script>
+  var chainData = [
+    {
+      step: "Stage 01 • Primary Village Production",
+      title: "Smallholder Farmer & FPO Network",
+      icon: "👨‍🌾",
+      desc: "Direct partnership with poultry rearers, dairy smallholders, and organic cultivators across Uttar Pradesh with fair input support, veterinary care, and pre-agreed off-take.",
+      pills: ["✓ Fair Guaranteed Off-Take", "✓ Technical Veterinary Advice", "✓ No Intermediary Exploitation"]
+    },
+    {
+      step: "Stage 02 • Village Aggregation",
+      title: "Automated Village Collection Centres",
+      icon: "⚖️",
+      desc: "Instant computerized weigh slips, electronic Fat/SNF analysis for milk, and automated optical grading for farm-fresh eggs within 2 hours of production.",
+      pills: ["✓ Digital Payout Receipts", "✓ 4°C Bulk Milk Chilling Tanks", "✓ Zero Under-Weighing"]
+    },
+    {
+      step: "Stage 03 • Laboratory Verification",
+      title: "Strict Physical & Chemical Quality Control",
+      icon: "🔬",
+      desc: "Comprehensive testing across 32 individual quality metrics: checking for adulterants, pesticide residues, aflatoxins, and microbial cleanliness before batch approval.",
+      pills: ["✓ Agmark & FSSAI Compliant", "✓ Zero Artificial Additives", "✓ Moisture & Purity Assay"]
+    },
+    {
+      step: "Stage 04 • Value Addition & Packaging",
+      title: "Modern Hygienic Processing",
+      icon: "🏭",
+      desc: "Cold-press wood expelling for mustard oil, HTST dairy pasteurisation, slow-simmered ghee bilona vessels, and nitrogen-flushed oxygen-barrier retail packaging.",
+      pills: ["✓ Aroma-Lock Packaging", "✓ Tamper-Evident Seals", "✓ Traceable Batch QR Codes"]
+    },
+    {
+      step: "Stage 05 • Market Delivery",
+      title: "Kotwari One & Global Export Corridors",
+      icon: "🚢",
+      desc: "Delivering wholesome nutrition through Kotwari One retail hypermarkets, Protein Breakfast quick-service kiosks, and refrigerated container shipments to GCC & Asian markets.",
+      pills: ["✓ Direct Consumer Accessibility", "✓ Export Grade Palletization", "✓ True 'Gao Se Global Tak' Fulfillment"]
+    }
+  ];
+
+  function showChainNode(idx, btn){
+    var d = chainData[idx];
+    if(!d) return;
+
+    document.getElementById('chainStep').textContent = d.step;
+    document.getElementById('chainTitle').textContent = d.title;
+    document.getElementById('chainIcon').textContent = d.icon;
+    document.getElementById('chainDesc').textContent = d.desc;
+
+    var pContainer = document.getElementById('chainPills');
+    pContainer.innerHTML = '';
+    d.pills.forEach(function(p){
+      var sp = document.createElement('span');
+      sp.style.cssText = 'background:rgba(255,255,255,0.1);color:white;padding:4px 12px;border-radius:20px;font-size:.78rem;border:1px solid rgba(255,255,255,0.2)';
+      sp.textContent = p;
+      pContainer.appendChild(sp);
+    });
+
+    var buttons = document.querySelectorAll('.chain-btn');
+    buttons.forEach(function(b){
+      b.style.background = 'rgba(255,255,255,0.12)';
+      b.style.color = 'white';
+      b.style.border = '1px solid rgba(255,255,255,0.25)';
+    });
+    if(btn){
+      btn.style.background = 'var(--gold)';
+      btn.style.color = 'var(--navy)';
+      btn.style.border = 'none';
+    }
+  }
+</script>
 
 <footer>
   <div class="wrap">

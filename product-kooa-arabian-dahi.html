@@ -72,8 +72,8 @@ header.scrolled .header-row{min-height:94px}
 .brand-emblem-img{width:52px;height:auto;display:block;margin:0 auto -9px;filter:drop-shadow(0 2px 5px rgba(188,148,79,.35));transition:transform .3s ease}
 .brand:hover .brand-emblem-img{transform:translateY(-2px) scale(1.06)}
 .brand-name{font:2.15rem/1 Georgia,serif;color:var(--ink);letter-spacing:-.035em;display:inline-flex;align-items:baseline}
-.brand-name sup{font-size:10px;vertical-align:top;margin-left:2px;font-family:Arial,sans-serif;color:#8b682b;font-weight:600}
-.brand-tag{display:block;font:8.5px Arial,sans-serif;letter-spacing:.22em;text-transform:uppercase;color:#8b682b;margin-top:3px;font-weight:700}
+.brand-name sup{font-size:10px;vertical-align:top;margin-left:2px;font-family:Arial,sans-serif;color:#7a5818;font-weight:600}
+.brand-tag{display:block;font:8.5px Arial,sans-serif;letter-spacing:.22em;text-transform:uppercase;color:#7a5818;margin-top:3px;font-weight:700}
 footer .brand{display:inline-flex;flex-direction:column;align-items:center;text-align:center}
 footer .brand .brand-emblem-img{margin:0 auto -9px;width:52px}
 footer .brand .brand-name{color:#fff}
@@ -110,7 +110,7 @@ footer .brand .brand-tag{color:#dfbf83}
 .thumb-btn.active,.thumb-btn:hover{border-color:var(--gold);transform:translateY(-2px);box-shadow:0 4px 12px rgba(188,148,79,.25)}
 
 /* Right: Product Info */
-.info-eyebrow{font-size:.82rem;font-weight:bold;letter-spacing:.16em;text-transform:uppercase;color:#8b682b;display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.info-eyebrow{font-size:.82rem;font-weight:bold;letter-spacing:.16em;text-transform:uppercase;color:#7a5818;display:flex;align-items:center;gap:10px;margin-bottom:12px}
 .info-eyebrow .brand-pill{background:#092840;color:var(--gold-light);padding:3px 10px;border-radius:12px;font-size:.72rem}
 .product-title{font-size:clamp(2rem,3.5vw,3rem);color:var(--navy);margin-bottom:8px;line-height:1.15}
 .product-sub{font-size:1.05rem;color:var(--muted);font-style:italic;margin-bottom:20px}
@@ -157,7 +157,7 @@ footer .brand .brand-tag{color:#dfbf83}
 .related-img-wrap img{max-height:100%;max-width:100%;object-fit:contain;transition:transform .3s ease}
 .related-card:hover .related-img-wrap img{transform:scale(1.05)}
 .related-body{padding:20px;display:flex;flex-direction:column;flex:1}
-.related-brand{font-size:.72rem;font-weight:bold;letter-spacing:.12em;text-transform:uppercase;color:#8b682b;margin-bottom:6px}
+.related-brand{font-size:.72rem;font-weight:bold;letter-spacing:.12em;text-transform:uppercase;color:#7a5818;margin-bottom:6px}
 .related-body h4{font-size:1.2rem;color:var(--navy);margin-bottom:6px}
 .related-sub{font-size:.82rem;color:var(--muted);margin-bottom:14px;flex:1;font-style:italic}
 .btn-sm{font-size:.82rem;font-weight:bold;color:var(--navy);align-self:flex-start}
@@ -227,7 +227,7 @@ footer{padding:54px 0 25px;background:#062034;color:#d2dce4}
     <nav class="header-nav">
       <a class="btn-home" href="index.html">&#8962; Home Page</a>
       <a href="index.html#businesses">Businesses</a>
-      <a href="index.html#products" style="color:#8b682b;font-weight:bold">Products</a>
+      <a href="index.html#products" style="color:#7a5818;font-weight:bold">Products</a>
       <a href="index.html#partners">Partner</a>
       <a href="index.html#contact">Contact</a>
       <a class="btn-nav" href="https://wa.me/919978648583?text=Hello%20Kotwari%2C%20I%20am%20interested%20in%20distributorship%20%2F%20wholesale%20order%20for%20KooA%20Arabian%20Dahi%20(Thick%20Curd).%20Please%20share%20product%20specifications%2C%20MOQ%2C%20and%20trade%20pricing." target="_blank" rel="noopener noreferrer">Order Inquiry &#x2197;</a>
@@ -306,6 +306,23 @@ footer{padding:54px 0 25px;background:#062034;color:#d2dce4}
           </tbody>
         </table>
 
+                <!-- Interactive B2B Order & RFQ Quantity Builder -->
+        <div class="order-customizer" style="background:#f7f5ee;border:1.5px solid #e2d7be;border-radius:12px;padding:16px;margin-bottom:24px">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+            <label for="orderQty" style="font-size:.85rem;font-weight:bold;color:var(--navy);text-transform:uppercase;letter-spacing:.05em">Select Order Quantity (Cases/Units)</label>
+            <span id="qtyDisplay" style="font-size:.9rem;font-weight:bold;color:#7a5818">10 Cases</span>
+          </div>
+          <div style="display:flex;gap:10px;align-items:center">
+            <input type="range" id="orderQty" min="1" max="250" step="1" value="10" style="flex:1;accent-color:#bc944f;cursor:pointer">
+            <select id="destDistrict" style="padding:8px 12px;border:1px solid #dedfd9;border-radius:6px;font-size:.85rem;background:#ffffff;color:var(--navy);font-weight:600">
+              <option value="Lucknow">Lucknow &amp; NCR</option>
+              <option value="Uttar Pradesh">All Uttar Pradesh</option>
+              <option value="Pan India">Pan India Interstate</option>
+              <option value="Export">Global Export FCL</option>
+            </select>
+          </div>
+          <p style="font-size:.78rem;color:var(--muted);margin-top:8px;margin-bottom:0">&#128230; MOQ: 1 Master Carton &bull; Doorstep Freight &bull; GST Invoice</p>
+        </div>
         <div class="cta-group">
           <a class="btn-primary" href="https://wa.me/919978648583?text=Hello%20Kotwari%2C%20I%20am%20interested%20in%20distributorship%20%2F%20wholesale%20order%20for%20KooA%20Arabian%20Dahi%20(Thick%20Curd).%20Please%20share%20product%20specifications%2C%20MOQ%2C%20and%20trade%20pricing." target="_blank" rel="noopener noreferrer">
             <span>&#128241; Enquire via WhatsApp</span>
@@ -495,5 +512,31 @@ document.addEventListener('DOMContentLoaded', initScrollReveal);
 initScrollReveal();
 </script>
 
+<script>
+(function(){
+  var orderQty = document.getElementById('orderQty');
+  var destDistrict = document.getElementById('destDistrict');
+  var qtyDisplay = document.getElementById('qtyDisplay');
+  var waBtn = document.querySelector('.btn-primary');
+  var pTitleEl = document.querySelector('.product-title');
+  var productTitle = pTitleEl ? pTitleEl.innerText.trim() : 'Kotwari Product';
+
+  function updateOrderMsg(){
+    if(!orderQty || !destDistrict || !waBtn) return;
+    var qty = orderQty.value;
+    var dest = destDistrict.value;
+    qtyDisplay.textContent = qty + ' ' + (qty > 1 ? 'Cases' : 'Case');
+
+    var msg = encodeURIComponent('Hello Kotwari Sourcing Desk, I would like to place an inquiry for ' + productTitle + ' â€” Order Volume: ' + qty + ' Cases / Units for Delivery to: ' + dest + '. Please share current trade rate card, MOQ and dispatch timeline.');
+    waBtn.href = 'https://wa.me/919978648583?text=' + msg;
+  }
+
+  if(orderQty && destDistrict){
+    orderQty.addEventListener('input', updateOrderMsg);
+    destDistrict.addEventListener('change', updateOrderMsg);
+    updateOrderMsg();
+  }
+})();
+</script>
 </body>
 </html>
