@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -318,6 +318,57 @@
   </div>
 </section>
 
+<!-- Interactive Poultry Flock Output & Egg Tray Yield Estimator -->
+<section id="egg-calculator" class="band-section reveal" style="background:#eeede5">
+  <div class="wrap">
+    <div style="text-align:center;max-width:760px;margin:0 auto 36px">
+      <span class="eyebrow">Interactive Poultry Tool</span>
+      <h2>Layer Bird Flock Output &amp; Daily Egg Yield Estimator</h2>
+      <p style="color:#596977">Calculate your flock laying percentage, daily crate/tray production, and monthly wholesale revenue with Kotwari aggregation.</p>
+    </div>
+
+    <div style="background:white;border:1px solid #dedfd9;border-radius:16px;padding:32px;box-shadow:0 10px 30px rgba(9,40,64,.06);max-width:920px;margin:0 auto">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));gap:24px;margin-bottom:28px">
+        <div>
+          <label for="flockSize" style="display:block;font-size:.85rem;font-weight:bold;color:#092840;margin-bottom:8px">Total Layer Bird Flock Size</label>
+          <input type="number" id="flockSize" value="5000" min="500" max="100000" step="500" style="width:100%;padding:12px;border:1px solid #dedfd9;border-radius:6px;font-size:.95rem;background:#faf8f1;color:#092840;font-weight:600">
+        </div>
+
+        <div>
+          <label for="layingRate" style="display:block;font-size:.85rem;font-weight:bold;color:#092840;margin-bottom:8px">Laying Efficiency (%): <span id="layingVal" style="color:#7a5818">88%</span></label>
+          <input type="range" id="layingRate" min="65" max="95" step="1" value="88" style="width:100%;accent-color:#bc944f;cursor:pointer">
+        </div>
+
+        <div>
+          <label for="eggPrice" style="display:block;font-size:.85rem;font-weight:bold;color:#092840;margin-bottom:8px">Avg. Procurement Price / Egg (&#8377;)</label>
+          <input type="number" id="eggPrice" value="5.20" min="3.50" max="8.00" step="0.10" style="width:100%;padding:12px;border:1px solid #dedfd9;border-radius:6px;font-size:.95rem;background:#faf8f1;color:#092840;font-weight:600">
+        </div>
+      </div>
+
+      <!-- Real-time Output Cards -->
+      <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));gap:16px;background:#092840;padding:24px;border-radius:12px;color:white;text-align:center">
+        <div>
+          <span style="font-size:.78rem;text-transform:uppercase;letter-spacing:.1em;color:#e2c58d;display:block;margin-bottom:4px">Daily Egg Production</span>
+          <strong id="dailyEggs" style="font:2.2rem Georgia,serif;color:#ffffff">4,400 Eggs</strong>
+        </div>
+        <div>
+          <span style="font-size:.78rem;text-transform:uppercase;letter-spacing:.1em;color:#e2c58d;display:block;margin-bottom:4px">Standard Trays (30s) / Day</span>
+          <strong id="dailyTrays" style="font:2.2rem Georgia,serif;color:#dfbf83">146.6 Trays</strong>
+        </div>
+        <div>
+          <span style="font-size:.78rem;text-transform:uppercase;letter-spacing:.1em;color:#e2c58d;display:block;margin-bottom:4px">Monthly Gross Revenue</span>
+          <strong id="monthlyEggRev" style="font:2.2rem Georgia,serif;color:#ffffff">&#8377;6,86,400</strong>
+        </div>
+      </div>
+
+      <div style="margin-top:20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
+        <p style="font-size:.8rem;color:#596977;margin:0">* Tray calculations based on statutory 30-egg pulp trays. Kotwari provides prompt collection logistics.</p>
+        <a class="btn btn-gold" id="btnShareEggQuote" href="#" target="_blank" rel="noopener noreferrer" style="font-size:.82rem;padding:8px 16px">Connect Sourcing Desk via WhatsApp &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- CTA STRIP -->
 <div class="cta-strip">
   <div class="wrap">
@@ -392,6 +443,47 @@ function initScrollReveal(){
 }
 document.addEventListener('DOMContentLoaded',initScrollReveal);
 initScrollReveal();
+
+// Egg Calculator Logic
+(function(){
+  const flockSize = document.getElementById('flockSize');
+  const layingRate = document.getElementById('layingRate');
+  const eggPrice = document.getElementById('eggPrice');
+  const layingVal = document.getElementById('layingVal');
+  const dailyEggs = document.getElementById('dailyEggs');
+  const dailyTrays = document.getElementById('dailyTrays');
+  const monthlyEggRev = document.getElementById('monthlyEggRev');
+  const btnShareEggQuote = document.getElementById('btnShareEggQuote');
+
+  function calculate(){
+    if(!flockSize || !layingRate || !eggPrice) return;
+
+    const birds = parseInt(flockSize.value) || 0;
+    const efficiency = parseFloat(layingRate.value) || 0;
+    const price = parseFloat(eggPrice.value) || 0;
+
+    layingVal.textContent = efficiency.toFixed(0) + '%';
+
+    const eggsPerDay = birds * (efficiency / 100);
+    const traysPerDay = eggsPerDay / 30;
+    const dailyIncome = eggsPerDay * price;
+    const monthlyIncome = dailyIncome * 30;
+
+    dailyEggs.textContent = Math.round(eggsPerDay).toLocaleString('en-IN') + ' Eggs';
+    dailyTrays.textContent = traysPerDay.toFixed(1) + ' Trays';
+    monthlyEggRev.innerHTML = '&#8377;' + Math.round(monthlyIncome).toLocaleString('en-IN');
+
+    const text = encodeURIComponent(`Hello Kotwari Poultry Desk, I calculated daily production for ${birds.toLocaleString('en-IN')} birds at ${efficiency}% lay (${Math.round(eggsPerDay)} eggs / ${traysPerDay.toFixed(0)} trays daily). Please share farm partnership terms and daily collection route.`);
+    btnShareEggQuote.href = `https://wa.me/919978648583?text=${text}`;
+  }
+
+  if(flockSize && layingRate && eggPrice){
+    flockSize.addEventListener('input', calculate);
+    layingRate.addEventListener('input', calculate);
+    eggPrice.addEventListener('input', calculate);
+    calculate();
+  }
+})();
 </script>
 </body>
 </html>

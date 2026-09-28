@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
   <meta charset="UTF-8">
@@ -324,6 +324,61 @@
     </div>
   </section>
 
+  <!-- Interactive Retail Franchise & Store Footprint ROI Estimator -->
+  <section id="retail-calculator" class="band-section" style="background:#f0eee4;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+    <div class="wrap">
+      <div style="text-align:center;max-width:760px;margin:0 auto 36px">
+        <p class="eyebrow">Interactive Franchise Tool</p>
+        <h2>Retail Format &amp; Store Setup ROI Estimator</h2>
+        <p style="color:var(--muted)">Calculate space requirements, setup investment, and projected monthly store profits for Kotwari One Hypermarket or Protein Breakfast Point franchise.</p>
+      </div>
+
+      <div style="background:white;border:1px solid var(--line);border-radius:16px;padding:32px;box-shadow:0 10px 30px rgba(9,40,64,.06);max-width:920px;margin:0 auto">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));gap:24px;margin-bottom:28px">
+          <div>
+            <label for="storeFormat" style="display:block;font-size:.85rem;font-weight:bold;color:var(--navy);margin-bottom:8px">Retail Format</label>
+            <select id="storeFormat" style="width:100%;padding:12px;border:1px solid var(--line);border-radius:6px;font-size:.95rem;background:#faf8f1;color:var(--navy);font-weight:600">
+              <option value="kiosk" selected>Protein Breakfast Point (Kiosk / Quick-Service: 150-300 sq.ft)</option>
+              <option value="express">Kotwari Daily Express (Mini Supermarket: 800-1,500 sq.ft)</option>
+              <option value="hyper">Kotwari One Hypermarket (Full Experience: 3,000-8,000 sq.ft)</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="dailyFootfall" style="display:block;font-size:.85rem;font-weight:bold;color:var(--navy);margin-bottom:8px">Estimated Daily Customer Footfall: <span id="footfallVal" style="color:#7a5818">180 Visitors</span></label>
+            <input type="range" id="dailyFootfall" min="50" max="1000" step="10" value="180" style="width:100%;accent-color:#bc944f;cursor:pointer">
+          </div>
+
+          <div>
+            <label for="avgBillVal" style="display:block;font-size:.85rem;font-weight:bold;color:var(--navy);margin-bottom:8px">Average Order Value (&#8377;)</label>
+            <input type="number" id="avgBillVal" value="120" min="40" max="2500" style="width:100%;padding:12px;border:1px solid var(--line);border-radius:6px;font-size:.95rem;background:#faf8f1;color:var(--navy);font-weight:600">
+          </div>
+        </div>
+
+        <!-- Real-time Output Cards -->
+        <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));gap:16px;background:var(--navy);padding:24px;border-radius:12px;color:white;text-align:center">
+          <div>
+            <span style="font-size:.78rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gold-light);display:block;margin-bottom:4px">Monthly Store Revenue</span>
+            <strong id="monthlyRev" style="font:2.2rem Georgia,serif;color:#ffffff">&#8377;6,48,000</strong>
+          </div>
+          <div>
+            <span style="font-size:.78rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gold-light);display:block;margin-bottom:4px">Projected Gross Margin</span>
+            <strong id="grossMarginVal" style="font:2.2rem Georgia,serif;color:var(--gold-light)">&#8377;1,81,440</strong>
+          </div>
+          <div>
+            <span style="font-size:.78rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gold-light);display:block;margin-bottom:4px">Est. Payback Timeline</span>
+            <strong id="paybackMonths" style="font:2.2rem Georgia,serif;color:#ffffff">6 - 9 Months</strong>
+          </div>
+        </div>
+
+        <div style="margin-top:20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
+          <p style="font-size:.8rem;color:var(--muted);margin:0">* Model assumes standard retail gross margin of 28% for QSR &amp; 19% for grocery formats.</p>
+          <a class="btn btn-gold" id="btnShareRetailQuote" href="#" target="_blank" rel="noopener noreferrer" style="font-size:.82rem;padding:8px 16px">Apply for Franchise Location &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- CTA Strip -->
   <section class="cta-strip">
     <div class="wrap">
@@ -385,6 +440,55 @@
   </div>
 </footer>
 
+<script>
+  (function(){
+    const storeFormat = document.getElementById('storeFormat');
+    const dailyFootfall = document.getElementById('dailyFootfall');
+    const avgBillVal = document.getElementById('avgBillVal');
+    const footfallVal = document.getElementById('footfallVal');
+    const monthlyRev = document.getElementById('monthlyRev');
+    const grossMarginVal = document.getElementById('grossMarginVal');
+    const paybackMonths = document.getElementById('paybackMonths');
+    const btnShareRetailQuote = document.getElementById('btnShareRetailQuote');
+
+    const formatData = {
+      kiosk: { margin: 0.28, capex: 350000, defBill: 120, payback: '5 - 8 Months' },
+      express: { margin: 0.21, capex: 1200000, defBill: 450, payback: '8 - 14 Months' },
+      hyper: { margin: 0.18, capex: 3500000, defBill: 850, payback: '12 - 20 Months' }
+    };
+
+    function calculate(){
+      if(!storeFormat || !dailyFootfall || !avgBillVal) return;
+
+      const format = formatData[storeFormat.value] || formatData.kiosk;
+      const footfall = parseInt(dailyFootfall.value) || 100;
+      const bill = parseFloat(avgBillVal.value) || 100;
+
+      footfallVal.textContent = footfall + ' Visitors / day';
+
+      const monthlySales = footfall * bill * 30;
+      const grossProfit = monthlySales * format.margin;
+
+      monthlyRev.innerHTML = '&#8377;' + Math.round(monthlySales).toLocaleString('en-IN');
+      grossMarginVal.innerHTML = '&#8377;' + Math.round(grossProfit).toLocaleString('en-IN');
+      paybackMonths.textContent = format.payback;
+
+      const text = encodeURIComponent(`Hello Kotwari Retail Team, I evaluated the franchise ROI for ${storeFormat.options[storeFormat.selectedIndex].text} with ${footfall} daily footfall & ₹${bill} avg ticket size (Projected Gross Margin: ₹${Math.round(grossProfit).toLocaleString('en-IN')}/mo). Please share franchise prospectus and site evaluation checklist.`);
+      btnShareRetailQuote.href = `https://wa.me/919978648583?text=${text}`;
+    }
+
+    if(storeFormat && dailyFootfall && avgBillVal){
+      storeFormat.addEventListener('change', function(){
+        const f = formatData[this.value];
+        if(f) avgBillVal.value = f.defBill;
+        calculate();
+      });
+      dailyFootfall.addEventListener('input', calculate);
+      avgBillVal.addEventListener('input', calculate);
+      calculate();
+    }
+  })();
+</script>
 </body>
 </html>
 

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
   <meta charset="UTF-8">
@@ -408,6 +408,66 @@
     </div>
   </section>
 
+  <!-- Interactive Farmer & Distributor Milk Fat/SNF Rate & Payment Estimator -->
+  <section id="dairy-calculator" class="band-section" style="background:#f0eee4;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+    <div class="wrap">
+      <div style="text-align:center;max-width:760px;margin:0 auto 36px">
+        <p class="eyebrow">Interactive Dairy Tool</p>
+        <h2>Farmer Milk Rate &amp; Procurement Payout Estimator</h2>
+        <p style="color:var(--muted)">Transparent digital pricing standard based on automated Fat % and SNF % testing at Kotwari Village Collection Centres.</p>
+      </div>
+
+      <div style="background:white;border:1px solid var(--line);border-radius:16px;padding:32px;box-shadow:0 10px 30px rgba(9,40,64,.06);max-width:920px;margin:0 auto">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));gap:24px;margin-bottom:28px">
+          <div>
+            <label for="milkType" style="display:block;font-size:.85rem;font-weight:bold;color:var(--navy);margin-bottom:8px">Milk Category</label>
+            <select id="milkType" style="width:100%;padding:12px;border:1px solid var(--line);border-radius:6px;font-size:.95rem;background:#faf8f1;color:var(--navy);font-weight:600">
+              <option value="cow">Cow Milk (Standard: 4.0% Fat / 8.5% SNF)</option>
+              <option value="buffalo" selected>Buffalo Milk (Standard: 6.5% Fat / 9.0% SNF)</option>
+              <option value="mixed">Mixed Farm Fresh Milk</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="milkVolume" style="display:block;font-size:.85rem;font-weight:bold;color:var(--navy);margin-bottom:8px">Daily Milk Volume (Litres)</label>
+            <input type="number" id="milkVolume" value="50" min="1" max="10000" style="width:100%;padding:12px;border:1px solid var(--line);border-radius:6px;font-size:.95rem;background:#faf8f1;color:var(--navy);font-weight:600">
+          </div>
+
+          <div>
+            <label for="fatPercent" style="display:block;font-size:.85rem;font-weight:bold;color:var(--navy);margin-bottom:8px">Fat Content (%): <span id="fatVal" style="color:#7a5818">6.5%</span></label>
+            <input type="range" id="fatPercent" min="3.0" max="10.0" step="0.1" value="6.5" style="width:100%;accent-color:#bc944f;cursor:pointer">
+          </div>
+
+          <div>
+            <label for="snfPercent" style="display:block;font-size:.85rem;font-weight:bold;color:var(--navy);margin-bottom:8px">SNF Content (%): <span id="snfVal" style="color:#7a5818">9.0%</span></label>
+            <input type="range" id="snfPercent" min="7.5" max="10.0" step="0.1" value="9.0" style="width:100%;accent-color:#bc944f;cursor:pointer">
+          </div>
+        </div>
+
+        <!-- Real-time Output Cards -->
+        <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));gap:16px;background:var(--navy);padding:24px;border-radius:12px;color:white;text-align:center">
+          <div>
+            <span style="font-size:.78rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gold-light);display:block;margin-bottom:4px">Estimated Rate / Litre</span>
+            <strong id="ratePerLitre" style="font:2.2rem Georgia,serif;color:#ffffff">&#8377;54.60</strong>
+          </div>
+          <div>
+            <span style="font-size:.78rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gold-light);display:block;margin-bottom:4px">Daily Farmer Payout</span>
+            <strong id="dailyPayout" style="font:2.2rem Georgia,serif;color:var(--gold-light)">&#8377;2,730</strong>
+          </div>
+          <div>
+            <span style="font-size:.78rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gold-light);display:block;margin-bottom:4px">Monthly Projected Payout</span>
+            <strong id="monthlyPayout" style="font:2.2rem Georgia,serif;color:#ffffff">&#8377;81,900</strong>
+          </div>
+        </div>
+
+        <div style="margin-top:20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
+          <p style="font-size:.8rem;color:var(--muted);margin:0">* Illustrative standard procurement formula. Actual payments are logged per batch with automated digital receipt.</p>
+          <a class="btn btn-gold" id="btnShareQuote" href="#" target="_blank" rel="noopener noreferrer" style="font-size:.82rem;padding:8px 16px">Connect via WhatsApp for Bulk Procurement &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- B2B & Distribution CTA Strip -->
   <section class="cta-strip">
     <div class="wrap">
@@ -468,6 +528,66 @@
   </div>
 </footer>
 
+<script>
+  (function(){
+    const milkType = document.getElementById('milkType');
+    const milkVolume = document.getElementById('milkVolume');
+    const fatPercent = document.getElementById('fatPercent');
+    const snfPercent = document.getElementById('snfPercent');
+    const fatVal = document.getElementById('fatVal');
+    const snfVal = document.getElementById('snfVal');
+    const ratePerLitre = document.getElementById('ratePerLitre');
+    const dailyPayout = document.getElementById('dailyPayout');
+    const monthlyPayout = document.getElementById('monthlyPayout');
+    const btnShareQuote = document.getElementById('btnShareQuote');
+
+    function calculate(){
+      if(!milkType || !milkVolume || !fatPercent || !snfPercent) return;
+      
+      const fat = parseFloat(fatPercent.value);
+      const snf = parseFloat(snfPercent.value);
+      const vol = parseFloat(milkVolume.value) || 0;
+
+      fatVal.textContent = fat.toFixed(1) + '%';
+      snfVal.textContent = snf.toFixed(1) + '%';
+
+      // Base pricing model: Fat standard (₹5.50/0.1% above base) + SNF standard (₹2.20/0.1% above base)
+      let rate = (fat * 5.8) + (snf * 1.9);
+      if(milkType.value === 'cow'){
+        rate = (fat * 6.2) + (snf * 1.8);
+      } else if(milkType.value === 'buffalo'){
+        rate = (fat * 5.6) + (snf * 2.0);
+      }
+
+      const daily = rate * vol;
+      const monthly = daily * 30;
+
+      ratePerLitre.innerHTML = '&#8377;' + rate.toFixed(2);
+      dailyPayout.innerHTML = '&#8377;' + Math.round(daily).toLocaleString('en-IN');
+      monthlyPayout.innerHTML = '&#8377;' + Math.round(monthly).toLocaleString('en-IN');
+
+      const text = encodeURIComponent(`Hello Kotwari Dairy, I evaluated the procurement rate for ${vol} Litres daily (${milkType.options[milkType.selectedIndex].text}) with ${fat}% Fat & ${snf}% SNF. Estimated Rate: ₹${rate.toFixed(2)}/L. Please share collection centre onboarding details.`);
+      btnShareQuote.href = `https://wa.me/919978648583?text=${text}`;
+    }
+
+    if(milkType && milkVolume && fatPercent && snfPercent){
+      milkType.addEventListener('change', function(){
+        if(this.value === 'cow'){
+          fatPercent.value = 4.0;
+          snfPercent.value = 8.5;
+        } else if(this.value === 'buffalo'){
+          fatPercent.value = 6.5;
+          snfPercent.value = 9.0;
+        }
+        calculate();
+      });
+      milkVolume.addEventListener('input', calculate);
+      fatPercent.addEventListener('input', calculate);
+      snfPercent.addEventListener('input', calculate);
+      calculate();
+    }
+  })();
+</script>
 </body>
 </html>
 

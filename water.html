@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -215,6 +215,66 @@
   </div>
 </section>
 
+<!-- Interactive KooA Hospitality & Institutional Pallet Estimator -->
+<section id="water-calculator" class="band-section reveal" style="background:#eeede5">
+  <div class="wrap">
+    <div style="text-align:center;max-width:760px;margin:0 auto 36px">
+      <span class="eyebrow">Institutional &amp; HORECA Tool</span>
+      <h2>KooA Case, Pallet &amp; Truckload Volume Estimator</h2>
+      <p style="color:#596977">Plan your hospitality catering, banquet event orders, or master distributorship consignments across KooA SKUs.</p>
+    </div>
+
+    <div style="background:white;border:1px solid #dedfd9;border-radius:16px;padding:32px;box-shadow:0 10px 30px rgba(9,40,64,.06);max-width:920px;margin:0 auto">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));gap:24px;margin-bottom:28px">
+        <div>
+          <label for="waterSku" style="display:block;font-size:.85rem;font-weight:bold;color:#092840;margin-bottom:8px">KooA Water SKU</label>
+          <select id="waterSku" style="width:100%;padding:12px;border:1px solid #dedfd9;border-radius:6px;font-size:.95rem;background:#faf8f1;color:#092840;font-weight:600">
+            <option value="200" selected>200 ml &mdash; Starter Cup / Mini Banquet (48 Bottles/Case)</option>
+            <option value="300">300 ml &mdash; Classic Hotel &amp; Airline (30 Bottles/Case)</option>
+            <option value="500">500 ml &mdash; Standard Fine Dining (24 Bottles/Case)</option>
+            <option value="1000">1.0 L &mdash; Premium Table Glass/Pet (12 Bottles/Case)</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="caseCount" style="display:block;font-size:.85rem;font-weight:bold;color:#092840;margin-bottom:8px">Order Volume: <span id="caseVal" style="color:#7a5818">100 Cases</span></label>
+          <input type="range" id="caseCount" min="10" max="1500" step="10" value="100" style="width:100%;accent-color:#bc944f;cursor:pointer">
+        </div>
+
+        <div>
+          <label for="deliveryMode" style="display:block;font-size:.85rem;font-weight:bold;color:#092840;margin-bottom:8px">Delivery Logistics</label>
+          <select id="deliveryMode" style="width:100%;padding:12px;border:1px solid #dedfd9;border-radius:6px;font-size:.95rem;background:#faf8f1;color:#092840;font-weight:600">
+            <option value="lcv">Local Express LCV (Up to 250 Cases)</option>
+            <option value="truck" selected>Full Truckload 14ft / 19ft (600-1200 Cases)</option>
+            <option value="fcl">20ft Dry Export Container (1800 Cases)</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Real-time Output Cards -->
+      <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));gap:16px;background:#092840;padding:24px;border-radius:12px;color:white;text-align:center">
+        <div>
+          <span style="font-size:.78rem;text-transform:uppercase;letter-spacing:.1em;color:#e2c58d;display:block;margin-bottom:4px">Total Bottle Count</span>
+          <strong id="totalBottles" style="font:2.2rem Georgia,serif;color:#ffffff">4,800 Pcs</strong>
+        </div>
+        <div>
+          <span style="font-size:.78rem;text-transform:uppercase;letter-spacing:.1em;color:#e2c58d;display:block;margin-bottom:4px">Total Consignment Weight</span>
+          <strong id="totalGrossWeight" style="font:2.2rem Georgia,serif;color:#dfbf83">1,056 kg</strong>
+        </div>
+        <div>
+          <span style="font-size:.78rem;text-transform:uppercase;letter-spacing:.1em;color:#e2c58d;display:block;margin-bottom:4px">Standard Pallet Space</span>
+          <strong id="palletSpaces" style="font:2.2rem Georgia,serif;color:#ffffff">1.4 Pallets</strong>
+        </div>
+      </div>
+
+      <div style="margin-top:20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
+        <p style="font-size:.8rem;color:#596977;margin:0">* Shrink-wrapped corrugated cartons with barcode scanning. Customized corporate private labeling available upon request.</p>
+        <a class="btn btn-gold" id="btnShareWaterQuote" href="#" target="_blank" rel="noopener noreferrer" style="font-size:.82rem;padding:8px 16px">Request Institutional Consignment Quote &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- CTA STRIP -->
 <div class="cta-strip">
   <div class="wrap">
@@ -298,6 +358,52 @@ function initScrollReveal(){
 }
 document.addEventListener('DOMContentLoaded',initScrollReveal);
 initScrollReveal();
+
+// KooA Water Calculator Logic
+(function(){
+  const waterSku = document.getElementById('waterSku');
+  const caseCount = document.getElementById('caseCount');
+  const deliveryMode = document.getElementById('deliveryMode');
+  const caseVal = document.getElementById('caseVal');
+  const totalBottles = document.getElementById('totalBottles');
+  const totalGrossWeight = document.getElementById('totalGrossWeight');
+  const palletSpaces = document.getElementById('palletSpaces');
+  const btnShareWaterQuote = document.getElementById('btnShareWaterQuote');
+
+  const skuData = {
+    '200': { perCase: 48, weightKg: 10.5, casesPerPallet: 72 },
+    '300': { perCase: 30, weightKg: 9.8, casesPerPallet: 64 },
+    '500': { perCase: 24, weightKg: 12.8, casesPerPallet: 56 },
+    '1000': { perCase: 12, weightKg: 12.6, casesPerPallet: 50 }
+  };
+
+  function calculate(){
+    if(!waterSku || !caseCount) return;
+
+    const sku = skuData[waterSku.value] || skuData['200'];
+    const cases = parseInt(caseCount.value) || 10;
+
+    caseVal.textContent = cases + ' Cases';
+
+    const bottles = cases * sku.perCase;
+    const grossWeight = cases * sku.weightKg;
+    const pallets = cases / sku.casesPerPallet;
+
+    totalBottles.textContent = bottles.toLocaleString('en-IN') + ' Pcs';
+    totalGrossWeight.textContent = Math.round(grossWeight).toLocaleString('en-IN') + ' kg';
+    palletSpaces.textContent = pallets.toFixed(1) + ' Pallets';
+
+    const text = encodeURIComponent(`Hello KooA Institutional Desk, I estimated a consignment for ${cases} Cases of ${waterSku.options[waterSku.selectedIndex].text} (${bottles.toLocaleString('en-IN')} bottles / ${Math.round(grossWeight)} kg / ${pallets.toFixed(1)} pallets via ${deliveryMode.options[deliveryMode.selectedIndex].text}). Please share institutional pricing & lead time.`);
+    btnShareWaterQuote.href = `https://wa.me/919978648583?text=${text}`;
+  }
+
+  if(waterSku && caseCount && deliveryMode){
+    waterSku.addEventListener('change', calculate);
+    caseCount.addEventListener('input', calculate);
+    deliveryMode.addEventListener('change', calculate);
+    calculate();
+  }
+})();
 </script>
 </body>
 </html>

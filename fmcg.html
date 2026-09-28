@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
   <meta charset="UTF-8">
@@ -490,6 +490,68 @@
     </div>
   </section>
 
+  <!-- Interactive FMCG Distributorship ROI & Trade Margin Calculator -->
+  <section id="fmcg-calculator" class="band-section" style="background:#f0eee4;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+    <div class="wrap">
+      <div style="text-align:center;max-width:760px;margin:0 auto 36px">
+        <p class="eyebrow">Interactive Commercial Tool</p>
+        <h2>FMCG Distributorship Margin &amp; Monthly ROI Estimator</h2>
+        <p style="color:var(--muted)">Estimate your working capital turnover, trade margins, and monthly gross returns across Kotwari FMCG categories.</p>
+      </div>
+
+      <div style="background:white;border:1px solid var(--line);border-radius:16px;padding:32px;box-shadow:0 10px 30px rgba(9,40,64,.06);max-width:920px;margin:0 auto">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));gap:24px;margin-bottom:28px">
+          <div>
+            <label for="fmcgCategory" style="display:block;font-size:.85rem;font-weight:bold;color:var(--navy);margin-bottom:8px">Primary FMCG Category</label>
+            <select id="fmcgCategory" style="width:100%;padding:12px;border:1px solid var(--line);border-radius:6px;font-size:.95rem;background:#faf8f1;color:var(--navy);font-weight:600">
+              <option value="spices" selected>Himalayan Spices & Blends (Margin: ~18%)</option>
+              <option value="oils">Kachi Ghani Mustard Oils (Margin: ~11%)</option>
+              <option value="sattu">Chana Sattu Superfoods (Margin: ~15%)</option>
+              <option value="snacks">Gourmet Makhana & Snacks (Margin: ~20%)</option>
+              <option value="pickles">Deshi Achar & Specialities (Margin: ~22%)</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="fmcgInvestment" style="display:block;font-size:.85rem;font-weight:bold;color:var(--navy);margin-bottom:8px">Monthly Working Capital (&#8377;)</label>
+            <select id="fmcgInvestment" style="width:100%;padding:12px;border:1px solid var(--line);border-radius:6px;font-size:.95rem;background:#faf8f1;color:var(--navy);font-weight:600">
+              <option value="150000">&#8377;1.5 Lakhs (Town / Sub-Stockist)</option>
+              <option value="300000" selected>&#8377;3.0 Lakhs (District Distributor)</option>
+              <option value="750000">&#8377;7.5 Lakhs (Super Stockist / Regional)</option>
+              <option value="1500000">&#8377;15.0 Lakhs (State C&amp;F / Modern Retail)</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="fmcgTurnover" style="display:block;font-size:.85rem;font-weight:bold;color:var(--navy);margin-bottom:8px">Inventory Turnover / Month: <span id="turnoverVal" style="color:#7a5818">2.0 Cycles</span></label>
+            <input type="range" id="fmcgTurnover" min="1.0" max="4.0" step="0.5" value="2.0" style="width:100%;accent-color:#bc944f;cursor:pointer">
+          </div>
+        </div>
+
+        <!-- Real-time Output Cards -->
+        <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));gap:16px;background:var(--navy);padding:24px;border-radius:12px;color:white;text-align:center">
+          <div>
+            <span style="font-size:.78rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gold-light);display:block;margin-bottom:4px">Monthly Sales Volume</span>
+            <strong id="monthlySales" style="font:2.2rem Georgia,serif;color:#ffffff">&#8377;6,00,000</strong>
+          </div>
+          <div>
+            <span style="font-size:.78rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gold-light);display:block;margin-bottom:4px">Gross Margin Payout</span>
+            <strong id="monthlyMargin" style="font:2.2rem Georgia,serif;color:var(--gold-light)">&#8377;1,08,000</strong>
+          </div>
+          <div>
+            <span style="font-size:.78rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gold-light);display:block;margin-bottom:4px">Annualized Return</span>
+            <strong id="annualReturn" style="font:2.2rem Georgia,serif;color:#ffffff">360%</strong>
+          </div>
+        </div>
+
+        <div style="margin-top:20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
+          <p style="font-size:.8rem;color:var(--muted);margin:0">* Indicative trade projection. Includes standard secondary retailer margins and marketing support.</p>
+          <a class="btn btn-gold" id="btnShareFmcgQuote" href="#" target="_blank" rel="noopener noreferrer" style="font-size:.82rem;padding:8px 16px">Apply for Territory Distributorship &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- B2B CTA Strip -->
   <section class="cta-strip">
     <div class="wrap">
@@ -551,6 +613,54 @@
   </div>
 </footer>
 
+<script>
+  (function(){
+    const fmcgCategory = document.getElementById('fmcgCategory');
+    const fmcgInvestment = document.getElementById('fmcgInvestment');
+    const fmcgTurnover = document.getElementById('fmcgTurnover');
+    const turnoverVal = document.getElementById('turnoverVal');
+    const monthlySales = document.getElementById('monthlySales');
+    const monthlyMargin = document.getElementById('monthlyMargin');
+    const annualReturn = document.getElementById('annualReturn');
+    const btnShareFmcgQuote = document.getElementById('btnShareFmcgQuote');
+
+    const marginMap = {
+      spices: 0.18,
+      oils: 0.11,
+      sattu: 0.15,
+      snacks: 0.20,
+      pickles: 0.22
+    };
+
+    function calculate(){
+      if(!fmcgCategory || !fmcgInvestment || !fmcgTurnover) return;
+
+      const capital = parseFloat(fmcgInvestment.value) || 0;
+      const turns = parseFloat(fmcgTurnover.value) || 1;
+      const marginRate = marginMap[fmcgCategory.value] || 0.15;
+
+      turnoverVal.textContent = turns.toFixed(1) + ' Cycles';
+
+      const sales = capital * turns;
+      const grossMargin = sales * marginRate;
+      const annualRoi = ((grossMargin * 12) / capital) * 100;
+
+      monthlySales.innerHTML = '&#8377;' + Math.round(sales).toLocaleString('en-IN');
+      monthlyMargin.innerHTML = '&#8377;' + Math.round(grossMargin).toLocaleString('en-IN');
+      annualReturn.textContent = Math.round(annualRoi) + '%';
+
+      const text = encodeURIComponent(`Hello Kotwari FMCG Commercial Desk, I estimated a distributorship turnover for ${fmcgCategory.options[fmcgCategory.selectedIndex].text} with Monthly Capital ₹${(capital/100000).toFixed(1)} Lakhs and ${turns}x turnover (Est. Margin: ₹${Math.round(grossMargin).toLocaleString('en-IN')}/mo). Please share dealership terms and product catalog.`);
+      btnShareFmcgQuote.href = `https://wa.me/919978648583?text=${text}`;
+    }
+
+    if(fmcgCategory && fmcgInvestment && fmcgTurnover){
+      fmcgCategory.addEventListener('change', calculate);
+      fmcgInvestment.addEventListener('change', calculate);
+      fmcgTurnover.addEventListener('input', calculate);
+      calculate();
+    }
+  })();
+</script>
 </body>
 </html>
 
