@@ -941,6 +941,27 @@
             </div>
           </div>
 
+          <!-- Currency & Trade Terms Selector -->
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px">
+            <div class="form-group">
+              <label for="calcCurrency" style="font-size:var(--text-sm);font-weight:700;color:var(--navy)">Trade Currency</label>
+              <select id="calcCurrency" class="form-select" onchange="recalculateShipment()">
+                <option value="USD" selected>USD ($) &mdash; US Dollar</option>
+                <option value="AED">AED (د.إ) &mdash; UAE Dirham</option>
+                <option value="INR">INR (₹) &mdash; Indian Rupee</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="calcIncoterms" style="font-size:var(--text-sm);font-weight:700;color:var(--navy)">Shipping Incoterms</label>
+              <select id="calcIncoterms" class="form-select" onchange="recalculateShipment()">
+                <option value="FOB" selected>FOB (Nhava Sheva / Mundra)</option>
+                <option value="CIF">CIF (Destination Port Delivery)</option>
+                <option value="CNF">C&amp;F (Cost and Freight)</option>
+              </select>
+            </div>
+          </div>
+
           <div style="background:#fdfcf9;border:1px solid #ebdcb7;border-radius:var(--radius-md);padding:14px 18px;font-size:var(--text-xs);color:#6b5322">
             💡 <strong>Export Desk Tip:</strong> Perishable goods like fresh eggs and dairy beverages require Reefer Cold Chain shipping. Ambient dry groceries (Basmati, spices, cold-pressed oils) ship via standard dry FCL with desiccants.
           </div>
@@ -966,10 +987,11 @@
             </div>
           </div>
 
-          <div style="font-size:var(--text-xs);color:#cbdbe4;line-height:1.6;margin-bottom:20px">
+          <div style="font-size:var(--text-xs);color:#cbdbe4;line-height:1.6;margin-bottom:16px">
             <p style="margin-bottom:6px">📦 <strong>Pallet Allocation:</strong> <span id="calcPallets">24 Pallets (Double Stacked)</span></p>
             <p style="margin-bottom:6px">🌡️ <strong>Temp Regime:</strong> <span id="calcTemp">+4°C Continuous Reefer Cold Chain</span></p>
-            <p style="margin-bottom:0">⚓ <strong>Port Transit Est.:</strong> <span id="calcTransit">Nhava Sheva &rarr; Jebel Ali (~4-6 Days)</span></p>
+            <p style="margin-bottom:6px">⚓ <strong>Port Transit Est.:</strong> <span id="calcTransit">Nhava Sheva &rarr; Jebel Ali (~4-6 Days)</span></p>
+            <p style="margin-bottom:0">💰 <strong>Indicative FCL Value:</strong> <span id="calcFclValue" style="color:#dfbf83;font-weight:bold">$18,500 - $22,000 USD</span></p>
           </div>
 
           <button type="button" onclick="applyCalcToQuote()" class="btn gold" style="width:100%;justify-content:center;font-size:var(--text-sm)">
@@ -1204,10 +1226,22 @@
       }
     };
 
+    const commodityBaseUsd = {
+      eggs: { '20fcl': 11500, '40fcl': 22500, '40reefer': 24000 },
+      water: { '20fcl': 8500, '40fcl': 16500, '40reefer': 17500 },
+      rice: { '20fcl': 26000, '40fcl': 29500, '40reefer': 27000 },
+      spices: { '20fcl': 34000, '40fcl': 68000, '40reefer': 65000 },
+      oils: { '20fcl': 21000, '40fcl': 39000, '40reefer': 38000 },
+      dates: { '20fcl': 28000, '40fcl': 56000, '40reefer': 54000 }
+    };
+
     function recalculateShipment() {
       const comm = document.getElementById('calcCommodity').value;
       const cnt = document.getElementById('calcContainer').value;
       const port = document.getElementById('calcPort').value;
+      const curr = document.getElementById('calcCurrency') ? document.getElementById('calcCurrency').value : 'USD';
+      const term = document.getElementById('calcIncoterms') ? document.getElementById('calcIncoterms').value : 'FOB';
+
       const spec = payloadSpecs[comm] ? payloadSpecs[comm][cnt] : payloadSpecs['eggs']['40reefer'];
 
       document.getElementById('calcUnits').textContent = spec.units;
@@ -1221,6 +1255,24 @@
       if (port.includes('Singapore') || port.includes('Malaysia')) transit = 'Chennai / Vizag &rarr; ' + port.split('(')[0].trim() + ' (~5-8 Days)';
       if (port.includes('London')) transit = 'Nhava Sheva &rarr; ' + port.split('(')[0].trim() + ' (~18-22 Days)';
       document.getElementById('calcTransit').innerHTML = transit;
+
+      // Currency Valuation Math
+      let baseUsd = (commodityBaseUsd[comm] && commodityBaseUsd[comm][cnt]) ? commodityBaseUsd[comm][cnt] : 20000;
+      if (term === 'CIF') baseUsd += 2400; // ocean freight + marine cargo insurance
+      else if (term === 'CNF') baseUsd += 2100;
+
+      let valText = '';
+      if (curr === 'USD') {
+        valText = '$' + (baseUsd * 0.95).toLocaleString('en-US') + ' - $' + (baseUsd * 1.05).toLocaleString('en-US') + ' USD (' + term + ')';
+      } else if (curr === 'AED') {
+        const aed = baseUsd * 3.67;
+        valText = (aed * 0.95).toLocaleString('en-US', {maximumFractionDigits:0}) + ' - ' + (aed * 1.05).toLocaleString('en-US', {maximumFractionDigits:0}) + ' AED (' + term + ')';
+      } else if (curr === 'INR') {
+        const inr = baseUsd * 88.5;
+        valText = '₹' + Math.round((inr * 0.95)/100000).toFixed(2) + ' - ₹' + Math.round((inr * 1.05)/100000).toFixed(2) + ' Lakhs (' + term + ')';
+      }
+      const fclEl = document.getElementById('calcFclValue');
+      if (fclEl) fclEl.textContent = valText;
     }
 
     function applyCalcToQuote() {
@@ -1230,6 +1282,8 @@
       const cntText = cntSelect.options[cntSelect.selectedIndex].text;
       const portSelect = document.getElementById('calcPort');
       const portText = portSelect.options[portSelect.selectedIndex].text;
+      const curr = document.getElementById('calcCurrency') ? document.getElementById('calcCurrency').value : 'USD';
+      const term = document.getElementById('calcIncoterms') ? document.getElementById('calcIncoterms').value : 'FOB';
 
       const prodSelect = document.getElementById('productCategory');
       if (prodSelect) {
@@ -1250,9 +1304,12 @@
         else volSelect.selectedIndex = 1;
       }
 
+      const valEl = document.getElementById('calcFclValue');
+      const valStr = valEl ? valEl.textContent : '';
+
       const msgText = document.getElementById('tradeMessage');
       if (msgText) {
-        msgText.value = `Estimated shipment spec: ${commText} | Container: ${cntText} | Destination: ${portText} | Payload: ${document.getElementById('calcUnits').textContent} (${document.getElementById('calcWeight').textContent}). Please provide formal FOB & CIF rate quotation.`;
+        msgText.value = `Estimated shipment spec: ${commText} | Container: ${cntText} | Destination: ${portText} | Incoterm: ${term} in ${curr} | Indicative Est: ${valStr} | Payload: ${document.getElementById('calcUnits').textContent} (${document.getElementById('calcWeight').textContent}). Please provide formal proforma invoice and export schedule.`;
       }
 
       document.getElementById('enquiry').scrollIntoView({ behavior: 'smooth' });
