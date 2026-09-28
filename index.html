@@ -1968,6 +1968,9 @@ $('#enquiry-form').addEventListener('submit',e=>{
     audio.addEventListener('pause',()=>updateUI(false));
     audio.addEventListener('play',()=>updateUI(true));
   }
+  updateUI(false);
+}());
+
   // Interactive 3D Card Hover Physics
   function initCardParallax() {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || window.innerWidth < 768) return;
