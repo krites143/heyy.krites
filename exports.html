@@ -878,6 +878,108 @@
     </div>
   </section>
 
+  <!-- Interactive Container & Freight Estimator Section -->
+  <section id="calculator" class="band reveal" style="background:#f4f1e8;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:60px 0">
+    <div class="wrap">
+      <div class="section-header text-center" style="text-align:center;max-width:760px;margin:0 auto 36px">
+        <span class="eyebrow" style="color:#8b682b">Interactive Trade Planning Tool</span>
+        <h2>Container Load &amp; Export Volume Estimator</h2>
+        <p class="muted" style="font-size:var(--text-base)">
+          Calculate estimated export capacity, gross weight, pallet counts, and temperature protocols for standard 20ft FCL and 40ft High Cube containers.
+        </p>
+      </div>
+
+      <div style="background:#ffffff;border:1px solid var(--line);border-radius:var(--radius-lg);padding:32px;box-shadow:var(--shadow-md);display:grid;grid-template-columns:1.1fr 1fr;gap:36px;align-items:start">
+        <div>
+          <h3 style="margin-bottom:20px;font-size:var(--text-lg);color:var(--navy);display:flex;align-items:center;gap:8px">
+            <span>⚙️</span> Configure Shipment Parameters
+          </h3>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+            <div class="form-group">
+              <label for="calcCommodity" style="font-size:var(--text-sm);font-weight:700;color:var(--navy)">Commodity Category</label>
+              <select id="calcCommodity" class="form-select" onchange="recalculateShipment()">
+                <option value="eggs">Kotwari Table Eggs (Brown / White)</option>
+                <option value="water">KooA Mineral Water (300ml / 1L)</option>
+                <option value="rice">Himalayan Basmati Rice (1kg / 5kg / 25kg)</option>
+                <option value="spices">Pure Ground Spices (Haldi / Chilli / Masala)</option>
+                <option value="oils">Wood Pressed Mustard Oil (1L / 5L)</option>
+                <option value="dates">Medjool Dates &amp; Makhana Superfoods</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="calcContainer" style="font-size:var(--text-sm);font-weight:700;color:var(--navy)">Container Spec</label>
+              <select id="calcContainer" class="form-select" onchange="recalculateShipment()">
+                <option value="20fcl">20ft FCL Standard (Dry / Ambient)</option>
+                <option value="40fcl">40ft High Cube FCL (Dry)</option>
+                <option value="40reefer">40ft Reefer FCL (+2°C to +8°C Cold Chain)</option>
+              </select>
+            </div>
+          </div>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px">
+            <div class="form-group">
+              <label for="calcPort" style="font-size:var(--text-sm);font-weight:700;color:var(--navy)">Target Destination Port</label>
+              <select id="calcPort" class="form-select" onchange="recalculateShipment()">
+                <option value="Jebel Ali Port, Dubai (UAE)">Jebel Ali Port, Dubai (UAE)</option>
+                <option value="Port of Dammam / Jeddah (KSA)">Port of Dammam / Jeddah (KSA)</option>
+                <option value="Hamad Port, Doha (Qatar)">Hamad Port, Doha (Qatar)</option>
+                <option value="Port of Singapore (ASEAN)">Port of Singapore (ASEAN)</option>
+                <option value="Port of London Gateway (UK)">Port of London Gateway (UK)</option>
+                <option value="Port Klang / Penang (Malaysia)">Port Klang / Penang (Malaysia)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="calcPalletization" style="font-size:var(--text-sm);font-weight:700;color:var(--navy)">Packaging Standard</label>
+              <select id="calcPalletization" class="form-select" onchange="recalculateShipment()">
+                <option value="Euro Pallets (1200x800mm)">Euro Pallets (1200 x 800 mm)</option>
+                <option value="ISO Industrial (1200x1000mm)">ISO Industrial (1200 x 1000 mm)</option>
+                <option value="Floor Loaded (Max Volume)">Floor Loaded (Maximum Volume)</option>
+              </select>
+            </div>
+          </div>
+
+          <div style="background:#fdfcf9;border:1px solid #ebdcb7;border-radius:var(--radius-md);padding:14px 18px;font-size:var(--text-xs);color:#6b5322">
+            💡 <strong>Export Desk Tip:</strong> Perishable goods like fresh eggs and dairy beverages require Reefer Cold Chain shipping. Ambient dry groceries (Basmati, spices, cold-pressed oils) ship via standard dry FCL with desiccants.
+          </div>
+        </div>
+
+        <!-- Result Card -->
+        <div style="background:var(--navy);color:#ffffff;border-radius:var(--radius-md);padding:24px;box-shadow:var(--shadow-glow)">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;border-bottom:1px solid #233e54;padding-bottom:12px">
+            <span style="font-size:var(--text-xs);color:#dfbf83;font-weight:700;letter-spacing:.08em;text-transform:uppercase">Estimated Container Payload</span>
+            <span id="calcBadge" class="pill" style="background:rgba(223,191,131,0.2);color:#dfbf83;border-color:rgba(223,191,131,0.4)">40ft Reefer</span>
+          </div>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px">
+            <div style="background:rgba(255,255,255,0.06);padding:12px;border-radius:8px">
+              <span style="font-size:var(--text-xs);color:#a3b8c2;display:block">Est. Units / Cartons</span>
+              <strong id="calcUnits" style="font-size:1.45rem;color:#ffffff;font-family:var(--font-serif)">1,344 Cartons</strong>
+              <small id="calcUnitsSub" style="font-size:11px;color:#dfbf83;display:block">483,840 Fresh Eggs</small>
+            </div>
+            <div style="background:rgba(255,255,255,0.06);padding:12px;border-radius:8px">
+              <span style="font-size:var(--text-xs);color:#a3b8c2;display:block">Est. Gross Weight</span>
+              <strong id="calcWeight" style="font-size:1.45rem;color:#ffffff;font-family:var(--font-serif)">~24.5 MT</strong>
+              <small style="font-size:11px;color:#a3b8c2;display:block">Metric Tonnes</small>
+            </div>
+          </div>
+
+          <div style="font-size:var(--text-xs);color:#cbdbe4;line-height:1.6;margin-bottom:20px">
+            <p style="margin-bottom:6px">📦 <strong>Pallet Allocation:</strong> <span id="calcPallets">24 Pallets (Double Stacked)</span></p>
+            <p style="margin-bottom:6px">🌡️ <strong>Temp Regime:</strong> <span id="calcTemp">+4°C Continuous Reefer Cold Chain</span></p>
+            <p style="margin-bottom:0">⚓ <strong>Port Transit Est.:</strong> <span id="calcTransit">Nhava Sheva &rarr; Jebel Ali (~4-6 Days)</span></p>
+          </div>
+
+          <button type="button" onclick="applyCalcToQuote()" class="btn gold" style="width:100%;justify-content:center;font-size:var(--text-sm)">
+            Apply Spec to Quote Request &darr;
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Export Trade Enquiry Form Section -->
   <section id="enquiry" class="inquiry-section reveal">
     <div class="wrap split">
@@ -1067,6 +1169,94 @@
     }
     document.addEventListener('DOMContentLoaded', initScrollReveal);
     initScrollReveal();
+
+    // Container Load Calculator Logic
+    const payloadSpecs = {
+      eggs: {
+        '20fcl': { units: '672 Cartons', sub: '241,920 Fresh Eggs', weight: '~12.2 MT', pallets: '10 Pallets', temp: '+4°C Reefer Cold Chain' },
+        '40fcl': { units: '1,344 Cartons', sub: '483,840 Fresh Eggs', weight: '~24.5 MT', pallets: '20 Pallets', temp: '+4°C Reefer Cold Chain' },
+        '40reefer': { units: '1,344 Cartons', sub: '483,840 Fresh Eggs', weight: '~24.5 MT', pallets: '24 Pallets (Double Tier)', temp: '+4°C Continuous Reefer' }
+      },
+      water: {
+        '20fcl': { units: '1,450 Cases (300ml)', sub: '34,800 Bottles', weight: '~12.8 MT', pallets: '10 Pallets', temp: 'Ambient (Dry Container)' },
+        '40fcl': { units: '2,900 Cases (300ml)', sub: '69,600 Bottles', weight: '~25.5 MT', pallets: '22 Pallets', temp: 'Ambient (Dry Container)' },
+        '40reefer': { units: '2,700 Cases', sub: '64,800 Bottles', weight: '~24.0 MT', pallets: '20 Pallets', temp: '+15°C Climate Control' }
+      },
+      rice: {
+        '20fcl': { units: '1,000 Bags (25kg)', sub: '25,000 kg Basmati', weight: '~25.0 MT', pallets: '11 Pallets', temp: 'Dry Container + Silica Bags' },
+        '40fcl': { units: '1,120 Bags (25kg)', sub: '28,000 kg Basmati', weight: '~28.0 MT (Max Payload)', pallets: '24 Pallets', temp: 'Dry Container' },
+        '40reefer': { units: '1,000 Bags', sub: '25,000 kg Basmati', weight: '~25.0 MT', pallets: '20 Pallets', temp: 'Standard Ventilated' }
+      },
+      spices: {
+        '20fcl': { units: '850 Cartons (Bulk Packs)', sub: '12,750 kg Spices', weight: '~14.2 MT', pallets: '10 Pallets', temp: 'Dry Container + Moisture Barrier' },
+        '40fcl': { units: '1,750 Cartons', sub: '26,250 kg Spices', weight: '~27.0 MT', pallets: '22 Pallets', temp: 'Dry Container' },
+        '40reefer': { units: '1,600 Cartons', sub: '24,000 kg Spices', weight: '~25.0 MT', pallets: '20 Pallets', temp: '+18°C Controlled' }
+      },
+      oils: {
+        '20fcl': { units: '1,200 Cartons (1L x 12)', sub: '14,400 Litres', weight: '~14.8 MT', pallets: '10 Pallets', temp: 'Dry Ambient FCL' },
+        '40fcl': { units: '2,100 Cartons (1L x 12)', sub: '25,200 Litres', weight: '~26.0 MT', pallets: '20 Pallets', temp: 'Dry Ambient FCL' },
+        '40reefer': { units: '2,000 Cartons', sub: '24,000 Litres', weight: '~25.0 MT', pallets: '20 Pallets', temp: '+20°C Stable' }
+      },
+      dates: {
+        '20fcl': { units: '1,500 Gift Cartons', sub: '9,000 kg Premium Pack', weight: '~10.5 MT', pallets: '10 Pallets', temp: 'Ambient / Dry FCL' },
+        '40fcl': { units: '3,200 Gift Cartons', sub: '19,200 kg Premium Pack', weight: '~21.8 MT', pallets: '22 Pallets', temp: 'Ambient / Dry FCL' },
+        '40reefer': { units: '3,000 Gift Cartons', sub: '18,000 kg Premium Pack', weight: '~20.5 MT', pallets: '20 Pallets', temp: '+10°C Chilled' }
+      }
+    };
+
+    function recalculateShipment() {
+      const comm = document.getElementById('calcCommodity').value;
+      const cnt = document.getElementById('calcContainer').value;
+      const port = document.getElementById('calcPort').value;
+      const spec = payloadSpecs[comm] ? payloadSpecs[comm][cnt] : payloadSpecs['eggs']['40reefer'];
+
+      document.getElementById('calcUnits').textContent = spec.units;
+      document.getElementById('calcUnitsSub').textContent = spec.sub;
+      document.getElementById('calcWeight').textContent = spec.weight;
+      document.getElementById('calcPallets').textContent = spec.pallets;
+      document.getElementById('calcTemp').textContent = spec.temp;
+      document.getElementById('calcBadge').textContent = cnt.toUpperCase();
+
+      let transit = 'Nhava Sheva / Mundra &rarr; ' + port.split('(')[0].trim() + ' (~4-7 Days)';
+      if (port.includes('Singapore') || port.includes('Malaysia')) transit = 'Chennai / Vizag &rarr; ' + port.split('(')[0].trim() + ' (~5-8 Days)';
+      if (port.includes('London')) transit = 'Nhava Sheva &rarr; ' + port.split('(')[0].trim() + ' (~18-22 Days)';
+      document.getElementById('calcTransit').innerHTML = transit;
+    }
+
+    function applyCalcToQuote() {
+      const commSelect = document.getElementById('calcCommodity');
+      const commText = commSelect.options[commSelect.selectedIndex].text;
+      const cntSelect = document.getElementById('calcContainer');
+      const cntText = cntSelect.options[cntSelect.selectedIndex].text;
+      const portSelect = document.getElementById('calcPort');
+      const portText = portSelect.options[portSelect.selectedIndex].text;
+
+      const prodSelect = document.getElementById('productCategory');
+      if (prodSelect) {
+        for (let i = 0; i < prodSelect.options.length; i++) {
+          if (prodSelect.options[i].text.toLowerCase().includes(commSelect.value)) {
+            prodSelect.selectedIndex = i;
+            break;
+          }
+        }
+      }
+
+      const destInput = document.getElementById('destinationCountry');
+      if (destInput) destInput.value = portText;
+
+      const volSelect = document.getElementById('orderVolume');
+      if (volSelect) {
+        if (cntSelect.value.includes('40')) volSelect.selectedIndex = 2;
+        else volSelect.selectedIndex = 1;
+      }
+
+      const msgText = document.getElementById('tradeMessage');
+      if (msgText) {
+        msgText.value = `Estimated shipment spec: ${commText} | Container: ${cntText} | Destination: ${portText} | Payload: ${document.getElementById('calcUnits').textContent} (${document.getElementById('calcWeight').textContent}). Please provide formal FOB & CIF rate quotation.`;
+      }
+
+      document.getElementById('enquiry').scrollIntoView({ behavior: 'smooth' });
+    }
 
     // Export Form Submission to WhatsApp / Email
     const exportForm = document.getElementById('exportForm');
