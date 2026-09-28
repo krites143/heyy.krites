@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -13,8 +13,8 @@
   <style>
     *{box-sizing:border-box;margin:0;padding:0}body{font:16px/1.75 Arial,sans-serif;background:#faf8f1;color:#183143}h1,h2,h3,p{margin-bottom:16px}h1,h2,h3{font-family:Georgia,serif;font-weight:400;line-height:1.2}a{color:#092840}img{max-width:100%;display:block}
     .wrap{width:min(1100px,calc(100% - 48px));margin:auto}
-    .eyebrow{font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;font-weight:bold;color:#8b682b;margin-bottom:14px;display:block}
-        header{background:rgba(250,248,241,.98);border-bottom:1px solid #dedfd9;position:sticky;top:0;z-index:20;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);transition:background .3s ease,box-shadow .3s ease,border-color .3s ease}
+    .eyebrow{font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;font-weight:bold;color:#7a5818;margin-bottom:14px;display:block}
+    header{background:rgba(250,248,241,.98);border-bottom:1px solid #dedfd9;position:sticky;top:0;z-index:20;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);transition:background .3s ease,box-shadow .3s ease,border-color .3s ease}
     .header-inner{display:flex;align-items:center;justify-content:space-between;min-height:102px;transition:min-height .3s ease}
     header.scrolled{background:rgba(250,248,241,.92);border-bottom:1px solid rgba(188,148,79,.35);box-shadow:0 8px 25px rgba(9,40,64,.06);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
     header.scrolled .header-inner{min-height:94px}
@@ -22,23 +22,23 @@
     .brand-emblem-img{width:52px;height:auto;display:block;margin:0 auto -9px;filter:drop-shadow(0 2px 5px rgba(188,148,79,.35));transition:transform .3s ease}
     .brand:hover .brand-emblem-img{transform:translateY(-2px) scale(1.03)}
     .brand-name{font:2.15rem/1 Georgia,serif;color:#183143;letter-spacing:-.035em;display:inline-flex;align-items:baseline}
-    .brand-name sup{font-size:10px;vertical-align:top;margin-left:2px;font-family:Arial,sans-serif;color:#8b682b;font-weight:600}
-    .brand-tag{display:block;font:8.5px Arial,sans-serif;letter-spacing:.22em;text-transform:uppercase;color:#8b682b;margin-top:3px;font-weight:700}
+    .brand-name sup{font-size:10px;vertical-align:top;margin-left:2px;font-family:Arial,sans-serif;color:#7a5818;font-weight:600}
+    .brand-tag{display:block;font:8.5px Arial,sans-serif;letter-spacing:.22em;text-transform:uppercase;color:#7a5818;margin-top:3px;font-weight:700}
     footer .brand{display:inline-flex;flex-direction:column;align-items:center;text-align:center}
     footer .brand .brand-emblem-img{margin:0 auto -9px;width:52px}
     footer .brand .brand-name{color:#fff}
     footer .brand .brand-name sup{color:#dfbf83}
     footer .brand .brand-tag{color:#dfbf83}
     .topbar{background:#092840;color:#d9e3e8;font-size:.78rem;padding:7px 0;text-align:center}
-    .hero-section{background:#092840;color:white;padding:90px 0 100px;position:relative;overflow:hidden}
+    .hero-section{background-color:#092840;color:#ffffff;padding:90px 0 100px;position:relative;overflow:hidden}
     .hero-section::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,#092840 60%,#123f62)}
     .hero-section .wrap{position:relative;z-index:1}
-    .hero-section h1{font-size:clamp(2.4rem,5vw,4rem);color:white;max-width:700px}
-    .hero-section h1 em{color:#e8c987;font-style:normal}
-    .hero-section p{color:#c5d8e0;max-width:600px;font-size:1.05rem}
+    .hero-section h1{font-size:clamp(2.4rem,5vw,4rem);color:#ffffff;max-width:700px;text-shadow:0 2px 8px rgba(0,0,0,0.3)}
+    .hero-section h1 em{color:#f5d796;font-style:normal}
+    .hero-section p{color:#e2e8f0;max-width:600px;font-size:1.05rem}
     .hero-section .eyebrow{color:#dfbf83}
     section{padding:72px 0;border-bottom:1px solid #dedfd9}section:last-of-type{border:none}
-    .dark-section{background:#092840;color:white;border-color:#2a4a5c}.dark-section h2,.dark-section h3{color:white}.dark-section p{color:#bdcbd5}.dark-section .eyebrow{color:#dfbf83}
+    .dark-section{background-color:#092840;color:#ffffff;border-color:#2a4a5c}.dark-section h2,.dark-section h3{color:#ffffff}.dark-section p{color:#cbd5e1}.dark-section .eyebrow{color:#dfbf83}
     .band-section{background:#eeede5}
     .card{background:white;padding:28px;border:1px solid #dedfd9;border-radius:14px}
     .grid{display:grid;gap:22px}
