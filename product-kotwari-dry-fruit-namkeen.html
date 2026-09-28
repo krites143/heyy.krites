@@ -206,38 +206,100 @@ footer{padding:54px 0 25px;background:#062034;color:#d2dce4}
   *,*:before,*:after{animation:none!important;transition:none!important}
   .reveal,.reveal-stagger>*{opacity:1!important;transform:none!important}
 }
-/* Enhanced Mobile Product Detail Optimizations */
+/* ==========================================================================
+   ENTERPRISE MOBILE HEADER & FOOTER SYSTEM (PRODUCT PAGES)
+   ========================================================================== */
 html, body {
   max-width: 100vw;
   overflow-x: hidden;
   -webkit-text-size-adjust: 100%;
 }
-@media(max-width: 768px) {
+.mobile-nav-toggle {
+  display: none;
+  background: #ffffff;
+  border: 1.5px solid var(--line);
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--navy);
+  cursor: pointer;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 2px 6px rgba(9,40,64,.06);
+  transition: all .2s ease;
+}
+.mobile-nav-toggle:active, .mobile-nav-toggle[aria-expanded="true"] {
+  background: var(--navy);
+  color: #ffffff;
+  border-color: var(--navy);
+}
+@media (max-width: 960px) {
   .header-row {
-    flex-direction: column;
-    justify-content: center;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    text-align: center;
-    gap: 12px;
-    padding: 12px 0;
-    min-height: auto;
+    min-height: 72px;
+    padding: 10px 0;
+    position: relative;
+  }
+  .mobile-nav-toggle {
+    display: inline-flex;
   }
   .header-nav {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 8px 12px;
-    width: 100%;
-    font-size: 0.84rem;
+    display: none !important;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(250, 248, 241, 0.98);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-top: 1px solid var(--line);
+    border-bottom: 2px solid var(--gold);
+    padding: 20px 24px;
+    flex-direction: column;
+    align-items: stretch !important;
+    gap: 12px !important;
+    box-shadow: 0 16px 36px rgba(9,40,64,.18);
+    z-index: 99;
+  }
+  .header-nav.mobile-open {
+    display: flex !important;
+    animation: slideDownMenu 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  @keyframes slideDownMenu {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
   }
   .header-nav a {
-    padding: 4px 6px;
+    display: flex;
+    align-items: center;
+    padding: 10px 14px;
+    font-size: 0.94rem;
+    font-weight: 600;
+    color: var(--navy) !important;
+    border-radius: 6px;
+    background: rgba(9,40,64,.03);
+    border: 1px solid rgba(9,40,64,.06);
+    text-decoration: none;
+  }
+  .header-nav a:hover, .header-nav a:active {
+    background: var(--navy);
+    color: #ffffff !important;
+  }
+  .header-nav .btn-home {
+    background: #ffffff;
+    border-color: var(--gold);
+    color: var(--navy) !important;
   }
   .header-nav .btn-nav {
-    width: 100%;
-    max-width: 320px;
-    margin-top: 4px;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-height: 46px;
+    justify-content: center;
+    font-size: 0.92rem;
+    margin-top: 6px;
     text-align: center;
   }
   .breadcrumbs .wrap {
@@ -318,29 +380,36 @@ html, body {
     grid-template-columns: 1fr !important;
     gap: 18px !important;
   }
+  /* Footer Mobile Layout */
   .footer-grid {
     grid-template-columns: 1fr !important;
-    gap: 28px !important;
-    text-align: center;
+    gap: 32px !important;
+    text-align: start !important;
+  }
+  footer .brand {
+    align-items: flex-start !important;
   }
   .footer-bottom {
-    flex-direction: column;
-    text-align: center;
-    gap: 14px;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 14px !important;
+    text-align: start !important;
   }
   .footer-bottom span {
-    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
   }
 }
-@media(max-width: 480px) {
+@media (max-width: 520px) {
   .wrap {
-    width: calc(100% - 24px) !important;
+    width: calc(100% - 28px) !important;
   }
   .brand-name {
-    font-size: 1.5rem !important;
+    font-size: 1.55rem !important;
   }
   .brand-emblem-img {
-    width: 36px !important;
+    width: 38px !important;
   }
   .assurance-grid {
     grid-template-columns: 1fr !important;
@@ -372,6 +441,7 @@ html, body {
       <a href="index.html#contact">Contact</a>
       <a class="btn-nav" href="https://wa.me/919978648583?text=Hello%20Kotwari%2C%20I%20am%20interested%20in%20distributorship%20%2F%20wholesale%20order%20for%20Dry%20Fruits%20Mix%20Namkeen%20(Royal%20Mixture).%20Please%20share%20product%20specifications%2C%20MOQ%2C%20and%20trade%20pricing." target="_blank" rel="noopener noreferrer">Order Inquiry &#x2197;</a>
     </nav>
+    <button class="mobile-nav-toggle" type="button" aria-expanded="false" aria-label="Toggle Navigation Menu">&#9776; Menu</button>
   </div>
 </header>
 
@@ -681,6 +751,28 @@ initScrollReveal();
     orderQty.addEventListener('input', updateOrderMsg);
     destDistrict.addEventListener('change', updateOrderMsg);
     updateOrderMsg();
+  }
+})();
+</script>
+<script>
+(function(){
+  var navToggle = document.querySelector('.mobile-nav-toggle');
+  var navMenu = document.querySelector('header .header-nav');
+  if(navToggle && navMenu){
+    navToggle.addEventListener('click', function(e){
+      e.stopPropagation();
+      var isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
+      navToggle.setAttribute('aria-expanded', !isExpanded);
+      navToggle.innerHTML = !isExpanded ? '&#10005; Close' : '&#9776; Menu';
+      navMenu.classList.toggle('mobile-open');
+    });
+    document.addEventListener('click', function(e){
+      if(!navMenu.contains(e.target) && !navToggle.contains(e.target)){
+        navToggle.setAttribute('aria-expanded', 'false');
+        navToggle.innerHTML = '&#9776; Menu';
+        navMenu.classList.remove('mobile-open');
+      }
+    });
   }
 })();
 </script>
