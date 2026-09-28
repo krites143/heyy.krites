@@ -100,6 +100,43 @@ foreach ($p in $products) {
 <title>$($p.name) | $($p.brand) &mdash; Kotwari International</title>
 <meta name="description" content="$($p.desc.Substring(0, [Math]::Min(155, $p.desc.Length)))">
 <link rel="canonical" href="https://www.kotwari.com/$($p.filename)">
+
+<!-- Open Graph & Social Cards -->
+<meta property="og:type" content="product">
+<meta property="og:site_name" content="Kotwari International">
+<meta property="og:title" content="$($p.name) | $($p.brand) — Kotwari International">
+<meta property="og:description" content="$($p.desc.Substring(0, [Math]::Min(155, $p.desc.Length)))">
+<meta property="og:url" content="https://www.kotwari.com/$($p.filename)">
+<meta property="og:image" content="https://www.kotwari.com/$($p.primaryImage)">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="$($p.name) | $($p.brand)">
+<meta name="twitter:description" content="$($p.desc.Substring(0, [Math]::Min(155, $p.desc.Length)))">
+<meta name="twitter:image" content="https://www.kotwari.com/$($p.primaryImage)">
+
+<!-- Schema.org JSON-LD Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org/",
+  "@type": "Product",
+  "name": "$($p.name)",
+  "image": "https://www.kotwari.com/$($p.primaryImage)",
+  "description": "$($p.desc.Replace('"', '\"'))",
+  "brand": {
+    "@type": "Brand",
+    "name": "$($p.brand)"
+  },
+  "offers": {
+    "@type": "AggregateOffer",
+    "priceCurrency": "INR",
+    "availability": "https://schema.org/InStock",
+    "seller": {
+      "@type": "Organization",
+      "name": "Kotwari International Ltd."
+    }
+  }
+}
+</script>
+
 <!-- Favicon -->
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
