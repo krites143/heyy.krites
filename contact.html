@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
   <meta charset="UTF-8">
@@ -35,7 +35,7 @@
     header{background:rgba(251,250,246,0.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:30}
     .header-inner{display:flex;align-items:center;justify-content:space-between;min-height:74px;gap:20px}
     .brand{display:inline-flex;flex-direction:column;align-items:center;text-decoration:none;padding:4px 0}
-    .brand-emblem-img{width:44px;height:auto;display:block;margin-bottom:3px}
+    .brand-emblem-img{width:44px;height:auto;display:block;margin-bottom: -9px}
     .brand-name{font:bold 1.85rem Georgia,serif;color:var(--navy);letter-spacing:.04em;line-height:1}
     .brand-name sup{font-size:.45em;font-weight:normal;vertical-align:super}
     .brand-tag{font-size:8px;font-family:Arial,sans-serif;letter-spacing:.22em;color:var(--gold);text-transform:uppercase;margin-top:3px}
@@ -49,7 +49,7 @@
     .hero-section h1{font-size:clamp(2.4rem,4.8vw,3.6rem);color:white;margin:12px auto 16px;max-width:800px}
     .hero-section h1 em{color:var(--gold-light);font-style:normal}
     .hero-section p{color:#d1e0ea;font-size:1.06rem;max-width:680px;margin:0 auto 28px}
-    .eyebrow{color:var(--gold);font-size:.82rem;font-weight:bold;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px}
+    .eyebrow{color:var(--gold);font-size:.82rem;font-weight:bold;letter-spacing:.12em;text-transform:uppercase;margin-bottom: 8px}
     
     .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:10px 22px;border:1px solid var(--navy);border-radius:4px;background:var(--navy);color:white;font-weight:bold;font-size:.88rem;text-decoration:none;cursor:pointer;transition:all .2s ease}
     .btn:hover{background:var(--navy-light);transform:translateY(-1px)}
@@ -69,19 +69,19 @@
     .card{background:var(--card-bg);padding:32px;border:1px solid var(--line);border-radius:14px;box-shadow:0 8px 24px rgba(9,40,64,.04)}
     
     .form-group{margin-bottom:18px}
-    .form-group label{display:block;font-size:.86rem;font-weight:bold;color:var(--navy);margin-bottom:6px}
+    .form-group label{display:block;font-size:.86rem;font-weight:bold;color:var(--navy);margin-bottom: 6px}
     .form-control{width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:6px;font-size:.9rem;font-family:inherit;background:white;transition:border-color .2s}
     .form-control:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(188,148,79,.2)}
     .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
     
     .contact-item{display:flex;align-items:flex-start;gap:14px;margin-bottom:18px;color:var(--navy);text-decoration:none;font-weight:500;font-size:.95rem}
     .contact-item span:first-child{font-size:1.3rem;line-height:1}
-    .contact-item strong{color:var(--navy);display:block;margin-bottom:2px}
+    .contact-item strong{color:var(--navy);display:block;margin-bottom: 6px}
     
     footer{background:#062034;color:#cbdbe4;padding:48px 0 24px}
     .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:36px;margin-bottom:32px}
     .footer-grid h3{color:var(--gold-light);font-size:.92rem;margin-bottom:14px;letter-spacing:.04em}
-    .footer-grid a{display:block;font-size:.85rem;color:#a3b8c2;text-decoration:none;margin-bottom:8px;transition:color .2s}
+    .footer-grid a{display:block;font-size:.85rem;color:#a3b8c2;text-decoration:none;margin-bottom: 8px;transition:color .2s}
     .footer-grid a:hover{color:white}
     .footer-bottom{border-top:1px solid #234053;padding-top:20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:.8rem}
     .footer-bottom a{color:var(--gold-light);text-decoration:none}
@@ -219,7 +219,7 @@
 
       <!-- Right: Direct Message Form -->
       <div class="card">
-        <h3 style="margin-bottom:6px">Send an Official Message</h3>
+        <h3 style="margin-bottom: 6px">Send an Official Message</h3>
         <p style="font-size:.85rem;color:var(--muted);margin-bottom:20px">Our corporate communication team responds within 24 business hours.</p>
 
         <form id="contactForm" onsubmit="handleContactSubmit(event)">
@@ -353,3 +353,5 @@
 
 </body>
 </html>
+
+
