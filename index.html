@@ -140,13 +140,66 @@
 .reveal-stagger.is-visible>*:nth-child(4){transition-delay:.26s}
 .reveal-stagger.is-visible>*:nth-child(5){transition-delay:.33s}
 .reveal-stagger.is-visible>*:nth-child(6){transition-delay:.40s}
-.business, .dairy-card, .card.product{position:relative;overflow:hidden;transition:transform .35s cubic-bezier(.16,1,.3,1),box-shadow .35s cubic-bezier(.16,1,.3,1),border-color .25s ease}
-.business:hover, .dairy-card:hover, .card.product:hover{transform:translateY(-6px);box-shadow:0 20px 42px -10px rgba(9,40,64,.14),0 0 0 1px rgba(188,148,79,.35);border-color:var(--gold)}
-.business::before, .dairy-card::before, .card.product::before{content:"";position:absolute;inset:0;border-radius:inherit;background:radial-gradient(circle 280px at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(223,191,131,0.18), transparent 70%);opacity:0;pointer-events:none;transition:opacity .35s ease;z-index:1}
-.business:hover::before, .dairy-card:hover::before, .card.product:hover::before{opacity:1}
 .counter-num{display:inline-block;font-variant-numeric:tabular-nums;will-change:contents}
 @keyframes productEntrance{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
 .product{animation:productEntrance .35s cubic-bezier(.16,1,.3,1) both}
+
+/* Luxury Continuous Shimmer on Gold Buttons */
+.btn.gold, .btn-primary{
+  position:relative;
+  overflow:hidden;
+}
+.btn.gold::after, .btn-primary::after{
+  content:'';
+  position:absolute;
+  top:0;
+  left:-130%;
+  width:80%;
+  height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.45),transparent);
+  transform:skewX(-25deg);
+  animation:btnShimmer 4.2s infinite ease-in-out;
+  pointer-events:none;
+}
+@keyframes btnShimmer{
+  0%{left:-130%}
+  25%{left:150%}
+  100%{left:150%}
+}
+
+/* 3D Perspective Card Tilt Class */
+.tilt-card{
+  transform-style:preserve-3d;
+  will-change:transform;
+  transition:transform .18s ease-out, box-shadow .25s ease;
+}
+.tilt-card .product-media img, .tilt-card .water-poster-img{
+  transform:translateZ(20px);
+  transition:transform .2s ease-out;
+}
+
+/* Water Ambient Pulse for KooA */
+.water-panel{
+  position:relative;
+}
+.water-panel::after{
+  content:'';
+  position:absolute;
+  top:20%;
+  left:50%;
+  width:180px;
+  height:180px;
+  background:radial-gradient(circle, rgba(188,148,79,0.22) 0%, rgba(255,255,255,0) 70%);
+  border-radius:50%;
+  transform:translate(-50%,-50%);
+  pointer-events:none;
+  animation:waterGlow 3.5s ease-in-out infinite alternate;
+  z-index:1;
+}
+@keyframes waterGlow{
+  0%{transform:translate(-50%,-50%) scale(0.85);opacity:0.4}
+  100%{transform:translate(-50%,-50%) scale(1.3);opacity:0.85}
+}
 [dir=rtl]{letter-spacing:normal!important;font-family:var(--font-sans)}
 [dir=rtl] h1,[dir=rtl] h2,[dir=rtl] h3,[dir=rtl] p,[dir=rtl] span,[dir=rtl] a,[dir=rtl] button,[dir=rtl] *{letter-spacing:normal!important}
 [dir=rtl] .arrow,[dir=rtl] .btn .arrow{display:inline-block;transform:scaleX(-1);margin-inline-start:8px;margin-inline-end:0}
@@ -1915,8 +1968,68 @@ $('#enquiry-form').addEventListener('submit',e=>{
     audio.addEventListener('pause',()=>updateUI(false));
     audio.addEventListener('play',()=>updateUI(true));
   }
-  updateUI(false);
-}());
+  // Interactive 3D Card Hover Physics
+  function initCardParallax() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || window.innerWidth < 768) return;
+    const cards = document.querySelectorAll('.card.product, .business, .water-panel');
+    cards.forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = ((y - centerY) / centerY) * -5.5;
+        const rotateY = ((x - centerX) / centerX) * 5.5;
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
+        card.style.setProperty('--mouse-x', `${(x / rect.width) * 100}%`);
+        card.style.setProperty('--mouse-y', `${(y / rect.height) * 100}%`);
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = '';
+      });
+    });
+  }
+
+  // Smooth Animated Number Counters on Scroll
+  function initCounters() {
+    const counterElements = document.querySelectorAll('.glance strong, .stat-box strong');
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const el = entry.target;
+            const text = el.textContent.trim();
+            const match = text.match(/([0-9,.]+)/);
+            if (match) {
+              const targetVal = parseFloat(match[1].replace(/,/g, ''));
+              const prefix = text.substring(0, match.index);
+              const suffix = text.substring(match.index + match[0].length);
+              let start = 0;
+              const duration = 1200;
+              const startTime = performance.now();
+              function step(currentTime) {
+                const progress = Math.min((currentTime - startTime) / duration, 1);
+                const easeProgress = 1 - Math.pow(1 - progress, 3);
+                const current = Math.floor(easeProgress * targetVal);
+                el.textContent = prefix + current.toLocaleString() + suffix;
+                if (progress < 1) requestAnimationFrame(step);
+                else el.textContent = text;
+              }
+              requestAnimationFrame(step);
+            }
+            obs.unobserve(el);
+          }
+        });
+      }, { threshold: 0.5 });
+      counterElements.forEach(el => observer.observe(el));
+    }
+  }
+
+  setTimeout(() => {
+    initCardParallax();
+    initCounters();
+  }, 200);
 }
 render();
 if(window.location.hash){
