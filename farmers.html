@@ -272,6 +272,22 @@ html, body {
     justify-content: center;
   }
 }
+
+/* Scroll-Up Reveal Animations & Floating Back-To-Top */
+.reveal{opacity:0;transform:translateY(32px);transition:opacity .85s cubic-bezier(.16,1,.3,1),transform .85s cubic-bezier(.16,1,.3,1);will-change:opacity,transform}
+.reveal.is-visible{opacity:1;transform:translateY(0)}
+.reveal-stagger>*{opacity:0;transform:translateY(28px);transition:opacity .75s cubic-bezier(.16,1,.3,1),transform .75s cubic-bezier(.16,1,.3,1);will-change:opacity,transform}
+.reveal-stagger.is-visible>*{opacity:1;transform:translateY(0)}
+.reveal-stagger.is-visible>*:nth-child(1){transition-delay:.05s}
+.reveal-stagger.is-visible>*:nth-child(2){transition-delay:.12s}
+.reveal-stagger.is-visible>*:nth-child(3){transition-delay:.19s}
+.reveal-stagger.is-visible>*:nth-child(4){transition-delay:.26s}
+.reveal-stagger.is-visible>*:nth-child(5){transition-delay:.33s}
+.reveal-stagger.is-visible>*:nth-child(6){transition-delay:.40s}
+.back-to-top{position:fixed;bottom:26px;inset-inline-end:24px;z-index:99;width:44px;height:44px;border-radius:50%;background:rgba(9,40,64,.94);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:var(--gold);border:1.5px solid var(--gold);display:flex;align-items:center;justify-content:center;font-size:1.25rem;font-weight:bold;box-shadow:0 6px 20px rgba(0,0,0,.25);cursor:pointer;opacity:0;visibility:hidden;transform:translateY(14px);transition:opacity .3s cubic-bezier(.16,1,.3,1),transform .3s cubic-bezier(.16,1,.3,1),visibility .3s,background .2s,color .2s,border-color .2s}
+.back-to-top.show{opacity:1;visibility:visible;transform:translateY(0)}
+.back-to-top:hover{background:var(--navy-light, #123f62);color:#ffffff;border-color:#ffffff;transform:translateY(-3px);box-shadow:0 8px 24px rgba(9,40,64,.35)}
+@media(max-width:850px){.back-to-top{bottom:22px;inset-inline-end:16px;width:40px;height:40px;font-size:1.1rem}}
 </style>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="manifest" href="site.webmanifest">
@@ -330,7 +346,7 @@ html, body {
   </section>
 
   <!-- Key Pillars of Support -->
-  <section id="support" class="band-section">
+  <section id="support" class="band-section reveal">
     <div class="wrap">
       <div style="text-align:center;max-width:720px;margin:0 auto 44px">
         <p class="eyebrow">Comprehensive Farmer Assistance</p>
@@ -338,7 +354,7 @@ html, body {
         <p style="color:var(--muted)">We stand side-by-side with our village partners through every phase of the production cycle.</p>
       </div>
 
-      <div class="grid three">
+      <div class="grid three reveal-stagger">
         <div class="card">
           <span class="eyebrow">Input Quality</span>
           <h3>1. Inputs & Coordination</h3>
@@ -376,7 +392,7 @@ html, body {
   </section>
 
   <!-- Horizontal Supply Chain Section -->
-  <section id="model" class="dark-section">
+  <section id="model" class="dark-section reveal">
     <div class="wrap">
       <div style="text-align:center;max-width:700px;margin:0 auto 36px">
         <p class="eyebrow">Farmer-to-Consumer Model</p>
@@ -400,7 +416,7 @@ html, body {
         <span class="step-node">07. Global Customer</span>
       </div>
 
-      <div class="grid three" style="margin-top:36px">
+      <div class="grid three reveal-stagger" style="margin-top:36px">
         <div class="card" style="background:#0d3a5c;border-color:#2a4a5c">
           <h4 style="color:white;margin-bottom: 8px">Primary Production</h4>
           <p style="font-size:.86rem;color:#cbdbe4">Individual smallholder farmers produce eggs, milk, mustard seeds, and spices following standardized Kotwari organic & hygiene protocols.</p>
@@ -418,7 +434,7 @@ html, body {
   </section>
 
   <!-- Farmer ID & Digital System Architecture -->
-  <section id="id-system">
+  <section id="id-system" class="reveal">
     <div class="wrap split">
       <div>
         <p class="eyebrow">Technology in Rural Hands</p>
@@ -465,7 +481,7 @@ html, body {
   </section>
 
   <!-- CTA Strip -->
-  <section class="cta-strip">
+  <section class="cta-strip reveal">
     <div class="wrap">
       <h2>Grow Your Farming Income with Kotwari</h2>
       <p>Whether you raise poultry, maintain dairy cattle, or cultivate mustard and spices, partner with Kotwari for assured off-take, fair rates, and technical guidance.</p>
@@ -544,6 +560,51 @@ html, body {
       }
     });
   }
+})();
+</script>
+
+<button id="backToTop" class="back-to-top" aria-label="Back to top" title="Back to top" type="button">&uarr;</button>
+
+<script>
+(function(){
+  var btt = document.getElementById('backToTop');
+  if(btt){
+    btt.addEventListener('click', function(){
+      window.scrollTo({top: 0, behavior: 'smooth'});
+    });
+  }
+  window.addEventListener('scroll', function(){
+    if(!btt) btt = document.getElementById('backToTop');
+    if(btt){
+      if(window.scrollY > 350){
+        btt.classList.add('show');
+      } else {
+        btt.classList.remove('show');
+      }
+    }
+  }, {passive: true});
+
+  function initScrollReveal(){
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+      document.querySelectorAll('.reveal, .reveal-stagger').forEach(function(el){el.classList.add('is-visible');});
+      return;
+    }
+    if('IntersectionObserver' in window){
+      var obs = new IntersectionObserver(function(entries, o){
+        entries.forEach(function(entry){
+          if(entry.isIntersecting){
+            entry.target.classList.add('is-visible');
+            o.unobserve(entry.target);
+          }
+        });
+      }, {rootMargin: '0px 0px -40px 0px', threshold: 0.1});
+      document.querySelectorAll('.reveal, .reveal-stagger').forEach(function(el){obs.observe(el);});
+    } else {
+      document.querySelectorAll('.reveal, .reveal-stagger').forEach(function(el){el.classList.add('is-visible');});
+    }
+  }
+  document.addEventListener('DOMContentLoaded', initScrollReveal);
+  initScrollReveal();
 })();
 </script>
 </body>

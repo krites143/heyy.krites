@@ -124,6 +124,22 @@ html, body {
     width: 36px !important;
   }
 }
+
+/* Scroll-Up Reveal Animations & Floating Back-To-Top */
+.reveal{opacity:0;transform:translateY(32px);transition:opacity .85s cubic-bezier(.16,1,.3,1),transform .85s cubic-bezier(.16,1,.3,1);will-change:opacity,transform}
+.reveal.is-visible{opacity:1;transform:translateY(0)}
+.reveal-stagger>*{opacity:0;transform:translateY(28px);transition:opacity .75s cubic-bezier(.16,1,.3,1),transform .75s cubic-bezier(.16,1,.3,1);will-change:opacity,transform}
+.reveal-stagger.is-visible>*{opacity:1;transform:translateY(0)}
+.reveal-stagger.is-visible>*:nth-child(1){transition-delay:.05s}
+.reveal-stagger.is-visible>*:nth-child(2){transition-delay:.12s}
+.reveal-stagger.is-visible>*:nth-child(3){transition-delay:.19s}
+.reveal-stagger.is-visible>*:nth-child(4){transition-delay:.26s}
+.reveal-stagger.is-visible>*:nth-child(5){transition-delay:.33s}
+.reveal-stagger.is-visible>*:nth-child(6){transition-delay:.40s}
+.back-to-top{position:fixed;bottom:26px;inset-inline-end:24px;z-index:99;width:44px;height:44px;border-radius:50%;background:rgba(9,40,64,.94);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:var(--gold);border:1.5px solid var(--gold);display:flex;align-items:center;justify-content:center;font-size:1.25rem;font-weight:bold;box-shadow:0 6px 20px rgba(0,0,0,.25);cursor:pointer;opacity:0;visibility:hidden;transform:translateY(14px);transition:opacity .3s cubic-bezier(.16,1,.3,1),transform .3s cubic-bezier(.16,1,.3,1),visibility .3s,background .2s,color .2s,border-color .2s}
+.back-to-top.show{opacity:1;visibility:visible;transform:translateY(0)}
+.back-to-top:hover{background:var(--navy-light, #123f62);color:#ffffff;border-color:#ffffff;transform:translateY(-3px);box-shadow:0 8px 24px rgba(9,40,64,.35)}
+@media(max-width:850px){.back-to-top{bottom:22px;inset-inline-end:16px;width:40px;height:40px;font-size:1.1rem}}
 </style>
 </head>
 <body>
@@ -168,7 +184,7 @@ html, body {
       </aside>
       <div class="policy-content">
 
-        <div class="policy-section" id="who-we-are">
+        <div class="policy-section reveal" id="who-we-are">
           <h2>1. Who We Are</h2>
           <p>Kotwari International Ltd. (&ldquo;Kotwari&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;, &ldquo;our&rdquo;) operates this website at <strong>kotwari.com</strong>. We are a diversified holding group registered in India.</p>
           <p><strong>Registered address:</strong><br>
@@ -177,7 +193,7 @@ html, body {
           <p><strong>Email:</strong> <a href="mailto:kotwarigroup18@gmail.com">kotwarigroup18@gmail.com</a></p>
         </div>
 
-        <div class="policy-section" id="what-we-collect">
+        <div class="policy-section reveal" id="what-we-collect">
           <h2>2. What Information We Collect</h2>
           <p>We collect information only when you actively choose to submit an enquiry through the contact form on our website. The fields in that form include:</p>
           <ul>
@@ -191,7 +207,7 @@ html, body {
           <p>We also collect standard server log data (IP address, browser type, referring URL) automatically when you visit our site. This is standard web server behaviour and is not linked to any personal profile.</p>
         </div>
 
-        <div class="policy-section" id="how-we-use">
+        <div class="policy-section reveal" id="how-we-use">
           <h2>3. How We Use Your Information</h2>
           <p>Information you send to us via the contact form is used solely to:</p>
           <ul>
@@ -202,7 +218,7 @@ html, body {
           <p>We do not sell, rent, or share your personal information with third parties for marketing purposes. Messages are passed directly to our team via WhatsApp or email &mdash; we do not intercept or re-process them through any third-party CRM unless we notify you otherwise.</p>
         </div>
 
-        <div class="policy-section" id="cookies">
+        <div class="policy-section reveal" id="cookies">
           <h2>4. Cookies and Analytics</h2>
           <p>This website currently <strong>does not set any first-party cookies</strong> for tracking, advertising, or analytics purposes.</p>
           <p>A single browser <code>localStorage</code> key (<code>kotwari_cookie_consent</code>) is stored on your device to remember your cookie consent preference. This value never leaves your device and is not transmitted to any server.</p>
@@ -211,7 +227,7 @@ html, body {
           <p>If we add analytics (such as Google Analytics or Plausible) in the future, this policy will be updated <strong>before</strong> those services are activated, and appropriate consent mechanisms will be provided.</p>
         </div>
 
-        <div class="policy-section" id="third-party">
+        <div class="policy-section reveal" id="third-party">
           <h2>5. Third-Party Services</h2>
           <p>Our website integrates with or links to the following external services, each governed by its own data policies:</p>
           <ul>
@@ -222,31 +238,31 @@ html, body {
           <p>We recommend reviewing the privacy policies of these services if you have concerns about their data practices.</p>
         </div>
 
-        <div class="policy-section" id="retention">
+        <div class="policy-section reveal" id="retention">
           <h2>6. Data Retention</h2>
           <p>Kotwari International Ltd. does not store form submission data on our website&rsquo;s servers. Any personal information you send to us via WhatsApp is retained according to Meta/WhatsApp&rsquo;s data retention policies. Any information sent via email is retained in our email provider&rsquo;s system.</p>
           <p>If you wish to have your personal data deleted from our email correspondence, please contact us at the address below and we will respond within a reasonable timeframe.</p>
         </div>
 
-        <div class="policy-section" id="your-rights">
+        <div class="policy-section reveal" id="your-rights">
           <h2>7. Your Rights</h2>
           <p>Depending on your jurisdiction, you may have rights over your personal data including the right to access, correct, or delete information we hold about you. You may exercise these rights by contacting us at:</p>
           <p><a href="mailto:kotwarigroup18@gmail.com">kotwarigroup18@gmail.com</a></p>
           <p>We will acknowledge your request within 7 working days and respond substantively within 30 days.</p>
         </div>
 
-        <div class="policy-section" id="children">
+        <div class="policy-section reveal" id="children">
           <h2>8. Children</h2>
           <p>This website is not directed at, and we do not knowingly collect personal information from, children under the age of 13. If you believe we have inadvertently collected information from a child, please contact us immediately so we can take appropriate action.</p>
         </div>
 
-        <div class="policy-section" id="changes">
+        <div class="policy-section reveal" id="changes">
           <h2>9. Changes to This Policy</h2>
           <p>We may update this Privacy Policy from time to time to reflect changes in our practices, legal requirements, or services. The <strong>Last updated</strong> date at the top of this page will always reflect the date of the most recent revision.</p>
           <p>Continued use of our website after any changes constitutes your acceptance of the updated policy. For significant changes, we may place a notice on our homepage.</p>
         </div>
 
-        <div class="policy-section" id="contact">
+        <div class="policy-section reveal" id="contact">
           <h2>10. Contact Us</h2>
           <p>If you have questions or concerns about this Privacy Policy or about how we handle your information, please get in touch:</p>
           <p><strong>Kotwari International Ltd.</strong><br>
@@ -271,6 +287,51 @@ html, body {
     </nav>
   </div>
 </footer>
+
+<button id="backToTop" class="back-to-top" aria-label="Back to top" title="Back to top" type="button">&uarr;</button>
+
+<script>
+(function(){
+  var btt = document.getElementById('backToTop');
+  if(btt){
+    btt.addEventListener('click', function(){
+      window.scrollTo({top: 0, behavior: 'smooth'});
+    });
+  }
+  window.addEventListener('scroll', function(){
+    if(!btt) btt = document.getElementById('backToTop');
+    if(btt){
+      if(window.scrollY > 350){
+        btt.classList.add('show');
+      } else {
+        btt.classList.remove('show');
+      }
+    }
+  }, {passive: true});
+
+  function initScrollReveal(){
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+      document.querySelectorAll('.reveal, .reveal-stagger').forEach(function(el){el.classList.add('is-visible');});
+      return;
+    }
+    if('IntersectionObserver' in window){
+      var obs = new IntersectionObserver(function(entries, o){
+        entries.forEach(function(entry){
+          if(entry.isIntersecting){
+            entry.target.classList.add('is-visible');
+            o.unobserve(entry.target);
+          }
+        });
+      }, {rootMargin: '0px 0px -40px 0px', threshold: 0.1});
+      document.querySelectorAll('.reveal, .reveal-stagger').forEach(function(el){obs.observe(el);});
+    } else {
+      document.querySelectorAll('.reveal, .reveal-stagger').forEach(function(el){el.classList.add('is-visible');});
+    }
+  }
+  document.addEventListener('DOMContentLoaded', initScrollReveal);
+  initScrollReveal();
+})();
+</script>
 </body>
 </html>
 
