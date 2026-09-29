@@ -79,23 +79,25 @@ foreach ($p in $products) {
 
     # Category-based background banner
     $bannerImage = switch ($p.category) {
-        "eggs"    { "products/kotwari-eggs-logistics-truck-banner.jpeg" }
-        "dairy"   { "products/kotwari-dairy-lassi-dahi-range-banner.jpeg" }
-        "spices"  { "products/kotwari-spices-haldi-harvest-banner.jpeg" }
-        "staples" { "products/kotwari-spices-haldi-harvest-banner.jpeg" }
-        "snacks"  { "products/kotwari-snacks-namkeen-range-banner-1.jpeg" }
-        "pickles" { "products/kotwari-spices-chilli-haldi-banner.jpeg" }
-        "oils"    { "products/kotwari-oils-mustard-oil-1l-banner.jpeg" }
-        "water"   { "products/kooa-mineral-water-300ml-showcase.jpeg" }
-        default   { "products/kotwari-eggs-logistics-truck-banner.jpeg" }
+        "eggs"      { "products/kotwari-eggs-logistics-truck-banner.jpeg" }
+        "dairy"     { "products/kotwari-dairy-lassi-dahi-range-banner.jpeg" }
+        "spices"    { "products/kotwari-spices-haldi-harvest-banner.jpeg" }
+        "staples"   { "products/kotwari-spices-haldi-harvest-banner.jpeg" }
+        "snacks"    { "products/kotwari-snacks-namkeen-range-banner-1.jpeg" }
+        "pickles"   { "products/kotwari-spices-chilli-haldi-banner.jpeg" }
+        "oils"      { "products/kotwari-oils-mustard-oil-1l-banner.jpeg" }
+        "water"     { "products/kooa-mineral-water-300ml-showcase.jpeg" }
+        "beverages" { "products/kotwari-beverages-mix-fruits-juice-range.jpeg" }
+        default     { "products/kotwari-eggs-logistics-truck-banner.jpeg" }
     }
 
     # Category-based hub link
     $categoryHubLink = switch ($p.category) {
-        "eggs"    { "eggs.html" }
-        "dairy"   { "dairy.html" }
-        "water"   { "water.html" }
-        default   { "fmcg.html" }
+        "eggs"      { "eggs.html" }
+        "dairy"     { "dairy.html" }
+        "water"     { "water.html" }
+        "beverages" { "fmcg.html" }
+        default     { "fmcg.html" }
     }
 
     $html = @"
