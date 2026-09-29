@@ -189,6 +189,21 @@ footer{padding:54px 0 25px;background:#062034;color:#d2dce4}
 .footer-bottom{border-top:1px solid #334c5d;margin-top:35px;padding-top:22px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:.8rem}
 .footer-bottom a{color:#dfbf83}
 
+/* Top Reading Scroll Progress Bar */
+#scrollProgress{position:fixed;top:0;left:0;height:3.5px;background:linear-gradient(90deg,var(--gold),#f7e8b5,#dfbf83,var(--gold));box-shadow:0 0 10px rgba(188,148,79,.65);z-index:99999;width:0%;transition:width .08s linear;pointer-events:none}
+
+/* Metallic Button Shimmer Sweep Effect */
+.btn-primary, .btn-secondary, .btn-gold, .btn.gold{position:relative;overflow:hidden}
+.btn-primary::after, .btn-secondary::after, .btn-gold::after, .btn.gold::after{content:'';position:absolute;top:0;left:-130%;width:80%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.45),transparent);transform:skewX(-25deg);animation:btnShimmer 4.2s infinite ease-in-out;pointer-events:none}
+.btn-primary:hover::after, .btn-secondary:hover::after, .btn-gold:hover::after, .btn.gold:hover::after{animation:btnShimmer 1.2s ease-in-out}
+@keyframes btnShimmer{0%{left:-130%}25%{left:150%}100%{left:150%}}
+
+/* Card & Image Depth Zoom & Elevation */
+.related-card, .main-img-box, .assurance-item{transition:transform .35s cubic-bezier(.16,1,.3,1),box-shadow .35s cubic-bezier(.16,1,.3,1),border-color .25s ease}
+.related-card:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(9,40,64,.12);border-color:var(--gold)}
+.related-img-wrap img{transition:transform .45s cubic-bezier(.16,1,.3,1)}
+.related-card:hover .related-img-wrap img{transform:scale(1.05)}
+
 .back-to-top{position:fixed;bottom:26px;inset-inline-end:24px;z-index:99;width:44px;height:44px;border-radius:50%;background:rgba(9,40,64,.94);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:var(--gold);border:1.5px solid var(--gold);display:flex;align-items:center;justify-content:center;font-size:1.25rem;font-weight:bold;box-shadow:0 6px 20px rgba(0,0,0,.25);cursor:pointer;opacity:0;visibility:hidden;transform:translateY(14px);transition:opacity .3s cubic-bezier(.16,1,.3,1),transform .3s cubic-bezier(.16,1,.3,1),visibility .3s,background .2s,color .2s,border-color .2s}
 .back-to-top.show{opacity:1;visibility:visible;transform:translateY(0)}
 .back-to-top:hover{background:var(--blue);color:#ffffff;border-color:#ffffff;transform:translateY(-3px);box-shadow:0 8px 24px rgba(9,40,64,.35)}
@@ -237,6 +252,7 @@ footer{padding:54px 0 25px;background:#062034;color:#d2dce4}
 </style>
 </head>
 <body>
+<div id="scrollProgress" aria-hidden="true"></div>
 
 <div class="topbar">
   <div class="wrap">
@@ -538,6 +554,13 @@ window.addEventListener('scroll', function() {
       h.classList.remove('scrolled');
     }
   }
+  var bar = document.getElementById('scrollProgress');
+  if (bar) {
+    var winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+    var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    var scrolled = height > 0 ? (winScroll / height) * 100 : 0;
+    bar.style.width = scrolled + '%';
+  }
   var btt = document.getElementById('backToTop');
   if (btt) {
     if (window.scrollY > 350) {
@@ -553,6 +576,42 @@ if (btt) {
   btt.addEventListener('click', function() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
+}
+
+function initCounters() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var counterEls = document.querySelectorAll('.stat-box strong, .glance strong, .metric strong, [data-counter]');
+  if ('IntersectionObserver' in window && counterEls.length > 0) {
+    var cObs = new IntersectionObserver(function(entries, obs) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          var el = entry.target;
+          var text = el.textContent.trim();
+          var match = text.match(/([0-9,.]+)/);
+          if (match) {
+            var targetVal = parseFloat(match[1].replace(/,/g, ''));
+            if (!isNaN(targetVal) && targetVal > 0) {
+              var prefix = text.substring(0, match.index);
+              var suffix = text.substring(match.index + match[0].length);
+              var duration = 1400;
+              var startTime = performance.now();
+              function step(currentTime) {
+                var progress = Math.min((currentTime - startTime) / duration, 1);
+                var ease = 1 - Math.pow(1 - progress, 3);
+                var current = Math.floor(ease * targetVal);
+                el.textContent = prefix + current.toLocaleString('en-IN') + suffix;
+                if (progress < 1) requestAnimationFrame(step);
+                else el.textContent = text;
+              }
+              requestAnimationFrame(step);
+            }
+          }
+          obs.unobserve(el);
+        }
+      });
+    }, { threshold: 0.3 });
+    counterEls.forEach(function(el) { cObs.observe(el); });
+  }
 }
 
 function initScrollReveal() {
@@ -574,8 +633,12 @@ function initScrollReveal() {
     document.querySelectorAll('.reveal, .reveal-stagger').forEach(function(el){ el.classList.add('is-visible'); });
   }
 }
-document.addEventListener('DOMContentLoaded', initScrollReveal);
+document.addEventListener('DOMContentLoaded', function() {
+  initScrollReveal();
+  initCounters();
+});
 initScrollReveal();
+initCounters();
 </script>
 
 <button id="backToTop" class="back-to-top" aria-label="Back to top" title="Back to top" type="button">&uarr;</button>

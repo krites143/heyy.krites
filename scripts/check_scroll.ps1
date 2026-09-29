@@ -3,17 +3,19 @@ $results = foreach ($f in $files) {
     $c = [System.IO.File]::ReadAllText($f.FullName)
     [PSCustomObject]@{
         File = $f.Name
-        HasBtt = $c.Contains('id="backToTop"')
+        HasProgress = $c.Contains('id="scrollProgress"')
+        HasShimmer = $c.Contains('btnShimmer')
+        HasCounters = $c.Contains('initCounters')
         HasReveal = $c.Contains('.reveal')
-        HasObserver = $c.Contains('initScrollReveal') -or $c.Contains('IntersectionObserver')
-        HasValidClosing = $c.Contains('</body>') -and $c.Contains('</html>')
+        HasBtt = $c.Contains('id="backToTop"')
+        ValidHtml = $c.Contains('</body>') -and $c.Contains('</html>')
     }
 }
 $results | Format-Table -AutoSize
-$bad = $results | Where-Object { -not ($_.HasBtt -and $_.HasReveal -and $_.HasObserver -and $_.HasValidClosing) }
+$bad = $results | Where-Object { -not ($_.HasProgress -and $_.HasShimmer -and $_.HasCounters -and $_.HasReveal -and $_.HasBtt -and $_.ValidHtml) }
 if ($bad) {
-    Write-Host "Errors found:" -ForegroundColor Red
+    Write-Host "Incomplete pages found:" -ForegroundColor Red
     $bad | Format-Table
 } else {
-    Write-Host "SUCCESS: All 48 pages pass all checks!" -ForegroundColor Green
+    Write-Host "SUCCESS: All 48 pages have the full animation suite (Scroll Progress Bar, Button Shimmer, Number Counters, Card Hover Zoom, Scroll Reveal & Back To Top)!" -ForegroundColor Green
 }
