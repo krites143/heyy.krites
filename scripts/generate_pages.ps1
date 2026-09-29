@@ -90,6 +90,14 @@ foreach ($p in $products) {
         default   { "products/kotwari-eggs-logistics-truck-banner.jpeg" }
     }
 
+    # Category-based hub link
+    $categoryHubLink = switch ($p.category) {
+        "eggs"    { "eggs.html" }
+        "dairy"   { "dairy.html" }
+        "water"   { "water.html" }
+        default   { "fmcg.html" }
+    }
+
     $html = @"
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -104,7 +112,7 @@ foreach ($p in $products) {
 <!-- Open Graph & Social Cards -->
 <meta property="og:type" content="product">
 <meta property="og:site_name" content="Kotwari International">
-<meta property="og:title" content="$($p.name) | $($p.brand) — Kotwari International">
+<meta property="og:title" content="$($p.name) | $($p.brand) &mdash; Kotwari International">
 <meta property="og:description" content="$($p.desc.Substring(0, [Math]::Min(155, $p.desc.Length)))">
 <meta property="og:url" content="https://www.kotwari.com/$($p.filename)">
 <meta property="og:image" content="https://www.kotwari.com/$($p.primaryImage)">
@@ -112,6 +120,11 @@ foreach ($p in $products) {
 <meta name="twitter:title" content="$($p.name) | $($p.brand)">
 <meta name="twitter:description" content="$($p.desc.Substring(0, [Math]::Min(155, $p.desc.Length)))">
 <meta name="twitter:image" content="https://www.kotwari.com/$($p.primaryImage)">
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <!-- Schema.org JSON-LD Structured Data -->
 <script type="application/ld+json">
@@ -146,8 +159,8 @@ foreach ($p in $products) {
 <style>
 :root{--navy:#092840;--blue:#123f62;--gold:#bc944f;--gold-light:#dfbf83;--ivory:#faf8f1;--ink:#183143;--muted:#596977;--line:#dedfd9;--white:#fff;--radius:16px}
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--ivory);color:var(--ink);font:16px/1.7 Arial,sans-serif}
-h1,h2,h3,h4{font-family:Georgia,'Times New Roman',serif;font-weight:400;line-height:1.2}
+body{background:var(--ivory);color:var(--ink);font:16px/1.7 'Plus Jakarta Sans',Arial,sans-serif}
+h1,h2,h3,h4{font-family:'Playfair Display',Georgia,serif;font-weight:600;line-height:1.2}
 a{color:inherit;text-decoration:none}
 img{max-width:100%;display:block}
 .wrap{width:min(1180px,calc(100% - 48px));margin:auto}
@@ -158,45 +171,50 @@ img{max-width:100%;display:block}
 
 /* Header */
 header{position:sticky;top:0;z-index:30;background:rgba(250,248,241,.98);border-bottom:1px solid var(--line);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);transition:background .3s ease,box-shadow .3s ease,border-color .3s ease}
-.header-row{display:flex;align-items:center;justify-content:space-between;min-height:102px;gap:20px;transition:min-height .3s ease}
-header.scrolled{background:rgba(250,248,241,.92);border-bottom:1px solid rgba(188,148,79,.35);box-shadow:0 8px 25px rgba(9,40,64,.06);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
-header.scrolled .header-row{min-height:94px}
+.header-row{display:flex;align-items:center;justify-content:space-between;min-height:96px;gap:20px;transition:min-height .3s ease}
+header.scrolled{background:rgba(250,248,241,.94);border-bottom:1px solid rgba(188,148,79,.35);box-shadow:0 8px 25px rgba(9,40,64,.06);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+header.scrolled .header-row{min-height:86px}
 .brand{display:inline-flex;flex-direction:column;align-items:center;text-align:center;text-decoration:none;position:relative;padding:4px 0;color:inherit;transition:transform .2s ease}
-.brand-emblem-img{width:52px;height:auto;display:block;margin:0 auto -9px;filter:drop-shadow(0 2px 5px rgba(188,148,79,.35));transition:transform .3s ease}
+.brand-emblem-img{width:48px;height:auto;display:block;margin:0 auto -8px;filter:drop-shadow(0 2px 5px rgba(188,148,79,.35));transition:transform .3s ease}
 .brand:hover .brand-emblem-img{transform:translateY(-2px) scale(1.06)}
-.brand-name{font:2.15rem/1 Georgia,serif;color:var(--ink);letter-spacing:-.035em;display:inline-flex;align-items:baseline}
-.brand-name sup{font-size:10px;vertical-align:top;margin-left:2px;font-family:Arial,sans-serif;color:#8b682b;font-weight:600}
-.brand-tag{display:block;font:8.5px Arial,sans-serif;letter-spacing:.22em;text-transform:uppercase;color:#8b682b;margin-top:3px;font-weight:700}
+.brand-name{font:2.05rem/1 'Playfair Display',Georgia,serif;color:var(--ink);letter-spacing:-.035em;display:inline-flex;align-items:baseline}
+.brand-name sup{font-size:10px;vertical-align:top;margin-left:2px;font-family:'Plus Jakarta Sans',Arial,sans-serif;color:#8b682b;font-weight:600}
+.brand-tag{display:block;font:8.5px 'Plus Jakarta Sans',Arial,sans-serif;letter-spacing:.22em;text-transform:uppercase;color:#8b682b;margin-top:3px;font-weight:700}
 footer .brand{display:inline-flex;flex-direction:column;align-items:center;text-align:center}
-footer .brand .brand-emblem-img{margin:0 auto -9px;width:52px}
+footer .brand .brand-emblem-img{margin:0 auto -8px;width:48px}
 footer .brand .brand-name{color:#fff}
 footer .brand .brand-name sup{color:#dfbf83}
 footer .brand .brand-tag{color:#dfbf83}
-.header-nav{display:flex;align-items:center;gap:22px;font-size:.88rem}
+.header-nav{display:flex;align-items:center;gap:20px;font-size:.88rem}
 .header-nav a:hover{color:var(--gold)}
 .btn-nav{padding:8px 16px;border:1px solid var(--navy);border-radius:4px;background:var(--navy);color:#fff;font-weight:bold;font-size:.82rem;transition:all .2s ease}
 .btn-nav:hover{background:var(--blue);transform:translateY(-1px);box-shadow:0 4px 12px rgba(9,40,64,.2)}
 .btn-home{display:inline-flex;align-items:center;gap:6px;padding:7px 16px;border:1.5px solid var(--gold);border-radius:4px;background:#fdfcf9;color:var(--navy);font-weight:bold;font-size:.84rem;text-decoration:none;transition:all .2s ease;box-shadow:0 2px 6px rgba(188,148,79,.12)}
 .btn-home:hover{background:var(--gold);color:#092840;transform:translateY(-1px);box-shadow:0 4px 12px rgba(188,148,79,.3)}
 
+/* Mobile Nav Toggle */
+.mobile-nav-toggle{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px;z-index:40}
+.mobile-nav-toggle span{display:block;width:24px;height:2.5px;background:var(--navy);border-radius:2px;transition:0.3s ease}
+
 /* Breadcrumbs */
-.breadcrumbs{padding:18px 0;font-size:.84rem;color:var(--muted);border-bottom:1px solid var(--line)}
+.breadcrumbs{padding:16px 0;font-size:.84rem;color:var(--muted);border-bottom:1px solid var(--line)}
 .breadcrumbs a{color:var(--muted)}
 .breadcrumbs a:hover{color:var(--navy);text-decoration:underline}
 .breadcrumbs span{margin:0 8px;color:#abb7bf}
 .breadcrumbs .current{color:var(--navy);font-weight:600}
 
 /* Product Main Section */
-.product-hero{padding:48px 0 72px}
-.product-layout{display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:start}
+.product-hero{padding:44px 0 68px}
+.product-layout{display:grid;grid-template-columns:1.05fr 1fr;gap:52px;align-items:start}
 
 /* Left: Gallery */
 .gallery-wrap{position:sticky;top:100px}
-.main-img-box{position:relative;background:#fff;border:1px solid var(--line);border-radius:20px;padding:24px;box-shadow:0 12px 35px rgba(9,40,64,.06);text-align:center;overflow:hidden;min-height:420px;display:flex;align-items:center;justify-content:center}
-.main-img-box img{max-height:480px;width:auto;max-width:100%;object-fit:contain;transition:transform .3s ease;border-radius:12px}
+.main-img-box{position:relative;background:#fff;border:1px solid var(--line);border-radius:20px;padding:24px;box-shadow:0 12px 35px rgba(9,40,64,.06);text-align:center;overflow:hidden;min-height:420px;display:flex;align-items:center;justify-content:center;cursor:zoom-in}
+.main-img-box img{max-height:460px;width:auto;max-width:100%;object-fit:contain;transition:transform .3s ease;border-radius:12px}
 .main-img-box:hover img{transform:scale(1.03)}
 .badge-overlay{position:absolute;top:18px;left:18px;background:rgba(9,40,64,.92);backdrop-filter:blur(6px);color:var(--gold-light);font-size:.74rem;font-weight:bold;letter-spacing:.08em;text-transform:uppercase;padding:6px 14px;border-radius:20px;border:1px solid rgba(223,191,131,.4);box-shadow:0 4px 14px rgba(0,0,0,.25)}
 .halal-badge{position:absolute;top:18px;right:18px;background:#edfaf4;color:#1e7e34;font-size:.74rem;font-weight:bold;padding:5px 12px;border-radius:16px;border:1px solid #b7e4c7;display:inline-flex;align-items:center;gap:4px}
+.zoom-hint{position:absolute;bottom:14px;right:14px;background:rgba(255,255,255,.9);border:1px solid var(--line);color:var(--navy);font-size:.72rem;font-weight:600;padding:4px 10px;border-radius:20px;pointer-events:none}
 .gallery-thumbs{display:flex;gap:12px;margin-top:16px;overflow-x:auto;padding-bottom:6px}
 .thumb-btn{border:2px solid var(--line);background:#fff;border-radius:12px;padding:6px;width:78px;height:78px;cursor:pointer;flex-shrink:0;transition:all .2s ease;overflow:hidden;display:flex;align-items:center;justify-content:center}
 .thumb-btn img{width:100%;height:100%;object-fit:cover;border-radius:6px}
@@ -205,15 +223,15 @@ footer .brand .brand-tag{color:#dfbf83}
 /* Right: Product Info */
 .info-eyebrow{font-size:.82rem;font-weight:bold;letter-spacing:.16em;text-transform:uppercase;color:#8b682b;display:flex;align-items:center;gap:10px;margin-bottom:12px}
 .info-eyebrow .brand-pill{background:#092840;color:var(--gold-light);padding:3px 10px;border-radius:12px;font-size:.72rem}
-.product-title{font-size:clamp(2rem,3.5vw,3rem);color:var(--navy);margin-bottom:8px;line-height:1.15}
+.product-title{font-size:clamp(2rem,3.5vw,2.9rem);color:var(--navy);margin-bottom:8px;line-height:1.15}
 .product-sub{font-size:1.05rem;color:var(--muted);font-style:italic;margin-bottom:20px}
-.product-desc{font-size:.98rem;color:#334756;line-height:1.75;margin-bottom:28px}
+.product-desc{font-size:.98rem;color:#334756;line-height:1.75;margin-bottom:26px}
 
 .spec-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
 .spec-pill{padding:5px 12px;background:#fff;border:1px solid var(--line);border-radius:20px;font-size:.78rem;color:#4f606e;font-weight:500}
 
 .packs-box{background:#fcf8ee;border:1.5px solid #ebdcb7;border-radius:12px;padding:16px 20px;margin-bottom:28px}
-.packs-box h4{font-size:.9rem;color:#7a602e;text-transform:uppercase;letter-spacing:.08em;font-weight:bold;margin-bottom:6px;font-family:Arial,sans-serif}
+.packs-box h4{font-size:.88rem;color:#7a602e;text-transform:uppercase;letter-spacing:.08em;font-weight:bold;margin-bottom:6px;font-family:'Plus Jakarta Sans',Arial,sans-serif}
 .packs-box p{color:#4a3a19;font-weight:600;font-size:1rem}
 
 /* Specs Table */
@@ -255,6 +273,13 @@ footer .brand .brand-tag{color:#dfbf83}
 .related-sub{font-size:.82rem;color:var(--muted);margin-bottom:14px;flex:1;font-style:italic}
 .btn-sm{font-size:.82rem;font-weight:bold;color:var(--navy);align-self:flex-start}
 
+/* Lightbox Modal */
+.img-modal{display:none;position:fixed;inset:0;background:rgba(9,40,64,.88);backdrop-filter:blur(8px);z-index:100;align-items:center;justify-content:center;padding:24px}
+.img-modal.is-open{display:flex}
+.img-modal-content{position:relative;max-width:90vw;max-height:90vh;background:#fff;border-radius:16px;padding:24px;box-shadow:0 20px 50px rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center}
+.img-modal-content img{max-height:80vh;max-width:85vw;object-fit:contain;border-radius:8px}
+.modal-close{position:absolute;top:10px;right:14px;font-size:2rem;line-height:1;background:none;border:none;color:var(--navy);cursor:pointer;padding:4px 8px;font-weight:bold}
+
 /* Footer */
 footer{padding:54px 0 25px;background:#062034;color:#d2dce4}
 .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px}
@@ -265,8 +290,14 @@ footer{padding:54px 0 25px;background:#062034;color:#d2dce4}
 .footer-bottom a{color:#dfbf83}
 
 @media(max-width:900px){
-  .header-row{flex-wrap:wrap;padding:12px 0;gap:14px}
-  .header-nav{flex-wrap:wrap;gap:12px}
+  .mobile-nav-toggle{display:flex}
+  .header-nav{display:none;position:absolute;top:100%;left:0;right:0;background:#ffffff;border-bottom:2px solid var(--gold);box-shadow:0 12px 30px rgba(9,40,64,.15);flex-direction:column;padding:20px;gap:12px;align-items:stretch;z-index:35}
+  .header-nav.is-open{display:flex}
+  .header-nav a{padding:10px 14px;border-radius:6px;background:rgba(9,40,64,.03);color:var(--navy);font-weight:600}
+  .header-nav a:hover{background:var(--navy);color:#fff}
+  .header-nav .btn-nav{text-align:center;background:var(--navy);color:#fff;margin-top:4px}
+  .header-nav .btn-home{background:#fdfcf9;border:1.5px solid var(--gold)}
+  .header-row{flex-wrap:nowrap}
   .product-layout{grid-template-columns:1fr;gap:36px}
   .gallery-wrap{position:static}
   .assurance-grid{grid-template-columns:1fr 1fr}
@@ -275,12 +306,11 @@ footer{padding:54px 0 25px;background:#062034;color:#d2dce4}
 }
 @media(max-width:560px){
   .wrap{width:calc(100% - 32px)}
-  .header-row{gap:10px;min-height:88px}
+  .header-row{gap:10px;min-height:80px}
   .brand{padding:3px 0}
   .brand-emblem-img{width:36px;margin-bottom:2px}
   .brand-name{font-size:1.6rem}
   .brand-tag{font-size:7px;letter-spacing:.16em;margin-top:2px}
-  .header-nav{gap:8px}
   .assurance-grid{grid-template-columns:1fr}
   .footer-grid{grid-template-columns:1fr}
   .cta-group{flex-direction:column}
@@ -317,12 +347,17 @@ footer{padding:54px 0 25px;background:#062034;color:#d2dce4}
       <span class="brand-name">Kotwari<sup>&trade;</sup></span>
       <small class="brand-tag">Gao Se Global Tak</small>
     </a>
-    <nav class="header-nav">
-      <a class="btn-home" href="index.html">&#8962; Home Page</a>
-      <a href="index.html#businesses">Businesses</a>
-      <a href="index.html#products" style="color:#8b682b;font-weight:bold">Products</a>
-      <a href="index.html#partners">Partner</a>
-      <a href="index.html#contact">Contact</a>
+    <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle Navigation Menu" aria-expanded="false" onclick="toggleNav()">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="header-nav" id="mainNav">
+      <a class="btn-home" href="index.html">&#8962; Home</a>
+      <a href="fmcg.html">FMCG</a>
+      <a href="dairy.html">Dairy</a>
+      <a href="water.html">Water</a>
+      <a href="eggs.html">Eggs</a>
+      <a href="exports.html">Exports</a>
+      <a href="contact.html">Contact</a>
       <a class="btn-nav" href="$waLink" target="_blank" rel="noopener noreferrer">Order Inquiry &#x2197;</a>
     </nav>
   </div>
@@ -332,9 +367,7 @@ footer{padding:54px 0 25px;background:#062034;color:#d2dce4}
   <div class="wrap">
     <a href="index.html" style="font-weight:bold;color:var(--navy)">&#8962; Home</a>
     <span>/</span>
-    <a href="index.html#products">Products</a>
-    <span>/</span>
-    <a href="index.html#products">$($p.categoryLabel)</a>
+    <a href="$categoryHubLink">$($p.categoryLabel)</a>
     <span>/</span>
     <span class="current">$($p.name)</span>
   </div>
@@ -346,10 +379,11 @@ footer{padding:54px 0 25px;background:#062034;color:#d2dce4}
       
       <!-- Left Column: Gallery & Image Preview -->
       <div class="gallery-wrap">
-        <div class="main-img-box">
+        <div class="main-img-box" onclick="openModal()" title="Click to enlarge image">
           <span class="badge-overlay">&#10022; $($p.badge)</span>
           $(if ($p.halal) { '<span class="halal-badge">&#10003; Halal Certified</span>' })
           <img id="mainImage" src="$($p.primaryImage)" alt="$($p.name) showcase image">
+          <span class="zoom-hint">&#128269; Click to zoom</span>
         </div>
         $thumbsHtml
       </div>
@@ -392,7 +426,7 @@ footer{padding:54px 0 25px;background:#062034;color:#d2dce4}
 
         <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:20px">
           <a class="btn-home" href="index.html">&#8962; Go to Home Page</a>
-          <a class="back-link" href="index.html#products" style="margin-top:0">&larr; Back to All Kotwari Products</a>
+          <a class="back-link" href="$categoryHubLink" style="margin-top:0">&larr; Back to $($p.categoryLabel)</a>
         </div>
       </div>
 
@@ -436,6 +470,14 @@ footer{padding:54px 0 25px;background:#062034;color:#d2dce4}
   </section>
 </main>
 
+<!-- Lightbox Modal -->
+<div id="imageModal" class="img-modal" onclick="closeModal(event)">
+  <div class="img-modal-content">
+    <button class="modal-close" onclick="closeModal(event)" aria-label="Close Preview">&times;</button>
+    <img id="modalImg" src="" alt="Product Large Preview">
+  </div>
+</div>
+
 <footer>
   <div class="wrap reveal">
     <div class="footer-grid">
@@ -456,9 +498,9 @@ footer{padding:54px 0 25px;background:#062034;color:#d2dce4}
         <h3>Businesses</h3>
         <a href="eggs.html">Kotwari Eggs</a>
         <a href="water.html">KooA Water</a>
-        <a href="index.html#dairy">Kotwari Dairy</a>
-        <a href="index.html#products">Kotwari FMCG</a>
-        <a href="index.html#retail">Kotwari One</a>
+        <a href="dairy.html">Kotwari Dairy</a>
+        <a href="fmcg.html">Kotwari FMCG</a>
+        <a href="retail.html">Kotwari One</a>
         <a href="exports.html">Kotwari Global</a>
       </div>
       <div>
@@ -466,7 +508,7 @@ footer{padding:54px 0 25px;background:#062034;color:#d2dce4}
         <a href="investors.html">Investors</a>
         <a href="sustainability.html">Sustainability</a>
         <a href="careers.html">Careers</a>
-        <a href="index.html#contact">Contact</a>
+        <a href="contact.html">Contact</a>
         <a href="privacy.html">Privacy Policy</a>
         <a href="terms.html">Terms</a>
       </div>
@@ -504,6 +546,34 @@ function switchImage(src, btn) {
   var buttons = document.querySelectorAll('.thumb-btn');
   buttons.forEach(function(b){ b.classList.remove('active'); });
   if (btn) { btn.classList.add('active'); }
+}
+
+function openModal() {
+  var main = document.getElementById('mainImage');
+  var modal = document.getElementById('imageModal');
+  var mImg = document.getElementById('modalImg');
+  if (main && modal && mImg) {
+    mImg.src = main.src;
+    modal.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+  }
+}
+
+function closeModal(e) {
+  if (!e || e.target.id === 'imageModal' || e.target.classList.contains('modal-close')) {
+    var modal = document.getElementById('imageModal');
+    if (modal) { modal.classList.remove('is-open'); }
+    document.body.style.overflow = '';
+  }
+}
+
+function toggleNav() {
+  var nav = document.getElementById('mainNav');
+  var btn = document.getElementById('mobileNavToggle');
+  if (nav && btn) {
+    var isOpen = nav.classList.toggle('is-open');
+    btn.setAttribute('aria-expanded', isOpen);
+  }
 }
 
 window.addEventListener('scroll', function() {
@@ -544,8 +614,9 @@ initScrollReveal();
 </html>
 "@
 
-    [System.IO.File]::WriteAllText($outPath, $html, [System.Text.Encoding]::UTF8)
+    $utf8NoBom = New-Object System.Text.UTF8Encoding($false)
+    [System.IO.File]::WriteAllText($outPath, $html, $utf8NoBom)
     Write-Host "Generated: $filename"
 }
 
-Write-Host "Done generating all 28 product pages!"
+Write-Host "Done generating all 28 product pages with clean UTF-8 encoding, mobile drawer, Google Fonts, and lightbox preview!"

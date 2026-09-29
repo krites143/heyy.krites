@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
   <meta charset="UTF-8">
@@ -11,7 +11,10 @@
   <meta property="og:title" content="Partner With Kotwari | Strategic Partnerships Across Agriculture & FMCG">
   <meta property="og:description" content="Join India's emerging farmer-to-market-to-global ecosystem. Dynamic partnership onboarding for all value-chain stakeholders.">
   <meta property="og:url" content="https://www.kotwari.com/partners.html">
-  <meta property="og:image" content="https://www.kotwari.com/kotwari_homepage_verified.png">
+  <meta property="og:image" content="https://www.kotwari.com/og-image.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
     *,*:before,*:after{box-sizing:border-box;margin:0;padding:0}
@@ -28,8 +31,8 @@
       --line:#dedfd9;
       --card-bg:#ffffff;
     }
-    body{font-family:Arial,system-ui,sans-serif;color:var(--body);background:var(--ivory);line-height:1.6;font-size:16px}
-    h1,h2,h3{font-family:Georgia,serif;font-weight:normal;color:var(--navy);line-height:1.25}
+    body{font-family:'Plus Jakarta Sans',Arial,system-ui,sans-serif;color:var(--body);background:var(--ivory);line-height:1.6;font-size:16px}
+    h1,h2,h3{font-family:'Playfair Display',Georgia,serif;font-weight:600;color:var(--navy);line-height:1.25}
     .wrap{width:min(1180px,calc(100% - 48px));margin:0 auto}
     .topbar{background:#062034;color:#cbdbe4;font-size:.78rem;padding:7px 0;letter-spacing:.08em;text-align:center}
     header{background:rgba(251,250,246,0.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:30}
@@ -410,6 +413,7 @@ html, body {
               ✉️ Prepare Email Draft
             </button>
           </div>
+          <div id="partnerFeedback" style="display:none;padding:12px 16px;border-radius:6px;margin-top:14px;font-size:0.88rem;font-weight:600"></div>
         </form>
       </div>
     </div>
@@ -530,9 +534,25 @@ html, body {
     return { role, name, phone, state, district, detail, msg };
   }
 
+  function showPartnerFeedback(msg, isError) {
+    var fb = document.getElementById('partnerFeedback');
+    if (fb) {
+      fb.style.display = 'block';
+      fb.style.background = isError ? '#fef2f2' : '#f0fdf4';
+      fb.style.color = isError ? '#b91c1c' : '#15803d';
+      fb.style.border = isError ? '1px solid #fecaca' : '1px solid #bbf7d0';
+      fb.innerHTML = (isError ? '⚠️ ' : '✅ ') + msg;
+    }
+  }
+
   function handleSubmit(e) {
     e.preventDefault();
     const data = getFormData();
+    if (!data.name || !data.phone) {
+      showPartnerFeedback("Please enter your Full Name and Mobile Number.", true);
+      return;
+    }
+    showPartnerFeedback("Opening WhatsApp to transmit your partnership inquiry...", false);
     const text = `*New Partnership Inquiry - Kotwari International Ltd.*\n\n*Role:* ${data.role}\n*Name:* ${data.name}\n*Phone:* ${data.phone}\n*Location:* ${data.district}, ${data.state}\n*Capacity/Details:* ${data.detail}\n*Message:* ${data.msg}\n\n_Sent via official kotwari.com partners portal_`;
     
     const waUrl = "https://wa.me/919978648583?text=" + encodeURIComponent(text);
@@ -542,9 +562,10 @@ html, body {
   function prepareEmail() {
     const data = getFormData();
     if (!data.name || !data.phone) {
-      alert("Please enter your Name and Mobile Number first.");
+      showPartnerFeedback("Please enter your Name and Mobile Number first before drafting email.", true);
       return;
     }
+    showPartnerFeedback("Preparing your partnership draft in default email client...", false);
     const subject = `Partnership Inquiry [${data.role}]: ${data.name} - ${data.district}`;
     const body = `Dear Kotwari Commercial Team,\n\nI wish to explore a partnership with Kotwari International Ltd.\n\nRole: ${data.role}\nFull Name: ${data.name}\nMobile: ${data.phone}\nLocation: ${data.district}, ${data.state}\nOperational Capacity: ${data.detail}\n\nMessage:\n${data.msg}\n\nSincerely,\n${data.name}`;
     

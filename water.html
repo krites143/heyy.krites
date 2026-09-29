@@ -1,8 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#092840">
   <title>KooA &mdash; Premium Arabian Collection Mineral Water | Kotwari International</title>
   <meta name="description" content="KooA is a premium mineral water brand by Kotwari International. Enquire about dealership, supply and institutional distribution.">
   <link rel="canonical" href="https://www.kotwari.com/water.html">
@@ -10,20 +11,27 @@
   <meta property="og:description" content="KooA is a premium mineral water brand by Kotwari International.">
   <meta property="og:image" content="og-image.jpg">
   <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    *{box-sizing:border-box;margin:0;padding:0}body{font:16px/1.75 Arial,sans-serif;background:#faf8f1;color:#183143}h1,h2,h3,p{margin-bottom:16px}h1,h2,h3{font-family:Georgia,serif;font-weight:400;line-height:1.2}a{color:#092840}img{max-width:100%;display:block}
+    *{box-sizing:border-box;margin:0;padding:0}body{font:16px/1.75 'Plus Jakarta Sans',Arial,sans-serif;background:#faf8f1;color:#183143}h1,h2,h3,p{margin-bottom:16px}h1,h2,h3{font-family:'Playfair Display',Georgia,serif;font-weight:600;line-height:1.2}a{color:#092840}img{max-width:100%;display:block}
     .wrap{width:min(1100px,calc(100% - 48px));margin:auto}
     .eyebrow{font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;font-weight:bold;color:#8b682b;margin-bottom:14px;display:block}
-        header{background:rgba(250,248,241,.98);border-bottom:1px solid #dedfd9;position:sticky;top:0;z-index:20;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);transition:background .3s ease,box-shadow .3s ease,border-color .3s ease}
+    .callout-note{background:#fdf9f0;border-left:4px solid #bc944f;padding:14px 18px;border-radius:4px;font-size:.88rem;color:#5a626a;line-height:1.6}
+    .product-img-frame{height:200px;background:#f5f4ef;border-radius:8px;margin-bottom:16px;overflow:hidden;display:flex;align-items:center;justify-content:center;padding:10px}
+    .product-img-frame img{max-height:100%;max-width:100%;object-fit:contain;transition:transform .3s ease}
+    .card:hover .product-img-frame img{transform:scale(1.05)}
+    header{background:rgba(250,248,241,.98);border-bottom:1px solid #dedfd9;position:sticky;top:0;z-index:20;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);transition:background .3s ease,box-shadow .3s ease,border-color .3s ease}
     .header-inner{display:flex;align-items:center;justify-content:space-between;min-height:102px;transition:min-height .3s ease}
     header.scrolled{background:rgba(250,248,241,.92);border-bottom:1px solid rgba(188,148,79,.35);box-shadow:0 8px 25px rgba(9,40,64,.06);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
     header.scrolled .header-inner{min-height:94px}
     .brand{display:inline-flex;flex-direction:column;align-items:center;text-align:center;text-decoration:none;position:relative;padding:4px 0;color:#183143;transition:transform .2s ease}
     .brand-emblem-img{width:52px;height:auto;display:block;margin:0 auto -9px;filter:drop-shadow(0 2px 5px rgba(188,148,79,.35));transition:transform .3s ease}
     .brand:hover .brand-emblem-img{transform:translateY(-2px) scale(1.03)}
-    .brand-name{font:2.15rem/1 Georgia,serif;color:#183143;letter-spacing:-.035em;display:inline-flex;align-items:baseline}
-    .brand-name sup{font-size:10px;vertical-align:top;margin-left:2px;font-family:Arial,sans-serif;color:#8b682b;font-weight:600}
-    .brand-tag{display:block;font:8.5px Arial,sans-serif;letter-spacing:.22em;text-transform:uppercase;color:#8b682b;margin-top:3px;font-weight:700}
+    .brand-name{font:2.15rem/1 'Playfair Display',Georgia,serif;color:#183143;letter-spacing:-.035em;display:inline-flex;align-items:baseline}
+    .brand-name sup{font-size:10px;vertical-align:top;margin-left:2px;font-family:'Plus Jakarta Sans',Arial,sans-serif;color:#8b682b;font-weight:600}
+    .brand-tag{display:block;font:8.5px 'Plus Jakarta Sans',Arial,sans-serif;letter-spacing:.22em;text-transform:uppercase;color:#8b682b;margin-top:3px;font-weight:700}
     footer .brand{display:inline-flex;flex-direction:column;align-items:center;text-align:center}
     footer .brand .brand-emblem-img{margin:0 auto -9px;width:52px}
     footer .brand .brand-name{color:#fff}
@@ -296,29 +304,41 @@ html, body {
     <span class="eyebrow">Products</span>
     <h2>The Collection</h2>
     <div class="grid four">
-      <div class="card" style="text-align:center">
-        <h3 style="font-size:1.6rem;color:#123f62">200 ml</h3>
-        <p style="font-size:.88rem;color:#596977">Starter</p>
-        <p>Premium mineral water. Gold label. Arabic-inspired design.</p>
-        <span class="pill-dark">KooA &bull; A Kotwari Product</span>
+      <div class="card" style="text-align:center;display:flex;flex-direction:column">
+        <div class="product-img-frame">
+          <img src="products/kooa-mineral-water-300ml-hand.jpeg" alt="KooA 200ml Mini Pack" loading="lazy">
+        </div>
+        <h3 style="font-size:1.4rem;color:#123f62;margin-bottom:4px">200 ml</h3>
+        <p style="font-size:.84rem;color:#8b682b;font-weight:bold;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">Starter &bull; 48 Bottles/Case</p>
+        <p style="font-size:.88rem;color:#596977;flex:1;margin-bottom:14px">Single-serve event, banquet &amp; airline mini bottle with tamper-evident seal.</p>
+        <span class="pill-dark">KooA &bull; Arabian Collection</span>
       </div>
-      <div class="card" style="text-align:center">
-        <h3 style="font-size:1.6rem;color:#123f62">300 ml</h3>
-        <p style="font-size:.88rem;color:#596977">Classic</p>
-        <p>Premium mineral water. Gold label. Arabic-inspired design.</p>
-        <span class="pill-dark">KooA &bull; A Kotwari Product</span>
+      <div class="card" style="text-align:center;display:flex;flex-direction:column">
+        <div class="product-img-frame">
+          <img src="products/kooa-mineral-water-300ml-showcase.jpeg" alt="KooA 300ml Classic Bottle" loading="lazy">
+        </div>
+        <h3 style="font-size:1.4rem;color:#123f62;margin-bottom:4px">300 ml</h3>
+        <p style="font-size:.84rem;color:#8b682b;font-weight:bold;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">Classic &bull; 30 Bottles/Case</p>
+        <p style="font-size:.88rem;color:#596977;flex:1;margin-bottom:14px">Signature gold foiled bottle tailored for luxury hotel rooms, executive suites &amp; dine-in.</p>
+        <span class="pill-dark">KooA &bull; Flagship SKU</span>
       </div>
-      <div class="card" style="text-align:center">
-        <h3 style="font-size:1.6rem;color:#123f62">500 ml</h3>
-        <p style="font-size:.88rem;color:#596977">Standard</p>
-        <p>Premium mineral water. Gold label. Arabic-inspired design.</p>
-        <span class="pill-dark">KooA &bull; A Kotwari Product</span>
+      <div class="card" style="text-align:center;display:flex;flex-direction:column">
+        <div class="product-img-frame">
+          <img src="products/kooa-mineral-water-bottle-angle.jpeg" alt="KooA 500ml Standard Bottle" loading="lazy">
+        </div>
+        <h3 style="font-size:1.4rem;color:#123f62;margin-bottom:4px">500 ml</h3>
+        <p style="font-size:.84rem;color:#8b682b;font-weight:bold;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">Standard &bull; 24 Bottles/Case</p>
+        <p style="font-size:.88rem;color:#596977;flex:1;margin-bottom:14px">Everyday on-the-go hydration for corporate lounges, fitness centers &amp; modern retail.</p>
+        <span class="pill-dark">KooA &bull; Arabian Collection</span>
       </div>
-      <div class="card" style="text-align:center">
-        <h3 style="font-size:1.6rem;color:#123f62">1 L</h3>
-        <p style="font-size:.88rem;color:#596977">Family</p>
-        <p>Premium mineral water. Gold label. Arabic-inspired design.</p>
-        <span class="pill-dark">KooA &bull; A Kotwari Product</span>
+      <div class="card" style="text-align:center;display:flex;flex-direction:column">
+        <div class="product-img-frame">
+          <img src="products/kooa-mineral-water-1l-bottle.jpeg" alt="KooA 1L Family Bottle" loading="lazy">
+        </div>
+        <h3 style="font-size:1.4rem;color:#123f62;margin-bottom:4px">1 L</h3>
+        <p style="font-size:.84rem;color:#8b682b;font-weight:bold;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">Family &bull; 12 Bottles/Case</p>
+        <p style="font-size:.88rem;color:#596977;flex:1;margin-bottom:14px">Refined dining table bottle crafted for fine-dining restaurants, banquets and home dining.</p>
+        <span class="pill-dark">KooA &bull; Arabian Collection</span>
       </div>
     </div>
     <div style="margin-top:28px;text-align:center">
@@ -430,9 +450,9 @@ html, body {
 <!-- COMPLIANCE DISCLOSURE -->
 <section style="padding:40px 0;background:#faf8f1;border:none">
   <div class="wrap">
-    <disclosure>
+    <aside class="callout-note" role="note">
       <strong>Regulatory Notice:</strong> Source, quality testing, FSSAI registration, and all applicable regulatory details will be published on this page after independent verification. Do not take absence of published certifications as a confirmation of non-compliance &mdash; these are in the process of being obtained and verified.
-    </disclosure>
+    </aside>
   </div>
 </section>
 

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
   <meta charset="UTF-8">
@@ -11,7 +11,10 @@
   <meta property="og:title" content="Contact Kotwari International Ltd. | Official Corporate Desk">
   <meta property="og:description" content="Get in touch with Kotwari International: Corporate HQ Lucknow, Farmer helpline, trade distribution, export desk, and investor relations.">
   <meta property="og:url" content="https://www.kotwari.com/contact.html">
-  <meta property="og:image" content="https://www.kotwari.com/kotwari_homepage_verified.png">
+  <meta property="og:image" content="https://www.kotwari.com/og-image.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
     *,*:before,*:after{box-sizing:border-box;margin:0;padding:0}
@@ -28,8 +31,8 @@
       --line:#dedfd9;
       --card-bg:#ffffff;
     }
-    body{font-family:Arial,system-ui,sans-serif;color:var(--body);background:var(--ivory);line-height:1.6;font-size:16px}
-    h1,h2,h3{font-family:Georgia,serif;font-weight:normal;color:var(--navy);line-height:1.25}
+    body{font-family:'Plus Jakarta Sans',Arial,system-ui,sans-serif;color:var(--body);background:var(--ivory);line-height:1.6;font-size:16px}
+    h1,h2,h3{font-family:'Playfair Display',Georgia,serif;font-weight:600;color:var(--navy);line-height:1.25}
     .wrap{width:min(1180px,calc(100% - 48px));margin:0 auto}
     .topbar{background:#062034;color:#cbdbe4;font-size:.78rem;padding:7px 0;letter-spacing:.08em;text-align:center}
     header{background:rgba(251,250,246,0.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:30}
@@ -409,6 +412,7 @@ html, body {
               ✉️ Send via Email
             </button>
           </div>
+          <div id="contactFeedback" style="display:none;padding:12px 16px;border-radius:6px;margin-top:14px;font-size:0.88rem;font-weight:600"></div>
         </form>
       </div>
     </div>
@@ -477,6 +481,17 @@ html, body {
     window.open("https://wa.me/919978648583?text=" + encodeURIComponent(text), '_blank');
   }
 
+  function showFeedback(msg, isError) {
+    var fb = document.getElementById('contactFeedback');
+    if (fb) {
+      fb.style.display = 'block';
+      fb.style.background = isError ? '#fef2f2' : '#f0fdf4';
+      fb.style.color = isError ? '#b91c1c' : '#15803d';
+      fb.style.border = isError ? '1px solid #fecaca' : '1px solid #bbf7d0';
+      fb.innerHTML = (isError ? '⚠️ ' : '✅ ') + msg;
+    }
+  }
+
   function sendContactEmail() {
     const name = document.getElementById('cName').value.trim();
     const phone = document.getElementById('cPhone').value.trim();
@@ -484,10 +499,11 @@ html, body {
     const msg = document.getElementById('cMessage').value.trim();
 
     if (!name || !phone || !msg) {
-      alert("Please fill your Name, Phone, and Message first.");
+      showFeedback("Please fill your Name, Phone, and Message first.", true);
       return;
     }
 
+    showFeedback("Opening default email client with your message...", false);
     const subject = `Official Enquiry [${dept}]: ${name}`;
     const body = `Dear Kotwari Team,\n\nName: ${name}\nPhone: ${phone}\nDepartment: ${dept}\n\nMessage:\n${msg}\n\nSincerely,\n${name}`;
     location.href = `mailto:kotwarigroup18@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
