@@ -180,11 +180,12 @@ header.scrolled .header-row{min-height:86px}
 .brand-name{font:2.05rem/1 'Playfair Display',Georgia,serif;color:var(--ink);letter-spacing:-.035em;display:inline-flex;align-items:baseline}
 .brand-name sup{font-size:10px;vertical-align:top;margin-left:2px;font-family:'Plus Jakarta Sans',Arial,sans-serif;color:#8b682b;font-weight:600}
 .brand-tag{display:block;font:8.5px 'Plus Jakarta Sans',Arial,sans-serif;letter-spacing:.22em;text-transform:uppercase;color:#8b682b;margin-top:3px;font-weight:700}
-footer .brand{display:inline-flex;flex-direction:column;align-items:center;text-align:center}
-footer .brand .brand-emblem-img{margin:0 auto -8px;width:48px}
-footer .brand .brand-name{color:#fff}
-footer .brand .brand-name sup{color:#dfbf83}
-footer .brand .brand-tag{color:#dfbf83}
+footer .brand, .footer-grid .brand{display:inline-flex !important;flex-direction:column !important;align-items:flex-start !important;text-align:start !important;text-decoration:none !important;padding:0 !important;margin-bottom:14px !important}
+footer .brand .brand-emblem-img, .footer-grid .brand .brand-emblem-img{width:46px !important;height:auto !important;display:block !important;margin:0 0 6px 0 !important;filter:drop-shadow(0 2px 6px rgba(188,148,79,.35)) !important;transition:transform .3s ease !important}
+footer .brand:hover .brand-emblem-img, .footer-grid .brand:hover .brand-emblem-img{transform:translateY(-2px) scale(1.04) !important}
+footer .brand .brand-name, .footer-grid .brand .brand-name{display:block !important;font-family:'Playfair Display',Georgia,serif !important;font-size:1.95rem !important;line-height:1.1 !important;color:#ffffff !important;letter-spacing:-0.02em !important;font-weight:700 !important}
+footer .brand .brand-name sup, .footer-grid .brand .brand-name sup{color:#dfbf83 !important;font-size:0.45em !important;margin-left:2px !important;vertical-align:super !important;font-weight:600 !important}
+footer .brand .brand-tag, .footer-grid .brand .brand-tag{display:block !important;font-family:'Plus Jakarta Sans',Arial,sans-serif !important;font-size:8.5px !important;letter-spacing:0.22em !important;text-transform:uppercase !important;color:#dfbf83 !important;margin-top:4px !important;font-weight:700 !important}
 .header-nav{display:flex;align-items:center;gap:20px;font-size:.88rem}
 .header-nav a:hover{color:var(--gold)}
 .btn-nav{padding:8px 16px;border:1px solid var(--navy);border-radius:4px;background:var(--navy);color:#fff;font-weight:bold;font-size:.82rem;transition:all .2s ease}
