@@ -162,8 +162,8 @@
     .footer-grid h3{color:var(--gold-light);font-size:.92rem;margin-bottom:14px;letter-spacing:.04em}
     .footer-grid a{display:block;font-size:.85rem;color:#a3b8c2;text-decoration:none;margin-bottom: 8px;transition:color .2s}
     .footer-grid a:hover{color:white}
-    footer .brand, .footer-grid .brand{display:inline-flex !important;flex-direction:column !important;align-items:flex-start !important;text-align:start !important;text-decoration:none !important;padding:0 !important;margin-bottom:14px !important}
-    footer .brand .brand-emblem-img, .footer-grid .brand .brand-emblem-img{width:46px !important;height:auto !important;display:block !important;margin:0 0 6px 0 !important;filter:drop-shadow(0 2px 6px rgba(188,148,79,.35)) !important;transition:transform .3s ease !important}
+    footer .brand, .footer-grid .brand{display:inline-flex !important;flex-direction:column !important;align-items:center !important;text-align:center !important;text-decoration:none !important;padding:0 !important;margin-bottom:14px !important}
+    footer .brand .brand-emblem-img, .footer-grid .brand .brand-emblem-img{width:48px !important;height:auto !important;display:block !important;margin:0 auto -2px auto !important;filter:drop-shadow(0 2px 6px rgba(188,148,79,.35)) !important;transition:transform .3s ease !important}
     footer .brand:hover .brand-emblem-img, .footer-grid .brand:hover .brand-emblem-img{transform:translateY(-2px) scale(1.04) !important}
     footer .brand .brand-name, .footer-grid .brand .brand-name{display:inline-block !important;font-family:'Playfair Display',Georgia,serif !important;font-size:1.95rem !important;line-height:1.1 !important;color:#ffffff !important;letter-spacing:-0.02em !important;font-weight:700 !important;position:relative !important}
     footer .brand .brand-name sup, .footer-grid .brand .brand-name sup{color:#dfbf83 !important;font-size:7px !important;line-height:1 !important;position:absolute !important;top:-3px !important;right:1.5px !important;font-weight:700 !important;letter-spacing:0 !important;margin-left:0 !important}
@@ -299,9 +299,7 @@ html, body {
     gap: 32px !important;
     text-align: start !important;
   }
-  footer .brand {
-    align-items: flex-start !important;
-  }
+  footer .brand{align-items:center !important;text-align:center !important}
   .footer-bottom {
     flex-direction: column !important;
     align-items: flex-start !important;
@@ -987,6 +985,7 @@ function initCounters(){
 </script>
 </body>
 </html>
+
 
 
 
