@@ -179,15 +179,15 @@ header.scrolled .header-row{min-height:86px}
 .brand{display:inline-flex;flex-direction:column;align-items:center;text-align:center;text-decoration:none;position:relative;padding:4px 0;color:inherit;transition:transform .2s ease}
 .brand-emblem-img{width:48px;height:auto;display:block;margin:0 auto -8px;filter:drop-shadow(0 2px 5px rgba(188,148,79,.35));transition:transform .3s ease}
 .brand:hover .brand-emblem-img{transform:translateY(-2px) scale(1.06)}
-.brand-name{font:2.05rem/1 'Playfair Display',Georgia,serif;color:var(--ink);letter-spacing:-.035em;display:inline-flex;align-items:baseline}
-.brand-name sup{font-size:10px;vertical-align:top;margin-left:2px;font-family:'Plus Jakarta Sans',Arial,sans-serif;color:#8b682b;font-weight:600}
-.brand-tag{display:block;font:8.5px 'Plus Jakarta Sans',Arial,sans-serif;letter-spacing:.22em;text-transform:uppercase;color:#8b682b;margin-top:3px;font-weight:700}
+.brand-name{font:700 2.05rem/1.05 'Playfair Display',Georgia,serif;color:var(--ink);letter-spacing:-.035em;display:inline-block;position:relative}
+.brand-name sup{position:absolute;top:-3px;right:1.5px;font:700 7px/1 'Plus Jakarta Sans',Arial,sans-serif;color:#8b682b;letter-spacing:0;margin-left:0}
+.brand-tag{display:block;width:100%;font:700 8.2px/1.2 'Plus Jakarta Sans',Arial,sans-serif;letter-spacing:0.125em;text-transform:uppercase;color:#8b682b;margin-top:3px;text-align:justify;text-align-last:justify}
 footer .brand, .footer-grid .brand{display:inline-flex !important;flex-direction:column !important;align-items:flex-start !important;text-align:start !important;text-decoration:none !important;padding:0 !important;margin-bottom:14px !important}
 footer .brand .brand-emblem-img, .footer-grid .brand .brand-emblem-img{width:46px !important;height:auto !important;display:block !important;margin:0 0 6px 0 !important;filter:drop-shadow(0 2px 6px rgba(188,148,79,.35)) !important;transition:transform .3s ease !important}
 footer .brand:hover .brand-emblem-img, .footer-grid .brand:hover .brand-emblem-img{transform:translateY(-2px) scale(1.04) !important}
-footer .brand .brand-name, .footer-grid .brand .brand-name{display:block !important;font-family:'Playfair Display',Georgia,serif !important;font-size:1.95rem !important;line-height:1.1 !important;color:#ffffff !important;letter-spacing:-0.02em !important;font-weight:700 !important}
-footer .brand .brand-name sup, .footer-grid .brand .brand-name sup{color:#dfbf83 !important;font-size:0.45em !important;margin-left:2px !important;vertical-align:super !important;font-weight:600 !important}
-footer .brand .brand-tag, .footer-grid .brand .brand-tag{display:block !important;font-family:'Plus Jakarta Sans',Arial,sans-serif !important;font-size:8.5px !important;letter-spacing:0.22em !important;text-transform:uppercase !important;color:#dfbf83 !important;margin-top:4px !important;font-weight:700 !important}
+footer .brand .brand-name, .footer-grid .brand .brand-name{display:inline-block !important;font-family:'Playfair Display',Georgia,serif !important;font-size:1.95rem !important;line-height:1.1 !important;color:#ffffff !important;letter-spacing:-0.02em !important;font-weight:700 !important;position:relative !important}
+footer .brand .brand-name sup, .footer-grid .brand .brand-name sup{color:#dfbf83 !important;font-size:7px !important;line-height:1 !important;position:absolute !important;top:-3px !important;right:1.5px !important;font-weight:700 !important;letter-spacing:0 !important;margin-left:0 !important}
+footer .brand .brand-tag, .footer-grid .brand .brand-tag{display:block !important;width:100% !important;font-family:'Plus Jakarta Sans',Arial,sans-serif !important;font-size:8px !important;letter-spacing:0.125em !important;text-transform:uppercase !important;color:#dfbf83 !important;margin-top:4px !important;font-weight:700 !important;text-align:justify !important;text-align-last:justify !important}
 .header-nav{display:flex;align-items:center;gap:20px;font-size:.88rem}
 .header-nav a:hover{color:var(--gold)}
 .btn-nav{padding:8px 16px;border:1px solid var(--navy);border-radius:4px;background:var(--navy);color:#fff;font-weight:bold;font-size:.82rem;transition:all .2s ease}
@@ -333,7 +333,8 @@ footer{padding:54px 0 25px;background:#062034;color:#d2dce4}
   .brand{padding:3px 0}
   .brand-emblem-img{width:36px;margin-bottom:2px}
   .brand-name{font-size:1.6rem}
-  .brand-tag{font-size:7px;letter-spacing:.16em;margin-top:2px}
+  .brand-name sup{top:-2px;right:1px;font-size:6px}
+  .brand-tag{font-size:6.8px;letter-spacing:0.12em;margin-top:2px;width:100%;text-align-last:justify}
   .assurance-grid{grid-template-columns:1fr}
   .footer-grid{grid-template-columns:1fr}
   .cta-group{flex-direction:column}

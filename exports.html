@@ -211,17 +211,24 @@
     }
     .brand:hover .brand-emblem-img { transform: translateY(-2px) scale(1.05); }
     .brand-name {
-      font: 2rem/1 var(--font-serif);
+      font: 700 2rem/1.05 var(--font-serif);
       color: var(--ink);
-      letter-spacing: -.03em;
+      letter-spacing: -.035em;
+      display: inline-block;
+      position: relative;
     }
-    .brand-name sup { font-size: 10px; color: #8b682b; font-family: var(--font-sans); }
+    .brand-name sup { position: absolute; top: -3px; right: 1.5px; font-size: 7px; color: #8b682b; font-family: var(--font-sans); font-weight: 700; letter-spacing: 0; margin-left: 0; line-height: 1; }
     .brand-tag {
-      font-size: 8px;
-      letter-spacing: .22em;
+      display: block;
+      width: 100%;
+      font-size: 8.2px;
+      letter-spacing: .125em;
       text-transform: uppercase;
       color: #8b682b;
       font-weight: 700;
+      margin-top: 3px;
+      text-align: justify;
+      text-align-last: justify;
     }
     .nav {
       display: flex;
@@ -545,9 +552,9 @@
     footer .brand, .footer-grid .brand { display: inline-flex !important; flex-direction: column !important; align-items: flex-start !important; text-align: start !important; text-decoration: none !important; padding: 0 !important; margin-bottom: 14px !important; }
     footer .brand .brand-emblem-img, .footer-grid .brand .brand-emblem-img { width: 46px !important; height: auto !important; display: block !important; margin: 0 0 6px 0 !important; filter: drop-shadow(0 2px 6px rgba(188,148,79,.35)) !important; transition: transform .3s ease !important; }
     footer .brand:hover .brand-emblem-img, .footer-grid .brand:hover .brand-emblem-img { transform: translateY(-2px) scale(1.04) !important; }
-    footer .brand .brand-name, .footer-grid .brand .brand-name { display: block !important; font-family: 'Playfair Display', Georgia, serif !important; font-size: 1.95rem !important; line-height: 1.1 !important; color: #ffffff !important; letter-spacing: -0.02em !important; font-weight: 700 !important; }
-    footer .brand .brand-name sup, .footer-grid .brand .brand-name sup { color: #dfbf83 !important; font-size: 0.45em !important; margin-left: 2px !important; vertical-align: super !important; font-weight: 600 !important; }
-    footer .brand .brand-tag, .footer-grid .brand .brand-tag { display: block !important; font-family: 'Plus Jakarta Sans', Arial, sans-serif !important; font-size: 8.5px !important; letter-spacing: 0.22em !important; text-transform: uppercase !important; color: #dfbf83 !important; margin-top: 4px !important; font-weight: 700 !important; }
+    footer .brand .brand-name, .footer-grid .brand .brand-name{display:inline-block !important;font-family:'Playfair Display',Georgia,serif !important;font-size:1.95rem !important;line-height:1.1 !important;color:#ffffff !important;letter-spacing:-0.02em !important;font-weight:700 !important;position:relative !important}
+    footer .brand .brand-name sup, .footer-grid .brand .brand-name sup{color:#dfbf83 !important;font-size:7px !important;line-height:1 !important;position:absolute !important;top:-3px !important;right:1.5px !important;font-weight:700 !important;letter-spacing:0 !important;margin-left:0 !important}
+    footer .brand .brand-tag, .footer-grid .brand .brand-tag{display:block !important;width:100% !important;font-family:'Plus Jakarta Sans',Arial,sans-serif !important;font-size:8px !important;letter-spacing:0.125em !important;text-transform:uppercase !important;color:#dfbf83 !important;margin-top:4px !important;font-weight:700 !important;text-align:justify !important;text-align-last:justify !important}
     .footer-bottom {
       border-top: 1px solid #233e54;
       padding-top: 20px;
@@ -709,9 +716,7 @@ html, body {
   .wrap {
     width: calc(100% - 28px) !important;
   }
-  .brand-name {
-    font-size: 1.55rem !important;
-  }
+  .brand-name{font-size:1.55rem !important;display:inline-block !important;position:relative !important}.brand-name sup{top:-2px !important;right:1px !important;font-size:6px !important;position:absolute !important}.brand-tag{font-size:6.8px !important;letter-spacing:0.12em !important;margin-top:2px !important;width:100% !important;text-align-last:justify !important}
   .brand-emblem-img {
     width: 38px !important;
   }
@@ -1680,5 +1685,6 @@ function initCounters(){
 </script>
 </body>
 </html>
+
 
 

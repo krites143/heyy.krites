@@ -31,9 +31,9 @@
     footer .brand, .footer-grid .brand{display:inline-flex !important;flex-direction:column !important;align-items:flex-start !important;text-align:start !important;text-decoration:none !important;padding:0 !important;margin-bottom:14px !important}
     footer .brand .brand-emblem-img, .footer-grid .brand .brand-emblem-img{width:46px !important;height:auto !important;display:block !important;margin:0 0 6px 0 !important;filter:drop-shadow(0 2px 6px rgba(188,148,79,.35)) !important;transition:transform .3s ease !important}
     footer .brand:hover .brand-emblem-img, .footer-grid .brand:hover .brand-emblem-img{transform:translateY(-2px) scale(1.04) !important}
-    footer .brand .brand-name, .footer-grid .brand .brand-name{display:block !important;font-family:'Playfair Display',Georgia,serif !important;font-size:1.95rem !important;line-height:1.1 !important;color:#ffffff !important;letter-spacing:-0.02em !important;font-weight:700 !important}
-    footer .brand .brand-name sup, .footer-grid .brand .brand-name sup{color:#dfbf83 !important;font-size:0.45em !important;margin-left:2px !important;vertical-align:super !important;font-weight:600 !important}
-    footer .brand .brand-tag, .footer-grid .brand .brand-tag{display:block !important;font-family:'Plus Jakarta Sans',Arial,sans-serif !important;font-size:8.5px !important;letter-spacing:0.22em !important;text-transform:uppercase !important;color:#dfbf83 !important;margin-top:4px !important;font-weight:700 !important}
+    footer .brand .brand-name, .footer-grid .brand .brand-name{display:inline-block !important;font-family:'Playfair Display',Georgia,serif !important;font-size:1.95rem !important;line-height:1.1 !important;color:#ffffff !important;letter-spacing:-0.02em !important;font-weight:700 !important;position:relative !important}
+    footer .brand .brand-name sup, .footer-grid .brand .brand-name sup{color:#dfbf83 !important;font-size:7px !important;line-height:1 !important;position:absolute !important;top:-3px !important;right:1.5px !important;font-weight:700 !important;letter-spacing:0 !important;margin-left:0 !important}
+    footer .brand .brand-tag, .footer-grid .brand .brand-tag{display:block !important;width:100% !important;font-family:'Plus Jakarta Sans',Arial,sans-serif !important;font-size:8px !important;letter-spacing:0.125em !important;text-transform:uppercase !important;color:#dfbf83 !important;margin-top:4px !important;font-weight:700 !important;text-align:justify !important;text-align-last:justify !important}
     .topbar{background:#092840;color:#d9e3e8;font-size:.78rem;padding:7px 0;text-align:center}
     .hero-section{background-color:#092840;color:#ffffff;padding:90px 0 100px;position:relative;overflow:hidden}
     .hero-section::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,#092840 60%,#123f62)}
@@ -64,7 +64,7 @@
     .btn-home{display:inline-flex;align-items:center;gap:6px;min-height:40px;padding:8px 18px;border:1.5px solid #bc944f;border-radius:4px;background:#fdfcf9;color:#092840;font-weight:bold;font-size:.84rem;text-decoration:none;transition:all .2s ease;box-shadow:0 2px 6px rgba(188,148,79,.15)}
     .btn-home:hover{background:#bc944f;color:#092840;transform:translateY(-1px);box-shadow:0 4px 12px rgba(188,148,79,.3)}
     @media(max-width:850px){.header-inner{flex-wrap:wrap;padding:12px 0;gap:12px}.header-inner nav{flex-wrap:wrap;gap:10px}.split,.three{grid-template-columns:1fr}.two{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr 1fr}}
-    @media(max-width:520px){.wrap{width:calc(100% - 32px)}.header-inner{min-height:88px}.brand{padding:3px 0}.brand-emblem-img{width:40px;margin-bottom: -6px}.brand-name{font-size:1.6rem}.brand-tag{font-size:7px;letter-spacing:.16em;margin-top:2px}.hero-section{padding:60px 0 70px}.footer-grid{grid-template-columns:1fr}}
+    @media(max-width:520px){.wrap{width:calc(100% - 32px)}.header-inner{min-height:88px}.brand{padding:3px 0}.brand-emblem-img{width:40px;margin-bottom: -6px}.brand-name{font-size:1.6rem}.brand-name sup{top:-2px !important;right:1px !important;font-size:6px !important}.brand-tag{font-size:6.8px !important;letter-spacing:0.12em !important;margin-top:2px !important;width:100% !important;text-align-last:justify !important}.hero-section{padding:60px 0 70px}.footer-grid{grid-template-columns:1fr}}
     .dark-section .card{background:#0d3a5c;border-color:#2a4a5c}
     .dark-section .card h3{color:white}
     .apply-step{display:flex;align-items:flex-start;gap:16px;padding:16px 0;border-bottom:1px solid #2a4a5c}
@@ -206,9 +206,7 @@ html, body {
   .wrap {
     width: calc(100% - 28px) !important;
   }
-  .brand-name {
-    font-size: 1.55rem !important;
-  }
+  .brand-name{font-size:1.55rem !important;display:inline-block !important;position:relative !important}.brand-name sup{top:-2px !important;right:1px !important;font-size:6px !important;position:absolute !important}.brand-tag{font-size:6.8px !important;letter-spacing:0.12em !important;margin-top:2px !important;width:100% !important;text-align-last:justify !important}
   .brand-emblem-img {
     width: 38px !important;
   }
@@ -575,6 +573,7 @@ function initCounters(){
 </script>
 </body>
 </html>
+
 
 
 
