@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -264,6 +264,45 @@ html, body {
 .stat-box:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(9,40,64,.08);border-color:var(--gold,#bc944f)}
 .product-box-img, .card img, .hero-card img{transition:transform .45s cubic-bezier(.16,1,.3,1),filter .45s cubic-bezier(.16,1,.3,1)}
 .product-box:hover .product-box-img, .card:hover img{transform:scale(1.04)}
+
+/* 3D Showcase & Holographic Multi-Layer System */
+.hero-water-grid{display:grid;grid-template-columns:1.15fr 0.85fr;gap:48px;align-items:center}
+@media(max-width:920px){.hero-water-grid{grid-template-columns:1fr;text-align:center;gap:36px}}
+.hero-water-stage{position:relative;display:flex;align-items:center;justify-content:center;min-height:430px;perspective:1200px}
+.water-aura-canvas{position:absolute;inset:-30px;width:calc(100% + 60px);height:calc(100% + 60px);pointer-events:none;z-index:1}
+.water-hero-bottle-wrap{position:relative;z-index:2;display:inline-flex;flex-direction:column;align-items:center;justify-content:center;transform-style:preserve-3d;will-change:transform;cursor:grab}
+.water-hero-bottle-wrap:active{cursor:grabbing}
+.water-bottle-pedestal{position:absolute;bottom:8px;left:50%;transform:translateX(-50%) rotateX(75deg);width:210px;height:210px;border-radius:50%;background:radial-gradient(circle,rgba(223,191,131,0.5) 0%,rgba(188,148,79,0.2) 45%,transparent 70%);box-shadow:0 0 40px rgba(223,191,131,0.4);pointer-events:none}
+.water-hero-bottle-img{width:auto;max-height:370px;max-width:100%;object-fit:contain;filter:drop-shadow(0 20px 32px rgba(4,20,34,0.6)) drop-shadow(0 0 18px rgba(188,148,79,0.3));transform:translateZ(42px);transition:filter .3s ease;user-select:none;-webkit-user-drag:none}
+.water-spec-badge{position:absolute;z-index:4;padding:8px 14px;background:rgba(9,40,64,0.88);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1.5px solid rgba(223,191,131,0.55);border-radius:12px;box-shadow:0 12px 25px rgba(0,0,0,0.35);color:#ffffff;display:flex;flex-direction:column;align-items:flex-start;transform:translateZ(58px);pointer-events:none;transition:transform .2s ease}
+.water-spec-badge strong{font-size:0.92rem;color:#f3e3be;line-height:1.2}
+.water-spec-badge small{font-size:0.7rem;color:#a8c4d6;font-weight:500;letter-spacing:0.04em}
+.water-spec-badge.badge-top-left{top:30px;left:-10px}
+.water-spec-badge.badge-bottom-right{bottom:40px;right:-10px}
+.badge-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#38ef7d;box-shadow:0 0 8px #38ef7d;margin-bottom:3px}
+.badge-dot.gold{background:var(--gold,#bc944f);box-shadow:0 0 8px var(--gold,#bc944f)}
+@media(max-width:520px){
+  .hero-water-stage{min-height:330px}
+  .water-hero-bottle-img{max-height:270px}
+  .water-spec-badge.badge-top-left{top:10px;left:0}
+  .water-spec-badge.badge-bottom-right{bottom:15px;right:0}
+}
+
+/* 3D Holographic Collection Cards */
+.card-3d{position:relative;background:#ffffff;border:1px solid #dedfd9;border-radius:16px;padding:26px 20px;text-align:center;display:flex;flex-direction:column;perspective:1000px;transform-style:preserve-3d;will-change:transform,box-shadow;transition:box-shadow .25s ease,border-color .25s ease;overflow:visible;cursor:pointer}
+.card-3d:hover{border-color:rgba(188,148,79,0.7);box-shadow:0 22px 50px rgba(9,40,64,0.14),0 0 0 1px rgba(223,191,131,0.3)}
+.card-3d-glare{position:absolute;inset:0;border-radius:16px;background:radial-gradient(circle 240px at 50% 50%,rgba(255,255,255,0.7) 0%,rgba(255,255,255,0) 65%);opacity:0;pointer-events:none;z-index:6;mix-blend-mode:overlay;transition:opacity .2s ease;transform:translateZ(60px)}
+.card-3d:hover .card-3d-glare{opacity:1}
+.card-3d-layer-deep{transform-style:preserve-3d;transform:translateZ(38px);transition:transform .3s cubic-bezier(.16,1,.3,1)}
+.card-3d:hover .card-3d-layer-deep{transform:translateZ(46px)}
+.card-3d-img{max-height:100%;max-width:100%;object-fit:contain;filter:drop-shadow(0 8px 18px rgba(9,40,64,0.12));transition:transform .35s cubic-bezier(.16,1,.3,1),filter .35s cubic-bezier(.16,1,.3,1);transform:translateZ(20px)}
+.card-3d:hover .card-3d-img{transform:translateZ(32px) scale(1.06);filter:drop-shadow(0 16px 28px rgba(9,40,64,0.22))}
+.card-3d-content{transform-style:preserve-3d;transform:translateZ(24px);display:flex;flex-direction:column;flex:1}
+.card-3d-tag{transform:translateZ(32px);display:inline-block}
+@media(prefers-reduced-motion:reduce){
+  .card-3d,.water-hero-bottle-wrap,.water-spec-badge{transform:none!important;transition:none!important}
+  .water-aura-canvas{display:none!important}
+}
 </style>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
@@ -297,16 +336,42 @@ html, body {
 <!-- HERO -->
 <div class="hero-section">
   <div class="wrap">
-    <span class="eyebrow">A Kotwari Product</span>
-    <h1 style="font-size:clamp(3.5rem,10vw,7rem);letter-spacing:-.04em;margin-bottom:12px"><em>KooA</em></h1>
-    <p style="font-size:1.2rem;color:#c5d8e0;margin-bottom:20px">Premium Arabian Collection Mineral Water</p>
-    <div style="margin-bottom:28px">
-      <span class="pill">200 ml</span>
-      <span class="pill">300 ml</span>
-      <span class="pill">500 ml</span>
-      <span class="pill">1 L</span>
+    <div class="hero-water-grid">
+      <div class="hero-water-text">
+        <span class="eyebrow" style="color:#dfbf83">A Kotwari Product</span>
+        <h1 style="font-size:clamp(3.2rem,8vw,6.2rem);letter-spacing:-.04em;margin-bottom:12px;line-height:1"><em>KooA</em></h1>
+        <p style="font-size:1.25rem;color:#e1eff6;margin-bottom:12px;font-weight:600">Premium Arabian Collection Mineral Water</p>
+        <p style="font-size:0.95rem;color:#a8c4d6;max-width:540px;line-height:1.6;margin-bottom:22px">Direct from pristine natural aquifers with essential minerals, balanced alkaline pH 7.4, and gold foiled packaging crafted for luxury dining, corporate lounges, and international export.</p>
+        <div style="margin-bottom:26px;display:flex;flex-wrap:wrap;gap:8px">
+          <span class="pill" style="border-color:rgba(223,191,131,0.5);background:rgba(9,40,64,0.6)">&#10022; 200 ml Event</span>
+          <span class="pill" style="border-color:rgba(223,191,131,0.5);background:rgba(9,40,64,0.6)">&#10022; 250 ml Active</span>
+          <span class="pill" style="border-color:rgba(223,191,131,0.5);background:rgba(9,40,64,0.6)">&#10022; 300 ml Classic</span>
+          <span class="pill" style="border-color:rgba(223,191,131,0.5);background:rgba(9,40,64,0.6)">&#10022; 500 ml Standard</span>
+          <span class="pill" style="border-color:rgba(223,191,131,0.5);background:rgba(9,40,64,0.6)">&#10022; 1 L Dining</span>
+        </div>
+        <div style="display:flex;gap:14px;flex-wrap:wrap;align-items:center">
+          <a class="btn btn-gold" href="index.html#partners">Become a KooA Distributor &rarr;</a>
+          <a class="btn btn-outline" href="#the-collection" style="color:#ffffff;border-color:rgba(255,255,255,0.4)">Explore Bottles &darr;</a>
+        </div>
+      </div>
+      <div class="hero-water-stage">
+        <canvas id="waterAuraCanvas" class="water-aura-canvas"></canvas>
+        <div class="water-hero-bottle-wrap" id="waterHeroBottleWrap" title="KooA Signature Bottle &mdash; Interactive 3D Physics">
+          <div class="water-bottle-pedestal"></div>
+          <img src="products/kooa-mineral-water-300ml-showcase.jpeg" alt="KooA Arabian Collection Signature Mineral Water Bottle" class="water-hero-bottle-img" id="waterHeroBottleImg">
+          <div class="water-spec-badge badge-top-left">
+            <span class="badge-dot"></span>
+            <strong>pH 7.4</strong>
+            <small>Alkaline Balance</small>
+          </div>
+          <div class="water-spec-badge badge-bottom-right">
+            <span class="badge-dot gold"></span>
+            <strong>TDS &lt; 120</strong>
+            <small>Natural Electrolytes</small>
+          </div>
+        </div>
+      </div>
     </div>
-    <a class="btn btn-gold" href="index.html#partners">Become a KooA Distributor ↗</a>
   </div>
 </div>
 
@@ -335,55 +400,70 @@ html, body {
 </section>
 
 <!-- PRODUCT RANGE -->
-<section class="band-section reveal">
+<section class="band-section reveal" id="the-collection">
   <div class="wrap">
     <span class="eyebrow">Products</span>
     <h2>The Collection</h2>
     <div class="grid four" style="grid-template-columns:repeat(auto-fit, minmax(220px, 1fr))">
-      <div class="card" style="text-align:center;display:flex;flex-direction:column">
-        <div class="product-img-frame">
-          <img src="products/kooa-mineral-water-300ml-hand.jpeg" alt="KooA 200ml Mini Pack" loading="lazy">
+      <div class="card card-3d">
+        <div class="card-3d-glare"></div>
+        <div class="product-img-frame card-3d-layer-deep">
+          <img src="products/kooa-mineral-water-300ml-hand.jpeg" alt="KooA 200ml Mini Pack" loading="lazy" class="card-3d-img">
         </div>
-        <h3 style="font-size:1.4rem;color:#123f62;margin-bottom:4px">200 ml</h3>
-        <p style="font-size:.84rem;color:#8b682b;font-weight:bold;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">Starter &bull; 48 Bottles/Case</p>
-        <p style="font-size:.88rem;color:#596977;flex:1;margin-bottom:14px">Single-serve event, banquet &amp; airline mini bottle with tamper-evident seal.</p>
-        <span class="pill-dark">KooA &bull; Arabian Collection</span>
+        <div class="card-3d-content">
+          <h3 style="font-size:1.4rem;color:#123f62;margin-bottom:4px">200 ml</h3>
+          <p style="font-size:.84rem;color:#8b682b;font-weight:bold;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">Starter &bull; 48 Bottles/Case</p>
+          <p style="font-size:.88rem;color:#596977;flex:1;margin-bottom:14px">Single-serve event, banquet &amp; airline mini bottle with tamper-evident seal.</p>
+          <span class="pill-dark card-3d-tag">KooA &bull; Arabian Collection</span>
+        </div>
       </div>
-      <div class="card" style="text-align:center;display:flex;flex-direction:column">
-        <div class="product-img-frame">
-          <img src="products/kooa-mineral-water-250ml-handheld.jpeg" alt="KooA 250ml Handheld Bottle" loading="lazy">
+      <div class="card card-3d">
+        <div class="card-3d-glare"></div>
+        <div class="product-img-frame card-3d-layer-deep">
+          <img src="products/kooa-mineral-water-250ml-handheld.jpeg" alt="KooA 250ml Handheld Bottle" loading="lazy" class="card-3d-img">
         </div>
-        <h3 style="font-size:1.4rem;color:#123f62;margin-bottom:4px">250 ml</h3>
-        <p style="font-size:.84rem;color:#8b682b;font-weight:bold;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">Handheld &bull; 36 Bottles/Case</p>
-        <p style="font-size:.88rem;color:#596977;flex:1;margin-bottom:14px">Grab-and-go chilled bottle with water-droplet grip &amp; pure Himalayan mineral electrolytes.</p>
-        <span class="pill-dark">KooA &bull; Active Lifestyle</span>
+        <div class="card-3d-content">
+          <h3 style="font-size:1.4rem;color:#123f62;margin-bottom:4px">250 ml</h3>
+          <p style="font-size:.84rem;color:#8b682b;font-weight:bold;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">Handheld &bull; 36 Bottles/Case</p>
+          <p style="font-size:.88rem;color:#596977;flex:1;margin-bottom:14px">Grab-and-go chilled bottle with water-droplet grip &amp; pure Himalayan mineral electrolytes.</p>
+          <span class="pill-dark card-3d-tag">KooA &bull; Active Lifestyle</span>
+        </div>
       </div>
-      <div class="card" style="text-align:center;display:flex;flex-direction:column">
-        <div class="product-img-frame">
-          <img src="products/kooa-mineral-water-300ml-showcase.jpeg" alt="KooA 300ml Classic Bottle" loading="lazy">
+      <div class="card card-3d">
+        <div class="card-3d-glare"></div>
+        <div class="product-img-frame card-3d-layer-deep">
+          <img src="products/kooa-mineral-water-300ml-showcase.jpeg" alt="KooA 300ml Classic Bottle" loading="lazy" class="card-3d-img">
         </div>
-        <h3 style="font-size:1.4rem;color:#123f62;margin-bottom:4px">300 ml</h3>
-        <p style="font-size:.84rem;color:#8b682b;font-weight:bold;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">Classic &bull; 30 Bottles/Case</p>
-        <p style="font-size:.88rem;color:#596977;flex:1;margin-bottom:14px">Signature gold foiled bottle tailored for luxury hotel rooms, executive suites &amp; dine-in.</p>
-        <span class="pill-dark">KooA &bull; Flagship SKU</span>
+        <div class="card-3d-content">
+          <h3 style="font-size:1.4rem;color:#123f62;margin-bottom:4px">300 ml</h3>
+          <p style="font-size:.84rem;color:#8b682b;font-weight:bold;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">Classic &bull; 30 Bottles/Case</p>
+          <p style="font-size:.88rem;color:#596977;flex:1;margin-bottom:14px">Signature gold foiled bottle tailored for luxury hotel rooms, executive suites &amp; dine-in.</p>
+          <span class="pill-dark card-3d-tag">KooA &bull; Flagship SKU</span>
+        </div>
       </div>
-      <div class="card" style="text-align:center;display:flex;flex-direction:column">
-        <div class="product-img-frame">
-          <img src="products/kooa-mineral-water-bottle-angle.jpeg" alt="KooA 500ml Standard Bottle" loading="lazy">
+      <div class="card card-3d">
+        <div class="card-3d-glare"></div>
+        <div class="product-img-frame card-3d-layer-deep">
+          <img src="products/kooa-mineral-water-bottle-angle.jpeg" alt="KooA 500ml Standard Bottle" loading="lazy" class="card-3d-img">
         </div>
-        <h3 style="font-size:1.4rem;color:#123f62;margin-bottom:4px">500 ml</h3>
-        <p style="font-size:.84rem;color:#8b682b;font-weight:bold;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">Standard &bull; 24 Bottles/Case</p>
-        <p style="font-size:.88rem;color:#596977;flex:1;margin-bottom:14px">Everyday on-the-go hydration for corporate lounges, fitness centers &amp; modern retail.</p>
-        <span class="pill-dark">KooA &bull; Arabian Collection</span>
+        <div class="card-3d-content">
+          <h3 style="font-size:1.4rem;color:#123f62;margin-bottom:4px">500 ml</h3>
+          <p style="font-size:.84rem;color:#8b682b;font-weight:bold;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">Standard &bull; 24 Bottles/Case</p>
+          <p style="font-size:.88rem;color:#596977;flex:1;margin-bottom:14px">Everyday on-the-go hydration for corporate lounges, fitness centers &amp; modern retail.</p>
+          <span class="pill-dark card-3d-tag">KooA &bull; Arabian Collection</span>
+        </div>
       </div>
-      <div class="card" style="text-align:center;display:flex;flex-direction:column">
-        <div class="product-img-frame">
-          <img src="products/kooa-mineral-water-1l-bottle.jpeg" alt="KooA 1L Family Bottle" loading="lazy">
+      <div class="card card-3d">
+        <div class="card-3d-glare"></div>
+        <div class="product-img-frame card-3d-layer-deep">
+          <img src="products/kooa-mineral-water-1l-bottle.jpeg" alt="KooA 1L Family Bottle" loading="lazy" class="card-3d-img">
         </div>
-        <h3 style="font-size:1.4rem;color:#123f62;margin-bottom:4px">1 L</h3>
-        <p style="font-size:.84rem;color:#8b682b;font-weight:bold;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">Family &bull; 12 Bottles/Case</p>
-        <p style="font-size:.88rem;color:#596977;flex:1;margin-bottom:14px">Refined dining table bottle crafted for fine-dining restaurants, banquets and home dining.</p>
-        <span class="pill-dark">KooA &bull; Arabian Collection</span>
+        <div class="card-3d-content">
+          <h3 style="font-size:1.4rem;color:#123f62;margin-bottom:4px">1 L</h3>
+          <p style="font-size:.84rem;color:#8b682b;font-weight:bold;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">Family &bull; 12 Bottles/Case</p>
+          <p style="font-size:.88rem;color:#596977;flex:1;margin-bottom:14px">Refined dining table bottle crafted for fine-dining restaurants, banquets and home dining.</p>
+          <span class="pill-dark card-3d-tag">KooA &bull; Arabian Collection</span>
+        </div>
       </div>
     </div>
     <div style="margin-top:28px;text-align:center">
@@ -670,6 +750,208 @@ function initCounters(){
       }
     });
   }
+})();
+</script>
+
+<script>
+// 3D Ambient Water Aura Canvas & Hero Bottle Gyro / Mouse Parallax + 3D Collection Cards
+(function initWater3DShowcase(){
+  if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  // 1. Water Aura Canvas Animation
+  var canvas = document.getElementById('waterAuraCanvas');
+  if(canvas){
+    var ctx = canvas.getContext('2d');
+    var width = 0, height = 0, dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var particles = [];
+    var rafId = null;
+
+    function resize(){
+      var rect = canvas.getBoundingClientRect();
+      width = rect.width;
+      height = rect.height;
+      if(width === 0 || height === 0) return;
+      canvas.width = Math.max(1, Math.floor(width * dpr));
+      canvas.height = Math.max(1, Math.floor(height * dpr));
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      initParticles();
+    }
+
+    function initParticles(){
+      particles = [];
+      var count = Math.min(32, Math.max(16, Math.floor(width * 0.08)));
+      for(var i = 0; i < count; i++){
+        particles.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          radius: Math.random() * 2.2 + 1.2,
+          vx: (Math.random() - 0.5) * 0.35,
+          vy: -Math.random() * 0.55 - 0.25,
+          alpha: Math.random() * 0.55 + 0.2,
+          pulse: Math.random() * Math.PI * 2,
+          pulseSpeed: 0.02 + Math.random() * 0.025,
+          isGold: Math.random() > 0.4
+        });
+      }
+    }
+
+    function draw(){
+      if(!ctx || width === 0) return;
+      ctx.clearRect(0, 0, width, height);
+
+      var cx = width / 2;
+      var cy = height / 2;
+
+      // Soft water caustics glow
+      var grad = ctx.createRadialGradient(cx, cy, 30, cx, cy, Math.min(cx, cy) * 1.15);
+      grad.addColorStop(0, 'rgba(223, 191, 131, 0.18)');
+      grad.addColorStop(0.5, 'rgba(38, 142, 204, 0.10)');
+      grad.addColorStop(1, 'rgba(9, 40, 64, 0)');
+      ctx.fillStyle = grad;
+      ctx.beginPath();
+      ctx.arc(cx, cy, Math.min(cx, cy) * 1.15, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Ambient ascending water / gold micro-droplets
+      for(var i = 0; i < particles.length; i++){
+        var p = particles[i];
+        p.x += p.vx;
+        p.y += p.vy;
+        p.pulse += p.pulseSpeed;
+
+        if(p.y < -10){
+          p.y = height + 10;
+          p.x = Math.random() * width;
+        }
+        if(p.x < -10) p.x = width + 10;
+        if(p.x > width + 10) p.x = -10;
+
+        var currentAlpha = p.alpha * (0.6 + 0.4 * Math.sin(p.pulse));
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fillStyle = p.isGold
+          ? 'rgba(223, 191, 131, ' + currentAlpha.toFixed(2) + ')'
+          : 'rgba(164, 219, 245, ' + currentAlpha.toFixed(2) + ')';
+        ctx.shadowColor = p.isGold ? 'rgba(188, 148, 79, 0.6)' : 'rgba(120, 200, 255, 0.6)';
+        ctx.shadowBlur = 6;
+        ctx.fill();
+        ctx.shadowBlur = 0;
+      }
+
+      rafId = requestAnimationFrame(draw);
+    }
+
+    if('IntersectionObserver' in window){
+      var obs = new IntersectionObserver(function(entries){
+        if(entries[0].isIntersecting){
+          if(!rafId) rafId = requestAnimationFrame(draw);
+        } else {
+          if(rafId){ cancelAnimationFrame(rafId); rafId = null; }
+        }
+      }, {threshold: 0.05});
+      obs.observe(canvas);
+    } else {
+      rafId = requestAnimationFrame(draw);
+    }
+
+    window.addEventListener('resize', resize, {passive: true});
+    resize();
+  }
+
+  // 2. Water Hero Bottle 3D Harmonic Levitation & Cursor Tilt Parallax
+  var bottleWrap = document.getElementById('waterHeroBottleWrap');
+  var stage = document.querySelector('.hero-water-stage') || document.querySelector('.hero-section');
+  if(bottleWrap && stage){
+    var currentX = 0, currentY = 0, targetX = 0, targetY = 0;
+
+    function handleMove(e){
+      var rect = stage.getBoundingClientRect();
+      if(!rect.width || !rect.height) return;
+      var x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+      var y = ((e.clientY - rect.top) / rect.height) * 2 - 1;
+      targetX = Math.max(-18, Math.min(18, x * 16));
+      targetY = Math.max(-16, Math.min(16, -y * 14));
+    }
+
+    function handleLeave(){
+      targetX = 0;
+      targetY = 0;
+    }
+
+    stage.addEventListener('mousemove', handleMove, {passive: true});
+    stage.addEventListener('mouseleave', handleLeave, {passive: true});
+
+    stage.addEventListener('touchmove', function(e){
+      if(e.touches.length > 0){
+        handleMove(e.touches[0]);
+      }
+    }, {passive: true});
+    stage.addEventListener('touchend', handleLeave, {passive: true});
+
+    var startTime = performance.now();
+    function animateBottle(now){
+      var elapsed = (now - startTime) * 0.001;
+      var floatY = Math.sin(elapsed * 1.8) * 8;
+      var floatRotY = Math.cos(elapsed * 1.4) * 4.5;
+      var floatRotX = Math.sin(elapsed * 1.2) * 3;
+
+      currentX += (targetX - currentX) * 0.08;
+      currentY += (targetY - currentY) * 0.08;
+
+      var finalRotY = currentX + floatRotY;
+      var finalRotX = currentY + floatRotX;
+
+      bottleWrap.style.transform = 'perspective(1000px) translateY(' + floatY.toFixed(2) + 'px) rotateY(' + finalRotY.toFixed(2) + 'deg) rotateX(' + finalRotX.toFixed(2) + 'deg)';
+      requestAnimationFrame(animateBottle);
+    }
+    requestAnimationFrame(animateBottle);
+  }
+
+  // 3. Collection Cards 3D Tilt & Specular Glare
+  var cards = document.querySelectorAll('.card-3d');
+  cards.forEach(function(card){
+    var glare = card.querySelector('.card-3d-glare');
+    var tRotX = 0, tRotY = 0, cRotX = 0, cRotY = 0;
+    var isTracking = false;
+    var rafCard = null;
+
+    function updateCard(){
+      cRotX += (tRotX - cRotX) * 0.12;
+      cRotY += (tRotY - cRotY) * 0.12;
+      card.style.transform = 'perspective(1000px) rotateX(' + cRotX.toFixed(2) + 'deg) rotateY(' + cRotY.toFixed(2) + 'deg) translateY(' + (isTracking ? -6 : 0) + 'px)';
+
+      if(isTracking || Math.abs(cRotX) > 0.05 || Math.abs(cRotY) > 0.05){
+        rafCard = requestAnimationFrame(updateCard);
+      } else {
+        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+        rafCard = null;
+      }
+    }
+
+    card.addEventListener('mousemove', function(e){
+      var rect = card.getBoundingClientRect();
+      var x = e.clientX - rect.left;
+      var y = e.clientY - rect.top;
+      var pctX = (x / rect.width) * 2 - 1;
+      var pctY = (y / rect.height) * 2 - 1;
+
+      tRotY = Math.max(-14, Math.min(14, pctX * 12));
+      tRotX = Math.max(-14, Math.min(14, -pctY * 12));
+      isTracking = true;
+
+      if(glare){
+        glare.style.background = 'radial-gradient(circle 280px at ' + x.toFixed(1) + 'px ' + y.toFixed(1) + 'px, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0) 65%)';
+      }
+      if(!rafCard) rafCard = requestAnimationFrame(updateCard);
+    });
+
+    card.addEventListener('mouseleave', function(){
+      tRotX = 0;
+      tRotY = 0;
+      isTracking = false;
+      if(!rafCard) rafCard = requestAnimationFrame(updateCard);
+    });
+  });
 })();
 </script>
 

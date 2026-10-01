@@ -571,8 +571,164 @@
     .reveal{opacity:0;filter:blur(8px);transform:translateY(28px);transition:opacity .85s cubic-bezier(.16,1,.3,1),transform .85s cubic-bezier(.16,1,.3,1),filter .85s cubic-bezier(.16,1,.3,1);will-change:opacity,transform,filter}
     .reveal.is-visible { opacity: 1; transform: translateY(0); }
 
+    /* ==========================================================================
+       3D INTERACTIVE GLOBAL TRADE GLOBE & CONTAINER PACKING VISUALIZER
+       ========================================================================== */
+    .globe-showcase-panel {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 36px;
+      align-items: center;
+      background: radial-gradient(ellipse 90% 70% at 30% 40%, #0d3657 0%, #08243c 60%, #041422 100%);
+      border: 1px solid rgba(188, 148, 79, 0.35);
+      border-radius: var(--radius-lg, 16px);
+      padding: 32px;
+      margin-bottom: 40px;
+      box-shadow: 0 20px 60px rgba(9, 40, 64, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+    }
+    .globe-stage-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+    .globe-stage {
+      position: relative;
+      width: 100%;
+      max-width: 440px;
+      aspect-ratio: 1 / 1;
+      border-radius: 50%;
+      background: radial-gradient(circle at 45% 35%, #0f3d64 0%, #08243c 65%, #020c14 100%);
+      box-shadow: 0 0 50px rgba(188, 148, 79, 0.22), 0 0 100px rgba(9, 40, 64, 0.8), inset 0 0 40px rgba(188, 148, 79, 0.15);
+      cursor: grab;
+      touch-action: none;
+      user-select: none;
+    }
+    .globe-stage:active {
+      cursor: grabbing;
+    }
+    .globe-stage canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+      border-radius: 50%;
+    }
+    .globe-hud {
+      position: absolute;
+      bottom: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(9, 40, 64, 0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(188, 148, 79, 0.45);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.74rem;
+      font-weight: 600;
+      color: #dfbf83;
+      white-space: nowrap;
+      pointer-events: none;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+    }
+    .globe-hud-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #2ecc71;
+      box-shadow: 0 0 10px #2ecc71;
+      animation: hudPulse 2s infinite ease-in-out;
+    }
+    @keyframes hudPulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.8); }
+    }
+    .globe-controls {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .globe-ctrl-btn {
+      background: rgba(9, 40, 64, 0.8);
+      border: 1px solid rgba(188, 148, 79, 0.35);
+      color: #cbdbe4;
+      font-size: 0.72rem;
+      padding: 5px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all .2s ease;
+      backdrop-filter: blur(8px);
+    }
+    .globe-ctrl-btn:hover, .globe-ctrl-btn.active {
+      background: rgba(188, 148, 79, 0.25);
+      border-color: var(--gold);
+      color: #ffffff;
+    }
+    .corridor-telemetry-panel {
+      color: #ffffff;
+    }
+    .corridor-btn-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin: 14px 0 18px;
+    }
+    .corridor-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(223, 191, 131, 0.22);
+      color: #cbdbe4;
+      border-radius: 8px;
+      padding: 9px 12px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.25s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .corridor-btn:hover, .corridor-btn.active {
+      background: rgba(188, 148, 79, 0.25);
+      border-color: var(--gold, #bc944f);
+      color: #ffffff;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 14px rgba(188, 148, 79, 0.3);
+    }
+    .corridor-detail-card {
+      background: rgba(5, 22, 36, 0.75);
+      border: 1px solid rgba(188, 148, 79, 0.35);
+      border-radius: 10px;
+      padding: 16px 18px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    }
+    .container-3d-box canvas {
+      filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5));
+      transition: transform 0.25s cubic-bezier(.16,1,.3,1);
+    }
+    .container-3d-box:hover canvas {
+      transform: scale(1.02);
+    }
+
     /* Responsive */
     @media(max-width: 950px) {
+      .globe-showcase-panel {
+        grid-template-columns: 1fr;
+        padding: 24px;
+        gap: 28px;
+      }
+      .globe-stage {
+        max-width: 360px;
+      }
+      .corridor-btn-list {
+        grid-template-columns: 1fr 1fr;
+      }
       .split, .three, .two { grid-template-columns: 1fr; }
       .workflow-steps { grid-template-columns: 1fr 1fr; }
       .footer-grid { grid-template-columns: 1fr 1fr; }
@@ -847,7 +1003,66 @@ html, body {
         <h2>Target Expansion Corridors</h2>
         <p class="muted">
           Our global outreach focuses on high-demand corridors where Indian quality, taste, and agricultural heritage hold strong market preference.
-        </p>
+      <!-- 3D Interactive Global Trade Visualizer -->
+      <div class="globe-showcase-panel">
+        <div class="globe-stage-wrapper">
+          <div class="globe-stage" id="globeStage" title="Drag to rotate 3D trade globe">
+            <canvas id="tradeGlobeCanvas" width="520" height="520" aria-label="3D Interactive Global Trade Globe"></canvas>
+            <div class="globe-hud">
+              <span class="globe-hud-dot"></span>
+              <span id="globeStatusText">Live Route: Nhava Sheva &rarr; Jebel Ali (Dubai)</span>
+            </div>
+            <div class="globe-controls">
+              <button type="button" id="globeResetBtn" class="globe-ctrl-btn" title="Reset View">&#8635; Center India</button>
+              <button type="button" id="globeAutoBtn" class="globe-ctrl-btn active" title="Toggle Auto-Spin">&#9654; Auto-Rotate</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="corridor-telemetry-panel">
+          <span class="eyebrow" style="color:var(--gold-light);margin-bottom:8px">Interactive Maritime Navigator</span>
+          <h3 style="color:#ffffff;font-size:1.35rem;margin-bottom:10px">Active Export Corridors &amp; Port Terminals</h3>
+          <p style="font-size:0.86rem;color:#cbdbe4;line-height:1.6;margin-bottom:14px">
+            Explore Kotwari's direct oceanic shipping corridors originating from India's primary cargo hubs. Select a destination to rotate the 3D globe and view live transit specs:
+          </p>
+
+          <div class="corridor-btn-list" id="corridorBtnList">
+            <button type="button" class="corridor-btn active" data-dest="dubai">
+              <span>🇦🇪</span> <span>Dubai (Jebel Ali)</span>
+            </button>
+            <button type="button" class="corridor-btn" data-dest="ksa">
+              <span>🇸🇦</span> <span>Saudi (Dammam/Jeddah)</span>
+            </button>
+            <button type="button" class="corridor-btn" data-dest="doha">
+              <span>🇶🇦</span> <span>Doha (Hamad Port)</span>
+            </button>
+            <button type="button" class="corridor-btn" data-dest="singapore">
+              <span>🇸🇬</span> <span>Singapore (ASEAN)</span>
+            </button>
+            <button type="button" class="corridor-btn" data-dest="london">
+              <span>🇬🇧</span> <span>London Gateway (UK)</span>
+            </button>
+            <button type="button" class="corridor-btn" data-dest="malaysia">
+              <span>🇲🇾</span> <span>Port Klang (Malaysia)</span>
+            </button>
+          </div>
+
+          <div class="corridor-detail-card" id="corridorDetailCard">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;border-bottom:1px solid rgba(223,191,131,0.25);padding-bottom:8px">
+              <strong id="telemetryTitle" style="color:#ffffff;font-size:1.02rem">Jebel Ali Port, Dubai (UAE)</strong>
+              <span id="telemetryBadge" class="pill" style="background:rgba(39,174,96,0.2);color:#2ecc71;border-color:rgba(39,174,96,0.4)">Priority Corridor</span>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:0.82rem;margin-bottom:10px">
+              <div><span style="color:#a3b8c2">Departure Gateway:</span><br><strong style="color:#ffffff">Nhava Sheva / Mundra Port</strong></div>
+              <div><span style="color:#a3b8c2">Maritime Transit:</span><br><strong id="telemetryTransit" style="color:#dfbf83">~4 &ndash; 6 Days Direct</strong></div>
+              <div><span style="color:#a3b8c2">Logistics Protocol:</span><br><strong id="telemetryProtocol" style="color:#ffffff">+4°C Reefer &amp; Standard Dry FCL</strong></div>
+              <div><span style="color:#a3b8c2">Primary Commodities:</span><br><strong id="telemetryCargo" style="color:#ffffff">Eggs, KooA Water, Rice &amp; Oils</strong></div>
+            </div>
+            <p id="telemetryDesc" style="font-size:0.82rem;color:#cbdbe4;margin:0;line-height:1.5">
+              Direct containerized liner services running weekly departures from Gujarat and Mumbai deep-water terminals. Custom clearance expedited under GCC food import standards.
+            </p>
+          </div>
+        </div>
       </div>
 
       <div class="grid three">
@@ -1210,6 +1425,15 @@ html, body {
             <span id="calcBadge" class="pill" style="background:rgba(223,191,131,0.2);color:#dfbf83;border-color:rgba(223,191,131,0.4)">40ft Reefer</span>
           </div>
 
+          <!-- 3D Container Packing Simulation Canvas -->
+          <div class="container-3d-box" id="container3dBox" style="position:relative;background:#051724;border:1px solid rgba(188,148,79,0.3);border-radius:10px;padding:10px 12px;margin-bottom:18px;text-align:center;overflow:hidden">
+            <canvas id="container3dCanvas" width="440" height="170" style="width:100%;max-width:440px;height:auto;display:block;margin:0 auto;cursor:pointer" title="Interactive 3D container cargo view &bull; Move cursor to tilt"></canvas>
+            <div style="display:flex;justify-content:space-between;align-items:center;font-size:11px;color:#a3b8c2;margin-top:8px;padding-top:6px;border-top:1px solid rgba(255,255,255,0.08)">
+              <span id="container3dLabel" style="color:#dfbf83;font-weight:600">3D Cargo Load: 24 Pallets (Double Tier)</span>
+              <span id="container3dTempIndicator" style="color:#64d2ff">❄️ +4°C Reefer Cold Chain</span>
+            </div>
+          </div>
+
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px">
             <div style="background:rgba(255,255,255,0.06);padding:12px;border-radius:8px">
               <span style="font-size:var(--text-xs);color:#a3b8c2;display:block">Est. Units / Cartons</span>
@@ -1554,6 +1778,11 @@ function initCounters(){
       }
       const fclEl = document.getElementById('calcFclValue');
       if (fclEl) fclEl.textContent = valText;
+
+      // Update 3D Container Simulation
+      if (window.update3DContainer) {
+        window.update3DContainer(comm, cnt);
+      }
     }
 
     function applyCalcToQuote() {
@@ -1636,6 +1865,595 @@ function initCounters(){
           status.textContent = 'Opening your enquiry draft in ' + (isEmail ? 'email' : 'WhatsApp') + '… Please review and press Send.';
         }
       });
+    }
+
+    /* ==========================================================================
+       3D INTERACTIVE GLOBAL TRADE GLOBE ENGINE
+       ========================================================================== */
+    function initTradeGlobe3D() {
+      const canvas = document.getElementById('tradeGlobeCanvas');
+      const stage = document.getElementById('globeStage');
+      if (!canvas || !stage) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      let width = canvas.width;
+      let height = canvas.height;
+      let radius = width * 0.38;
+
+      function resize() {
+        const rect = stage.getBoundingClientRect();
+        const size = Math.min(rect.width || 440, 520);
+        canvas.width = size * dpr;
+        canvas.height = size * dpr;
+        width = canvas.width;
+        height = canvas.height;
+        radius = (width / 2) * 0.78;
+      }
+      resize();
+      window.addEventListener('resize', resize);
+
+      const originPort = { id: 'origin', name: 'Nhava Sheva / Mundra (India)', lat: 19.5, lon: 72.8, color: '#f59e0b' };
+      const destPorts = {
+        dubai: { id: 'dubai', name: 'Jebel Ali Port, Dubai (UAE)', lat: 25.0, lon: 55.1, country: 'UAE', transit: '~4 - 6 Days Direct', protocol: '+4°C Reefer & Standard Dry FCL', cargo: 'Eggs, KooA Water, Rice & Oils', desc: 'Direct containerized liner services running weekly departures from Gujarat and Mumbai deep-water terminals. Custom clearance expedited under GCC food import standards.', badge: 'Priority Corridor' },
+        ksa: { id: 'ksa', name: 'Port of Dammam / Jeddah (KSA)', lat: 24.5, lon: 47.0, country: 'Saudi Arabia', transit: '~5 - 7 Days Direct', protocol: '+4°C Reefer & Dry FCL', cargo: 'Table Eggs, Basmati & Ghee', desc: 'Strategic maritime logistics linking western Indian ports with the Red Sea and Arabian Gulf distribution centers, supporting institutional and retail supermarkets.', badge: 'High Volume Demand' },
+        doha: { id: 'doha', name: 'Hamad Port, Doha (Qatar)', lat: 25.3, lon: 51.5, country: 'Qatar', transit: '~4 - 5 Days Direct', protocol: 'Reefer Cold Chain', cargo: 'Fresh Eggs & Dairy Beverages', desc: 'Rapid sea-freight lanes ensuring farm-to-table delivery cycles for premium food service, hypermarkets, and luxury hospitality channels across Doha.', badge: 'Cold Chain Route' },
+        singapore: { id: 'singapore', name: 'Port of Singapore (ASEAN)', lat: 1.35, lon: 103.8, country: 'Singapore', transit: '~5 - 8 Days Direct', protocol: 'Ambient Dry Container', cargo: 'Mustard Oils, Spices & Sattu', desc: 'Gateway terminal connecting South Indian maritime departures with Southeast Asian diaspora grocery distribution networks and regional supermarkets.', badge: 'ASEAN Hub' },
+        london: { id: 'london', name: 'Port of London Gateway (UK)', lat: 51.5, lon: 0.45, country: 'United Kingdom', transit: '~18 - 22 Days Maritime', protocol: 'Dry Container + Desiccants', cargo: 'Aged Basmati & Spices', desc: 'High-spec containerized export channel for certified pesticide-tested Indian heritage basmati, whole spices, and authentic culinary pantry staples.', badge: 'European Corridor' },
+        malaysia: { id: 'malaysia', name: 'Port Klang (Malaysia)', lat: 3.0, lon: 101.4, country: 'Malaysia', transit: '~5 - 7 Days Direct', protocol: 'Ambient Container', cargo: 'Cold-Pressed Oils & Snacks', desc: 'Dedicated commercial cargo channel supplying traditional retail chains, packaging partners, and South Asian food service institutions.', badge: 'Regional Distributor' }
+      };
+
+      let selectedDest = 'dubai';
+      let autoSpin = true;
+      let yaw = -Math.PI * 0.35;
+      let pitch = 0.22;
+      let targetYaw = yaw;
+      let targetPitch = pitch;
+      let isDragging = false;
+      let lastX = 0, lastY = 0;
+
+      const telemetryTitle = document.getElementById('telemetryTitle');
+      const telemetryBadge = document.getElementById('telemetryBadge');
+      const telemetryTransit = document.getElementById('telemetryTransit');
+      const telemetryProtocol = document.getElementById('telemetryProtocol');
+      const telemetryCargo = document.getElementById('telemetryCargo');
+      const telemetryDesc = document.getElementById('telemetryDesc');
+      const globeStatusText = document.getElementById('globeStatusText');
+      const corridorButtons = document.querySelectorAll('.corridor-btn');
+
+      function selectCorridor(destKey) {
+        if (!destPorts[destKey]) return;
+        selectedDest = destKey;
+        const port = destPorts[destKey];
+
+        corridorButtons.forEach(btn => {
+          btn.classList.toggle('active', btn.dataset.dest === destKey);
+        });
+
+        if (telemetryTitle) telemetryTitle.textContent = port.name;
+        if (telemetryBadge) telemetryBadge.textContent = port.badge;
+        if (telemetryTransit) telemetryTransit.textContent = port.transit;
+        if (telemetryProtocol) telemetryProtocol.textContent = port.protocol;
+        if (telemetryCargo) telemetryCargo.textContent = port.cargo;
+        if (telemetryDesc) telemetryDesc.textContent = port.desc;
+        if (globeStatusText) globeStatusText.innerHTML = 'Live Route: Nhava Sheva &rarr; ' + port.name.split(',')[0];
+
+        targetYaw = -((port.lon + 180) * Math.PI) / 180 + Math.PI * 0.85;
+        targetPitch = Math.max(-0.4, Math.min(0.5, (port.lat * Math.PI) / 180 * 0.5));
+      }
+
+      corridorButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          selectCorridor(btn.dataset.dest);
+        });
+      });
+
+      const resetBtn = document.getElementById('globeResetBtn');
+      if (resetBtn) {
+        resetBtn.addEventListener('click', () => {
+          targetYaw = -((originPort.lon + 180) * Math.PI) / 180 + Math.PI * 0.85;
+          targetPitch = 0.22;
+        });
+      }
+
+      const autoBtn = document.getElementById('globeAutoBtn');
+      if (autoBtn) {
+        autoBtn.addEventListener('click', () => {
+          autoSpin = !autoSpin;
+          autoBtn.classList.toggle('active', autoSpin);
+          autoBtn.textContent = autoSpin ? '▶ Auto-Rotate' : '⏸ Paused';
+        });
+      }
+
+      function onPointerDown(e) {
+        isDragging = true;
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+        lastX = clientX;
+        lastY = clientY;
+      }
+      function onPointerMove(e) {
+        if (!isDragging) return;
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+        const dx = clientX - lastX;
+        const dy = clientY - lastY;
+        lastX = clientX;
+        lastY = clientY;
+
+        yaw += dx * 0.007;
+        pitch += dy * 0.007;
+        pitch = Math.max(-0.7, Math.min(0.7, pitch));
+        targetYaw = yaw;
+        targetPitch = pitch;
+      }
+      function onPointerUp() {
+        isDragging = false;
+      }
+
+      stage.addEventListener('mousedown', onPointerDown);
+      window.addEventListener('mousemove', onPointerMove);
+      window.addEventListener('mouseup', onPointerUp);
+
+      stage.addEventListener('touchstart', onPointerDown, { passive: true });
+      window.addEventListener('touchmove', onPointerMove, { passive: true });
+      window.addEventListener('touchend', onPointerUp);
+
+      function project(lat, lon, r) {
+        const cx = width / 2;
+        const cy = height / 2;
+        const phi = (lat * Math.PI) / 180;
+        const theta = ((lon + 180) * Math.PI) / 180 + yaw;
+        const x = -r * Math.cos(phi) * Math.cos(theta);
+        const y = -r * Math.sin(phi);
+        const z = r * Math.cos(phi) * Math.sin(theta);
+
+        const cosP = Math.cos(pitch);
+        const sinP = Math.sin(pitch);
+        const y1 = y * cosP - z * sinP;
+        const z1 = y * sinP + z * cosP;
+        return { x: cx + x, y: cy + y1, z: z1, visible: z1 > -20 };
+      }
+
+      const landPoints = [
+        [8.0, 77.5], [12.0, 80.2], [16.0, 81.5], [20.0, 86.5], [22.0, 89.0], [25.0, 85.0], [28.0, 77.0], [32.0, 75.0], [28.0, 70.0], [23.0, 68.5], [20.0, 72.8], [15.0, 73.8], [10.0, 76.0], [8.0, 77.5],
+        [12.5, 44.0], [15.0, 52.0], [17.0, 55.0], [22.5, 59.5], [25.5, 56.5], [25.0, 55.0], [26.5, 50.0], [29.5, 48.0], [28.0, 35.0], [20.0, 40.0], [15.0, 42.5], [12.5, 44.0],
+        [35.0, -5.0], [37.0, 10.0], [32.0, 32.0], [12.0, 43.0], [-5.0, 40.0], [-25.0, 33.0], [-34.5, 20.0], [-20.0, 12.0], [5.0, 9.0], [10.0, -14.0], [20.0, -17.0], [35.0, -5.0],
+        [50.0, -5.0], [55.0, -3.0], [58.0, -4.0], [55.0, 0.0], [51.0, 1.5], [44.0, 0.0], [37.0, -8.0], [36.0, -2.0], [43.0, 10.0], [40.0, 18.0], [45.0, 30.0], [55.0, 25.0], [54.0, 10.0], [50.0, -5.0],
+        [22.0, 96.0], [15.0, 101.0], [10.0, 104.0], [1.5, 103.8], [5.0, 100.0], [10.0, 98.0], [18.0, 106.0], [22.0, 108.0]
+      ];
+
+      let animId = null;
+      let time = 0;
+      let isVisible = true;
+
+      function renderGlobe() {
+        if (!isVisible) {
+          animId = requestAnimationFrame(renderGlobe);
+          return;
+        }
+
+        ctx.clearRect(0, 0, width, height);
+        const cx = width / 2;
+        const cy = height / 2;
+
+        if (!isDragging) {
+          yaw += (targetYaw - yaw) * 0.08;
+          pitch += (targetPitch - pitch) * 0.08;
+          if (autoSpin) {
+            targetYaw += 0.0025;
+            yaw += 0.0025;
+          }
+        }
+        time += 0.02;
+
+        // Halo
+        const glowGrad = ctx.createRadialGradient(cx, cy, radius * 0.85, cx, cy, radius * 1.15);
+        glowGrad.addColorStop(0, 'rgba(188, 148, 79, 0.18)');
+        glowGrad.addColorStop(0.5, 'rgba(18, 63, 98, 0.12)');
+        glowGrad.addColorStop(1, 'rgba(9, 40, 64, 0)');
+        ctx.fillStyle = glowGrad;
+        ctx.beginPath();
+        ctx.arc(cx, cy, radius * 1.15, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Sphere Base
+        const sphereGrad = ctx.createRadialGradient(cx - radius * 0.35, cy - radius * 0.35, radius * 0.1, cx, cy, radius);
+        sphereGrad.addColorStop(0, '#10395a');
+        sphereGrad.addColorStop(0.55, '#092840');
+        sphereGrad.addColorStop(0.9, '#041624');
+        sphereGrad.addColorStop(1, '#020b12');
+        ctx.fillStyle = sphereGrad;
+        ctx.beginPath();
+        ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Longitudes
+        ctx.strokeStyle = 'rgba(223, 191, 131, 0.12)';
+        ctx.lineWidth = 1 * dpr;
+        for (let l = -180; l < 180; l += 30) {
+          ctx.beginPath();
+          let started = false;
+          for (let lat = -80; lat <= 80; lat += 10) {
+            const pt = project(lat, l, radius);
+            if (pt.visible) {
+              if (!started) { ctx.moveTo(pt.x, pt.y); started = true; }
+              else { ctx.lineTo(pt.x, pt.y); }
+            } else { started = false; }
+          }
+          ctx.stroke();
+        }
+
+        // Latitudes
+        for (let lat = -60; lat <= 60; lat += 30) {
+          ctx.beginPath();
+          let started = false;
+          for (let l = -180; l <= 180; l += 10) {
+            const pt = project(lat, l, radius);
+            if (pt.visible) {
+              if (!started) { ctx.moveTo(pt.x, pt.y); started = true; }
+              else { ctx.lineTo(pt.x, pt.y); }
+            } else { started = false; }
+          }
+          ctx.stroke();
+        }
+
+        // Continents
+        ctx.strokeStyle = 'rgba(223, 191, 131, 0.45)';
+        ctx.fillStyle = 'rgba(188, 148, 79, 0.12)';
+        ctx.lineWidth = 1.2 * dpr;
+        ctx.beginPath();
+        let started = false;
+        for (let i = 0; i < landPoints.length; i++) {
+          const pt = project(landPoints[i][0], landPoints[i][1], radius * 1.002);
+          if (pt.visible) {
+            if (!started) { ctx.moveTo(pt.x, pt.y); started = true; }
+            else { ctx.lineTo(pt.x, pt.y); }
+          } else { started = false; }
+        }
+        ctx.stroke();
+        ctx.fill();
+
+        // 3D Shipping Trajectories
+        const pOrigin = project(originPort.lat, originPort.lon, radius);
+
+        Object.keys(destPorts).forEach(key => {
+          const dest = destPorts[key];
+          const isSelected = key === selectedDest;
+          const pDest = project(dest.lat, dest.lon, radius);
+
+          if (pOrigin.z > -40 || pDest.z > -40) {
+            const arcSteps = 28;
+            const pts = [];
+
+            for (let step = 0; step <= arcSteps; step++) {
+              const t = step / arcSteps;
+              const curLat = originPort.lat + (dest.lat - originPort.lat) * t;
+              const curLon = originPort.lon + (dest.lon - originPort.lon) * t;
+              const elevation = Math.sin(Math.PI * t) * (radius * 0.28);
+              pts.push(project(curLat, curLon, radius + elevation));
+            }
+
+            ctx.beginPath();
+            let arcStarted = false;
+            for (let i = 0; i < pts.length; i++) {
+              if (pts[i].z > -25) {
+                if (!arcStarted) { ctx.moveTo(pts[i].x, pts[i].y); arcStarted = true; }
+                else { ctx.lineTo(pts[i].x, pts[i].y); }
+              } else { arcStarted = false; }
+            }
+            ctx.strokeStyle = isSelected ? 'rgba(245, 158, 11, 0.9)' : 'rgba(223, 191, 131, 0.35)';
+            ctx.lineWidth = (isSelected ? 2.5 : 1.2) * dpr;
+            ctx.setLineDash(isSelected ? [4 * dpr, 2 * dpr] : [2 * dpr, 3 * dpr]);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            // Traveling Energy Photons
+            const photonT = (time * 0.4 + (key.charCodeAt(0) % 5) * 0.2) % 1;
+            const photonIdx = Math.floor(photonT * (pts.length - 1));
+            const photonPt = pts[photonIdx];
+
+            if (photonPt && photonPt.z > -20) {
+              ctx.beginPath();
+              ctx.arc(photonPt.x, photonPt.y, (isSelected ? 3.5 : 2.5) * dpr, 0, Math.PI * 2);
+              ctx.fillStyle = isSelected ? '#ffffff' : '#f59e0b';
+              ctx.shadowColor = '#f59e0b';
+              ctx.shadowBlur = 10 * dpr;
+              ctx.fill();
+              ctx.shadowBlur = 0;
+            }
+          }
+        });
+
+        // Destination Pins
+        Object.keys(destPorts).forEach(key => {
+          const dest = destPorts[key];
+          const isSelected = key === selectedDest;
+          const pt = project(dest.lat, dest.lon, radius);
+
+          if (pt.visible) {
+            const pulse = (Math.sin(time * 3 + key.length) + 1) / 2;
+            ctx.beginPath();
+            ctx.arc(pt.x, pt.y, (5 + pulse * 6) * dpr, 0, Math.PI * 2);
+            ctx.strokeStyle = isSelected ? 'rgba(245, 158, 11, ' + (1 - pulse) + ')' : 'rgba(100, 210, 255, ' + (0.7 - pulse * 0.5) + ')';
+            ctx.lineWidth = 1.5 * dpr;
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.arc(pt.x, pt.y, (isSelected ? 4 : 3) * dpr, 0, Math.PI * 2);
+            ctx.fillStyle = isSelected ? '#ffffff' : '#64d2ff';
+            ctx.shadowColor = isSelected ? '#f59e0b' : '#64d2ff';
+            ctx.shadowBlur = 8 * dpr;
+            ctx.fill();
+            ctx.shadowBlur = 0;
+
+            if (isSelected) {
+              ctx.fillStyle = '#ffffff';
+              ctx.font = 'bold ' + (10 * dpr) + "px 'Plus Jakarta Sans', Arial, sans-serif";
+              ctx.textAlign = 'center';
+              ctx.fillText(dest.country, pt.x, pt.y - 10 * dpr);
+            }
+          }
+        });
+
+        // Origin Pin (India)
+        if (pOrigin.visible) {
+          const originPulse = (Math.sin(time * 3) + 1) / 2;
+          ctx.beginPath();
+          ctx.arc(pOrigin.x, pOrigin.y, (7 + originPulse * 8) * dpr, 0, Math.PI * 2);
+          ctx.strokeStyle = 'rgba(245, 158, 11, ' + (1 - originPulse) + ')';
+          ctx.lineWidth = 2 * dpr;
+          ctx.stroke();
+
+          ctx.beginPath();
+          ctx.arc(pOrigin.x, pOrigin.y, 5 * dpr, 0, Math.PI * 2);
+          ctx.fillStyle = '#f59e0b';
+          ctx.shadowColor = '#f59e0b';
+          ctx.shadowBlur = 12 * dpr;
+          ctx.fill();
+          ctx.shadowBlur = 0;
+
+          ctx.fillStyle = '#dfbf83';
+          ctx.font = 'bold ' + (10.5 * dpr) + "px 'Plus Jakarta Sans', Arial, sans-serif";
+          ctx.textAlign = 'center';
+          ctx.fillText('🇮🇳 Nhava Sheva / Mundra', pOrigin.x, pOrigin.y - 12 * dpr);
+        }
+
+        animId = requestAnimationFrame(renderGlobe);
+      }
+
+      if ('IntersectionObserver' in window) {
+        const obs = new IntersectionObserver(entries => {
+          entries.forEach(e => { isVisible = e.isIntersecting; });
+        }, { threshold: 0.15 });
+        obs.observe(stage);
+      }
+
+      animId = requestAnimationFrame(renderGlobe);
+    }
+
+    /* ==========================================================================
+       3D ISOMETRIC CONTAINER PACKING SIMULATOR
+       ========================================================================== */
+    function init3DContainerSimulator() {
+      const canvas = document.getElementById('container3dCanvas');
+      const box = document.getElementById('container3dBox');
+      if (!canvas || !box) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = 440 * dpr;
+      canvas.height = 170 * dpr;
+
+      let currentComm = 'eggs';
+      let currentCnt = '40reefer';
+      let animStartTime = performance.now();
+      let mouseTiltX = 0, mouseTiltY = 0;
+      let targetTiltX = 0, targetTiltY = 0;
+
+      box.addEventListener('mousemove', function(e) {
+        const rect = box.getBoundingClientRect();
+        if (rect.width === 0 || rect.height === 0) return;
+        const normX = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+        const normY = ((e.clientY - rect.top) / rect.height) * 2 - 1;
+        targetTiltX = normX * 12;
+        targetTiltY = normY * 8;
+      });
+      box.addEventListener('mouseleave', function() {
+        targetTiltX = 0;
+        targetTiltY = 0;
+      });
+
+      window.update3DContainer = function(commodity, containerType) {
+        currentComm = commodity || 'eggs';
+        currentCnt = containerType || '40reefer';
+        animStartTime = performance.now();
+
+        const lbl = document.getElementById('container3dLabel');
+        const temp = document.getElementById('container3dTempIndicator');
+        const isReefer = currentCnt.includes('reefer');
+        if (lbl) {
+          lbl.textContent = isReefer
+            ? '3D Cargo: 24 Pallets (Double Tier Cold Chain)'
+            : (currentCnt.includes('20') ? '3D Cargo: 10 Pallets (Standard 20ft FCL)' : '3D Cargo: 20 Pallets (High Cube 40ft FCL)');
+        }
+        if (temp) {
+          temp.innerHTML = isReefer
+            ? '<span style="color:#64d2ff">❄️ +4°C Reefer Active</span>'
+            : '<span style="color:#dfbf83">☀️ Ambient Dry Container</span>';
+        }
+      };
+
+      function draw3DContainer() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        mouseTiltX += (targetTiltX - mouseTiltX) * 0.1;
+        mouseTiltY += (targetTiltY - mouseTiltY) * 0.1;
+
+        const isReefer = currentCnt.includes('reefer');
+        const is20ft = currentCnt.includes('20');
+        const length = (is20ft ? 160 : 250) * dpr;
+        const width = 85 * dpr;
+        const height = 75 * dpr;
+
+        const cx = (canvas.width / 2) + mouseTiltX * dpr;
+        const cy = (canvas.height / 2 + 10 * dpr) + mouseTiltY * dpr;
+
+        const cos30 = 0.866;
+        const sin30 = 0.5;
+
+        const p0 = { x: cx - length * 0.35 * cos30, y: cy + 15 * dpr };
+        const pLength = { x: p0.x + length * cos30, y: p0.y - length * sin30 };
+        const pWidth = { x: p0.x - width * cos30, y: p0.y - width * sin30 };
+        const pBackBottom = { x: pWidth.x + length * cos30, y: pWidth.y - length * sin30 };
+
+        const pTop0 = { x: p0.x, y: p0.y - height };
+        const pTopLength = { x: pLength.x, y: pLength.y - height };
+        const pTopWidth = { x: pWidth.x, y: pWidth.y - height };
+        const pTopBack = { x: pBackBottom.x, y: pBackBottom.y - height };
+
+        // 1. Back Wall
+        ctx.beginPath();
+        ctx.moveTo(pWidth.x, pWidth.y);
+        ctx.lineTo(pBackBottom.x, pBackBottom.y);
+        ctx.lineTo(pTopBack.x, pTopBack.y);
+        ctx.lineTo(pTopWidth.x, pTopWidth.y);
+        ctx.closePath();
+        ctx.fillStyle = isReefer ? '#05233a' : '#142533';
+        ctx.fill();
+
+        // 2. Floor
+        ctx.beginPath();
+        ctx.moveTo(p0.x, p0.y);
+        ctx.lineTo(pLength.x, pLength.y);
+        ctx.lineTo(pBackBottom.x, pBackBottom.y);
+        ctx.lineTo(pWidth.x, pWidth.y);
+        ctx.closePath();
+        ctx.fillStyle = isReefer ? '#072e4c' : '#1b3245';
+        ctx.fill();
+        ctx.strokeStyle = isReefer ? 'rgba(100, 210, 255, 0.25)' : 'rgba(223, 191, 131, 0.25)';
+        ctx.lineWidth = 1 * dpr;
+        ctx.stroke();
+
+        // 3. 3D Pallets
+        const elapsed = (performance.now() - animStartTime) / 1000;
+        const rows = 2;
+        const cols = is20ft ? 5 : (isReefer ? 8 : 7);
+        const palletW = width * 0.42;
+        const palletL = (length / cols) * 0.82;
+        const palletH = height * 0.38;
+
+        const palletColor = currentComm === 'eggs' ? '#e5c386' : (currentComm === 'water' ? '#48cae4' : '#e0a96d');
+
+        for (let r = 0; r < rows; r++) {
+          for (let c = 0; c < cols; c++) {
+            const dropDelay = (c * 0.05 + r * 0.08);
+            const dropProgress = Math.max(0, Math.min((elapsed - dropDelay) / 0.35, 1));
+            if (dropProgress <= 0) continue;
+
+            const bounce = 1 - Math.pow(1 - dropProgress, 3);
+            const yDrop = (1 - bounce) * 45 * dpr;
+
+            const tL = (c + 0.15) / cols;
+            const tW = (r + 0.15) / rows;
+            const palX = p0.x + (tL * length - tW * width) * cos30;
+            const palY = p0.y - (tL * length + tW * width) * sin30 - yDrop;
+
+            // Pallet box front
+            ctx.beginPath();
+            ctx.moveTo(palX, palY);
+            ctx.lineTo(palX + palletL * cos30, palY - palletL * sin30);
+            ctx.lineTo(palX + palletL * cos30, palY - palletL * sin30 - palletH);
+            ctx.lineTo(palX, palY - palletH);
+            ctx.closePath();
+            ctx.fillStyle = palletColor;
+            ctx.fill();
+
+            // Pallet top
+            ctx.beginPath();
+            ctx.moveTo(palX, palY - palletH);
+            ctx.lineTo(palX + palletL * cos30, palY - palletL * sin30 - palletH);
+            ctx.lineTo(palX + (palletL - palletW) * cos30, palY - (palletL + palletW) * sin30 - palletH);
+            ctx.lineTo(palX - palletW * cos30, palY - palletW * sin30 - palletH);
+            ctx.closePath();
+            ctx.fillStyle = '#ffffff';
+            ctx.globalAlpha = 0.32;
+            ctx.fill();
+            ctx.globalAlpha = 1.0;
+          }
+        }
+
+        // 4. Front Face (Compressor / Door)
+        ctx.beginPath();
+        ctx.moveTo(p0.x, p0.y);
+        ctx.lineTo(pWidth.x, pWidth.y);
+        ctx.lineTo(pTopWidth.x, pTopWidth.y);
+        ctx.lineTo(pTop0.x, pTop0.y);
+        ctx.closePath();
+        ctx.fillStyle = isReefer ? 'rgba(7, 46, 76, 0.75)' : 'rgba(20, 37, 51, 0.75)';
+        ctx.fill();
+        ctx.strokeStyle = isReefer ? '#64d2ff' : '#dfbf83';
+        ctx.lineWidth = 1.8 * dpr;
+        ctx.stroke();
+
+        if (isReefer) {
+          ctx.fillStyle = '#02101a';
+          ctx.fillRect(pWidth.x + 8 * dpr, pTopWidth.y + 12 * dpr, 46 * dpr, 22 * dpr);
+          ctx.strokeStyle = '#64d2ff';
+          ctx.strokeRect(pWidth.x + 8 * dpr, pTopWidth.y + 12 * dpr, 46 * dpr, 22 * dpr);
+
+          ctx.fillStyle = '#64d2ff';
+          ctx.font = 'bold ' + (9 * dpr) + "px monospace";
+          ctx.textAlign = 'left';
+          ctx.fillText('+4.0°C', pWidth.x + 12 * dpr, pTopWidth.y + 27 * dpr);
+
+          ctx.strokeStyle = 'rgba(100, 210, 255, 0.4)';
+          ctx.lineWidth = 1 * dpr;
+          for (let g = 0; g < 4; g++) {
+            ctx.beginPath();
+            ctx.moveTo(pWidth.x + 8 * dpr, pTopWidth.y + (42 + g * 6) * dpr);
+            ctx.lineTo(pWidth.x + 48 * dpr, pTopWidth.y + (42 + g * 6) * dpr);
+            ctx.stroke();
+          }
+        }
+
+        // 5. Structure Edges
+        ctx.strokeStyle = isReefer ? 'rgba(100, 210, 255, 0.65)' : 'rgba(223, 191, 131, 0.65)';
+        ctx.lineWidth = 1.5 * dpr;
+        ctx.beginPath();
+        ctx.moveTo(pTop0.x, pTop0.y);
+        ctx.lineTo(pTopLength.x, pTopLength.y);
+        ctx.lineTo(pTopBack.x, pTopBack.y);
+        ctx.lineTo(pTopWidth.x, pTopWidth.y);
+        ctx.closePath();
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(pLength.x, pLength.y);
+        ctx.lineTo(pTopLength.x, pTopLength.y);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(p0.x, p0.y);
+        ctx.lineTo(pLength.x, pLength.y);
+        ctx.stroke();
+
+        requestAnimationFrame(draw3DContainer);
+      }
+
+      requestAnimationFrame(draw3DContainer);
+    }
+
+    // Initialize 3D engines
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function() {
+        initTradeGlobe3D();
+        init3DContainerSimulator();
+      });
+    } else {
+      initTradeGlobe3D();
+      init3DContainerSimulator();
     }
   </script>
 
