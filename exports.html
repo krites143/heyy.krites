@@ -708,13 +708,6 @@
       padding: 16px 18px;
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
     }
-    .container-3d-box canvas {
-      filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5));
-      transition: transform 0.25s cubic-bezier(.16,1,.3,1);
-    }
-    .container-3d-box:hover canvas {
-      transform: scale(1.02);
-    }
 
     /* Responsive */
     @media(max-width: 950px) {
@@ -1425,15 +1418,6 @@ html, body {
             <span id="calcBadge" class="pill" style="background:rgba(223,191,131,0.2);color:#dfbf83;border-color:rgba(223,191,131,0.4)">40ft Reefer</span>
           </div>
 
-          <!-- 3D Container Packing Simulation Canvas -->
-          <div class="container-3d-box" id="container3dBox" style="position:relative;background:#051724;border:1px solid rgba(188,148,79,0.3);border-radius:10px;padding:10px 12px;margin-bottom:18px;text-align:center;overflow:hidden">
-            <canvas id="container3dCanvas" width="440" height="170" style="width:100%;max-width:440px;height:auto;display:block;margin:0 auto;cursor:pointer" title="Interactive 3D container cargo view &bull; Move cursor to tilt"></canvas>
-            <div style="display:flex;justify-content:space-between;align-items:center;font-size:11px;color:#a3b8c2;margin-top:8px;padding-top:6px;border-top:1px solid rgba(255,255,255,0.08)">
-              <span id="container3dLabel" style="color:#dfbf83;font-weight:600">3D Cargo Load: 24 Pallets (Double Tier)</span>
-              <span id="container3dTempIndicator" style="color:#64d2ff">❄️ +4°C Reefer Cold Chain</span>
-            </div>
-          </div>
-
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px">
             <div style="background:rgba(255,255,255,0.06);padding:12px;border-radius:8px">
               <span style="font-size:var(--text-xs);color:#a3b8c2;display:block">Est. Units / Cartons</span>
@@ -1779,10 +1763,6 @@ function initCounters(){
       const fclEl = document.getElementById('calcFclValue');
       if (fclEl) fclEl.textContent = valText;
 
-      // Update 3D Container Simulation
-      if (window.update3DContainer) {
-        window.update3DContainer(comm, cnt);
-      }
     }
 
     function applyCalcToQuote() {
@@ -2233,227 +2213,13 @@ function initCounters(){
       animId = requestAnimationFrame(renderGlobe);
     }
 
-    /* ==========================================================================
-       3D ISOMETRIC CONTAINER PACKING SIMULATOR
-       ========================================================================== */
-    function init3DContainerSimulator() {
-      const canvas = document.getElementById('container3dCanvas');
-      const box = document.getElementById('container3dBox');
-      if (!canvas || !box) return;
-      const ctx = canvas.getContext('2d');
-      if (!ctx) return;
-
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      canvas.width = 440 * dpr;
-      canvas.height = 170 * dpr;
-
-      let currentComm = 'eggs';
-      let currentCnt = '40reefer';
-      let animStartTime = performance.now();
-      let mouseTiltX = 0, mouseTiltY = 0;
-      let targetTiltX = 0, targetTiltY = 0;
-
-      box.addEventListener('mousemove', function(e) {
-        const rect = box.getBoundingClientRect();
-        if (rect.width === 0 || rect.height === 0) return;
-        const normX = ((e.clientX - rect.left) / rect.width) * 2 - 1;
-        const normY = ((e.clientY - rect.top) / rect.height) * 2 - 1;
-        targetTiltX = normX * 12;
-        targetTiltY = normY * 8;
-      });
-      box.addEventListener('mouseleave', function() {
-        targetTiltX = 0;
-        targetTiltY = 0;
-      });
-
-      window.update3DContainer = function(commodity, containerType) {
-        currentComm = commodity || 'eggs';
-        currentCnt = containerType || '40reefer';
-        animStartTime = performance.now();
-
-        const lbl = document.getElementById('container3dLabel');
-        const temp = document.getElementById('container3dTempIndicator');
-        const isReefer = currentCnt.includes('reefer');
-        if (lbl) {
-          lbl.textContent = isReefer
-            ? '3D Cargo: 24 Pallets (Double Tier Cold Chain)'
-            : (currentCnt.includes('20') ? '3D Cargo: 10 Pallets (Standard 20ft FCL)' : '3D Cargo: 20 Pallets (High Cube 40ft FCL)');
-        }
-        if (temp) {
-          temp.innerHTML = isReefer
-            ? '<span style="color:#64d2ff">❄️ +4°C Reefer Active</span>'
-            : '<span style="color:#dfbf83">☀️ Ambient Dry Container</span>';
-        }
-      };
-
-      function draw3DContainer() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        mouseTiltX += (targetTiltX - mouseTiltX) * 0.1;
-        mouseTiltY += (targetTiltY - mouseTiltY) * 0.1;
-
-        const isReefer = currentCnt.includes('reefer');
-        const is20ft = currentCnt.includes('20');
-        const length = (is20ft ? 160 : 250) * dpr;
-        const width = 85 * dpr;
-        const height = 75 * dpr;
-
-        const cx = (canvas.width / 2) + mouseTiltX * dpr;
-        const cy = (canvas.height / 2 + 10 * dpr) + mouseTiltY * dpr;
-
-        const cos30 = 0.866;
-        const sin30 = 0.5;
-
-        const p0 = { x: cx - length * 0.35 * cos30, y: cy + 15 * dpr };
-        const pLength = { x: p0.x + length * cos30, y: p0.y - length * sin30 };
-        const pWidth = { x: p0.x - width * cos30, y: p0.y - width * sin30 };
-        const pBackBottom = { x: pWidth.x + length * cos30, y: pWidth.y - length * sin30 };
-
-        const pTop0 = { x: p0.x, y: p0.y - height };
-        const pTopLength = { x: pLength.x, y: pLength.y - height };
-        const pTopWidth = { x: pWidth.x, y: pWidth.y - height };
-        const pTopBack = { x: pBackBottom.x, y: pBackBottom.y - height };
-
-        // 1. Back Wall
-        ctx.beginPath();
-        ctx.moveTo(pWidth.x, pWidth.y);
-        ctx.lineTo(pBackBottom.x, pBackBottom.y);
-        ctx.lineTo(pTopBack.x, pTopBack.y);
-        ctx.lineTo(pTopWidth.x, pTopWidth.y);
-        ctx.closePath();
-        ctx.fillStyle = isReefer ? '#05233a' : '#142533';
-        ctx.fill();
-
-        // 2. Floor
-        ctx.beginPath();
-        ctx.moveTo(p0.x, p0.y);
-        ctx.lineTo(pLength.x, pLength.y);
-        ctx.lineTo(pBackBottom.x, pBackBottom.y);
-        ctx.lineTo(pWidth.x, pWidth.y);
-        ctx.closePath();
-        ctx.fillStyle = isReefer ? '#072e4c' : '#1b3245';
-        ctx.fill();
-        ctx.strokeStyle = isReefer ? 'rgba(100, 210, 255, 0.25)' : 'rgba(223, 191, 131, 0.25)';
-        ctx.lineWidth = 1 * dpr;
-        ctx.stroke();
-
-        // 3. 3D Pallets
-        const elapsed = (performance.now() - animStartTime) / 1000;
-        const rows = 2;
-        const cols = is20ft ? 5 : (isReefer ? 8 : 7);
-        const palletW = width * 0.42;
-        const palletL = (length / cols) * 0.82;
-        const palletH = height * 0.38;
-
-        const palletColor = currentComm === 'eggs' ? '#e5c386' : (currentComm === 'water' ? '#48cae4' : '#e0a96d');
-
-        for (let r = 0; r < rows; r++) {
-          for (let c = 0; c < cols; c++) {
-            const dropDelay = (c * 0.05 + r * 0.08);
-            const dropProgress = Math.max(0, Math.min((elapsed - dropDelay) / 0.35, 1));
-            if (dropProgress <= 0) continue;
-
-            const bounce = 1 - Math.pow(1 - dropProgress, 3);
-            const yDrop = (1 - bounce) * 45 * dpr;
-
-            const tL = (c + 0.15) / cols;
-            const tW = (r + 0.15) / rows;
-            const palX = p0.x + (tL * length - tW * width) * cos30;
-            const palY = p0.y - (tL * length + tW * width) * sin30 - yDrop;
-
-            // Pallet box front
-            ctx.beginPath();
-            ctx.moveTo(palX, palY);
-            ctx.lineTo(palX + palletL * cos30, palY - palletL * sin30);
-            ctx.lineTo(palX + palletL * cos30, palY - palletL * sin30 - palletH);
-            ctx.lineTo(palX, palY - palletH);
-            ctx.closePath();
-            ctx.fillStyle = palletColor;
-            ctx.fill();
-
-            // Pallet top
-            ctx.beginPath();
-            ctx.moveTo(palX, palY - palletH);
-            ctx.lineTo(palX + palletL * cos30, palY - palletL * sin30 - palletH);
-            ctx.lineTo(palX + (palletL - palletW) * cos30, palY - (palletL + palletW) * sin30 - palletH);
-            ctx.lineTo(palX - palletW * cos30, palY - palletW * sin30 - palletH);
-            ctx.closePath();
-            ctx.fillStyle = '#ffffff';
-            ctx.globalAlpha = 0.32;
-            ctx.fill();
-            ctx.globalAlpha = 1.0;
-          }
-        }
-
-        // 4. Front Face (Compressor / Door)
-        ctx.beginPath();
-        ctx.moveTo(p0.x, p0.y);
-        ctx.lineTo(pWidth.x, pWidth.y);
-        ctx.lineTo(pTopWidth.x, pTopWidth.y);
-        ctx.lineTo(pTop0.x, pTop0.y);
-        ctx.closePath();
-        ctx.fillStyle = isReefer ? 'rgba(7, 46, 76, 0.75)' : 'rgba(20, 37, 51, 0.75)';
-        ctx.fill();
-        ctx.strokeStyle = isReefer ? '#64d2ff' : '#dfbf83';
-        ctx.lineWidth = 1.8 * dpr;
-        ctx.stroke();
-
-        if (isReefer) {
-          ctx.fillStyle = '#02101a';
-          ctx.fillRect(pWidth.x + 8 * dpr, pTopWidth.y + 12 * dpr, 46 * dpr, 22 * dpr);
-          ctx.strokeStyle = '#64d2ff';
-          ctx.strokeRect(pWidth.x + 8 * dpr, pTopWidth.y + 12 * dpr, 46 * dpr, 22 * dpr);
-
-          ctx.fillStyle = '#64d2ff';
-          ctx.font = 'bold ' + (9 * dpr) + "px monospace";
-          ctx.textAlign = 'left';
-          ctx.fillText('+4.0°C', pWidth.x + 12 * dpr, pTopWidth.y + 27 * dpr);
-
-          ctx.strokeStyle = 'rgba(100, 210, 255, 0.4)';
-          ctx.lineWidth = 1 * dpr;
-          for (let g = 0; g < 4; g++) {
-            ctx.beginPath();
-            ctx.moveTo(pWidth.x + 8 * dpr, pTopWidth.y + (42 + g * 6) * dpr);
-            ctx.lineTo(pWidth.x + 48 * dpr, pTopWidth.y + (42 + g * 6) * dpr);
-            ctx.stroke();
-          }
-        }
-
-        // 5. Structure Edges
-        ctx.strokeStyle = isReefer ? 'rgba(100, 210, 255, 0.65)' : 'rgba(223, 191, 131, 0.65)';
-        ctx.lineWidth = 1.5 * dpr;
-        ctx.beginPath();
-        ctx.moveTo(pTop0.x, pTop0.y);
-        ctx.lineTo(pTopLength.x, pTopLength.y);
-        ctx.lineTo(pTopBack.x, pTopBack.y);
-        ctx.lineTo(pTopWidth.x, pTopWidth.y);
-        ctx.closePath();
-        ctx.stroke();
-
-        ctx.beginPath();
-        ctx.moveTo(pLength.x, pLength.y);
-        ctx.lineTo(pTopLength.x, pTopLength.y);
-        ctx.stroke();
-
-        ctx.beginPath();
-        ctx.moveTo(p0.x, p0.y);
-        ctx.lineTo(pLength.x, pLength.y);
-        ctx.stroke();
-
-        requestAnimationFrame(draw3DContainer);
-      }
-
-      requestAnimationFrame(draw3DContainer);
-    }
-
-    // Initialize 3D engines
+    // Initialize 3D Trade Globe
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', function() {
         initTradeGlobe3D();
-        init3DContainerSimulator();
       });
     } else {
       initTradeGlobe3D();
-      init3DContainerSimulator();
     }
   </script>
 
