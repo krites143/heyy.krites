@@ -209,7 +209,7 @@
 @media(max-width:1100px){.nav{gap:13px}.header-tools>.btn{display:none}.split{gap:36px}}
 @media(max-width:850px){section{padding:42px 0}.menu{display:block}.nav{display:none;position:absolute;top:100%;left:0;right:0;background:var(--ivory);padding:22px 24px;border-bottom:1px solid var(--line);grid-template-columns:1fr 1fr}.nav.open{display:grid}.split,.three{grid-template-columns:1fr}.hero{min-height:auto;padding:36px 0 44px}.hero-emblem-img{width:clamp(100px,22vw,135px)}.glance{grid-template-columns:1fr 1fr}.glance div:nth-child(2){border-inline-end:0}.glance div:nth-child(-n+2){border-bottom:1px solid var(--line)}.flow{grid-template-columns:1fr 1fr}.footer-grid{grid-template-columns:1fr 1fr}.section-head{align-items:start;flex-direction:column;gap:18px}.float-contact{display:none}.mobile-cta{display:flex;position:fixed;bottom:0;left:0;right:0;z-index:25;background:var(--navy);color:white;justify-content:space-around;padding:12px 8px calc(12px + env(safe-area-inset-bottom));font-size:.86rem;border-top:1px solid #426077}body{padding-bottom:60px}}
 @media(max-width:520px){section{padding:32px 0}.wrap{width:calc(100% - 24px)}.header-row{gap:6px;min-height:88px}.brand{padding:3px 0}.brand-emblem-img{width:40px;margin-bottom: -6px}.brand-name{font-size:1.6rem}.brand-name sup{top:-2px;right:1px;font-size:6px}.brand-tag{font-size:6.8px;letter-spacing:0.12em;margin-top:2px;width:100%;text-align-last:justify}.header-tools{gap:6px;flex-shrink:0}.lang{padding:4px 6px;max-width:68px;font-size:.78rem}.menu{display:inline-flex;align-items:center;justify-content:center;padding:6px 11px;font-size:.82rem;min-height:34px}.topbar .wrap span:last-child{display:none}.hero{padding:26px 0 34px}.hero-content{padding:0 4px}.hero-emblem-img{width:78px}.hero .eyebrow{font-size:.68rem;letter-spacing:.1em;margin-bottom: 6px}.hero h1{font-size:2.2rem;margin-bottom:10px}.hero .lead{font-size:.92rem;line-height:1.45;padding:0 4px;margin-bottom:16px}.hero-trust-bar{gap:5px 10px;padding:6px 12px;font-size:.72rem;max-width:100%;margin-bottom:24px}.trust-sep{display:none}.two,.form-grid{grid-template-columns:1fr}.card{padding:20px}.glance div{padding:16px 12px}.glance strong{font-size:1.2rem}.footer-grid{gap:24px}.footer-grid>div:first-child{grid-column:1/-1}.statement{padding:24px}.water-panel{padding:36px 16px}.flow-detail{padding:16px}.hero-credit{font-size:.62rem;bottom:10px;opacity:.75}.btn{padding:12px 17px}}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}.reveal,.reveal-stagger>*{opacity:1!important;transform:none!important}.hero-stagger,.emblem-ripple,.hero h1 em,.hero-particles,.hero-emblem-badge:before{animation:none!important;transition:none!important;opacity:1!important;transform:none!important}.hero h1 em{-webkit-text-fill-color:#f0cf88!important;background:none!important}.hero-particles{display:none!important}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}.reveal,.reveal-stagger>*{opacity:1!important;transform:none!important}.hero-stagger,.emblem-ripple,.hero h1 em,.hero-particles,.hero-emblem-badge:before,.gyro-ring{animation:none!important;transition:none!important;opacity:1!important;transform:none!important}.hero h1 em{-webkit-text-fill-color:#f0cf88!important;background:none!important}.hero-particles{display:none!important}}
 @media print{header,.topbar,.float-contact,.mobile-cta,.actions,form,dialog,.cookie-bar{display:none!important}section{padding:25px 0}.hero{min-height:0;color:black;background:white}.hero-photo,.hero:after{display:none}.hero p,.hero .eyebrow{color:black}.glance{margin-top:0}body{padding:0}.dark,footer{color:black;background:white}.dark .muted{color:#333}}
 /* Cookie consent banner */
 .cookie-bar{position:fixed;bottom:0;left:0;right:0;z-index:40;background:#0d2f47;color:#d4e2ea;font-size:.84rem;padding:14px 20px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;border-top:2px solid var(--gold)}.cookie-bar p{margin:0;flex:1 1 280px}.cookie-bar .cookie-accept{background:var(--gold);color:#092840;border:none;border-radius:4px;padding:9px 20px;font-weight:bold;cursor:pointer;white-space:nowrap}.cookie-bar .cookie-decline{background:transparent;color:#d4e2ea;border:1px solid #466073;border-radius:4px;padding:9px 16px;cursor:pointer;white-space:nowrap}.cookie-bar[hidden]{display:none!important}
@@ -272,6 +272,66 @@
   0%{opacity:.85;transform:translate(-50%,-50%) scale(0.5);box-shadow:0 0 14px rgba(188,148,79,.4)}
   50%{border-color:rgba(223,191,131,.45);opacity:.5}
   100%{opacity:0;transform:translate(-50%,-50%) scale(2.2);box-shadow:0 0 32px rgba(188,148,79,0)}
+}
+.gyro-ring{
+  position:absolute;
+  top:50%;
+  left:50%;
+  width:130px;
+  height:130px;
+  margin:-65px 0 0 -65px;
+  border-radius:50%;
+  border:1.5px solid rgba(223,191,131,0.5);
+  box-shadow:0 0 16px rgba(188,148,79,0.3), inset 0 0 12px rgba(223,191,131,0.2);
+  pointer-events:none;
+  transform-style:preserve-3d;
+  will-change:transform;
+}
+.gyro-ring-1{
+  transform:rotateX(68deg) rotateZ(0deg);
+  animation:gyroSpin1 14s linear infinite;
+  border-color:rgba(223,191,131,0.65);
+}
+.gyro-ring-2{
+  width:142px;
+  height:142px;
+  margin:-71px 0 0 -71px;
+  border-style:dashed;
+  border-width:1px;
+  border-color:rgba(232,201,135,0.45);
+  transform:rotateY(62deg) rotateZ(0deg);
+  animation:gyroSpin2 18s linear infinite reverse;
+}
+.gyro-ring-3{
+  width:154px;
+  height:154px;
+  margin:-77px 0 0 -77px;
+  border:1px solid rgba(188,148,79,0.35);
+  transform:rotateX(42deg) rotateY(28deg);
+  animation:gyroSpin3 22s linear infinite;
+}
+.gyro-orbit-dot{
+  position:absolute;
+  top:-4px;
+  left:50%;
+  width:8px;
+  height:8px;
+  margin-left:-4px;
+  border-radius:50%;
+  background:#ffffff;
+  box-shadow:0 0 10px #f0cf88, 0 0 20px #bc944f;
+}
+@keyframes gyroSpin1{
+  from{transform:rotateX(68deg) rotateZ(0deg)}
+  to{transform:rotateX(68deg) rotateZ(360deg)}
+}
+@keyframes gyroSpin2{
+  from{transform:rotateY(62deg) rotateZ(0deg)}
+  to{transform:rotateY(62deg) rotateZ(360deg)}
+}
+@keyframes gyroSpin3{
+  from{transform:rotateX(42deg) rotateY(28deg) rotateZ(0deg)}
+  to{transform:rotateX(42deg) rotateY(28deg) rotateZ(360deg)}
 }
 .hero-particles{
   position:absolute;
@@ -1312,7 +1372,7 @@ $('#app').innerHTML=`
 <div class="topbar"><div class="wrap"><span class="topbar-brand"><span class="topbar-dot" aria-hidden="true">&#10022;</span> <strong>Kotwari International Ltd.</strong> <span class="topbar-tagline">&mdash; Gao Se Global Tak</span></span><span class="topbar-motto"><span class="topbar-icon" aria-hidden="true">&#127793;</span> ${t('Rooted in Villages &middot; Connecting to the World','गांव की जड़ों से जुड़ा &middot; दुनिया की ओर बढ़ता','جذورنا في القرى &middot; وطموحنا نحو العالم')}</span></div></div>
 <header><div class="wrap header-row">${brand()}<nav id="navigation" class="nav" aria-label="${t('Main navigation','मुख्य नेविगेशन','التنقل الرئيسي')}"><a href="#home" class="nav-link active" aria-current="page">${t('Home','होम','الرئيسية')}</a>${['about','ecosystem','businesses','farmers','products','contact'].map(id=>`<a href="#${id}" class="nav-link">${l[id]}</a>`).join('')}</nav><div class="header-tools"><select class="lang" id="language" aria-label="Language / भाषा / اللغة"><option value="en">EN</option><option value="hi">हिंदी</option><option value="ar">العربية</option></select><a class="btn" href="#partners">${l.partner}</a><button class="menu" aria-expanded="false" aria-controls="navigation">${t('Menu','मेनू','القائمة')}</button></div></div></header>
 <main id="main">
-<section class="hero" id="home"><img class="hero-photo" src="${escapeHTML(CONFIG.hero)}" alt="${t('Green agricultural fields in India','भारत में हरे कृषि खेत','حقول زراعية خضراء في الهند')}" fetchpriority="high"><canvas id="heroParticles" class="hero-particles"></canvas><div class="wrap reveal hero-content"><div class="hero-emblem-badge" id="heroEmblemBadge"><span class="emblem-ripple"></span><span class="emblem-ripple"></span><span class="emblem-ripple"></span><img class="hero-emblem-img" src="kotwari_emblem_new.png" alt="Kotwari Golden Emblem &mdash; Gao Se Global Tak"></div><p class="eyebrow">${t('An Indian rural-commerce vision','भारतीय ग्रामीण वाणिज्य का विज़न','رؤية هندية للتجارة الريفية')}</p><h1>${t('Gao Se<br><em>Global Tak.</em>','गांव से<br><em>ग्लोबल तक।</em>','من القرية<br><em>إلى العالم.</em>')}</h1><p class="lead">${t('Building India\'s farmer-to-market-to-global ecosystem &mdash; connecting rural production, processing, brands and modern retail into one integrated value chain.','भारत का किसान से बाजार और दुनिया तक का नेटवर्क &mdash; ग्रामीण उत्पादन, प्रोसेसिंग, ब्रांड और आधुनिक रिटेल को एक साझा मूल्य श्रृंखला में जोड़ना।','نبني منظومة تربط المزارع بالسوق والعالم &mdash; ربط الإنتاج الريفي والمعالجة والتجزئة الحديثة في سلسلة قيمة متكاملة.')}</p><div class="actions"><a class="btn gold" href="#businesses">${t('Explore Kotwari','Kotwari को जानें','اكتشف كोटواري')} ↗</a><a class="btn light" href="#partners">${t('Join our network','हमारे नेटवर्क से जुड़ें','انضم إلى شبكتना')}</a><button class="hero-audio-btn" id="heroAudioToggle" type="button" aria-pressed="false" aria-label="${t('Play Audio Introduction','ऑडियो परिचय सुनें','استمع إلى المقدمة الصوتية')}"><span class="audio-eq" aria-hidden="true"><span></span><span></span><span></span><span></span></span><span id="audioLabel">${t('Audio Story','ऑडियो सुनें','تجربة صوتية')}</span></button></div><div class="hero-trust-bar"><span class="trust-item">🌾 ${t('Village Sourcing','ग्रामीण उत्पादन','إنتاج قروي')}</span><span class="trust-sep" aria-hidden="true">✦</span><span class="trust-item">🏛️ ${t('Integrated Processing','एकीकृत प्रोसेसिंग','معالجة متكاملة')}</span><span class="trust-sep" aria-hidden="true">✦</span><span class="trust-item">🌍 ${t('Gao Se Global Tak','गांव से ग्लोबल तक','من القرية إلى العالم')}</span></div></div><div class="audio-toast" id="audioToast" role="status" aria-live="polite"></div><a class="hero-credit" href="https://unsplash.com/photos/an-aerial-view-of-a-green-field-with-water-rz_XeuMi6xs" target="_blank" rel="noopener noreferrer">${t('Illustrative landscape','प्रतीकात्मक दृश्य','منظر توضيحي')} · Kishor Kumar / Unsplash</a></section>
+<section class="hero" id="home"><img class="hero-photo" src="${escapeHTML(CONFIG.hero)}" alt="${t('Green agricultural fields in India','भारत में हरे कृषि खेत','حقول زراعية خضراء في الهند')}" fetchpriority="high"><canvas id="heroParticles" class="hero-particles"></canvas><div class="wrap reveal hero-content"><div class="hero-emblem-badge" id="heroEmblemBadge"><span class="gyro-ring gyro-ring-1"></span><span class="gyro-ring gyro-ring-2"></span><span class="gyro-ring gyro-ring-3"><span class="gyro-orbit-dot"></span></span><span class="emblem-ripple"></span><span class="emblem-ripple"></span><span class="emblem-ripple"></span><img class="hero-emblem-img" src="kotwari_emblem_new.png" alt="Kotwari Golden Emblem &mdash; Gao Se Global Tak"></div><p class="eyebrow">${t('An Indian rural-commerce vision','भारतीय ग्रामीण वाणिज्य का विज़न','رؤية هندية للتجارة الريفية')}</p><h1>${t('Gao Se<br><em>Global Tak.</em>','गांव से<br><em>ग्लोबल तक।</em>','من القرية<br><em>إلى العالم.</em>')}</h1><p class="lead">${t('Building India\'s farmer-to-market-to-global ecosystem &mdash; connecting rural production, processing, brands and modern retail into one integrated value chain.','भारत का किसान से बाजार और दुनिया तक का नेटवर्क &mdash; ग्रामीण उत्पादन, प्रोसेसिंग, ब्रांड और आधुनिक रिटेल को एक साझा मूल्य श्रृंखला में जोड़ना।','نبني منظومة تربط المزارع بالسوق والعالم &mdash; ربط الإنتاج الريفي والمعالجة والتجزئة الحديثة في سلسلة قيمة متكاملة.')}</p><div class="actions"><a class="btn gold" href="#businesses">${t('Explore Kotwari','Kotwari को जानें','اكتشف كोटواري')} ↗</a><a class="btn light" href="#partners">${t('Join our network','हमारे नेटवर्क से जुड़ें','انضم إلى شبكتना')}</a><button class="hero-audio-btn" id="heroAudioToggle" type="button" aria-pressed="false" aria-label="${t('Play Audio Introduction','ऑडियो परिचय सुनें','استمع إلى المقدمة الصوتية')}"><span class="audio-eq" aria-hidden="true"><span></span><span></span><span></span><span></span></span><span id="audioLabel">${t('Audio Story','ऑडियो सुनें','تجربة صوتية')}</span></button></div><div class="hero-trust-bar"><span class="trust-item">🌾 ${t('Village Sourcing','ग्रामीण उत्पादन','إنتاج قروي')}</span><span class="trust-sep" aria-hidden="true">✦</span><span class="trust-item">🏛️ ${t('Integrated Processing','एकीकृत प्रोसेसिंग','معالجة متكاملة')}</span><span class="trust-sep" aria-hidden="true">✦</span><span class="trust-item">🌍 ${t('Gao Se Global Tak','गांव से ग्लोबल तक','من القرية إلى العالم')}</span></div></div><div class="audio-toast" id="audioToast" role="status" aria-live="polite"></div><a class="hero-credit" href="https://unsplash.com/photos/an-aerial-view-of-a-green-field-with-water-rz_XeuMi6xs" target="_blank" rel="noopener noreferrer">${t('Illustrative landscape','प्रतीकात्मक दृश्य','منظر توضيحي')} · Kishor Kumar / Unsplash</a></section>
 
 <section id="about" class="reveal"><div class="wrap split"><div><p class="eyebrow">${l.about}</p><h2>${t("Building prosperity from India's villages.",'भारत के गांवों से समृद्धि की ओर।','نبني الازدهار من قرى الهند.')}</h2><p class="muted">${t('Kotwari International Ltd. is developing an integrated agriculture, food, FMCG, distribution and retail ecosystem. Our purpose is to connect village production with organised markets and create opportunities throughout the value chain.','Kotwari International Ltd. कृषि, खाद्य, FMCG, वितरण और रिटेल का एकीकृत नेटवर्क विकसित कर रही है। हमारा उद्देश्य गांव के उत्पादन को संगठित बाजार से जोड़कर पूरी मूल्य श्रृंखला में अवसर बनाना है।','تعمل كوتواري إنترناشيونال على تطوير منظومة متكاملة للزراعة والأغذية والسلع الاستهلاكية والتوزيع والتجزئة. هدفنا ربط الإنتاج الريفي بالأسواق المنظمة وإيجاد فرص عبر سلسلة القيمة.')}</p><div class="values">${[t('Trust','विश्वास','الثقة'),t('Quality','गुणवत्ता','الجودة'),t('Transparency','पारदर्शिता','الشفافية'),t('Shared growth','साझा विकास','النمو المشترك')].map(x=>`<span class="pill">${x}</span>`).join('')}</div></div><div class="statement"><p class="eyebrow">${t('Our mission','हमारा मिशन','महमتنا')}</p><h3>${t('Make village production part of organised, transparent and scalable markets.','गांव के उत्पादन को संगठित, पारदर्शी और बढ़ते बाजारों से जोड़ना।','إدماج الإنتاج الريفي في أسواق منظمة وشفافة وقابلة للنمو.')}</h3><p class="eyebrow">${t('Our vision','हमारा विज़न','رؤيتना')}</p><p>${t('A trusted Indian ecosystem that takes products and opportunities from Gao Se Global Tak.','एक भरोसेमंद भारतीय नेटवर्क जो उत्पादों और अवसरों को गांव से ग्लोबल तक पहुंचाए।','منظومة هندية موثوقة تنقل المنتجات والفرص من القرية إلى العالم.')}</p></div></div></section>
 <section id="ecosystem" class="dark reveal"><div class="wrap">${sectionTitle(l.ecosystem,t('One connected value chain.','एक जुड़ी हुई मूल्य श्रृंखला।','سلسلة قيمة مترابطة.'))}<p class="muted">${t('Explore each stage of the proposed model. Kotwari connects the participants across the chain.','प्रस्तावित मॉडल के हर चरण को जानें। Kotwari पूरी श्रृंखला के भागीदारों को जोड़ती है।','استكشف مراحل النموذج المقترح. تربط كوتواري المشاركين عبر السلسلة.')}</p><div class="flow">${stages().map((s,i)=>`<button class="stage" data-stage="${i}" aria-pressed="${i===0}"><span>0${i+1}</span>${s[0]}</button>`).join('')}</div><div class="flow-detail" aria-live="polite"><h3 id="stage-title">${stages()[0][0]}</h3><p id="stage-copy">${stages()[0][1]}</p></div></div></section>
@@ -1674,6 +1734,7 @@ function initHeroParticles(){
   if(!ctx)return;
 
   let width=0,height=0,dpr=1,animId=null,isVisible=true;
+  let camRotX=0,camRotY=0,targetCamX=0,targetCamY=0;
 
   function resize(){
     if(!canvas)return;
@@ -1682,7 +1743,7 @@ function initHeroParticles(){
     height=canvas.offsetHeight||480;
     canvas.width=width*dpr;
     canvas.height=height*dpr;
-    ctx.scale(dpr,dpr);
+    ctx.setTransform(dpr,0,0,dpr,0,0);
   }
   resize();
 
@@ -1690,46 +1751,137 @@ function initHeroParticles(){
   canvas._onResize=resize;
   window.addEventListener('resize',resize,{passive:true});
 
-  const count=Math.min(52,Math.max(26,Math.floor(width/26)));
+  const hero=document.querySelector('.hero');
+  if(hero && !hero._hasCamListener){
+    hero._hasCamListener=true;
+    hero.addEventListener('mousemove',function(e){
+      const rect=hero.getBoundingClientRect();
+      if(!rect.width||!rect.height)return;
+      targetCamX=((e.clientX-rect.left)/rect.width-0.5)*0.32;
+      targetCamY=((e.clientY-rect.top)/rect.height-0.5)*0.24;
+    },{passive:true});
+    hero.addEventListener('mouseleave',function(){
+      targetCamX=0;
+      targetCamY=0;
+    },{passive:true});
+  }
+
+  const count=Math.min(52,Math.max(28,Math.floor(width/26)));
   const particles=[];
   for(let i=0;i<count;i++){
     particles.push({
-      x:Math.random()*width,
-      y:Math.random()*height,
-      radius:Math.random()*1.6+0.6,
-      vx:(Math.random()-0.5)*0.2,
-      vy:-Math.random()*0.38-0.12,
-      sway:Math.random()*Math.PI*2,
-      swaySpeed:Math.random()*0.02+0.008,
-      swayRadius:Math.random()*0.5+0.25,
-      alpha:Math.random()*0.55+0.25,
+      x:(Math.random()-0.5)*width*1.3,
+      y:(Math.random()-0.5)*height*1.3,
+      z:(Math.random()-0.5)*440,
+      vx:(Math.random()-0.5)*0.22,
+      vy:(Math.random()-0.5)*0.18,
+      vz:(Math.random()-0.5)*0.24,
+      radius:Math.random()*1.7+0.7,
+      alpha:Math.random()*0.5+0.25,
       pulse:Math.random()*Math.PI*2,
-      pulseSpeed:Math.random()*0.025+0.012
+      pulseSpeed:Math.random()*0.025+0.012,
+      isCore:Math.random()>0.72
     });
   }
 
-  function draw(){
+  const fov=360;
+  const startTime=performance.now();
+
+  function draw(now){
     if(!isVisible){animId=requestAnimationFrame(draw);return;}
     ctx.clearRect(0,0,width,height);
+
+    const elapsed=(now-startTime)*0.001;
+    const waveCamX=Math.sin(elapsed*0.5)*0.07;
+    const waveCamY=Math.cos(elapsed*0.4)*0.05;
+
+    camRotX+=(targetCamX+waveCamX-camRotX)*0.06;
+    camRotY+=(targetCamY+waveCamY-camRotY)*0.06;
+
+    const cosY=Math.cos(camRotX),sinY=Math.sin(camRotX);
+    const cosX=Math.cos(camRotY),sinX=Math.sin(camRotY);
+
+    const cx=width/2;
+    const cy=height/2;
+    const projected=[];
+
     for(let i=0;i<particles.length;i++){
       const p=particles[i];
+      p.x+=p.vx;
       p.y+=p.vy;
-      p.x+=p.vx+Math.sin(p.sway)*p.swayRadius;
-      p.sway+=p.swaySpeed;
+      p.z+=p.vz;
       p.pulse+=p.pulseSpeed;
 
-      if(p.y<-12){p.y=height+12;p.x=Math.random()*width;}
-      if(p.x<-15){p.x=width+15;}
-      if(p.x>width+15){p.x=-15;}
+      const bx=width*0.7;
+      const by=height*0.7;
+      if(p.x<-bx)p.x=bx;
+      if(p.x>bx)p.x=-bx;
+      if(p.y<-by)p.y=by;
+      if(p.y>by)p.y=-by;
+      if(p.z<-240)p.z=240;
+      if(p.z>240)p.z=-240;
 
-      const currentAlpha=p.alpha*(0.72+0.28*Math.sin(p.pulse));
+      let rx=p.x*cosY-p.z*sinY;
+      let rz=p.x*sinY+p.z*cosY;
+      let ry=p.y*cosX-rz*sinX;
+      rz=p.y*sinX+rz*cosX;
+
+      const scale=fov/(fov+rz+280);
+      if(scale<=0)continue;
+
+      const px=cx+rx*scale;
+      const py=cy+ry*scale;
+      const pRadius=Math.max(0.6,p.radius*scale*1.15);
+      const depthAlpha=Math.max(0.08,Math.min(0.85,scale*p.alpha*(0.75+0.25*Math.sin(p.pulse))));
+
+      projected.push({
+        x:px,
+        y:py,
+        radius:pRadius,
+        alpha:depthAlpha,
+        isCore:p.isCore
+      });
+    }
+
+    // Connect close 3D constellation nodes
+    ctx.lineWidth=0.75;
+    for(let i=0;i<projected.length;i++){
+      const p1=projected[i];
+      for(let j=i+1;j<projected.length;j++){
+        const p2=projected[j];
+        const dx=p1.x-p2.x;
+        const dy=p1.y-p2.y;
+        const distSq=dx*dx+dy*dy;
+        if(distSq<6400){ // within 80px
+          const dist=Math.sqrt(distSq);
+          const lineAlpha=(1-dist/80)*Math.min(p1.alpha,p2.alpha)*0.38;
+          ctx.strokeStyle='rgba(223,191,131,'+lineAlpha.toFixed(3)+')';
+          ctx.beginPath();
+          ctx.moveTo(p1.x,p1.y);
+          ctx.lineTo(p2.x,p2.y);
+          ctx.stroke();
+        }
+      }
+    }
+
+    // Render nodes
+    for(let i=0;i<projected.length;i++){
+      const p=projected[i];
       ctx.beginPath();
       ctx.arc(p.x,p.y,p.radius,0,Math.PI*2);
-      ctx.fillStyle='rgba(223,191,131,'+currentAlpha.toFixed(3)+')';
-      ctx.shadowBlur=6;
-      ctx.shadowColor='rgba(188,148,79,0.45)';
+      if(p.isCore){
+        ctx.fillStyle='rgba(255,248,220,'+p.alpha.toFixed(3)+')';
+        ctx.shadowBlur=7;
+        ctx.shadowColor='rgba(223,191,131,0.65)';
+      }else{
+        ctx.fillStyle='rgba(223,191,131,'+p.alpha.toFixed(3)+')';
+        ctx.shadowBlur=3;
+        ctx.shadowColor='rgba(188,148,79,0.3)';
+      }
       ctx.fill();
+      ctx.shadowBlur=0;
     }
+
     animId=requestAnimationFrame(draw);
   }
 
