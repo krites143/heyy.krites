@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
   <meta charset="UTF-8">
@@ -654,7 +654,8 @@ html, body {
     box-shadow: 0 16px 36px rgba(9,40,64,.18);
     z-index: 99;
   }
-  header nav.mobile-open {
+  header nav.mobile-open,
+  header nav.open {
     display: flex !important;
     animation: slideDownMenu 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
@@ -1398,9 +1399,17 @@ html, body {
     const menuBtn = document.getElementById('menuToggle');
     const siteNav = document.getElementById('siteNav');
     if (menuBtn && siteNav) {
-      menuBtn.addEventListener('click', function() {
+      menuBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
         const isOpen = siteNav.classList.toggle('open');
+        siteNav.classList.toggle('mobile-open', isOpen);
         menuBtn.setAttribute('aria-expanded', isOpen);
+      });
+      document.addEventListener('click', function(e) {
+        if (siteNav.classList.contains('open') && !siteNav.contains(e.target) && !menuBtn.contains(e.target)) {
+          siteNav.classList.remove('open', 'mobile-open');
+          menuBtn.setAttribute('aria-expanded', 'false');
+        }
       });
     }
 
@@ -1567,7 +1576,7 @@ function initCounters(){
         }
       }
 
-      const destInput = document.getElementById('destinationCountry');
+      const destInput = document.getElementById('destCountry');
       if (destInput) destInput.value = portText;
 
       const volSelect = document.getElementById('orderVolume');
@@ -1629,28 +1638,7 @@ function initCounters(){
       });
     }
   </script>
-<script>
-(function(){
-  var navToggle = document.querySelector('.mobile-nav-toggle');
-  var navMenu = document.querySelector('header nav');
-  if(navToggle && navMenu){
-    navToggle.addEventListener('click', function(e){
-      e.stopPropagation();
-      var isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
-      navToggle.setAttribute('aria-expanded', !isExpanded);
-      navToggle.innerHTML = !isExpanded ? '&#10005; Close' : '&#9776; Menu';
-      navMenu.classList.toggle('mobile-open');
-    });
-    document.addEventListener('click', function(e){
-      if(!navMenu.contains(e.target) && !navToggle.contains(e.target)){
-        navToggle.setAttribute('aria-expanded', 'false');
-        navToggle.innerHTML = '&#9776; Menu';
-        navMenu.classList.remove('mobile-open');
-      }
-    });
-  }
-})();
-</script>
+
 
 <button id="backToTop" class="back-to-top" aria-label="Back to top" title="Back to top" type="button">&uarr;</button>
 

@@ -1,4 +1,4 @@
-$rootDir = (Resolve-Path (Join-Path $PSScriptRoot "..")).Path
+﻿$rootDir = (Resolve-Path (Join-Path $PSScriptRoot "..")).Path
 $catalogPath = Join-Path $PSScriptRoot "products_catalog.json"
 $newProdsPath = Join-Path $PSScriptRoot "new_products.json"
 

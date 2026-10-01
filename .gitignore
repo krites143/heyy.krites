@@ -12,5 +12,20 @@ desktop.ini
 # Temporary & Log files
 *.log
 *.tmp
+scratch/
 node_modules/
 .vercel/
+
+# AI Agent & GSD Framework files (Local Development Only)
+.agent/
+.agents/
+.gemini/
+.gsd/
+adapters/
+GSD-STYLE.md
+PROJECT_RULES.md
+VERSION
+model_capabilities.yaml
+scripts/search_repo.*
+scripts/setup_search.*
+scripts/validate-*

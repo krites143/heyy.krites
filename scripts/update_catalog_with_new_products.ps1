@@ -1,4 +1,4 @@
-$catalogPath = "scripts/products_catalog.json"
+﻿$catalogPath = "scripts/products_catalog.json"
 $jsonText = [System.IO.File]::ReadAllText($catalogPath, [System.Text.Encoding]::UTF8)
 $catalog = $jsonText | ConvertFrom-Json
 
