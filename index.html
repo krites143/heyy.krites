@@ -67,6 +67,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="glass-dropdown.css">
 <style>
 :root{
   /* Unified Typographic Scale (<= 7 sizes) */
@@ -1734,6 +1735,7 @@ form select option{
 </script>
 -->
 
+<script src="glass-dropdown.js"></script>
 <script>
 
 'use strict';
@@ -2272,7 +2274,7 @@ $('#app').innerHTML=`
 
 <button class="btn gold float-contact" data-dialog="chat">${t('Talk to Kotwari','Kotwari से बात करें','تحدث مع كوتواري')} ↗</button><div class="mobile-cta"><a href="#partners" data-role="Farmer">${t('Become a farmer partner','किसान पार्टनर बनें','شراكة المزارعين')}</a><button class="legal-btn" data-dialog="portal">${t('Farmer portal','किसान पोर्टल','بوابة المزارع')}</button><a href="tel:+${CONFIG.phone}">${t('Call','कॉल करें','اتصل')}</a></div>
 <dialog id="modal"><div class="dialog-top"><h2 id="modal-title"></h2><button class="close" aria-label="${l.close}">×</button></div><div id="modal-body"></div></dialog>`;
-$('#language').value=language;renderProducts();initProductHeroShowcase();renderFields();setZone(0);wire();initScrollReveal();initHeroParticles();initEmblemTilt();setTimeout(()=>updateAllSlidingTabs(true),50);if(location.hash.startsWith('#modal-')){const mIdx=parseInt(location.hash.replace('#modal-',''),10);if(!isNaN(mIdx)){setTimeout(()=>openProductModal(mIdx),100);}}}
+$('#language').value=language;renderProducts();initProductHeroShowcase();renderFields();setZone(0);wire();if(window.enhanceAllGlassSelects)window.enhanceAllGlassSelects();initScrollReveal();initHeroParticles();initEmblemTilt();setTimeout(()=>updateAllSlidingTabs(true),50);if(location.hash.startsWith('#modal-')){const mIdx=parseInt(location.hash.replace('#modal-',''),10);if(!isNaN(mIdx)){setTimeout(()=>openProductModal(mIdx),100);}}}
 function renderProducts(){
   const allProds=productData();
   const q=(searchQuery||'').trim().toLowerCase();
@@ -2925,6 +2927,7 @@ function renderFields(){
   }else{
     rf.innerHTML=`<label class="field full">Organisation & Area of Interest<textarea name="context" maxlength="900" placeholder="Share additional background..."></textarea></label>`;
   }
+  if(window.enhanceAllGlassSelects)window.enhanceAllGlassSelects(rf);
 }
 function setZone(i){const texts=[t('Eggs, milk and farmer-sourced essentials in the proposed fresh-food zone.','प्रस्तावित फ्रेश-फूड ज़ोन में अंडे, दूध और किसानों से प्राप्त उत्पाद।','البيض والحليب ومنتجات المزارعين في قسم الأغذية الطازجة المقترح.'),t('Spices, rice, atta, snacks and cooking oils for everyday shopping.','रोज़मर्रा की खरीदारी के लिए मसाले, चावल, आटा, स्नैक्स और तेल।','توابل وأرز ودقيق ووجبات خفيفة وزيوت للتسوق اليومي.'),t('A dedicated destination for Kotwari foods, KooA and partner brands.','Kotwari खाद्य उत्पाद, KooA और पार्टनर ब्रांड के लिए समर्पित स्थान।','مساحة مخصصة لأغذية كوتواري وKooA والعلامات الشريكة.'),t('Protein Breakfast Point concept: boiled eggs, egg breakfasts, protein meals, milk, lassi and sattu drinks.','प्रोटीन ब्रेकफास्ट पॉइंट: उबले अंडे, अंडा नाश्ता, प्रोटीन मील, दूध, लस्सी और सत्तू पेय का कॉन्सेप्ट।','مفهوم نقطة الإفطار بالبروتين: بيض مسلوق ووجبات بيض ووجبات بروتين وحليب ولاسي ومشروبات ساتو.')];$('.zone-result').textContent=texts[i];document.querySelectorAll('.zone').forEach(b=>b.setAttribute('aria-pressed',Number(b.dataset.zone)===i));}
 let _revealObserver=null;
@@ -3392,7 +3395,7 @@ function openDialog(type){
   }
   modal.showModal();
 }
-$('#app').onclick=e=>{const stage=e.target.closest('[data-stage]');if(stage){const i=Number(stage.dataset.stage);$('#stage-title').textContent=stages()[i][0];$('#stage-copy').textContent=stages()[i][1];document.querySelectorAll('.stage').forEach(b=>b.setAttribute('aria-pressed',b===stage));}const filter=e.target.closest('[data-filter]');if(filter){selectedCategory=filter.dataset.filter;const tablist=filter.closest('.t-tabs');if(tablist){tablist.querySelectorAll('.t-tab').forEach(b=>{const isSel=(b===filter);b.setAttribute('aria-selected',isSel);});updateTabsPill(tablist,filter,false);filter.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});}else{document.querySelectorAll('.filter').forEach(b=>b.setAttribute('aria-selected',b===filter));}renderProducts();}const zone=e.target.closest('[data-zone]');if(zone)setZone(Number(zone.dataset.zone));const pModal=e.target.closest('[data-product-idx]');if(pModal){openProductModal(Number(pModal.dataset.productIdx));}const role=e.target.closest('[data-role]');if(role){$('#role').value=role.dataset.role;renderFields();if(role.dataset.product){const msgArea=$('#enquiry-form textarea[name="message"]');if(msgArea){msgArea.value=`Enquiry for ${role.dataset.product}:\nI am interested in distributorship / supply. Please share product catalogue, MOQs, and pricing.`}}}const modal=e.target.closest('[data-dialog]');if(modal)openDialog(modal.dataset.dialog);if(e.target.closest('a[href^="#"]')){$('#navigation').classList.remove('open');$('.menu').setAttribute('aria-expanded','false');}};
+$('#app').onclick=e=>{const stage=e.target.closest('[data-stage]');if(stage){const i=Number(stage.dataset.stage);$('#stage-title').textContent=stages()[i][0];$('#stage-copy').textContent=stages()[i][1];document.querySelectorAll('.stage').forEach(b=>b.setAttribute('aria-pressed',b===stage));}const filter=e.target.closest('[data-filter]');if(filter){selectedCategory=filter.dataset.filter;const tablist=filter.closest('.t-tabs');if(tablist){tablist.querySelectorAll('.t-tab').forEach(b=>{const isSel=(b===filter);b.setAttribute('aria-selected',isSel);});updateTabsPill(tablist,filter,false);filter.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});}else{document.querySelectorAll('.filter').forEach(b=>b.setAttribute('aria-selected',b===filter));}renderProducts();}const zone=e.target.closest('[data-zone]');if(zone)setZone(Number(zone.dataset.zone));const pModal=e.target.closest('[data-product-idx]');if(pModal){openProductModal(Number(pModal.dataset.productIdx));}const role=e.target.closest('[data-role]');if(role){$('#role').value=role.dataset.role;$('#role').dispatchEvent(new Event('change',{bubbles:true}));renderFields();if(role.dataset.product){const msgArea=$('#enquiry-form textarea[name="message"]');if(msgArea){msgArea.value=`Enquiry for ${role.dataset.product}:\nI am interested in distributorship / supply. Please share product catalogue, MOQs, and pricing.`}}}const modal=e.target.closest('[data-dialog]');if(modal)openDialog(modal.dataset.dialog);if(e.target.closest('a[href^="#"]')){$('#navigation').classList.remove('open');$('.menu').setAttribute('aria-expanded','false');}};
 $('#app').addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.closest('.dairy-card,[data-product-idx]')){e.preventDefault();(e.target.closest('.dairy-card,[data-product-idx]')).click();}});
 $('#role').addEventListener('change',renderFields);$('.close').addEventListener('click',()=>$('#modal').close());
 
