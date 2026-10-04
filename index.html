@@ -1736,6 +1736,7 @@ form select option{
 -->
 
 <script src="glass-dropdown.js"></script>
+<script src="kotwari-lang.js"></script>
 <script>
 
 'use strict';
@@ -1748,7 +1749,20 @@ const CONFIG={logo:'kotwari_emblem_new.png',founderPhoto:'',audio:'music.mp3',ph
 
 
 let language='en',selectedCategory='all',searchQuery='',productsExpanded=false;
-try{const p=new URLSearchParams(window.location.search);if(p.has('q'))searchQuery=p.get('q')||'';if(['en','hi','ar'].includes(p.get('lang')))language=p.get('lang');}catch(e){}
+try{
+  const p=new URLSearchParams(window.location.search);
+  if(p.has('q'))searchQuery=p.get('q')||'';
+  if(['en','hi','ar'].includes(p.get('lang'))){
+    language=p.get('lang');
+    try{localStorage.setItem('kotwari_lang',language);}catch(e){}
+  } else {
+    try{
+      const saved=localStorage.getItem('kotwari_lang');
+      if(['en','hi','ar'].includes(saved)) language=saved;
+    }catch(e){}
+  }
+}catch(e){}
+window.language=language;
 const $=s=>document.querySelector(s);
 const escapeHTML=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const t=(en,hi,ar)=>({en,hi,ar}[language]||en);
@@ -2274,7 +2288,7 @@ $('#app').innerHTML=`
 
 <button class="btn gold float-contact" data-dialog="chat">${t('Talk to Kotwari','Kotwari से बात करें','تحدث مع كوتواري')} ↗</button><div class="mobile-cta"><a href="#partners" data-role="Farmer">${t('Become a farmer partner','किसान पार्टनर बनें','شراكة المزارعين')}</a><button class="legal-btn" data-dialog="portal">${t('Farmer portal','किसान पोर्टल','بوابة المزارع')}</button><a href="tel:+${CONFIG.phone}">${t('Call','कॉल करें','اتصل')}</a></div>
 <dialog id="modal"><div class="dialog-top"><h2 id="modal-title"></h2><button class="close" aria-label="${l.close}">×</button></div><div id="modal-body"></div></dialog>`;
-$('#language').value=language;renderProducts();initProductHeroShowcase();renderFields();setZone(0);wire();if(window.enhanceAllGlassSelects)window.enhanceAllGlassSelects();initScrollReveal();initHeroParticles();initEmblemTilt();setTimeout(()=>updateAllSlidingTabs(true),50);if(location.hash.startsWith('#modal-')){const mIdx=parseInt(location.hash.replace('#modal-',''),10);if(!isNaN(mIdx)){setTimeout(()=>openProductModal(mIdx),100);}}}
+$('#language').value=language;renderProducts();initProductHeroShowcase();renderFields();setZone(0);wire();if(window.enhanceAllGlassSelects)window.enhanceAllGlassSelects();if(window.KotwariI18n)window.KotwariI18n.syncLinks(language);initScrollReveal();initHeroParticles();initEmblemTilt();setTimeout(()=>updateAllSlidingTabs(true),50);if(location.hash.startsWith('#modal-')){const mIdx=parseInt(location.hash.replace('#modal-',''),10);if(!isNaN(mIdx)){setTimeout(()=>openProductModal(mIdx),100);}}}
 function renderProducts(){
   const allProds=productData();
   const q=(searchQuery||'').trim().toLowerCase();
@@ -3283,7 +3297,7 @@ if(btt && !btt._bound){
     window.scrollTo({top:0,behavior:'smooth'});
   });
 }
-$('#language').addEventListener('change',e=>{const data=new FormData($('#enquiry-form'));const consent=$('#enquiry-form input[type=checkbox]').checked;language=e.target.value;render();$('#role').value=data.get('role');renderFields();for(const [key,value] of data){const el=$('#enquiry-form').elements.namedItem(key);if(el)el.value=value;}$('#enquiry-form input[type=checkbox]').checked=consent;$('#language').focus();});
+$('#language').addEventListener('change',e=>{const data=new FormData($('#enquiry-form'));const consent=$('#enquiry-form input[type=checkbox]').checked;language=e.target.value;window.language=language;try{localStorage.setItem('kotwari_lang',language);document.cookie='kotwari_lang='+language+';path=/;max-age=31536000';document.cookie='googtrans=/en/'+language+';path=/;max-age=31536000';}catch(err){}try{const u=new URL(window.location.href);if(language==='en')u.searchParams.delete('lang');else u.searchParams.set('lang',language);window.history.replaceState({},'',u.toString());}catch(err){}render();if(window.KotwariI18n)window.KotwariI18n.syncLinks(language);$('#role').value=data.get('role');renderFields();for(const [key,value] of data){const el=$('#enquiry-form').elements.namedItem(key);if(el)el.value=value;}$('#enquiry-form input[type=checkbox]').checked=consent;$('#language').focus();});
 $('.menu').addEventListener('click',()=>{const open=$('#navigation').classList.toggle('open');$('.menu').setAttribute('aria-expanded',open);});
 
 // Wire frosted glass dropdowns

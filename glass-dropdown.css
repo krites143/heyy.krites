@@ -224,3 +224,33 @@
   box-shadow: 0 20px 50px rgba(9, 40, 64, 0.1), 0 0 0 1px rgba(255, 255, 255, 0.8) inset !important;
   position: relative;
 }
+
+/* Header Language Selector Placement across all Portals */
+.kotwari-lang-wrap {
+  display: inline-flex;
+  align-items: center;
+  margin-inline-start: auto;
+  margin-inline-end: 12px;
+  vertical-align: middle;
+  z-index: 95;
+}
+
+.kotwari-lang-wrap .custom-glass-dropdown.glass-lang-dropdown .glass-select-trigger {
+  min-height: 36px;
+  padding: 6px 14px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+@media (max-width: 850px) {
+  .kotwari-lang-wrap {
+    margin-inline-start: auto;
+    margin-inline-end: 8px;
+  }
+  .kotwari-lang-wrap .custom-glass-dropdown.glass-lang-dropdown .glass-select-trigger {
+    min-height: 32px;
+    padding: 4px 10px;
+    font-size: 0.78rem;
+  }
+}
+
