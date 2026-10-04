@@ -825,6 +825,586 @@
     justify-content:center;
   }
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   NETFLIX-STYLE AUTO-ROTATING PRODUCT HERO SHOWCASE
+   ═══════════════════════════════════════════════════════════════ */
+.product-hero-showcase{
+  position:relative;
+  width:100%;
+  margin-bottom:34px;
+  border-radius:var(--radius-lg,16px);
+  overflow:hidden;
+  background:#051624;
+  box-shadow:0 24px 60px -12px rgba(4,20,34,0.38), 0 0 0 1px rgba(223,191,131,0.22);
+  min-height:530px;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  isolation:isolate;
+  user-select:none;
+}
+.nph-slides{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+}
+.nph-slide{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  opacity:0;
+  visibility:hidden;
+  transition:opacity .75s cubic-bezier(.16,1,.3,1),visibility .75s;
+  pointer-events:none;
+  z-index:1;
+}
+.nph-slide.active{
+  opacity:1;
+  visibility:visible;
+  pointer-events:auto;
+  z-index:2;
+}
+.nph-bg-wrap{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  cursor:pointer;
+}
+.nph-bg{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:right 25% center;
+  transform:scale(1.06);
+  transition:transform 7s cubic-bezier(.16,1,.3,1),filter .8s ease;
+  filter:contrast(1.04) brightness(0.92);
+}
+.nph-slide.active .nph-bg{
+  transform:scale(1);
+}
+.nph-bg-wrap:hover .nph-bg{
+  filter:contrast(1.08) brightness(0.98);
+}
+.nph-overlay-grad{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(90deg,#051624 0%,rgba(5,22,36,0.96) 38%,rgba(5,22,36,0.72) 60%,rgba(5,22,36,0.32) 80%,rgba(5,22,36,0.12) 100%);
+  z-index:2;
+  pointer-events:none;
+}
+[dir="rtl"] .nph-overlay-grad{
+  background:linear-gradient(270deg,#051624 0%,rgba(5,22,36,0.96) 38%,rgba(5,22,36,0.72) 60%,rgba(5,22,36,0.32) 80%,rgba(5,22,36,0.12) 100%);
+}
+.nph-overlay-bottom{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(0deg,#051624 0%,rgba(5,22,36,0.92) 18%,rgba(5,22,36,0.4) 40%,transparent 65%);
+  z-index:2;
+  pointer-events:none;
+}
+.nph-overlay-top{
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  height:120px;
+  background:linear-gradient(180deg,rgba(5,22,36,0.65) 0%,transparent 100%);
+  z-index:2;
+  pointer-events:none;
+}
+.nph-content-box{
+  position:relative;
+  z-index:5;
+  padding:44px 44px 92px 48px;
+  max-width:630px;
+  color:#ffffff;
+}
+[dir="rtl"] .nph-content-box{
+  padding:44px 48px 92px 44px;
+}
+.nph-eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:12px;
+  opacity:0;
+  transform:translateY(12px);
+  transition:all .5s cubic-bezier(.16,1,.3,1) .1s;
+}
+.nph-slide.active .nph-eyebrow{
+  opacity:1;
+  transform:translateY(0);
+}
+.nph-dash{
+  display:inline-block;
+  width:22px;
+  height:3px;
+  background:linear-gradient(90deg,#dfbf83,#bc944f);
+  border-radius:2px;
+  box-shadow:0 0 10px rgba(223,191,131,0.6);
+}
+.nph-eyebrow-text{
+  font-size:0.75rem;
+  font-weight:800;
+  letter-spacing:0.16em;
+  text-transform:uppercase;
+  color:#dfbf83;
+  text-shadow:0 1px 4px rgba(0,0,0,0.6);
+}
+.nph-eyebrow-tag{
+  font-size:0.68rem;
+  font-weight:700;
+  padding:2px 9px;
+  border-radius:20px;
+  background:rgba(223,191,131,0.18);
+  border:1px solid rgba(223,191,131,0.45);
+  color:#f7e4be;
+  letter-spacing:0.04em;
+  text-transform:uppercase;
+}
+.nph-title{
+  margin:0 0 12px;
+  opacity:0;
+  transform:translateY(16px);
+  transition:all .55s cubic-bezier(.16,1,.3,1) .18s;
+}
+.nph-slide.active .nph-title{
+  opacity:1;
+  transform:translateY(0);
+}
+.nph-title a{
+  color:#ffffff;
+  text-decoration:none;
+  font-family:var(--font-serif),Georgia,serif;
+  font-size:clamp(1.9rem,3.8vw,3.15rem);
+  font-weight:700;
+  line-height:1.12;
+  letter-spacing:-0.025em;
+  text-shadow:0 2px 16px rgba(0,0,0,0.65);
+  display:-webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+  transition:color .2s ease;
+}
+.nph-title a:hover{
+  color:#dfbf83;
+}
+.nph-meta-bar{
+  display:flex;
+  align-items:center;
+  gap:11px;
+  flex-wrap:wrap;
+  margin-bottom:14px;
+  font-size:0.82rem;
+  color:#cbd5e1;
+  opacity:0;
+  transform:translateY(14px);
+  transition:all .55s cubic-bezier(.16,1,.3,1) .26s;
+}
+.nph-slide.active .nph-meta-bar{
+  opacity:1;
+  transform:translateY(0);
+}
+.nph-rating{
+  color:#ffd166;
+  font-weight:700;
+  display:inline-flex;
+  align-items:center;
+  gap:3px;
+}
+.nph-rating-star{
+  color:#ffd166;
+  font-size:0.95rem;
+}
+.nph-meta-item{
+  color:#e2e8f0;
+  font-weight:500;
+}
+.nph-meta-badge{
+  background:rgba(255,255,255,0.12);
+  border:1px solid rgba(255,255,255,0.25);
+  border-radius:4px;
+  padding:2px 8px;
+  font-size:0.72rem;
+  font-weight:600;
+  color:#ffffff;
+  letter-spacing:0.02em;
+}
+.nph-meta-halal{
+  background:rgba(46,204,113,0.18);
+  border:1px solid rgba(46,204,113,0.45);
+  color:#55efc4;
+}
+.nph-desc{
+  font-size:0.92rem;
+  line-height:1.55;
+  color:#d8e5ec;
+  margin:0 0 22px;
+  max-width:540px;
+  display:-webkit-box;
+  -webkit-line-clamp:3;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+  text-shadow:0 1px 4px rgba(0,0,0,0.45);
+  opacity:0;
+  transform:translateY(14px);
+  transition:all .55s cubic-bezier(.16,1,.3,1) .34s;
+}
+.nph-slide.active .nph-desc{
+  opacity:1;
+  transform:translateY(0);
+}
+.nph-actions{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+  opacity:0;
+  transform:translateY(14px);
+  transition:all .55s cubic-bezier(.16,1,.3,1) .42s;
+}
+.nph-slide.active .nph-actions{
+  opacity:1;
+  transform:translateY(0);
+}
+.nph-btn-primary{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  min-height:44px;
+  padding:10px 24px;
+  border-radius:6px;
+  background:#ffffff;
+  color:#062034 !important;
+  font-weight:700;
+  font-size:0.92rem;
+  text-decoration:none !important;
+  border:none;
+  cursor:pointer;
+  box-shadow:0 4px 16px rgba(0,0,0,0.35);
+  transition:transform .22s ease,background .22s ease,box-shadow .22s ease;
+}
+.nph-btn-primary:hover{
+  background:#f8eed0;
+  color:#062034 !important;
+  transform:translateY(-2px) scale(1.02);
+  box-shadow:0 8px 24px rgba(223,191,131,0.45);
+}
+.nph-play-icon{
+  width:14px;
+  height:14px;
+  fill:currentColor;
+}
+.nph-btn-secondary{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  min-height:44px;
+  padding:10px 18px;
+  border-radius:6px;
+  background:rgba(255,255,255,0.14);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  color:#ffffff !important;
+  font-weight:600;
+  font-size:0.88rem;
+  border:1px solid rgba(255,255,255,0.28);
+  cursor:pointer;
+  transition:all .22s ease;
+}
+.nph-btn-secondary:hover{
+  background:rgba(255,255,255,0.24);
+  border-color:rgba(223,191,131,0.65);
+  color:#f7e4be !important;
+  transform:translateY(-1px);
+}
+.nph-info-icon{
+  width:16px;
+  height:16px;
+}
+.nph-btn-icon{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:44px;
+  height:44px;
+  border-radius:50%;
+  background:rgba(255,255,255,0.12);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  color:#ffffff !important;
+  border:1px solid rgba(255,255,255,0.25);
+  font-size:1.35rem;
+  line-height:1;
+  text-decoration:none !important;
+  cursor:pointer;
+  transition:all .22s ease;
+}
+.nph-btn-icon:hover{
+  background:var(--navy);
+  border-color:var(--gold);
+  color:var(--gold) !important;
+  transform:scale(1.08);
+}
+.nph-next-card{
+  position:absolute;
+  bottom:80px;
+  right:44px;
+  z-index:8;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  background:rgba(6,32,52,0.85);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  border:1px solid rgba(223,191,131,0.38);
+  border-radius:10px;
+  padding:8px 14px 8px 8px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.5);
+  cursor:pointer;
+  transition:all .3s cubic-bezier(.16,1,.3,1);
+  max-width:250px;
+}
+[dir="rtl"] .nph-next-card{
+  right:auto;
+  left:44px;
+  padding:8px 8px 8px 14px;
+}
+.nph-next-card:hover{
+  transform:translateY(-3px) scale(1.02);
+  border-color:var(--gold);
+  background:rgba(9,40,64,0.96);
+  box-shadow:0 14px 36px rgba(188,148,79,0.3);
+}
+.nph-next-thumb{
+  width:48px;
+  height:48px;
+  border-radius:6px;
+  object-fit:cover;
+  background:#ffffff;
+  border:1px solid rgba(255,255,255,0.15);
+  flex-shrink:0;
+}
+.nph-next-meta{
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+}
+.nph-next-label{
+  font-size:0.65rem;
+  font-weight:800;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:#dfbf83;
+}
+.nph-next-name{
+  font-size:0.78rem;
+  font-weight:600;
+  color:#ffffff;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.nph-nav-bar{
+  position:absolute;
+  bottom:22px;
+  left:48px;
+  right:48px;
+  z-index:10;
+  display:flex;
+  align-items:center;
+  gap:20px;
+}
+[dir="rtl"] .nph-nav-bar{
+  direction:ltr;
+}
+.nph-counter{
+  display:flex;
+  align-items:baseline;
+  gap:4px;
+  font-family:var(--font-sans),sans-serif;
+  color:#ffffff;
+  font-variant-numeric:tabular-nums;
+  flex-shrink:0;
+}
+.nph-counter-current{
+  font-size:1.15rem;
+  font-weight:800;
+  color:#ffffff;
+  line-height:1;
+}
+.nph-counter-sep{
+  font-size:0.75rem;
+  color:rgba(255,255,255,0.5);
+}
+.nph-counter-total{
+  font-size:0.78rem;
+  color:rgba(255,255,255,0.65);
+}
+.nph-timeline{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  flex:1;
+  max-width:520px;
+}
+.nph-dash-btn{
+  position:relative;
+  height:4px;
+  flex:1;
+  border:none;
+  padding:0;
+  background:rgba(255,255,255,0.22);
+  border-radius:2px;
+  cursor:pointer;
+  overflow:hidden;
+  transition:flex .3s ease,background .3s ease;
+}
+.nph-dash-btn:hover{
+  background:rgba(255,255,255,0.45);
+}
+.nph-dash-btn.active{
+  flex:2.3;
+  background:rgba(255,255,255,0.3);
+}
+.nph-dash-fill{
+  position:absolute;
+  top:0;
+  left:0;
+  bottom:0;
+  width:0%;
+  background:#ffffff;
+  box-shadow:0 0 8px rgba(255,255,255,0.9);
+  border-radius:2px;
+}
+.nph-dash-btn.passed .nph-dash-fill{
+  width:100%;
+  background:rgba(255,255,255,0.7);
+}
+.nph-arrows{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  flex-shrink:0;
+}
+.nph-arrow{
+  width:36px;
+  height:36px;
+  border-radius:50%;
+  background:rgba(6,32,52,0.7);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,0.25);
+  color:#ffffff;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  font-size:1.15rem;
+  line-height:1;
+  transition:all .22s ease;
+}
+.nph-arrow:hover{
+  background:rgba(223,191,131,0.25);
+  border-color:var(--gold);
+  color:var(--gold);
+  transform:scale(1.08);
+}
+.nph-arrow:focus-visible{
+  outline:2px solid var(--gold);
+  outline-offset:2px;
+}
+
+@media(max-width:960px){
+  .product-hero-showcase{
+    min-height:500px;
+  }
+  .nph-content-box{
+    padding:34px 28px 84px;
+    max-width:540px;
+  }
+  .nph-nav-bar{
+    left:28px;
+    right:28px;
+    bottom:18px;
+    gap:14px;
+  }
+  .nph-next-card{
+    display:none;
+  }
+  .nph-overlay-grad{
+    background:linear-gradient(90deg,#051624 0%,rgba(5,22,36,0.96) 55%,rgba(5,22,36,0.78) 75%,rgba(5,22,36,0.3) 100%);
+  }
+  [dir="rtl"] .nph-overlay-grad{
+    background:linear-gradient(270deg,#051624 0%,rgba(5,22,36,0.96) 55%,rgba(5,22,36,0.78) 75%,rgba(5,22,36,0.3) 100%);
+  }
+}
+
+@media(max-width:640px){
+  .product-hero-showcase{
+    min-height:460px;
+    border-radius:12px;
+    margin-bottom:24px;
+  }
+  .nph-content-box{
+    padding:24px 18px 74px;
+  }
+  .nph-title a{
+    font-size:1.65rem;
+    line-height:1.2;
+  }
+  .nph-desc{
+    font-size:0.84rem;
+    line-height:1.45;
+    -webkit-line-clamp:2;
+    margin-bottom:16px;
+  }
+  .nph-btn-primary{
+    padding:8px 16px;
+    font-size:0.85rem;
+    min-height:40px;
+  }
+  .nph-btn-secondary{
+    padding:8px 14px;
+    font-size:0.82rem;
+    min-height:40px;
+  }
+  .nph-btn-icon{
+    width:40px;
+    height:40px;
+  }
+  .nph-nav-bar{
+    left:16px;
+    right:16px;
+    bottom:14px;
+    gap:10px;
+  }
+  .nph-arrow{
+    width:32px;
+    height:32px;
+    font-size:1rem;
+  }
+  .nph-counter-current{
+    font-size:0.95rem;
+  }
+  .nph-timeline{
+    gap:4px;
+  }
+  .nph-overlay-grad{
+    background:linear-gradient(0deg,#051624 0%,rgba(5,22,36,0.92) 50%,rgba(5,22,36,0.65) 75%,rgba(5,22,36,0.2) 100%);
+  }
+  [dir="rtl"] .nph-overlay-grad{
+    background:linear-gradient(0deg,#051624 0%,rgba(5,22,36,0.92) 50%,rgba(5,22,36,0.65) 75%,rgba(5,22,36,0.2) 100%);
+  }
+}
 </style>
 </head>
 
@@ -1380,7 +1960,7 @@ $('#app').innerHTML=`
 
 <section id="dairy" class="band reveal"><div class="wrap split"><div><p class="eyebrow">Kotwari Dairy</p><h2>${t('From milk collection<br>to everyday essentials.','दूध संग्रह से<br>रोज़मर्रा के उत्पादों तक।','من تجميع الحليب<br>إلى المنتجات اليومية.')}</h2><p>${t('A scalable dairy vision connecting farmers, collection, testing, chilling, processing, packaging and distribution.','किसानों, संग्रह, जांच, चिलिंग, प्रोसेसिंग, पैकेजिंग और वितरण को जोड़ता डेयरी विकास का विज़न।','رؤية لتطوير قطاع الألبان تربط المزارعين والتجميع والفحص والتبريد والمعالجة والتعبئة والتوزيع.')}</p>${cta('Farmer',t('Discuss a dairy partnership','डेयरी भागीदारी पर बात करें','ناقش شراكة الألبان'))}</div><div><div class="card" style="padding:0;overflow:hidden;margin-bottom:18px;border-color:var(--line);box-shadow:0 8px 24px rgba(9,40,64,.05);background:#ffffff"><img src="products/kotwari-dairy-lassi-dahi-range-banner.jpeg" alt="Kotwari Dairy Dahi &amp; Fruit Lassi" style="width:100%;height:auto;max-height:420px;object-fit:contain;object-position:center;background:#ffffff;display:block;padding:14px 18px 8px;margin:0 auto"><div style="padding:14px 20px;border-top:1px solid #f0eee4;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap"><div><span class="eyebrow" style="margin-bottom: 6px">Kotwari Dairy Range</span><h3 style="margin:0 0 3px;font-size:1.15rem">Thick Dahi &amp; Fruit Lassi</h3><p style="font-size:.84rem;margin:0;color:var(--muted)">100% Pure Milk &bull; No Added Preservatives &bull; Traditional Indian Goodness</p></div><div style="display:flex;gap:8px;align-items:center"><button type="button" class="btn" data-product-idx="2" style="min-height:36px;padding:6px 14px;font-size:.8rem;cursor:pointer">⚡ ${t('Quick View','क्विक व्यू','معاينة')}</button><a href="product-kooa-arabian-dahi.html" class="btn outline" style="min-height:36px;padding:6px 14px;font-size:.8rem">${t('Specs →','विवरण →','المواصفات ←')}</a></div></div></div><div class="grid two"><div class="card dairy-card" data-product-idx="8" role="button" tabindex="0" aria-label="${t('View Kotwari Premium Milk details','Kotwari Premium Milk विवरण देखें','عرض تفاصيل حليب كوتواري الممتاز')}"><div class="dairy-card-left"><div class="dairy-card-thumb"><img src="products/kotwari-dairy-premium-milk-bottle.jpeg" alt="Kotwari Premium Milk" style="width:100%;height:100%;object-fit:contain"></div><div><h3 style="margin:0;font-size:.98rem">Kotwari Premium Milk</h3></div></div><span class="dairy-card-action">⚡ ${t('Quick View','क्विक व्यू','معاينة')}</span></div><div class="card dairy-card" data-product-idx="2" role="button" tabindex="0" aria-label="${t('View Thick Dahi details','Thick Dahi विवरण देखें','عرض تفاصيل زبادي كوا')}"><div class="dairy-card-left"><div class="dairy-card-thumb"><img src="products/kotwari-dairy-lassi-dahi-range-banner.jpeg" alt="Dahi" style="width:100%;height:100%;object-fit:contain"></div><div><h3 style="margin:0;font-size:.98rem">Thick Dahi</h3></div></div><span class="dairy-card-action">⚡ ${t('Quick View','क्विक व्यू','معاينة')}</span></div><div class="card dairy-card" data-product-idx="7" role="button" tabindex="0" aria-label="${t('View Royal Lassi details','Royal Lassi विवरण देखें','عرض تفاصيل لاسي الورد')}"><div class="dairy-card-left"><div class="dairy-card-thumb"><img src="products/kotwari-dairy-rose-gold-lassi-200g-cup.jpeg" alt="Royal Lassi" style="width:100%;height:100%;object-fit:contain"></div><div><h3 style="margin:0;font-size:.98rem">Royal Lassi</h3></div></div><span class="dairy-card-action">⚡ ${t('Quick View','क्विक व्यू','معاينة')}</span></div><div class="card dairy-card" data-product-idx="6" role="button" tabindex="0" aria-label="${t('View Pure & Fresh Desi Ghee details','Pure & Fresh Desi Ghee विवरण देखें','عرض تفاصيل السمن البلدي')}"><div class="dairy-card-left"><div class="dairy-card-thumb"><img src="products/kotwari-dairy-deshi-ghee-500ml-tub.jpeg" alt="Pure Deshi Ghee" style="width:100%;height:100%;object-fit:contain"></div><div><h3 style="margin:0;font-size:.98rem">Pure &amp; Fresh Desi Ghee</h3></div></div><span class="dairy-card-action">⚡ ${t('Quick View','क्विक व्यू','معاينة')}</span></div></div></div></div></section>
 <section id="water" class="water reveal"><div class="wrap split"><div class="water-panel"><div class="water-poster-wrap"><span class="eyebrow" style="margin-bottom:10px;display:inline-block">✦ Arabian Collection &bull; Himalayan Source ✦</span><img src="products/kooa-mineral-water-bottle-angle.jpeg" alt="KooA Himalayan Natural Mineral Water - Arabian Collection Poster" class="water-poster-img" loading="lazy"></div><div class="water-poster-body"><div class="water-brand">KooA<sup>&trade;</sup></div><div class="water-brand-sub">${t('Himalayan Natural Mineral Water','हिमालयन नेचुरल मिनरल वाटर','مياه معدنية طبيعية من الهيمالايا')}</div><div class="sizes">${['200 ml','300 ml','500 ml','1 L'].map(s=>`<span class="pill">${s}</span>`).join('')}<span class="pill" style="background:#eef7f0;color:#1e6b37;border-color:#bce2c6">✓ Halal Certified</span></div><div class="water-panel-actions"><button type="button" class="btn" data-product-idx="0" style="min-height:38px;padding:8px 18px;font-size:.84rem;cursor:pointer">⚡ ${t('Quick View','क्विक व्यू','معاينة')}</button><a href="product-kooa-mineral-water.html" class="btn outline" style="min-height:38px;padding:8px 16px;font-size:.84rem">${t('Specs →','विवरण →','المواصفات ←')}</a></div></div></div><div><p class="eyebrow">KooA &bull; Luxury Mineral Water</p><h2>${t('A refined expression<br>of refreshment.','ताज़गी का<br>प्रीमियम अंदाज़।','لمسة راقية<br>من الانتعاش.')}</h2><p>${t('Discover the KooA water collection, with premium gold detailing and an Arabic-inspired brand direction. Crafted from pristine Himalayan rock layers for extraordinary clarity and balanced minerals.','प्रीमियम गोल्ड डिटेलिंग और अरबी शैली की ब्रांड दिशा वाला KooA वाटर संग्रह। शुद्ध हिमालयन चट्टानों से प्राकृतिक रूप से फ़िल्टर किया गया पानी।','اكتشف مجموعة مياه KooA بتفاصيل ذهبية وتوجه بصري مستوحى من الطابع العربي. مياه نقية من صخور الهيمالايا بتوازن طبيعي للمعادن.')}</p><div class="water-highlights"><div class="water-highlight-item"><span>🏔️</span> ${t('Naturally Filtered Through Himalayan Rock Layers','हिमालयन चट्टानों से प्राकृतिक रूप से फ़िल्टर','ترشيح طبيعي عبر طبقات صخور الهيمالايا')}</div><div class="water-highlight-item"><span>✨</span> ${t('Rich in Essential Minerals &amp; Balanced pH','आवश्यक खनिजों से भरपूर और संतुलित pH','غنية بالمعادن الأساسية وتوازن مثالي للرقم الهيدروجيني')}</div><div class="water-highlight-item"><span>🏨</span> ${t('Hospitality, Fine Dining &amp; Retail Formats','हॉस्पिटैलिटी, होटल और रिटेल प्रारूप','أحجام مخصصة للضيافة والمطاعم والتجزئة')}</div></div><p class="hint">${t('Source, testing, licences and product declarations will be published after verification.','स्रोत, जांच, लाइसेंस और उत्पाद विवरण सत्यापन के बाद प्रकाशित होंगे।','تنشر معلومات المصدر والفحوص والتراخيص وبيانات المنتج بعد التحقق.')}</p><div class="actions" style="margin-top:20px">${cta('Distributor',t('Become a KooA distributor','KooA वितरक बनें','كن موزعاً لمياه KooA'))}<a href="water.html" class="btn outline" style="min-height:48px;padding:12px 20px">${t('Explore Full KooA Showcase','पूरा KooA शोकेस देखें','عرض صفحة KooA الكاملة')} →</a></div></div></div></section>
-<section id="products" class="band reveal"><div class="wrap">${sectionTitle('Kotwari FMCG',t('Good food. Everyday possibilities.','अच्छा भोजन। हर दिन नई संभावनाएं।','غذاء طيب. خيارات يومية.'))}<div class="product-toolbar"><div class="product-search-wrapper"><span class="product-search-icon" aria-hidden="true">🔍</span><input type="search" id="product-search-input" class="product-search-input" placeholder="${t('Search foods, spices, rice, tea, oil, snacks...','खाद्य उत्पाद, मसाले, चावल, चाय, तेल, स्नैक्स खोजें...','ابحث عن الأغذية، التوابل، الأرز، الشاي، الزيوت...')}" value="${escapeHTML(searchQuery)}" aria-label="${t('Search FMCG Products','उत्पाद खोजें','البحث في المنتجات')}"><kbd class="search-kbd-hint">Ctrl K</kbd><button type="button" id="product-search-clear" class="product-search-clear" aria-label="${t('Clear search','खोज साफ करें','مسح البحث')}" ${searchQuery?'':'hidden'}>×</button></div><div class="product-toolbar-meta"><span id="product-count-badge" class="product-count-badge"></span><a href="#partners" data-role="Distributor" class="product-catalog-btn">📄 ${t('Request B2B Catalog','B2B कैटलॉग मांगें','طلب كتالوج الجملة')}</a></div></div><div class="t-tabs-wrapper"><div class="filters t-tabs" role="tablist" aria-label="${l.products}"><span class="t-tabs-pill" aria-hidden="true"></span>${categories().map(c=>`<button class="filter t-tab" role="tab" data-filter="${c[0]}" aria-selected="${selectedCategory===c[0]}">${c[1]}</button>`).join('')}</div></div><div class="grid three" id="product-grid"></div><div id="product-expand-container"></div><p class="hint" style="margin-top:22px">${t('Portfolio overview. Ask our team for available SKUs, pack sizes, pricing and verified product specifications.','उत्पाद पोर्टफोलियो का परिचय। उपलब्ध SKU, पैक साइज़, कीमत और सत्यापित विवरण के लिए संपर्क करें।','نظرة على محفظة المنتجات. تواصل معنا لمعرفة الأصناف والأحجام والأسعار والمواصفات المعتمدة المتاحة.')}</p></div></section>
+<section id="products" class="band reveal"><div class="wrap">${sectionTitle('Kotwari FMCG',t('Good food. Everyday possibilities.','अच्छा भोजन। हर दिन नई संभावनाएं।','غذاء طيب. خيارات يومية.'))}<div id="product-hero-showcase" class="product-hero-showcase" role="region" aria-label="${t('Featured Product Showcase','विशेष उत्पाद शोकेस','عرض المنتجات المميزة')}"></div><div class="product-toolbar"><div class="product-search-wrapper"><span class="product-search-icon" aria-hidden="true">🔍</span><input type="search" id="product-search-input" class="product-search-input" placeholder="${t('Search foods, spices, rice, tea, oil, snacks...','खाद्य उत्पाद, मसाले, चावल, चाय, तेल, स्नैक्स खोजें...','ابحث عن الأغذية، التوابل، الأرز، الشاي، الزيوت...')}" value="${escapeHTML(searchQuery)}" aria-label="${t('Search FMCG Products','उत्पाद खोजें','البحث في المنتجات')}"><kbd class="search-kbd-hint">Ctrl K</kbd><button type="button" id="product-search-clear" class="product-search-clear" aria-label="${t('Clear search','खोज साफ करें','مسح البحث')}" ${searchQuery?'':'hidden'}>×</button></div><div class="product-toolbar-meta"><span id="product-count-badge" class="product-count-badge"></span><a href="#partners" data-role="Distributor" class="product-catalog-btn">📄 ${t('Request B2B Catalog','B2B कैटलॉग मांगें','طلب كتالوج الجملة')}</a></div></div><div class="t-tabs-wrapper"><div class="filters t-tabs" role="tablist" aria-label="${l.products}"><span class="t-tabs-pill" aria-hidden="true"></span>${categories().map(c=>`<button class="filter t-tab" role="tab" data-filter="${c[0]}" aria-selected="${selectedCategory===c[0]}">${c[1]}</button>`).join('')}</div></div><div class="grid three" id="product-grid"></div><div id="product-expand-container"></div><p class="hint" style="margin-top:22px">${t('Portfolio overview. Ask our team for available SKUs, pack sizes, pricing and verified product specifications.','उत्पाद पोर्टफोलियो का परिचय। उपलब्ध SKU, पैक साइज़, कीमत और सत्यापित विवरण के लिए संपर्क करें।','نظرة على محفظة المنتجات. تواصل معنا لمعرفة الأصناف والأحجام والأسعار والمواصفات المعتمدة المتاحة.')}</p></div></section>
 <section id="retail" class="dark reveal"><div class="wrap split"><div><p class="eyebrow">${t('Retail concept','रिटेल अवधारणा','मफेहूम التجزئة')}</p><h2 class="retail-head">Kotwari<br><em>One.</em></h2><h3>Hypermarket</h3><p class="muted">${t('A proposed retail connection between farmer products, Kotwari brands, partner brands and the neighbourhood shopper.','किसान उत्पाद, Kotwari ब्रांड, पार्टनर ब्रांड और स्थानीय ग्राहकों को जोड़ने वाला प्रस्तावित रिटेल मॉडल।','حلقة تجزئة مقترحة تربط منتجات المزارعين وعلامات كوتواري والعلامات الشريكة بالمتسوق المحلي.')}</p><div class="actions">${cta('Franchise',t('Open a Kotwari One','Kotwari One खोलें','افتح متجر Kotwari One'))}</div></div><div><p class="eyebrow">${t('Explore the store concept','स्टोर कॉन्सेप्ट देखें','استكشف مفهوم المتجر')}</p><div class="zone-grid">${[t('Farm fresh','ताज़ा उत्पाद','منتجات المزرعة'),t('Food & staples','खाद्य और अनाज','الأغذية والحبوب'),t('Kotwari brands','Kotwari ब्रांड','علامات كوتواري'),t('Breakfast point','ब्रेकफास्ट पॉइंट','नقطة الإفطار')].map((x,i)=>`<button class="zone" data-zone="${i}" aria-pressed="${i===0}">${x}</button>`).join('')}</div><p class="zone-result" aria-live="polite"></p><p class="hint muted">${t('Store formats, memberships, franchise terms and expansion locations are subject to confirmation.','स्टोर प्रारूप, सदस्यता, फ्रेंचाइज़ शर्तें और विस्तार स्थानों की पुष्टि बाकी है।','تخضع أشكال المتاجر والعضويات وشروط الامتياز ومواقع التوسع للتأكيد.')}</p></div></div></section>
 <section id="quality" class="reveal"><div class="wrap">${sectionTitle(t('Quality & traceability','गुणवत्ता और ट्रेसबिलिटी','الجودة والتتبع'),t('Trust, at every step.','हर कदम पर भरोसा।','الثقة في كل خطوة.'))}<p class="lead muted">${t('The quality framework is designed around source checks, inspection, grading, testing, processing and batch records. QR-enabled product traceability is part of the future roadmap.','गुणवत्ता ढांचा स्रोत जांच, निरीक्षण, ग्रेडिंग, परीक्षण, प्रोसेसिंग और बैच रिकॉर्ड पर आधारित है। QR आधारित ट्रेसबिलिटी भविष्य की योजना का हिस्सा है।','يرتكز إطار الجودة على التحقق من المصدر والفحص والفرز والاختبارات والمعالجة وسجلات الدفعات. التتبع عبر رمز QR ضمن الخطة المستقبلية.')}</p><div class="steps">${[t('Source','स्रोत','المصدر'),t('Inspect','निरीक्षण','الفحص'),t('Grade & test','ग्रेडिंग और जांच','الفرز والاختبار'),t('Process','प्रोसेसिंग','المعالجة'),t('Pack & batch','पैकिंग और बैच','التعبئة والدفعة'),t('Distribute','वितरण','التوزيع')].map(x=>`<span>${x}</span>`).join('')}</div><p class="hint">${t('Certifications and regulatory details: to be updated after verification. No public batch lookup is connected yet.','प्रमाणपत्र और नियामक विवरण सत्यापन के बाद अपडेट होंगे। सार्वजनिक बैच खोज अभी उपलब्ध नहीं है।','تحدث الشهادات والبيانات التنظيمية बाद التحقق. خدمة البحث عن الدفعات غير متصلة حالياً.')}</p><div class="grid three impact" id="impact">${[[t('Rural entrepreneurship','ग्रामीण उद्यमिता','रीada الأعمال الريفية'),t('Creating pathways for farmers, women and young entrepreneurs.','किसानों, महिलाओं और युवा उद्यमियों के लिए अवसर की दिशा।','إيجاد مسارات للمزارعين والنساء ورواد الأعمال الشباب.')],[t('Local opportunity','स्थानीय अवसर','فرص محلية'),t('A vision for village enterprise, skills and local employment.','ग्रामीण उद्यम, कौशल और स्थानीय रोजगार का विज़न।','رؤية للمشاريع القروية والمهارات والتوظيف المحلي.')],[t('Responsible growth','जिम्मेदार विकास','نمو مسؤول'),t('Working toward efficient supply chains and responsible packaging.','कुशल आपूर्ति श्रृंखला और जिम्मेदार पैकेजिंग की दिशा में प्रयास।','التوجه نحو سلاسل إمداد فعالة وتعبئة مسؤولة.')]].map(x=>`<div><h3>${x[0]}</h3><p class="muted">${x[1]}</p></div>`).join('')}</div></div></section>
 <section id="exports" class="band reveal"><div class="wrap split"><div><p class="eyebrow">Kotwari Global</p><h2>${t('From Indian villages<br>to global markets.','भारत के गांवों से<br>वैश्विक बाजार तक।','من قرى الهند<br>إلى الأسواق العالمية.')}</h2><p>${t('Export vision: eggs, rice, spices, dry fruits, packaged foods, water and other approved agricultural products.','निर्यात विज़न: अंडे, चावल, मसाले, ड्राई फ्रूट, पैकेज्ड फूड, पानी और अन्य स्वीकृत कृषि उत्पाद।','رؤية التصدير: البيض والأرز والتوابل والفواكه المجففة والأغذية المعبأة والمياه والمنتجات الزراعية المعتمدة الأخرى.')}</p>${cta('Export',t('Explore export opportunities','निर्यात अवसर जानें','استكشف فرص التصدير'))}</div><div class="card"><p class="eyebrow">${t('Target / expansion markets','लक्षित / विस्तार बाजार','أسواق التوسع المستهدفة')}</p><h3>UAE · Saudi Arabia · GCC</h3><p>${t('Asia · Africa · Other international markets','एशिया · अफ्रीका · अन्य अंतरराष्ट्रीय बाजार','آسيا · أفريقيا · أسواق دولية أخرى')}</p><p class="hint">${t('These are target markets, not a statement of current export operations. Confirmed markets and product eligibility will be shared by the team.','ये लक्षित बाजार हैं, वर्तमान निर्यात संचालन का दावा नहीं। सत्यापित बाजार और उत्पाद पात्रता की जानकारी टीम से लें।','هذه أسواق مستهدفة وليست إعلاناً عن عمليات تصدير حالية. يقدم الفريق معلومات الأسواق المؤكدة وأهلية المنتجات.')}</p><a href="exports.html" style="font-weight:bold;border-bottom:1px solid var(--gold);padding-bottom:4px">${t('See full Kotwari Global page','पूरा Kotwari Global पेज देखें','عرض صفحة كوتواري العالمية')} →</a></div></div></section>
@@ -1397,7 +1977,7 @@ $('#app').innerHTML=`
 
 <button class="btn gold float-contact" data-dialog="chat">${t('Talk to Kotwari','Kotwari से बात करें','تحدث مع كوتواري')} ↗</button><div class="mobile-cta"><a href="#partners" data-role="Farmer">${t('Become a farmer partner','किसान पार्टनर बनें','شراكة المزارعين')}</a><button class="legal-btn" data-dialog="portal">${t('Farmer portal','किसान पोर्टल','بوابة المزارع')}</button><a href="tel:+${CONFIG.phone}">${t('Call','कॉल करें','اتصل')}</a></div>
 <dialog id="modal"><div class="dialog-top"><h2 id="modal-title"></h2><button class="close" aria-label="${l.close}">×</button></div><div id="modal-body"></div></dialog>`;
-$('#language').value=language;renderProducts();renderFields();setZone(0);wire();initScrollReveal();initHeroParticles();initEmblemTilt();setTimeout(()=>updateAllSlidingTabs(true),50);if(location.hash.startsWith('#modal-')){const mIdx=parseInt(location.hash.replace('#modal-',''),10);if(!isNaN(mIdx)){setTimeout(()=>openProductModal(mIdx),100);}}}
+$('#language').value=language;renderProducts();initProductHeroShowcase();renderFields();setZone(0);wire();initScrollReveal();initHeroParticles();initEmblemTilt();setTimeout(()=>updateAllSlidingTabs(true),50);if(location.hash.startsWith('#modal-')){const mIdx=parseInt(location.hash.replace('#modal-',''),10);if(!isNaN(mIdx)){setTimeout(()=>openProductModal(mIdx),100);}}}
 function renderProducts(){
   const allProds=productData();
   const q=(searchQuery||'').trim().toLowerCase();
@@ -1547,6 +2127,456 @@ function renderProducts(){
     `;
   }).join('');
   initScrollReveal();initHeroParticles();initEmblemTilt();
+}
+
+let productHeroState = {
+  activeIdx: 0,
+  timer: null,
+  rafId: null,
+  isPaused: false,
+  items: [],
+  container: null
+};
+
+function initProductHeroShowcase(){
+  if(productHeroState.timer){
+    clearTimeout(productHeroState.timer);
+    productHeroState.timer = null;
+  }
+  if(productHeroState.rafId){
+    cancelAnimationFrame(productHeroState.rafId);
+    productHeroState.rafId = null;
+  }
+
+  const container = document.getElementById('product-hero-showcase');
+  if(!container) return;
+
+  const allProds = productData();
+  if(!allProds || !allProds.length) return;
+
+  const PRODUCT_IMAGES_POOL = {
+    'kooa-mineral-water': [
+      'products/kooa-mineral-water-300ml-showcase.jpeg',
+      'products/kooa-mineral-water-lawn-outdoor.jpeg',
+      'products/kooa-mineral-water-300ml-hand.jpeg',
+      'products/kooa-mineral-water-bottle-angle.jpeg',
+      'products/kooa-mineral-water-250ml-handheld.jpeg',
+      'products/kooa-mineral-water-1l-bottle.jpeg'
+    ],
+    'kotwari-mix-fruits-juice': [
+      'products/kotwari-beverages-mix-fruits-juice-orchard-display.jpeg',
+      'products/kotwari-beverages-mix-fruits-juice-range.jpeg'
+    ],
+    'kotwari-mix-fruit-milk-dryfruits-juice': [
+      'products/kotwari-beverages-mix-fruit-milk-dryfruits-juice-showcase.jpeg',
+      'products/kotwari-beverages-mix-fruit-milk-dryfruits-juice-green-edition.jpeg',
+      'products/kotwari-beverages-mix-fruit-milk-dryfruits-juice-farmstead.jpeg'
+    ],
+    'kooa-arabian-chhass': [
+      'products/kooa-arabian-chhass-500ml-carton.jpeg'
+    ],
+    'kooa-arabian-dahi': [
+      'products/kooa-arabian-dahi-500g-carton.jpeg'
+    ],
+    'kooa-mama-lassi': [
+      'products/kooa-arabian-mama-lassi-500ml-carton.jpeg'
+    ],
+    'kooa-white-gold-lassi': [
+      'products/kooa-white-gold-lassi-500ml-pouch.jpeg'
+    ],
+    'kooa-white-gold-milk': [
+      'products/kooa-white-gold-milk-showcase.jpeg',
+      'products/kooa-white-gold-milk-500ml-pouch.jpeg'
+    ],
+    'kotwari-deshi-ghee': [
+      'products/kotwari-dairy-deshi-ghee-500ml-tub.jpeg'
+    ],
+    'kotwari-rose-gold-lassi': [
+      'products/kotwari-dairy-rose-gold-lassi-200g-cup.jpeg',
+      'products/kotwari-dairy-rose-gold-lassi-tub.jpeg'
+    ],
+    'kotwari-premium-milk': [
+      'products/kotwari-dairy-premium-milk-bottle.jpeg'
+    ],
+    'kotwari-eggs': [
+      'products/kotwari-eggs-arabian-collection-12pack.jpeg',
+      'products/kotwari-eggs-farm-collection-banner.jpeg',
+      'products/kotwari-eggs-retail-tray.jpeg',
+      'products/kotwari-eggs-logistics-truck-banner.jpeg'
+    ],
+    'kotwari-himalayan-haldi': [
+      'products/kotwari-spices-himalayan-haldi-showcase.jpeg',
+      'products/kotwari-spices-himalayan-haldi-whole-ground.jpeg',
+      'products/kotwari-spices-himalayan-haldi-200g-jar.jpeg',
+      'products/kotwari-spices-himalayan-haldi-canister.jpeg',
+      'products/kotwari-spices-himalayan-haldi-pack.jpeg',
+      'products/kotwari-spices-himalayan-haldi-pouch.jpeg',
+      'products/kotwari-spices-haldi-harvest-banner.jpeg'
+    ],
+    'kotwari-garam-masala': [
+      'products/kotwari-spices-garam-masala-showcase.jpeg',
+      'products/kotwari-spices-garam-masala-range-banner.jpeg',
+      'products/kotwari-spices-desi-garam-masala-jar.jpeg',
+      'products/kotwari-spices-garam-masala-arabian-canister.jpeg',
+      'products/kotwari-spices-garam-masala-canister.jpeg',
+      'products/kotwari-spices-garam-masala-pouch.jpeg'
+    ],
+    'kotwari-whole-red-chilli': [
+      'products/kotwari-spices-whole-red-chilli-showcase.jpeg',
+      'products/kotwari-spices-whole-red-chilli-canister.jpeg',
+      'products/kotwari-spices-whole-red-chilli-nutrition.jpeg',
+      'products/kotwari-spices-whole-red-chilli-pouch.jpeg'
+    ],
+    'kotwari-kashmiri-red-chilli': [
+      'products/kotwari-spices-kashmiri-red-chilli-200g-jar.jpeg',
+      'products/kotwari-spices-chilli-haldi-banner.jpeg'
+    ],
+    'kotwari-desi-garlic': [
+      'products/kotwari-spices-desi-garlic-showcase.jpeg',
+      'products/kotwari-spices-desi-garlic-pouch.jpeg',
+      'products/kotwari-spices-desi-lahsun-jar.jpeg'
+    ],
+    'kotwari-desi-adrak': [
+      'products/kotwari-spices-desi-adrak-showcase.jpeg',
+      'products/kotwari-spices-desi-adrak-pouch.jpeg'
+    ],
+    'kotwari-basmati-rice': [
+      'products/kotwari-staples-basmati-rice-1kg-front.jpeg',
+      'products/kotwari-staples-basmati-rice-1kg-back.jpeg',
+      'products/kotwari-staples-basmati-rice-5kg-bag.jpeg'
+    ],
+    'kotwari-chana-sattu': [
+      'products/kotwari-staples-chana-satua-canister.jpeg'
+    ],
+    'kotwari-dry-fruit-namkeen': [
+      'products/kotwari-snacks-dry-fruit-namkeen-1kg-front.jpeg',
+      'products/kotwari-snacks-dry-fruit-namkeen-1kg-back.jpeg',
+      'products/kotwari-snacks-namkeen-range-banner-1.jpeg'
+    ],
+    'kotwari-mix-bhuja': [
+      'products/kotwari-snacks-mix-bhuja-pouch.jpeg',
+      'products/kotwari-snacks-mix-bhuja-pack.jpeg',
+      'products/kotwari-snacks-namkeen-range-banner-2.jpeg'
+    ],
+    'kotwari-dry-fruits': [
+      'products/kotwari-snacks-dry-fruits-dubai-canister.jpeg',
+      'products/kotwari-snacks-dry-fruits-gift-pack.jpeg'
+    ],
+    'kotwari-medjool-dates': [
+      'products/kotwari-snacks-medjool-dates-bowl-display.jpeg',
+      'products/kotwari-snacks-medjool-dates-500g-canister.jpeg',
+      'products/kotwari-snacks-medjool-dates-gift-pack.jpeg'
+    ],
+    'kotwari-mithla-makhana': [
+      'products/kotwari-snacks-methali-makhana-200g-box-showcase.jpeg',
+      'products/kotwari-snacks-methali-makhana-200g-box-front-back.jpeg',
+      'products/kotwari-snacks-mithla-makhana-200g-jar.jpeg'
+    ],
+    'kotwari-potato-finger-sticks': [
+      'products/kotwari-snacks-potato-finger-sticks-canister.jpeg'
+    ],
+    'kotwari-roasted-makhana': [
+      'products/kotwari-snacks-roasted-makhana-200g-jar.jpeg'
+    ],
+    'kotwari-red-chilli-achar': [
+      'products/kotwari-pickles-red-chilli-achar-display.jpeg',
+      'products/kotwari-pickles-red-chilli-achar-jar.jpeg',
+      'products/kotwari-pickles-red-chilli-achar-angle.jpeg'
+    ],
+    'kotwari-yellow-mustard-oil': [
+      'products/kotwari-oils-wood-pressed-yellow-mustard-1l.jpeg',
+      'products/kotwari-oils-mustard-oil-bottle-detail.jpeg'
+    ],
+    'kotwari-black-mustard-oil': [
+      'products/kotwari-oils-wood-pressed-black-mustard-1l.jpeg'
+    ],
+    'kotwari-kachi-ghani-5l': [
+      'products/kotwari-oils-kachi-ghani-mustard-5l-canister.jpeg',
+      'products/kotwari-oils-kachi-ghani-mustard-5l-back.jpeg'
+    ]
+  };
+
+  // Build random list from ALL products on the website
+  const allIndexedProds = allProds.map((p, origIdx) => ({ p, origIdx }));
+  for(let i = allIndexedProds.length - 1; i > 0; i--){
+    const j = Math.floor(Math.random() * (i + 1));
+    [allIndexedProds[i], allIndexedProds[j]] = [allIndexedProds[j], allIndexedProds[i]];
+  }
+
+  // Select up to 16 diverse products (matching Netflix reference counter 01/16 and 05/16)
+  const targetCount = Math.min(16, allIndexedProds.length);
+  const usedImages = new Set();
+  const chosen = [];
+
+  for(const item of allIndexedProds){
+    if(chosen.length >= targetCount) break;
+    const p = item.p;
+    const rawPool = PRODUCT_IMAGES_POOL[p.id] || [p.detailImg, p.img].filter(Boolean);
+    
+    // Pick an image from the product's pool that has not been used in this rotation yet
+    const unusedPool = rawPool.filter(img => !usedImages.has(img));
+    let chosenImg = null;
+    if(unusedPool.length > 0){
+      chosenImg = unusedPool[Math.floor(Math.random() * unusedPool.length)];
+    } else if(rawPool.length > 0){
+      chosenImg = rawPool[Math.floor(Math.random() * rawPool.length)];
+    } else {
+      chosenImg = p.img || p.detailImg;
+    }
+
+    if(chosenImg){
+      usedImages.add(chosenImg);
+      chosen.push({
+        origIdx: item.origIdx,
+        product: p,
+        heroBg: chosenImg,
+        thumb: p.img || chosenImg
+      });
+    }
+  }
+
+  productHeroState.items = chosen;
+  productHeroState.container = container;
+  productHeroState.activeIdx = 0;
+  productHeroState.isPaused = false;
+
+  const total = chosen.length;
+  const pad2 = n => String(n).padStart(2, '0');
+
+  const slidesHtml = chosen.map((item, idx) => {
+    const p = item.product;
+    const catObj = categories().find(c => c[0] === p.category);
+    const catLabel = catObj ? catObj[1] : p.category.toUpperCase();
+    const isActive = idx === 0;
+
+    return `
+      <div class="nph-slide ${isActive ? 'active' : ''}" data-slide="${idx}" role="group" aria-roledescription="slide" aria-label="${escapeHTML(p.name)}">
+        <div class="nph-bg-wrap" onclick="location.href='${p.page}'" title="${escapeHTML(p.name)}">
+          <img class="nph-bg" src="${encodeURI(item.heroBg)}" alt="${escapeHTML(p.name)}" ${idx === 0 ? 'loading="eager"' : 'loading="lazy"'}>
+          <div class="nph-overlay-grad"></div>
+          <div class="nph-overlay-bottom"></div>
+          <div class="nph-overlay-top"></div>
+        </div>
+        <div class="nph-content-box">
+          <div class="nph-eyebrow">
+            <span class="nph-dash"></span>
+            <span class="nph-eyebrow-text">${t('Featured Collection','विशेष उत्पाद','مجموعة مختارة')}</span>
+            <span class="nph-eyebrow-tag">${catLabel}</span>
+          </div>
+          <h3 class="nph-title">
+            <a href="${p.page}">${escapeHTML(p.name)}</a>
+          </h3>
+          <div class="nph-meta-bar">
+            <span class="nph-rating"><span class="nph-rating-star">★</span> 4.9</span>
+            <span class="nph-meta-item">2026</span>
+            <span class="nph-meta-badge">${catLabel}</span>
+            ${p.halal ? `<span class="nph-meta-badge nph-meta-halal">✓ ${t('Halal Certified','हलाल प्रमाणित','حلال معتمد')}</span>` : ''}
+            ${p.badge ? `<span class="nph-meta-badge">${escapeHTML(p.badge)}</span>` : ''}
+            ${p.packs ? `<span class="nph-meta-item" style="opacity:0.85">${escapeHTML(p.packs).split('·')[0]}</span>` : ''}
+          </div>
+          <p class="nph-desc">${escapeHTML(p.desc || p.sub || '')}</p>
+          <div class="nph-actions">
+            <a href="${p.page}" class="nph-btn-primary" aria-label="${t('Explore','देखें','استكشف')} ${escapeHTML(p.name)}">
+              <svg class="nph-play-icon" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              <span>${t('Explore Product','उत्पाद देखें','استكشف المنتج')}</span>
+            </a>
+            <button type="button" class="nph-btn-secondary" onclick="openProductModal(${item.origIdx})" aria-label="${t('Quick specs for','त्वरित विवरण:','مواصفات سريعة:')} ${escapeHTML(p.name)}">
+              <svg class="nph-info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+              <span>${t('Quick Specs','त्वरित विवरण','المواصفات')}</span>
+            </button>
+            <a href="#partners" data-role="Distributor" data-product="${escapeHTML(p.name)}" class="nph-btn-icon" title="${t('Direct Enquiry / Distribution','वितरक पूछताछ','طلب توزيع مباشر')}">+</a>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  const nextItem = chosen[1 % total];
+  const nextCardHtml = `
+    <div class="nph-next-card" id="nph-next-card" role="button" aria-label="${t('Next Up','अगला','التالي')}">
+      <img class="nph-next-thumb" id="nph-next-thumb" src="${encodeURI(nextItem.thumb)}" alt="${escapeHTML(nextItem.product.name)}">
+      <div class="nph-next-meta">
+        <span class="nph-next-label">${t('Next Up ›','अगला ›','التالي ›')}</span>
+        <span class="nph-next-name" id="nph-next-name">${escapeHTML(nextItem.product.name)}</span>
+      </div>
+    </div>
+  `;
+
+  const dashesHtml = chosen.map((_, idx) => `
+    <button type="button" class="nph-dash-btn ${idx === 0 ? 'active' : ''}" data-dash="${idx}" aria-label="${t('Go to slide','स्लाइड पर जाएं','الانتقال للشريحة')} ${idx + 1}">
+      <span class="nph-dash-fill" style="width:0%"></span>
+    </button>
+  `).join('');
+
+  const navBarHtml = `
+    <div class="nph-nav-bar">
+      <div class="nph-counter">
+        <span class="nph-counter-current" id="nph-counter-current">01</span>
+        <span class="nph-counter-sep">/</span>
+        <span class="nph-counter-total">${pad2(total)}</span>
+      </div>
+      <div class="nph-timeline" id="nph-timeline" role="tablist">
+        ${dashesHtml}
+      </div>
+      <div class="nph-arrows">
+        <button type="button" class="nph-arrow" id="nph-prev-btn" aria-label="${t('Previous product','पिछला उत्पाद','المنتج السابق')}">‹</button>
+        <button type="button" class="nph-arrow" id="nph-next-btn" aria-label="${t('Next product','अगला उत्पाद','المنتج التالي')}">›</button>
+      </div>
+    </div>
+  `;
+
+  container.innerHTML = `
+    <div class="nph-slides" aria-live="off">${slidesHtml}</div>
+    ${nextCardHtml}
+    ${navBarHtml}
+  `;
+
+  function goToSlide(targetIdx){
+    const items = productHeroState.items;
+    if(!items.length) return;
+    const len = items.length;
+    const nextIdx = (targetIdx + len) % len;
+    productHeroState.activeIdx = nextIdx;
+
+    const slides = container.querySelectorAll('.nph-slide');
+    slides.forEach((sl, i) => {
+      if(i === nextIdx){
+        sl.classList.add('active');
+      } else {
+        sl.classList.remove('active');
+      }
+    });
+
+    const currentEl = container.querySelector('#nph-counter-current');
+    if(currentEl) currentEl.textContent = pad2(nextIdx + 1);
+
+    const dashBtns = container.querySelectorAll('.nph-dash-btn');
+    dashBtns.forEach((btn, i) => {
+      const fill = btn.querySelector('.nph-dash-fill');
+      if(i === nextIdx){
+        btn.classList.add('active');
+        btn.classList.remove('passed');
+        if(fill) fill.style.width = '0%';
+      } else if(i < nextIdx){
+        btn.classList.remove('active');
+        btn.classList.add('passed');
+        if(fill) fill.style.width = '100%';
+      } else {
+        btn.classList.remove('active');
+        btn.classList.remove('passed');
+        if(fill) fill.style.width = '0%';
+      }
+    });
+
+    const upcoming = items[(nextIdx + 1) % len];
+    const thumbEl = container.querySelector('#nph-next-thumb');
+    const nameEl = container.querySelector('#nph-next-name');
+    if(thumbEl) thumbEl.src = encodeURI(upcoming.thumb);
+    if(nameEl) nameEl.textContent = upcoming.product.name;
+
+    progress = 0;
+    lastTime = performance.now();
+  }
+
+  let progress = 0;
+  let lastTime = performance.now();
+  const DURATION = 6500;
+
+  function step(now){
+    const delta = now - lastTime;
+    lastTime = now;
+
+    if(!productHeroState.isPaused){
+      progress += (delta / DURATION) * 100;
+      if(progress >= 100){
+        goToSlide(productHeroState.activeIdx + 1);
+        progress = 0;
+      } else {
+        const activeDash = container.querySelector(`.nph-dash-btn[data-dash="${productHeroState.activeIdx}"] .nph-dash-fill`);
+        if(activeDash){
+          activeDash.style.width = `${progress}%`;
+        }
+      }
+    }
+    productHeroState.rafId = requestAnimationFrame(step);
+  }
+
+  productHeroState.rafId = requestAnimationFrame(step);
+
+  container.addEventListener('mouseenter', () => {
+    productHeroState.isPaused = true;
+  });
+  container.addEventListener('mouseleave', () => {
+    productHeroState.isPaused = false;
+    lastTime = performance.now();
+  });
+  container.addEventListener('focusin', () => {
+    productHeroState.isPaused = true;
+  });
+  container.addEventListener('focusout', () => {
+    productHeroState.isPaused = false;
+    lastTime = performance.now();
+  });
+
+  const prevBtn = container.querySelector('#nph-prev-btn');
+  const nextBtn = container.querySelector('#nph-next-btn');
+  const nextCard = container.querySelector('#nph-next-card');
+
+  if(prevBtn){
+    prevBtn.onclick = (e) => {
+      e.stopPropagation();
+      goToSlide(productHeroState.activeIdx - 1);
+    };
+  }
+  if(nextBtn){
+    nextBtn.onclick = (e) => {
+      e.stopPropagation();
+      goToSlide(productHeroState.activeIdx + 1);
+    };
+  }
+  if(nextCard){
+    nextCard.onclick = (e) => {
+      e.stopPropagation();
+      goToSlide(productHeroState.activeIdx + 1);
+    };
+  }
+
+  const timeline = container.querySelector('#nph-timeline');
+  if(timeline){
+    timeline.onclick = (e) => {
+      const dashBtn = e.target.closest('.nph-dash-btn');
+      if(dashBtn){
+        const dIdx = parseInt(dashBtn.dataset.dash, 10);
+        if(!isNaN(dIdx)){
+          goToSlide(dIdx);
+        }
+      }
+    };
+  }
+
+  let touchStartX = 0;
+  let touchStartY = 0;
+  container.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+    touchStartY = e.changedTouches[0].screenY;
+    productHeroState.isPaused = true;
+  }, {passive: true});
+
+  container.addEventListener('touchend', (e) => {
+    const touchEndX = e.changedTouches[0].screenX;
+    const touchEndY = e.changedTouches[0].screenY;
+    const diffX = touchEndX - touchStartX;
+    const diffY = touchEndY - touchStartY;
+    if(Math.abs(diffX) > 40 && Math.abs(diffX) > Math.abs(diffY)){
+      if(diffX < 0){
+        goToSlide(productHeroState.activeIdx + 1);
+      } else {
+        goToSlide(productHeroState.activeIdx - 1);
+      }
+    }
+    productHeroState.isPaused = false;
+    lastTime = performance.now();
+  }, {passive: true});
 }
 function openProductModal(idx){
   const p=productData()[idx];
