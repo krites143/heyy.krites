@@ -481,4 +481,134 @@
   // Immediate execution for fast direction setup
   KotwariI18n.init();
 
+  /* ==========================================================================
+     UNIVERSAL GOOGLE ANALYTICS 4 & EU/UK/SWISS COOKIE CONSENT ENGINE
+     ========================================================================== */
+  (function initAnalyticsAndConsent() {
+    var GA4_ID = window.KOTWARI_GA4_ID || 'G-XXXXXXXXXX';
+
+    // Google Tag initialization
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { window.dataLayer.push(arguments); }
+    window.gtag = gtag;
+
+    gtag('js', new Date());
+
+    function loadGtagScript() {
+      if (document.getElementById('kotwari-gtag-script')) return;
+      var s = document.createElement('script');
+      s.id = 'kotwari-gtag-script';
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA4_ID;
+      document.head.appendChild(s);
+      gtag('config', GA4_ID, {
+        'anonymize_ip': true,
+        'page_path': window.location.pathname
+      });
+
+      // Track conversion key event on thank-you confirmation page
+      if (window.location.pathname.indexOf('thank-you') !== -1) {
+        gtag('event', 'generate_lead', {
+          'event_category': 'form_submission',
+          'event_label': 'Partnership / Contact Enquiry Confirmation'
+        });
+      }
+    }
+
+    var consent = localStorage.getItem('kotwari_cookie_consent');
+
+    if (consent === 'granted') {
+      gtag('consent', 'default', {
+        'analytics_storage': 'granted',
+        'ad_storage': 'denied'
+      });
+      loadGtagScript();
+      return;
+    }
+
+    if (consent === 'denied') {
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied'
+      });
+      return;
+    }
+
+    // Default consent denied while awaiting user decision
+    gtag('consent', 'default', {
+      'analytics_storage': 'denied',
+      'ad_storage': 'denied'
+    });
+
+    // Check if visitor is in EU / UK / Switzerland by timezone
+    var tz = '';
+    try {
+      tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+    } catch (e) {}
+
+    var isEurope = /Europe|London|Berlin|Paris|Rome|Madrid|Amsterdam|Brussels|Vienna|Zurich|Warsaw|Dublin|Lisbon|Stockholm|Copenhagen|Helsinki|Athens/i.test(tz);
+
+    function createBanner() {
+      if (document.getElementById('kotwariCookieConsentBanner')) return;
+
+      var currentLang = getStoredLang();
+      var texts = {
+        en: {
+          msg: 'We use cookies and privacy-first analytics to measure website traffic and enhance your browsing experience. Read our <a href="privacy.html" style="color:#dfbf83;text-decoration:underline">Privacy Policy</a>.',
+          accept: 'Accept Analytics',
+          decline: 'Essential Only'
+        },
+        hi: {
+          msg: 'हम वेबसाइट ट्रैफ़िक को मापने और आपके अनुभव को बेहतर बनाने के लिए कुकीज़ और एनालिटिक्स का उपयोग करते हैं। हमारी <a href="privacy.html" style="color:#dfbf83;text-decoration:underline">गोपनीयता नीति</a> देखें।',
+          accept: 'स्वीकार करें',
+          decline: 'केवल आवश्यक'
+        },
+        ar: {
+          msg: 'نحن نستخدم ملفات تعريف الارتباط والتحليلات لقياس أداء الموقع وتحسين تجربتك. راجع <a href="privacy.html" style="color:#dfbf83;text-decoration:underline">سياسة الخصوصية</a>.',
+          accept: 'قبول التحليلات',
+          decline: 'الأساسية فقط'
+        }
+      };
+
+      var tObj = texts[currentLang] || texts.en;
+
+      var banner = document.createElement('div');
+      banner.id = 'kotwariCookieConsentBanner';
+      banner.setAttribute('role', 'region');
+      banner.setAttribute('aria-label', 'Cookie Consent');
+      banner.style.cssText = 'position:fixed;bottom:0;left:0;right:0;z-index:999999;background:rgba(9,40,64,0.96);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1.5px solid #bc944f;padding:14px 24px;color:#e2e8f0;font-family:"Plus Jakarta Sans",system-ui,sans-serif;font-size:0.88rem;box-shadow:0 -6px 24px rgba(0,0,0,0.3);display:flex;align-items:center;justify-content:center;gap:18px;flex-wrap:wrap;transition:transform 0.3s ease;';
+
+      banner.innerHTML = '<div style="max-width:760px;line-height:1.5;">' + tObj.msg + '</div>' +
+        '<div style="display:flex;gap:10px;align-items:center;">' +
+        '<button id="kotwariConsentAccept" type="button" style="background:#bc944f;color:#092840;border:none;border-radius:4px;padding:8px 18px;font-weight:700;font-size:0.84rem;cursor:pointer;transition:background 0.2s;">' + tObj.accept + '</button>' +
+        '<button id="kotwariConsentDecline" type="button" style="background:transparent;color:#dfbf83;border:1px solid rgba(223,191,131,0.6);border-radius:4px;padding:7px 14px;font-size:0.82rem;cursor:pointer;transition:all 0.2s;">' + tObj.decline + '</button>' +
+        '</div>';
+
+      document.body.appendChild(banner);
+
+      document.getElementById('kotwariConsentAccept').onclick = function() {
+        localStorage.setItem('kotwari_cookie_consent', 'granted');
+        gtag('consent', 'update', { 'analytics_storage': 'granted' });
+        loadGtagScript();
+        banner.remove();
+      };
+
+      document.getElementById('kotwariConsentDecline').onclick = function() {
+        localStorage.setItem('kotwari_cookie_consent', 'denied');
+        gtag('consent', 'update', { 'analytics_storage': 'denied' });
+        banner.remove();
+      };
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function() {
+        if (isEurope || !consent) { createBanner(); }
+        else { loadGtagScript(); }
+      });
+    } else {
+      if (isEurope || !consent) { createBanner(); }
+      else { loadGtagScript(); }
+    }
+  })();
+
 })();

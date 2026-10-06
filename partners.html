@@ -4,15 +4,26 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#092840">
-  <title>Partner With Kotwari | One Integrated Value Chain &mdash; Kotwari International</title>
-  <meta name="description" content="Partner with Kotwari International Ltd.: Farmers, FPOs, Distributors, Retailers, Franchisees, Logistics, Institutional Buyers and Investors. Connect with our corporate desk.">
+  <title>Partner With Us | Kotwari International</title>
+  <meta name="description" content="Join Kotwari International as a farmer, FPO, distributor, retail partner, or supplier across our integrated agricultural and food supply network.">
+  <!-- Canonical & Open Graph -->
   <link rel="canonical" href="https://www.kotwari.com/partners.html">
-  <meta property="og:type" content="business.business">
-  <meta property="og:title" content="Partner With Kotwari | Strategic Partnerships Across Agriculture & FMCG">
-  <meta property="og:description" content="Join India's emerging farmer-to-market-to-global ecosystem. Dynamic partnership onboarding for all value-chain stakeholders.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Kotwari International">
+  <meta property="og:title" content="Partner With Us | Kotwari International">
+  <meta property="og:description" content="Join Kotwari International as a farmer, FPO, distributor, retail partner, or supplier across our integrated agricultural and food supply network.">
   <meta property="og:url" content="https://www.kotwari.com/partners.html">
   <meta property="og:image" content="https://www.kotwari.com/og-image.jpg">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Partner With Us | Kotwari International">
+  <!-- Twitter / X Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Partner With Us | Kotwari International">
+  <meta name="twitter:description" content="Join Kotwari International as a farmer, FPO, distributor, retail partner, or supplier across our integrated agricultural and food supply network.">
+  <meta name="twitter:image" content="https://www.kotwari.com/og-image.jpg">
+  
+            <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="glass-dropdown.css">
@@ -405,6 +416,8 @@ html, body {
 
         <!-- The Form -->
         <form id="partnerForm" onsubmit="handleSubmit(event)">
+          <!-- Anti-spam honeypot field -->
+          <input type="text" name="_kotwari_hp" id="pHp" style="display:none!important;position:absolute!important;left:-9999px!important" tabindex="-1" autocomplete="off" aria-hidden="true">
           <input type="hidden" id="selectedRole" name="role" value="Farmer">
 
           <div class="form-row">
@@ -587,29 +600,70 @@ html, body {
 
   function handleSubmit(e) {
     e.preventDefault();
+    // 1. Anti-spam honeypot check
+    var hp = document.getElementById('pHp');
+    if (hp && hp.value) {
+      console.warn("Spam prevented via honeypot.");
+      return false;
+    }
+
+    // 2. Client rate-limit debounce (15 seconds)
+    var lastSub = localStorage.getItem('kotwari_partner_last_sub');
+    if (lastSub && (Date.now() - parseInt(lastSub, 10) < 15000)) {
+      showPartnerFeedback("Please wait a few seconds before submitting another inquiry.", true);
+      return false;
+    }
+
     const data = getFormData();
-    if (!data.name || !data.phone) {
-      showPartnerFeedback("Please enter your Full Name and Mobile Number.", true);
+    if (!data.name || data.name.length < 2) {
+      showPartnerFeedback("Please enter your full name (minimum 2 characters).", true);
       return;
     }
-    showPartnerFeedback("Opening WhatsApp to transmit your partnership inquiry...", false);
+    if (!data.phone || data.phone.length < 7) {
+      showPartnerFeedback("Please enter a valid mobile number (minimum 7 digits).", true);
+      return;
+    }
+
+    localStorage.setItem('kotwari_partner_last_sub', Date.now().toString());
+
+    showPartnerFeedback("Partnership inquiry prepared! Redirecting to confirmation page…", false);
     const text = `*New Partnership Inquiry - Kotwari International Ltd.*\n\n*Role:* ${data.role}\n*Name:* ${data.name}\n*Phone:* ${data.phone}\n*Location:* ${data.district}, ${data.state}\n*Capacity/Details:* ${data.detail}\n*Message:* ${data.msg}\n\n_Sent via official kotwari.com partners portal_`;
     
     const waUrl = "https://wa.me/919978648583?text=" + encodeURIComponent(text);
     window.open(waUrl, '_blank');
+
+    setTimeout(function() {
+      window.location.href = "thank-you.html";
+    }, 1200);
   }
 
   function prepareEmail() {
+    var hp = document.getElementById('pHp');
+    if (hp && hp.value) { return; }
+
+    var lastSub = localStorage.getItem('kotwari_partner_last_sub');
+    if (lastSub && (Date.now() - parseInt(lastSub, 10) < 15000)) {
+      showPartnerFeedback("Please wait a few seconds before submitting another inquiry.", true);
+      return;
+    }
+
     const data = getFormData();
     if (!data.name || !data.phone) {
       showPartnerFeedback("Please enter your Name and Mobile Number first before drafting email.", true);
       return;
     }
-    showPartnerFeedback("Preparing your partnership draft in default email client...", false);
+
+    localStorage.setItem('kotwari_partner_last_sub', Date.now().toString());
+
+    showPartnerFeedback("Preparing your partnership draft in default email client…", false);
     const subject = `Partnership Inquiry [${data.role}]: ${data.name} - ${data.district}`;
     const body = `Dear Kotwari Commercial Team,\n\nI wish to explore a partnership with Kotwari International Ltd.\n\nRole: ${data.role}\nFull Name: ${data.name}\nMobile: ${data.phone}\nLocation: ${data.district}, ${data.state}\nOperational Capacity: ${data.detail}\n\nMessage:\n${data.msg}\n\nSincerely,\n${data.name}`;
     
     location.href = `mailto:kotwarigroup18@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+    setTimeout(function() {
+      window.location.href = "thank-you.html";
+    }, 1500);
   }
 </script>
 

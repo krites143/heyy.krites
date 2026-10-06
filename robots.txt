@@ -1,11 +1,18 @@
 User-agent: *
 Allow: /
 
-# Block any future portal/admin areas from indexing
+# Block utility and conversion confirmation pages from indexing
+Disallow: /thank-you.html
+Disallow: /thank-you
+Disallow: /404.html
+Disallow: /404
+
+# Block internal portal and admin areas
 Disallow: /farmer/
 Disallow: /fpo/
 Disallow: /distributor/
 Disallow: /admin/
 Disallow: /login/
 
+# Official Sitemap location
 Sitemap: https://www.kotwari.com/sitemap.xml

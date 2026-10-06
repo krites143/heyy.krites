@@ -4,15 +4,26 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#092840">
-  <title>Contact Us | Kotwari International Ltd. &mdash; Lucknow Headquarters</title>
-  <meta name="description" content="Contact Kotwari International Ltd. at Kotwari House, Kursi Road, Lucknow. Reach our Farmer, Distributor, Export, Dairy, and Media desks directly.">
+  <title>Contact Us | Kotwari International</title>
+  <meta name="description" content="Get in touch with Kotwari International headquarters in Lucknow, Uttar Pradesh. Connect with our corporate, partnership, and trade desks.">
+  <!-- Canonical & Open Graph -->
   <link rel="canonical" href="https://www.kotwari.com/contact.html">
-  <meta property="og:type" content="business.business">
-  <meta property="og:title" content="Contact Kotwari International Ltd. | Official Corporate Desk">
-  <meta property="og:description" content="Get in touch with Kotwari International: Corporate HQ Lucknow, Farmer helpline, trade distribution, export desk, and investor relations.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Kotwari International">
+  <meta property="og:title" content="Contact Us | Kotwari International">
+  <meta property="og:description" content="Get in touch with Kotwari International headquarters in Lucknow, Uttar Pradesh. Connect with our corporate, partnership, and trade desks.">
   <meta property="og:url" content="https://www.kotwari.com/contact.html">
   <meta property="og:image" content="https://www.kotwari.com/og-image.jpg">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Contact Us | Kotwari International">
+  <!-- Twitter / X Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Contact Us | Kotwari International">
+  <meta name="twitter:description" content="Get in touch with Kotwari International headquarters in Lucknow, Uttar Pradesh. Connect with our corporate, partnership, and trade desks.">
+  <meta name="twitter:image" content="https://www.kotwari.com/og-image.jpg">
+  
+            <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="glass-dropdown.css">
@@ -408,6 +419,8 @@ html, body {
         <p style="font-size:.85rem;color:var(--muted);margin-bottom:20px">Our corporate communication team responds within 24 business hours.</p>
 
         <form id="contactForm" onsubmit="handleContactSubmit(event)">
+          <!-- Anti-spam honeypot field -->
+          <input type="text" name="_kotwari_hp" id="cHp" style="display:none!important;position:absolute!important;left:-9999px!important" tabindex="-1" autocomplete="off" aria-hidden="true">
           <div class="form-row">
             <div class="form-group">
               <label for="cName">Your Name *</label>
@@ -509,15 +522,54 @@ html, body {
 <script>
   function handleContactSubmit(e) {
     e.preventDefault();
-    const name = document.getElementById('cName').value.trim();
-    const phone = document.getElementById('cPhone').value.trim();
-    const email = document.getElementById('cEmail').value.trim();
-    const dept = document.getElementById('cDept').value;
-    const msg = document.getElementById('cMessage').value.trim();
+    // 1. Honeypot anti-spam trap check
+    var hp = document.getElementById('cHp');
+    if (hp && hp.value) {
+      console.warn("Spam attempt prevented via honeypot.");
+      return false;
+    }
 
-    const text = `*New Corporate Contact Enquiry - Kotwari International Ltd.*\n\n*Department:* ${dept}\n*Name:* ${name}\n*Phone:* ${phone}\n*Email:* ${email || 'N/A'}\n*Message:* ${msg}\n\n_Sent via official kotwari.com contact page_`;
+    // 2. Client-side rate limiting (15-second debounce)
+    var lastSub = localStorage.getItem('kotwari_contact_last_sub');
+    if (lastSub && (Date.now() - parseInt(lastSub, 10) < 15000)) {
+      showFeedback("Please wait a few seconds before submitting another enquiry.", true);
+      return false;
+    }
+
+    var name = document.getElementById('cName').value.trim();
+    var phone = document.getElementById('cPhone').value.trim();
+    var email = document.getElementById('cEmail').value.trim();
+    var dept = document.getElementById('cDept').value;
+    var msg = document.getElementById('cMessage').value.trim();
+
+    // 3. Strict field validation
+    if (name.length < 2) {
+      showFeedback("Please enter your full name (minimum 2 characters).", true);
+      return false;
+    }
+    if (phone.length < 7) {
+      showFeedback("Please enter a valid phone number (minimum 7 digits).", true);
+      return false;
+    }
+    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      showFeedback("Please enter a valid email address.", true);
+      return false;
+    }
+    if (msg.length < 5) {
+      showFeedback("Please provide specific details in your message (minimum 5 characters).", true);
+      return false;
+    }
+
+    localStorage.setItem('kotwari_contact_last_sub', Date.now().toString());
+
+    var text = `*New Corporate Contact Enquiry - Kotwari International Ltd.*\n\n*Department:* ${dept}\n*Name:* ${name}\n*Phone:* ${phone}\n*Email:* ${email || 'N/A'}\n*Message:* ${msg}\n\n_Sent via official kotwari.com contact page_`;
     
     window.open("https://wa.me/919978648583?text=" + encodeURIComponent(text), '_blank');
+    showFeedback("Enquiry prepared successfully! Redirecting to confirmation page…", false);
+    
+    setTimeout(function() {
+      window.location.href = "thank-you.html";
+    }, 1200);
   }
 
   function showFeedback(msg, isError) {
@@ -532,20 +584,34 @@ html, body {
   }
 
   function sendContactEmail() {
-    const name = document.getElementById('cName').value.trim();
-    const phone = document.getElementById('cPhone').value.trim();
-    const dept = document.getElementById('cDept').value;
-    const msg = document.getElementById('cMessage').value.trim();
+    var hp = document.getElementById('cHp');
+    if (hp && hp.value) { return; }
+
+    var lastSub = localStorage.getItem('kotwari_contact_last_sub');
+    if (lastSub && (Date.now() - parseInt(lastSub, 10) < 15000)) {
+      showFeedback("Please wait a few seconds before submitting another enquiry.", true);
+      return;
+    }
+
+    var name = document.getElementById('cName').value.trim();
+    var phone = document.getElementById('cPhone').value.trim();
+    var dept = document.getElementById('cDept').value;
+    var msg = document.getElementById('cMessage').value.trim();
 
     if (!name || !phone || !msg) {
       showFeedback("Please fill your Name, Phone, and Message first.", true);
       return;
     }
 
-    showFeedback("Opening default email client with your message...", false);
-    const subject = `Official Enquiry [${dept}]: ${name}`;
-    const body = `Dear Kotwari Team,\n\nName: ${name}\nPhone: ${phone}\nDepartment: ${dept}\n\nMessage:\n${msg}\n\nSincerely,\n${name}`;
+    localStorage.setItem('kotwari_contact_last_sub', Date.now().toString());
+    showFeedback("Opening default email client with your message…", false);
+    var subject = `Official Enquiry [${dept}]: ${name}`;
+    var body = `Dear Kotwari Team,\n\nName: ${name}\nPhone: ${phone}\nDepartment: ${dept}\n\nMessage:\n${msg}\n\nSincerely,\n${name}`;
     location.href = `mailto:kotwarigroup18@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    
+    setTimeout(function() {
+      window.location.href = "thank-you.html";
+    }, 1500);
   }
 </script>
 

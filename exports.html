@@ -4,14 +4,26 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#092840">
-  <title>Kotwari Global &mdash; Export Vision | Gao Se Global Tak</title>
-  <meta name="description" content="Explore Kotwari Global's export vision connecting India's premium farm produce, eggs, KooA water, basmati rice, spices and staples to the UAE, GCC, Asia and international markets.">
+  <title>Global Exports | Kotwari International</title>
+  <meta name="description" content="Kotwari Global Trade Desk connects authentic Indian agricultural commodities, spices, rice, and packaged foods with GCC, UAE, and international markets.">
+  <!-- Canonical & Open Graph -->
   <link rel="canonical" href="https://www.kotwari.com/exports.html">
-  <meta property="og:title" content="Kotwari Global &mdash; Export Vision | Gao Se Global Tak">
-  <meta property="og:description" content="Connecting rural India's agricultural production, eggs, KooA mineral water, spices and staples to international trade corridors.">
-  <meta property="og:image" content="og-image.jpg">
   <meta property="og:type" content="website">
-
+  <meta property="og:site_name" content="Kotwari International">
+  <meta property="og:title" content="Global Exports | Kotwari International">
+  <meta property="og:description" content="Kotwari Global Trade Desk connects authentic Indian agricultural commodities, spices, rice, and packaged foods with GCC, UAE, and international markets.">
+  <meta property="og:url" content="https://www.kotwari.com/exports.html">
+  <meta property="og:image" content="https://www.kotwari.com/products/kotwari-retail-hypermarket-formats-poster.jpeg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Global Exports | Kotwari International">
+  <!-- Twitter / X Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Global Exports | Kotwari International">
+  <meta name="twitter:description" content="Kotwari Global Trade Desk connects authentic Indian agricultural commodities, spices, rice, and packaged foods with GCC, UAE, and international markets.">
+  <meta name="twitter:image" content="https://www.kotwari.com/products/kotwari-retail-hypermarket-formats-poster.jpeg">
+  
+        
   <!-- Favicons -->
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
@@ -1494,6 +1506,8 @@ html, body {
       <div class="form-box">
         <h3 style="margin-bottom:16px">Export Quotation &amp; Specification Request</h3>
         <form id="exportForm">
+          <!-- Anti-spam honeypot field -->
+          <input type="text" name="_kotwari_hp" id="eHp" style="display:none!important;position:absolute!important;left:-9999px!important" tabindex="-1" autocomplete="off" aria-hidden="true">
           <div class="form-grid">
             <div class="form-group">
               <label for="companyName">Company / Importer Name *</label>
@@ -1829,27 +1843,61 @@ function initCounters(){
       document.getElementById('enquiry').scrollIntoView({ behavior: 'smooth' });
     }
 
-    // Export Form Submission to WhatsApp / Email
+    // Export Form Submission to WhatsApp / Email with anti-spam & redirect
     const exportForm = document.getElementById('exportForm');
     if (exportForm) {
       exportForm.addEventListener('submit', function(e) {
         e.preventDefault();
+
+        // 1. Anti-spam honeypot check
+        const hp = document.getElementById('eHp');
+        if (hp && hp.value) {
+          console.warn('Spam prevented via honeypot.');
+          return false;
+        }
+
+        // 2. Client rate-limit debounce (15 seconds)
+        const lastSub = localStorage.getItem('kotwari_export_last_sub');
+        if (lastSub && (Date.now() - parseInt(lastSub, 10) < 15000)) {
+          const status = document.getElementById('formStatus');
+          if (status) {
+            status.style.color = '#dc2626';
+            status.textContent = 'Please wait a few seconds before submitting another enquiry.';
+          }
+          return false;
+        }
+
         const f = new FormData(exportForm);
+        const company = (f.get('company') || '').trim();
+        const person = (f.get('person') || '').trim();
+        const phone = (f.get('phone') || '').trim();
+
+        if (company.length < 2 || person.length < 2 || phone.length < 7) {
+          const status = document.getElementById('formStatus');
+          if (status) {
+            status.style.color = '#dc2626';
+            status.textContent = 'Please fill out all required fields with valid details.';
+          }
+          return false;
+        }
+
+        localStorage.setItem('kotwari_export_last_sub', Date.now().toString());
+
         const submitter = e.submitter ? e.submitter.value : 'whatsapp';
 
         const body = `Hello Kotwari Global Trade Desk,\n\n` +
           `Export Enquiry:\n` +
-          `Company: ${f.get('company')}\n` +
-          `Contact Person: ${f.get('person')}\n` +
+          `Company: ${company}\n` +
+          `Contact Person: ${person}\n` +
           `Destination Port: ${f.get('destination')}\n` +
-          `Phone: ${f.get('phone')}\n` +
+          `Phone: ${phone}\n` +
           `Commodity: ${f.get('product')}\n` +
           `Volume: ${f.get('volume')}\n` +
           `Requirements: ${f.get('message') || 'Please share product specifications, FOB/CIF pricing and MOQs.'}`;
 
         const isEmail = submitter === 'email';
         const url = isEmail
-          ? 'mailto:kotwarigroup18@gmail.com?subject=' + encodeURIComponent('Kotwari Export Inquiry - ' + f.get('company')) + '&body=' + encodeURIComponent(body)
+          ? 'mailto:kotwarigroup18@gmail.com?subject=' + encodeURIComponent('Kotwari Export Inquiry - ' + company) + '&body=' + encodeURIComponent(body)
           : 'https://wa.me/919978648583?text=' + encodeURIComponent(body);
 
         if (isEmail) {
@@ -1866,8 +1914,13 @@ function initCounters(){
 
         const status = document.getElementById('formStatus');
         if (status) {
-          status.textContent = 'Opening your enquiry draft in ' + (isEmail ? 'email' : 'WhatsApp') + '… Please review and press Send.';
+          status.style.color = '#15803d';
+          status.textContent = 'Opening your enquiry draft in ' + (isEmail ? 'email' : 'WhatsApp') + '… Redirecting to confirmation page…';
         }
+
+        setTimeout(function() {
+          window.location.href = 'thank-you.html';
+        }, 1200);
       });
     }
 
