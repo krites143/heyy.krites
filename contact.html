@@ -369,7 +369,7 @@ html, body {
 
         <div class="card" style="background:#fdfcf9;margin-bottom:24px">
           <div class="contact-item">
-            <span>📍</span>
+            
             <div>
               <strong>Address:</strong>
               <address style="font-style:normal;color:var(--muted);font-size:.9rem">
@@ -382,7 +382,7 @@ html, body {
           </div>
 
           <div class="contact-item">
-            <span>📞</span>
+            
             <div>
               <strong>Helpline / Phone:</strong>
               <a href="tel:+919978648583" style="color:var(--navy);text-decoration:none">+91 99786 48583</a>
@@ -390,7 +390,7 @@ html, body {
           </div>
 
           <div class="contact-item">
-            <span>✉️</span>
+            
             <div>
               <strong>Email Address:</strong>
               <a href="mailto:kotwarigroup18@gmail.com" style="color:var(--navy);text-decoration:none">kotwarigroup18@gmail.com</a>
@@ -398,7 +398,7 @@ html, body {
           </div>
 
           <div class="contact-item">
-            <span>🌐</span>
+            
             <div>
               <strong>Official Web:</strong>
               <a href="https://www.kotwari.com" target="_blank" rel="noopener noreferrer" style="color:var(--navy);text-decoration:none">www.kotwari.com</a>
@@ -407,7 +407,7 @@ html, body {
 
           <div style="margin-top:20px">
             <a class="btn btn-outline" href="https://www.google.com/maps/search/?api=1&query=Kotwari%20House%20Jankipuram%20III%20Kursi%20Road%20Lucknow%20226021" target="_blank" rel="noopener noreferrer" style="width:100%;text-align:center">
-              📍 Find Address on Google Maps &rarr;
+              Find Address on Google Maps &rarr;
             </a>
           </div>
         </div>
@@ -458,10 +458,10 @@ html, body {
 
           <div style="display:flex;gap:12px;flex-wrap:wrap">
             <button type="submit" class="btn btn-gold" style="flex:1">
-              📱 Send via WhatsApp &rarr;
+              Send via WhatsApp &rarr;
             </button>
             <button type="button" class="btn btn-outline" onclick="sendContactEmail()">
-              ✉️ Send via Email
+              Send via Email
             </button>
           </div>
           <div id="contactFeedback" style="display:none;padding:12px 16px;border-radius:6px;margin-top:14px;font-size:0.88rem;font-weight:600"></div>
@@ -579,7 +579,7 @@ html, body {
       fb.style.background = isError ? '#fef2f2' : '#f0fdf4';
       fb.style.color = isError ? '#b91c1c' : '#15803d';
       fb.style.border = isError ? '1px solid #fecaca' : '1px solid #bbf7d0';
-      fb.innerHTML = (isError ? '⚠️ ' : '✅ ') + msg;
+      fb.innerHTML = (isError ? 'Notice: ' : 'Success: ') + msg;
     }
   }
 
