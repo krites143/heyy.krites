@@ -258,6 +258,7 @@ footer{padding:54px 0 25px;background:#062034;color:#d2dce4}
 }
 </style>
   <link rel="stylesheet" href="glass-dropdown.css">
+  <link rel="stylesheet" href="kotwari-components.css">
 </head>
 <body>
 <div id="scrollProgress" aria-hidden="true"></div>
@@ -280,6 +281,7 @@ footer{padding:54px 0 25px;background:#062034;color:#d2dce4}
       <span></span><span></span><span></span>
     </button>
     <nav class="header-nav" id="mainNav">
+      <button type="button" class="header-search-btn" onclick="openKotwariSearch()" aria-label="Search Catalog">Search <kbd>Ctrl K</kbd></button>
       <a class="btn-home" href="index.html">&#8962; Home</a>
       <a href="fmcg.html">FMCG</a>
       <a href="dairy.html">Dairy</a>
@@ -336,7 +338,7 @@ footer{padding:54px 0 25px;background:#062034;color:#d2dce4}
 
         <div class="packs-box">
           <h4>Available Pack Sizes &amp; Formats</h4>
-          <p>&#128230; 500ml Airtight Tub · 1 Litre Tin · 5 Litre Jar</p>
+          <p>&#128230; 500ml Airtight Tub  1 Litre Tin  5 Litre Jar</p>
         </div>
 
         <table class="specs-table">
@@ -654,5 +656,6 @@ initCounters();
 <button id="backToTop" class="back-to-top" aria-label="Back to top" title="Back to top" type="button">&uarr;</button>
 <script src="glass-dropdown.js"></script>
 <script src="kotwari-lang.js"></script>
+  <script src="kotwari-components.js"></script>
 </body>
 </html>

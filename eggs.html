@@ -34,6 +34,33 @@
   <link rel="manifest" href="site.webmanifest">
   <link rel="stylesheet" href="glass-dropdown.css">
 
+  <!-- Schema.org JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Kotwari Arabian Collection Eggs",
+    "image": "https://www.kotwari.com/products/kotwari-eggs-arabian-collection-12pack.jpeg",
+    "description": "Farm-fresh table eggs sourced from bio-secure layer farms. Electronically sorted, candled, UV-sanitized, and packed into shock-proof pulp cartons within 24 hours of lay.",
+    "brand": {
+      "@type": "Brand",
+      "name": "Kotwari"
+    },
+    "offers": {
+      "@type": "AggregateOffer",
+      "priceCurrency": "INR",
+      "lowPrice": "49",
+      "highPrice": "199",
+      "offerCount": "3",
+      "availability": "https://schema.org/InStock",
+      "seller": {
+        "@type": "Organization",
+        "name": "Kotwari International Ltd."
+      }
+    }
+  }
+  </script>
+
   <style>
     :root {
       --navy: #092840;
@@ -1056,6 +1083,7 @@
       .farm-tour-banner { flex-direction: column; text-align: center; }
     }
   </style>
+  <link rel="stylesheet" href="kotwari-components.css">
 </head>
 <body>
 <div id="scrollProgress" aria-hidden="true"></div>
@@ -1071,6 +1099,7 @@
     </a>
     
     <nav>
+      <button type="button" class="header-search-btn" onclick="openKotwariSearch()" aria-label="Search Catalog">Search <kbd>Ctrl K</kbd></button>
       <a href="index.html">&#8962; Home</a>
       <a href="#comparison">Brown vs White</a>
       <a href="#packs">Pick Your Pack</a>
@@ -1406,6 +1435,45 @@
     </div>
   </section>
 
+  <!-- 4-STEP COLD CHAIN & TRACEABILITY JOURNEY -->
+  <section class="traceability-section" id="traceability">
+    <div class="wrap">
+      <div class="section-header">
+        <span class="section-eyebrow">QUALITY VERIFICATION</span>
+        <h2 class="section-title">From Village Nest to Urban Table</h2>
+        <p class="section-sub">
+          A four-stage monitored cold chain system delivering superior yolk firmness, zero cracked shells, and verified freshness.
+        </p>
+      </div>
+
+      <div class="traceability-grid">
+        <div class="traceability-card">
+          <span class="trace-step-badge">Stage 01</span>
+          <h4>Bio-Secure Laying</h4>
+          <p>Laid in automated climate-controlled coops by hens nourished with veterinarian-balanced maize and natural calcium.</p>
+        </div>
+
+        <div class="traceability-card">
+          <span class="trace-step-badge">Stage 02</span>
+          <h4>Electronic Candling</h4>
+          <p>High-speed optical candling screens out hairline cracks and validates dense, high-standing yolk centers.</p>
+        </div>
+
+        <div class="traceability-card">
+          <span class="trace-step-badge">Stage 03</span>
+          <h4>UV Sanitization &amp; Pack</h4>
+          <p>Microbial surface sanitization without chemical washes, immediately sealed into shock-absorbing molded pulp trays.</p>
+        </div>
+
+        <div class="traceability-card">
+          <span class="trace-step-badge">Stage 04</span>
+          <h4>24-Hour Cold Fleet</h4>
+          <p>Temperature-logged dispatch fleet distributes directly to partner retail points, eliminating urban middleman storage.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ==========================================================================
        SECTION 6: POULTRY FARMER EARNINGS CALCULATOR (B2B DESK)
        ========================================================================== -->
@@ -1731,5 +1799,6 @@ function selectPackType(type) {
 </script>
 <script src="glass-dropdown.js"></script>
 <script src="kotwari-lang.js"></script>
+  <script src="kotwari-components.js"></script>
 </body>
 </html>
