@@ -1704,6 +1704,258 @@ form select option{
     font-size:1.35rem;
   }
 }
+
+/* ========================================================
+   SECRET GITHUB REPOS FOR CLAUDE SECTION
+   Editorial Cream, Subtle Grid, Red Accents, White Cards
+   ======================================================== */
+.claude-repos-section {
+  background-color: #F8F5EE !important;
+  color: #141413 !important;
+  position: relative;
+  padding: 80px 0 !important;
+  border-top: 1px solid rgba(30, 28, 24, 0.08);
+  border-bottom: 1px solid rgba(30, 28, 24, 0.08);
+  background-image: 
+    linear-gradient(to right, rgba(26, 26, 24, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(26, 26, 24, 0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+.claude-repos-section .hero-badge-editorial {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  background: #FFFFFF;
+  border: 1px solid rgba(30, 28, 24, 0.1);
+  border-radius: 9999px;
+  font-family: 'Fira Code', 'Courier New', monospace;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #141413;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+.claude-repos-section .red-pulse-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #E50914;
+  border-radius: 50%;
+  box-shadow: 0 0 0 0 rgba(229, 9, 20, 0.6);
+  animation: pulseRedDot 2s infinite;
+}
+@keyframes pulseRedDot {
+  0% { box-shadow: 0 0 0 0 rgba(229, 9, 20, 0.6); }
+  70% { box-shadow: 0 0 0 7px rgba(229, 9, 20, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(229, 9, 20, 0); }
+}
+.claude-repos-section h2.editorial-heading {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 800;
+  color: #141413;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin-bottom: 14px;
+}
+.claude-repos-section h2.editorial-heading span {
+  color: #E50914;
+}
+.claude-repos-section p.editorial-subtitle {
+  font-size: 1.05rem;
+  color: #5E5B53;
+  max-width: 720px;
+  margin-bottom: 32px;
+  line-height: 1.6;
+}
+.claude-home-slider-wrap {
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 40px;
+  padding: 10px 4px 20px;
+}
+.claude-home-slider-track {
+  display: flex;
+  gap: 24px;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.claude-home-card {
+  flex: 0 0 calc(33.333% - 16px);
+  min-width: 320px;
+  background: #FFFFFF;
+  border: 1px solid rgba(30, 28, 24, 0.09);
+  border-radius: 20px;
+  padding: 32px 28px 24px;
+  box-shadow: 0 10px 30px -4px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.26s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+@media (max-width: 1024px) {
+  .claude-home-card { flex: 0 0 calc(50% - 12px); min-width: 280px; }
+}
+@media (max-width: 680px) {
+  .claude-home-card { flex: 0 0 100%; min-width: 250px; }
+}
+.claude-home-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(229, 9, 20, 0.3);
+  box-shadow: 0 24px 48px -8px rgba(229, 9, 20, 0.12), 0 8px 18px -4px rgba(0, 0, 0, 0.06);
+}
+.claude-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+.claude-number-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 12px;
+  background: #E50914;
+  color: #FFFFFF;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.82rem;
+  font-weight: 700;
+  border-radius: 9999px;
+  box-shadow: 0 4px 10px rgba(229, 9, 20, 0.28);
+}
+.claude-card-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: #141413;
+  margin-bottom: 6px;
+  letter-spacing: -0.015em;
+}
+.claude-card-tagline {
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: #E50914;
+  margin-bottom: 10px;
+}
+.claude-card-desc {
+  font-size: 0.88rem;
+  color: #5E5B53;
+  line-height: 1.55;
+  margin-bottom: 22px;
+  flex-grow: 1;
+}
+.claude-card-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(30, 28, 24, 0.08);
+}
+.claude-btn-gh {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 40px;
+  background: #E50914;
+  color: #FFFFFF;
+  border-radius: 9999px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+.claude-btn-gh:hover {
+  background: #C20710;
+  color: #FFFFFF;
+  box-shadow: 0 6px 14px rgba(229, 9, 20, 0.3);
+}
+.claude-btn-copy {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  border: 1.5px solid rgba(30, 28, 24, 0.12);
+  color: #5E5B53;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+.claude-btn-copy:hover {
+  background: #F2EEE3;
+  color: #141413;
+  border-color: #141413;
+}
+.claude-two-column-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px 24px;
+  background: #FFFFFF;
+  border: 1px solid rgba(30, 28, 24, 0.08);
+  border-radius: 20px;
+  padding: 36px 32px;
+  box-shadow: 0 10px 30px -4px rgba(0, 0, 0, 0.05);
+  margin-top: 36px;
+}
+@media (max-width: 900px) {
+  .claude-two-column-list { grid-template-columns: 1fr; padding: 24px 18px; }
+}
+.claude-compact-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 14px 18px;
+  background: #F8F5EE;
+  border: 1px solid rgba(30, 28, 24, 0.08);
+  border-radius: 12px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+.claude-compact-item:hover {
+  background: #FFFFFF;
+  border-color: rgba(229, 9, 20, 0.3);
+  transform: translateX(4px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.04);
+}
+.claude-compact-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 700;
+  font-size: 1rem;
+  color: #141413;
+}
+.claude-compact-tag {
+  font-size: 0.78rem;
+  color: #5E5B53;
+}
+.claude-toast {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: #141413;
+  color: #FFFFFF;
+  padding: 12px 24px;
+  border-radius: 9999px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.claude-toast.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
 </style>
 </head>
 
@@ -2278,7 +2530,7 @@ function render(){const l=labels();document.documentElement.lang=language;docume
 $('#app').innerHTML=`
 <a class="skip" href="#main">${t('Skip to content','मुख्य सामग्री पर जाएं','انتقل إلى المحتوى')}</a>
 <div class="topbar"><div class="wrap"><span class="topbar-brand"><span class="topbar-dot" aria-hidden="true">&#10022;</span> <strong>Kotwari International Ltd.</strong> <span class="topbar-tagline">&mdash; Gao Se Global Tak</span></span><span class="topbar-motto"><span class="topbar-icon" aria-hidden="true">&#127793;</span> ${t('Rooted in Villages &middot; Connecting to the World','गांव की जड़ों से जुड़ा &middot; दुनिया की ओर बढ़ता','جذورنا في القرى &middot; وطموحنا نحو العالم')}</span></div></div>
-<header><div class="wrap header-row">${brand()}<nav id="navigation" class="nav" aria-label="${t('Main navigation','मुख्य नेविगेशन','التنقل الرئيسي')}"><a href="#home" class="nav-link active" aria-current="page">${t('Home','होम','الرئيسية')}</a><div class="nav-item-dropdown" id="nav-dropdown-collection"><button type="button" class="nav-pill-btn" aria-expanded="false" aria-haspopup="true" id="nav-collection-btn"><span>${t('Collection','कलेक्शन','المجموعات')}</span><span class="nav-chevron" aria-hidden="true">▾</span></button><div class="glass-mega-dropdown" role="menu" aria-labelledby="nav-collection-btn"><div class="glass-mega-header"><div class="glass-mega-title">${t('Collection','कलेक्शन','المجموعات')}</div><p class="glass-mega-subtitle">${t('Find your next favourite from Gao Se Global Tak.','गांव से ग्लोबल तक — अपनी पसंद का उत्पाद चुनें।','اختر منتجك المفضل من القرية إلى العالم.')}</p></div><div class="glass-mega-grid"><div class="glass-mega-col"><div class="glass-mega-col-title">${t('Staples & Grains','अनाज व स्टेपल्स','الحبوب والأساسيات')}</div><div class="glass-mega-col-links"><a href="product-kotwari-basmati-rice.html" class="glass-mega-link"> Himalayan Basmati Rice</a><a href="product-kotwari-chana-sattu.html" class="glass-mega-link"><span></span> Traditional Chana Sattu</a><a href="#products" class="glass-mega-link"><span></span> Desi Makka &amp; Wheat</a><a href="#products" class="glass-mega-link"><span></span> Farmstead Pulses &amp; Dal</a></div></div><div class="glass-mega-col"><div class="glass-mega-col-title">${t('Pure Dairy & Eggs','शुद्ध डेयरी व अंडे','الألبان والبيض')}</div><div class="glass-mega-col-links"><a href="product-kotwari-deshi-ghee.html" class="glass-mega-link"><span></span> Deshi Danedar Ghee</a><a href="product-kooa-arabian-dahi.html" class="glass-mega-link"><span></span> Thick Arabian Dahi</a><a href="product-kotwari-rose-gold-lassi.html" class="glass-mega-link"><span></span> Royal Rose Gold Lassi</a><a href="product-kooa-white-gold-milk.html" class="glass-mega-link"><span></span> Pure White Gold Milk</a><a href="product-kotwari-eggs.html" class="glass-mega-link"><span></span> Farm Fresh Table Eggs</a></div></div><div class="glass-mega-col"><div class="glass-mega-col-title">${t('Spices & Heritage','मसाले व विरासत','التوابل والتراث')}</div><div class="glass-mega-col-links"><a href="product-kotwari-himalayan-haldi.html" class="glass-mega-link"><span></span> Himalayan Haldi (Curcumin)</a><a href="product-kotwari-garam-masala.html" class="glass-mega-link"><span>️</span> Desi Shahi Garam Masala</a><a href="product-kotwari-kashmiri-red-chilli.html" class="glass-mega-link"><span></span> Kashmiri &amp; Red Chilli</a><a href="product-kotwari-desi-garlic.html" class="glass-mega-link"><span></span> Desi Garlic &amp; Ginger</a><a href="product-kotwari-red-chilli-achar.html" class="glass-mega-link"><span></span> Traditional Red Chilli Achar</a></div></div><div class="glass-mega-col"><div class="glass-mega-col-title">${t('Beverages & Superfoods','पेय व सुपरफूड्स','المشروبات والأغذية')}</div><div class="glass-mega-col-links"><a href="product-kooa-mineral-water.html" class="glass-mega-link"><span>️</span> KooA Mineral Water</a><a href="product-kotwari-mix-fruits-juice.html" class="glass-mega-link"><span></span> Orchard Mix Fruits Juice</a><a href="product-kotwari-mithla-makhana.html" class="glass-mega-link"><span></span> Mithila Roasted Makhana</a><a href="product-kotwari-medjool-dates.html" class="glass-mega-link"><span></span> Royal Medjool Dates</a><a href="product-kotwari-yellow-mustard-oil.html" class="glass-mega-link"><span></span> Wood-Pressed Mustard Oil</a></div></div></div><div class="glass-mega-footer"><span> ${t('Over 70+ authentic FMCG products','70+ से अधिक सत्यापित FMCG उत्पाद','أكثر من 70 منتجاً معتمداً')}</span><a href="#products" class="glass-mega-viewall">${t('View All 70+ Products →','सभी 70+ उत्पाद देखें →','عرض جميع المنتجات الـ 70+ ←')}</a></div></div></div><div class="nav-item-dropdown" id="nav-dropdown-businesses"><button type="button" class="nav-pill-btn" aria-expanded="false" aria-haspopup="true" id="nav-businesses-btn"><span>${t('Businesses','व्यवसाय','الأعمال')}</span><span class="nav-chevron" aria-hidden="true">▾</span></button><div class="glass-mega-dropdown" role="menu" aria-labelledby="nav-businesses-btn"><div class="glass-mega-header"><div class="glass-mega-title">${t('Businesses','व्यवसाय','الأعمال')}</div><p class="glass-mega-subtitle">${t('Connecting rural production, modern processing, brands and global retail.','ग्रामीण उत्पादन, आधुनिक प्रोसेसिंग और वैश्विक रिटेल को जोड़ते व्यवसाय।','ربط الإنتاج القروي والمعالجة الحديثة والتجزئة العالمية.')}</p></div><div class="glass-mega-grid"><div class="glass-mega-col"><div class="glass-mega-col-title">${t('FMCG & Foods','FMCG व खाद्य','السلع الاستهلاكية')}</div><div class="glass-mega-col-links"><a href="fmcg.html" class="glass-mega-link"><span></span> Kotwari FMCG Portfolio</a><a href="#products" class="glass-mega-link"><span></span> Everyday Staples &amp; Pulses</a><a href="#products" class="glass-mega-link"><span></span> Namkeens &amp; Dry Fruit Snacks</a></div></div><div class="glass-mega-col"><div class="glass-mega-col-title">${t('Dairy & Water','डेयरी व मिनरल वाटर','الألبان والمياه')}</div><div class="glass-mega-col-links"><a href="water.html" class="glass-mega-link"><span></span> KooA Luxury Mineral Water</a><a href="dairy.html" class="glass-mega-link"><span></span> Kotwari Dairy &amp; Milk Chilling</a><a href="product-kotwari-deshi-ghee.html" class="glass-mega-link"><span></span> Deshi Bilona Ghee Processing</a></div></div><div class="glass-mega-col"><div class="glass-mega-col-title">${t('Farming & Poultry','पोल्ट्री व किसान','الدواجن والزراعة')}</div><div class="glass-mega-col-links"><a href="eggs.html" class="glass-mega-link"><span></span> Kotwari Eggs &amp; Poultry Model</a><a href="#fpo" class="glass-mega-link"><span></span> Sahebganj FPO Network</a><a href="#farmers" class="glass-mega-link"> Farmer Partnership Portals</a></div></div><div class="glass-mega-col"><div class="glass-mega-col-title">${t('Global & Retail','ग्लोबल एक्सपोर्ट व रिटेल','التصدير والتجزئة')}</div><div class="glass-mega-col-links"><a href="exports.html" class="glass-mega-link"><span></span> Kotwari Global Exports (GCC / UAE)</a><a href="retail.html" class="glass-mega-link"><span></span> Kotwari One Hypermarket</a><a href="#partners" class="glass-mega-link"><span></span> B2B Distributor Network</a></div></div></div><div class="glass-mega-footer"><span> ${t('Gao Se Global Tak — One integrated supply chain','गांव से ग्लोबल तक — एक साझा मूल्य श्रृंखला','من القرية إلى العالم')}</span><a href="#businesses" class="glass-mega-viewall">${t('Explore Full Ecosystem →','पूरा इकोसिस्टम देखें →','استكشف المنظومة كاملة ←')}</a></div></div></div><a href="#ecosystem" class="nav-link">${l.ecosystem}</a><a href="#products" class="nav-link">${l.products}</a><a href="#contact" class="nav-link">${l.contact}</a><a href="#farmers" class="nav-link">${l.farmers}</a></nav><div class="header-tools"><select class="lang" id="language" aria-label="Language / भाषा / اللغة"><option value="en">EN</option><option value="hi">हिंदी</option><option value="ar">العربية</option></select><a class="btn" href="#partners">${l.partner}</a><button class="menu" aria-expanded="false" aria-controls="navigation">${t('Menu','मेनू','القائمة')}</button></div></div></header>
+<header><div class="wrap header-row">${brand()}<nav id="navigation" class="nav" aria-label="${t('Main navigation','मुख्य नेविगेशन','التنقل الرئيسي')}"><a href="#home" class="nav-link active" aria-current="page">${t('Home','होम','الرئيسية')}</a><div class="nav-item-dropdown" id="nav-dropdown-collection"><button type="button" class="nav-pill-btn" aria-expanded="false" aria-haspopup="true" id="nav-collection-btn"><span>${t('Collection','कलेक्शन','المجموعات')}</span><span class="nav-chevron" aria-hidden="true">▾</span></button><div class="glass-mega-dropdown" role="menu" aria-labelledby="nav-collection-btn"><div class="glass-mega-header"><div class="glass-mega-title">${t('Collection','कलेक्शन','المجموعات')}</div><p class="glass-mega-subtitle">${t('Find your next favourite from Gao Se Global Tak.','गांव से ग्लोबल तक — अपनी पसंद का उत्पाद चुनें।','اختر منتجك المفضل من القرية إلى العالم.')}</p></div><div class="glass-mega-grid"><div class="glass-mega-col"><div class="glass-mega-col-title">${t('Staples & Grains','अनाज व स्टेपल्स','الحبوب والأساسيات')}</div><div class="glass-mega-col-links"><a href="product-kotwari-basmati-rice.html" class="glass-mega-link"> Himalayan Basmati Rice</a><a href="product-kotwari-chana-sattu.html" class="glass-mega-link"><span></span> Traditional Chana Sattu</a><a href="#products" class="glass-mega-link"><span></span> Desi Makka &amp; Wheat</a><a href="#products" class="glass-mega-link"><span></span> Farmstead Pulses &amp; Dal</a></div></div><div class="glass-mega-col"><div class="glass-mega-col-title">${t('Pure Dairy & Eggs','शुद्ध डेयरी व अंडे','الألبان والبيض')}</div><div class="glass-mega-col-links"><a href="product-kotwari-deshi-ghee.html" class="glass-mega-link"><span></span> Deshi Danedar Ghee</a><a href="product-kooa-arabian-dahi.html" class="glass-mega-link"><span></span> Thick Arabian Dahi</a><a href="product-kotwari-rose-gold-lassi.html" class="glass-mega-link"><span></span> Royal Rose Gold Lassi</a><a href="product-kooa-white-gold-milk.html" class="glass-mega-link"><span></span> Pure White Gold Milk</a><a href="product-kotwari-eggs.html" class="glass-mega-link"><span></span> Farm Fresh Table Eggs</a></div></div><div class="glass-mega-col"><div class="glass-mega-col-title">${t('Spices & Heritage','मसाले व विरासत','التوابل والتراث')}</div><div class="glass-mega-col-links"><a href="product-kotwari-himalayan-haldi.html" class="glass-mega-link"><span></span> Himalayan Haldi (Curcumin)</a><a href="product-kotwari-garam-masala.html" class="glass-mega-link"><span>️</span> Desi Shahi Garam Masala</a><a href="product-kotwari-kashmiri-red-chilli.html" class="glass-mega-link"><span></span> Kashmiri &amp; Red Chilli</a><a href="product-kotwari-desi-garlic.html" class="glass-mega-link"><span></span> Desi Garlic &amp; Ginger</a><a href="product-kotwari-red-chilli-achar.html" class="glass-mega-link"><span></span> Traditional Red Chilli Achar</a></div></div><div class="glass-mega-col"><div class="glass-mega-col-title">${t('Beverages & Superfoods','पेय व सुपरफूड्स','المشروبات والأغذية')}</div><div class="glass-mega-col-links"><a href="product-kooa-mineral-water.html" class="glass-mega-link"><span>️</span> KooA Mineral Water</a><a href="product-kotwari-mix-fruits-juice.html" class="glass-mega-link"><span></span> Orchard Mix Fruits Juice</a><a href="product-kotwari-mithla-makhana.html" class="glass-mega-link"><span></span> Mithila Roasted Makhana</a><a href="product-kotwari-medjool-dates.html" class="glass-mega-link"><span></span> Royal Medjool Dates</a><a href="product-kotwari-yellow-mustard-oil.html" class="glass-mega-link"><span></span> Wood-Pressed Mustard Oil</a></div></div></div><div class="glass-mega-footer"><span> ${t('Over 70+ authentic FMCG products','70+ से अधिक सत्यापित FMCG उत्पाद','أكثر من 70 منتجاً معتمداً')}</span><a href="#products" class="glass-mega-viewall">${t('View All 70+ Products →','सभी 70+ उत्पाद देखें →','عرض جميع المنتجات الـ 70+ ←')}</a></div></div></div><div class="nav-item-dropdown" id="nav-dropdown-businesses"><button type="button" class="nav-pill-btn" aria-expanded="false" aria-haspopup="true" id="nav-businesses-btn"><span>${t('Businesses','व्यवसाय','الأعمال')}</span><span class="nav-chevron" aria-hidden="true">▾</span></button><div class="glass-mega-dropdown" role="menu" aria-labelledby="nav-businesses-btn"><div class="glass-mega-header"><div class="glass-mega-title">${t('Businesses','व्यवसाय','الأعمال')}</div><p class="glass-mega-subtitle">${t('Connecting rural production, modern processing, brands and global retail.','ग्रामीण उत्पादन, आधुनिक प्रोसेसिंग और वैश्विक रिटेल को जोड़ते व्यवसाय।','ربط الإنتاج القروي والمعالجة الحديثة والتجزئة العالمية.')}</p></div><div class="glass-mega-grid"><div class="glass-mega-col"><div class="glass-mega-col-title">${t('FMCG & Foods','FMCG व खाद्य','السلع الاستهلاكية')}</div><div class="glass-mega-col-links"><a href="fmcg.html" class="glass-mega-link"><span></span> Kotwari FMCG Portfolio</a><a href="#products" class="glass-mega-link"><span></span> Everyday Staples &amp; Pulses</a><a href="#products" class="glass-mega-link"><span></span> Namkeens &amp; Dry Fruit Snacks</a></div></div><div class="glass-mega-col"><div class="glass-mega-col-title">${t('Dairy & Water','डेयरी व मिनरल वाटर','الألبان والمياه')}</div><div class="glass-mega-col-links"><a href="water.html" class="glass-mega-link"><span></span> KooA Luxury Mineral Water</a><a href="dairy.html" class="glass-mega-link"><span></span> Kotwari Dairy &amp; Milk Chilling</a><a href="product-kotwari-deshi-ghee.html" class="glass-mega-link"><span></span> Deshi Bilona Ghee Processing</a></div></div><div class="glass-mega-col"><div class="glass-mega-col-title">${t('Farming & Poultry','पोल्ट्री व किसान','الدواجن والزراعة')}</div><div class="glass-mega-col-links"><a href="eggs.html" class="glass-mega-link"><span></span> Kotwari Eggs &amp; Poultry Model</a><a href="#fpo" class="glass-mega-link"><span></span> Sahebganj FPO Network</a><a href="#farmers" class="glass-mega-link"> Farmer Partnership Portals</a></div></div><div class="glass-mega-col"><div class="glass-mega-col-title">${t('Global & Retail','ग्लोबल एक्सपोर्ट व रिटेल','التصدير والتجزئة')}</div><div class="glass-mega-col-links"><a href="exports.html" class="glass-mega-link"><span></span> Kotwari Global Exports (GCC / UAE)</a><a href="retail.html" class="glass-mega-link"><span></span> Kotwari One Hypermarket</a><a href="claude-repos.html" class="glass-mega-link"><span>⚡</span> Secret GitHub Repos for Claude</a><a href="#partners" class="glass-mega-link"><span></span> B2B Distributor Network</a></div></div></div><div class="glass-mega-footer"><span> ${t('Gao Se Global Tak — One integrated supply chain','गांव से ग्लोबल तक — एक साझा मूल्य श्रृंखला','من القرية إلى العالم')}</span><a href="#businesses" class="glass-mega-viewall">${t('Explore Full Ecosystem →','पूरा इकोसिस्टम देखें →','استكشف المنظومة كاملة ←')}</a></div></div></div><a href="#ecosystem" class="nav-link">${l.ecosystem}</a><a href="#products" class="nav-link">${l.products}</a><a href="#contact" class="nav-link">${l.contact}</a><a href="#farmers" class="nav-link">${l.farmers}</a><a href="claude-repos.html" class="nav-link" style="color:#e50914;font-weight:700;">${t('Claude Repos','क्लॉड रेपो','مستودعات كلود')}</a></nav><div class="header-tools"><select class="lang" id="language" aria-label="Language / भाषा / اللغة"><option value="en">EN</option><option value="hi">हिंदी</option><option value="ar">العربية</option></select><a class="btn" href="#partners">${l.partner}</a><button class="menu" aria-expanded="false" aria-controls="navigation">${t('Menu','मेनू','القائمة')}</button></div></div></header>
 <main id="main">
 <section class="hero" id="home"><img class="hero-photo" src="${escapeHTML(CONFIG.hero)}" alt="${t('Green agricultural fields in India','भारत में हरे कृषि खेत','حقول زراعية خضراء في الهند')}" fetchpriority="high"><canvas id="heroParticles" class="hero-particles"></canvas><div class="wrap reveal hero-content"><div class="hero-emblem-badge" id="heroEmblemBadge"><span class="gyro-ring gyro-ring-1"></span><span class="gyro-ring gyro-ring-2"></span><span class="gyro-ring gyro-ring-3"><span class="gyro-orbit-dot"></span></span><span class="emblem-ripple"></span><span class="emblem-ripple"></span><span class="emblem-ripple"></span><img class="hero-emblem-img" src="kotwari_emblem_new.png" alt="Kotwari Golden Emblem &mdash; Gao Se Global Tak"></div><p class="eyebrow">${t('An Indian rural-commerce vision','भारतीय ग्रामीण वाणिज्य का विज़न','رؤية هندية للتجارة الريفية')}</p><h1>${t('Gao Se<br><em>Global Tak.</em>','गांव से<br><em>ग्लोबल तक।</em>','من القرية<br><em>إلى العالم.</em>')}</h1><p class="lead">${t('Building India\'s farmer-to-market-to-global ecosystem &mdash; connecting rural production, processing, brands and modern retail into one integrated value chain.','भारत का किसान से बाजार और दुनिया तक का नेटवर्क &mdash; ग्रामीण उत्पादन, प्रोसेसिंग, ब्रांड और आधुनिक रिटेल को एक साझा मूल्य श्रृंखला में जोड़ना।','نبني منظومة تربط المزارع بالسوق والعالم &mdash; ربط الإنتاج الريفي والمعالجة والتجزئة الحديثة في سلسلة قيمة متكاملة.')}</p><div class="actions"><a class="btn gold" href="#businesses">${t('Explore Kotwari','Kotwari को जानें','اكتشف كोटواري')} ↗</a><a class="btn light" href="#partners">${t('Join our network','हमारे नेटवर्क से जुड़ें','انضم إلى شبكتना')}</a><button class="hero-audio-btn" id="heroAudioToggle" type="button" aria-pressed="false" aria-label="${t('Play Audio Introduction','ऑडियो परिचय सुनें','استمع إلى المقدمة الصوتية')}"><span class="audio-eq" aria-hidden="true"><span></span><span></span><span></span><span></span></span><span id="audioLabel">${t('Audio Story','ऑडियो सुनें','تجربة صوتية')}</span></button></div><div class="hero-trust-bar"><span class="trust-item">${t('Village Sourcing','ग्रामीण उत्पादन','إنتاج قروي')}</span><span class="trust-sep" aria-hidden="true"></span><span class="trust-item">️ ${t('Integrated Processing','एकीकृत प्रोसेसिंग','معالجة متكاملة')}</span><span class="trust-sep" aria-hidden="true"></span><span class="trust-item"> ${t('Gao Se Global Tak','गांव से ग्लोबल तक','من القرية إلى العالم')}</span></div></div><div class="audio-toast" id="audioToast" role="status" aria-live="polite"></div><a class="hero-credit" href="https://unsplash.com/photos/an-aerial-view-of-a-green-field-with-water-rz_XeuMi6xs" target="_blank" rel="noopener noreferrer">${t('Illustrative landscape','प्रतीकात्मक दृश्य','منظر توضيحي')} · Kishor Kumar / Unsplash</a></section>
 
@@ -2347,12 +2599,139 @@ ${sectionTitle(t('Frequently Asked Questions','अक्सर पूछे ज�
 
 <section id="partners" class="reveal"><div class="wrap split"><div><p class="eyebrow">${l.partner}</p><h2>${t('Your next chapter<br>starts with a conversation.','आपकी अगली शुरुआत<br>एक बातचीत से।','خطوتك التالية<br>تبدأ بحوار.')}</h2><p class="muted">${t('Tell us who you are and where you work. Choose WhatsApp or email to prepare an enquiry for the Kotwari team.','अपना परिचय और कार्यक्षेत्र बताएं। Kotwari टीम के लिए पूछताछ तैयार करने हेतु WhatsApp या ईमेल चुनें।','عرفنا بنفسك ومنطقة عملك. اختر واتساب أو البريد الإلكتروني لإعداد استفسار لفريق كوتواري.')}</p><a class="contact-line" href="tel:+${CONFIG.phone}">+91 99786 48583</a><a class="contact-line" href="mailto:${CONFIG.email}">${CONFIG.email}</a><p class="hint">${t('No automatic registration or application tracking is available on this page.','इस पेज पर स्वचालित पंजीकरण या आवेदन ट्रैकिंग उपलब्ध नहीं है।','لا يتوفر تسجيل تلقائي أو تتبع للطلبات في هذه الصفحة.')}</p></div><form class="card" id="enquiry-form"><div style="display:none !important;position:absolute !important;left:-9999px !important" aria-hidden="true"><input type="text" name="_kotwari_hp" tabindex="-1" autocomplete="off"></div><div class="form-grid"><div class="field full"><label for="role" style="font-size:var(--text-sm);font-weight:700;display:block;margin-bottom: 6px;color:var(--navy)">${t('I want to partner as a','मैं हूं','أنا')}<select id="role" name="role">${roles().map(r=>`<option value="${r[0]}">${r[1]}</option>`).join('')}</select></div><label class="field">${t('Full name','पूरा नाम','الاسم الكامل')}<input name="name" autocomplete="name" required maxlength="80"></label><label class="field">${t('Mobile number','मोबाइल नंबर','رقم الهاتف')}<input name="phone" type="tel" autocomplete="tel" required minlength="7" maxlength="20" pattern="[+0-9 ()-]{7,20}"></label><label class="field">${t('State / region','राज्य / क्षेत्र','الولاية / المنطقة')}<input name="state" required maxlength="80"></label><label class="field">${t('District / city','जिला / शहर','المقاطعة / المدينة')}<input name="district" required maxlength="80"></label><div class="field full" id="role-fields"></div><label class="field full">${t('Your enquiry','आपकी पूछताछ','استفسارك')}<textarea name="message" maxlength="1200" required></textarea></label></div><label class="consent"><input type="checkbox" required><span>${t('I agree to share these details with Kotwari through the service I choose.','मैं चुनी गई सेवा से ये विवरण Kotwari के साथ साझा करने के लिए सहमत हूं।','أوافق على مشاركة هذه البيانات مع كوتواري عبر الخدمة التي أختارها.')}</span></label><p class="hint">${t('Details stay on this page until you open WhatsApp or an email draft. You must send the message yourself.','WhatsApp या ईमेल ड्राफ्ट खोलने तक विवरण इस पेज पर रहते हैं। संदेश आपको स्वयं भेजना होगा।','تبقى البيانات في هذه الصفحة حتى تفتح واتساب أو مسودة بريد. يجب أن ترسل الرسالة بنفسك.')}</p><div class="actions"><button class="btn" type="submit" name="channel" value="whatsapp">WhatsApp ↗</button><button class="btn" type="submit" name="channel" value="email" style="background:var(--blue);border-color:var(--blue)">${t('Prepare email','ईमेल तैयार करें','إعداد بريد')}</button></div><p id="form-status" class="status" role="status"></p></form></div></section>
 <section id="leadership" class="band reveal"><div class="wrap split"><div>${CONFIG.founderPhoto?`<img class="founder-photo" src="${escapeHTML(CONFIG.founderPhoto)}" alt="M. A. Kotwari, Founder and Chairman" loading="lazy">`:''}<p class="eyebrow">${t('Founder & Chairman','संस्थापक और चेयरमैन','المؤسس ورئيس مجلس الإدارة')}</p><h2 class="founder-name">M. A. Kotwari</h2><p>Kotwari International Ltd.</p></div><div><p class="eyebrow">${t('The founding belief','स्थापना का विचार','الفكرة المؤسسة')}</p><p class="quote">${t("India's villages should participate in the value they create.",'भारत के गांवों को उनके बनाए मूल्य में भागीदारी मिलनी चाहिए।','ينبغي لقرى الهند أن تشارك في القيمة التي تنتجها.')}</p><p class="muted">${t('Kotwari is being built around rural participation in organised production, quality systems, branding, distribution and market growth.','Kotwari का निर्माण संगठित उत्पादन, गुणवत्ता व्यवस्था, ब्रांडिंग, वितरण और बाजार विकास में ग्रामीण भागीदारी के विचार पर हो रहा है।','تقوم كوتواري على فكرة مشاركة المنتجين الريفيين في الإنتاج المنظم وأنظمة الجودة والعلامات التجارية والتوزيع ونمو الأسواق.')}</p></div></div></section>
+
+<section id="claude-repos" class="claude-repos-section reveal">
+  <div class="wrap">
+    <div style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:20px; margin-bottom:28px;">
+      <div>
+        <div class="hero-badge-editorial">
+          <span class="red-pulse-dot"></span>
+          ${t('Curated for Claude Code & AI Agents','क्लॉड कोड और एआई एजेंट्स के लिए संकलित','مختار لكلود كود ووكلاء الذكاء الاصطناعي')}
+        </div>
+        <h2 class="editorial-heading">Secret GitHub Repos for <span>Claude</span></h2>
+        <p class="editorial-subtitle">${t(
+          'Ten breakthrough open-source repositories and agent skills that transform standard Claude into an elite software architect, senior designer, and real-time researcher.',
+          'दस अभूतपूर्व ओपन-सोर्स रिपॉजिटरी और एजेंट कौशल जो क्लॉड को एक कुशल सॉफ्टवेयर आर्किटेक्ट और डिजाइनर में बदल देते हैं।',
+          'عشرة مستودعات مفتوحة المصدر استثنائية تحوّل كلود إلى مهندس برمجيات ومصمم محترف.'
+        )}</p>
+      </div>
+      <div style="display:flex; gap:12px; margin-bottom:12px;">
+        <a href="claude-repos.html" class="cta" style="background:#E50914;border-color:#E50914;color:#FFFFFF;border-radius:9999px;padding:12px 24px;font-weight:700;display:inline-flex;align-items:center;gap:8px;">
+          ${t('Explore Full Catalog & Slider →','पूरा कैटलॉग और स्लाइडर देखें →','استكشف الدليل الكامل ←')}
+        </a>
+      </div>
+    </div>
+
+    <!-- Quick Carousel Showcase -->
+    <div class="claude-home-slider-wrap">
+      <div class="claude-home-slider-track" id="claudeHomeTrack">
+        <article class="claude-home-card" onclick="window.open('https://github.com/morluto/rea','_blank')">
+          <div>
+            <div class="claude-card-top"><span class="claude-number-badge">#01</span><span style="font-size:0.75rem;font-weight:700;color:#8E8A80;text-transform:uppercase;">Engineering</span></div>
+            <h3 class="claude-card-title">REA</h3>
+            <p class="claude-card-tagline">Reverse engineer anything with agents.</p>
+            <p class="claude-card-desc">Deep binary analysis, decompilers, APK inspection, and dynamic system architecture mapping without source code.</p>
+          </div>
+          <div class="claude-card-actions" onclick="event.stopPropagation()">
+            <a href="https://github.com/morluto/rea" target="_blank" rel="noopener noreferrer" class="claude-btn-gh">View on GitHub</a>
+            <button class="claude-btn-copy" onclick="copyRepoLink('https://github.com/morluto/rea')" title="Copy Link">&#128203;</button>
+          </div>
+        </article>
+        <article class="claude-home-card" onclick="window.open('https://github.com/DietrichGebert/ponytail','_blank')">
+          <div>
+            <div class="claude-card-top"><span class="claude-number-badge">#02</span><span style="font-size:0.75rem;font-weight:700;color:#8E8A80;text-transform:uppercase;">Architecture</span></div>
+            <h3 class="claude-card-title">Ponytail</h3>
+            <p class="claude-card-tagline">Your senior developer, on call.</p>
+            <p class="claude-card-desc">Enforces strict senior developer discipline, YAGNI, standard libraries, and eliminates hallucinations.</p>
+          </div>
+          <div class="claude-card-actions" onclick="event.stopPropagation()">
+            <a href="https://github.com/DietrichGebert/ponytail" target="_blank" rel="noopener noreferrer" class="claude-btn-gh">View on GitHub</a>
+            <button class="claude-btn-copy" onclick="copyRepoLink('https://github.com/DietrichGebert/ponytail')" title="Copy Link">&#128203;</button>
+          </div>
+        </article>
+        <article class="claude-home-card" onclick="window.open('https://github.com/nutlope/hallmark','_blank')">
+          <div>
+            <div class="claude-card-top"><span class="claude-number-badge">#03</span><span style="font-size:0.75rem;font-weight:700;color:#8E8A80;text-transform:uppercase;">UI & Design</span></div>
+            <h3 class="claude-card-title">Hallmark</h3>
+            <p class="claude-card-tagline">Human-quality designs, not AI slop.</p>
+            <p class="claude-card-desc">Transforms raw AI-generated interfaces into refined human-grade aesthetics with bespoke typography and layout polish.</p>
+          </div>
+          <div class="claude-card-actions" onclick="event.stopPropagation()">
+            <a href="https://github.com/nutlope/hallmark" target="_blank" rel="noopener noreferrer" class="claude-btn-gh">View on GitHub</a>
+            <button class="claude-btn-copy" onclick="copyRepoLink('https://github.com/nutlope/hallmark')" title="Copy Link">&#128203;</button>
+          </div>
+        </article>
+        <article class="claude-home-card" onclick="window.open('https://github.com/pbakaus/impeccable','_blank')">
+          <div>
+            <div class="claude-card-top"><span class="claude-number-badge">#04</span><span style="font-size:0.75rem;font-weight:700;color:#8E8A80;text-transform:uppercase;">UI Critique</span></div>
+            <h3 class="claude-card-title">Impeccable</h3>
+            <p class="claude-card-tagline">Polish any interface with one command.</p>
+            <p class="claude-card-desc">Autonomous design critic and micro-animation skill for Claude Code that fixes spacing and tunes contrast.</p>
+          </div>
+          <div class="claude-card-actions" onclick="event.stopPropagation()">
+            <a href="https://github.com/pbakaus/impeccable" target="_blank" rel="noopener noreferrer" class="claude-btn-gh">View on GitHub</a>
+            <button class="claude-btn-copy" onclick="copyRepoLink('https://github.com/pbakaus/impeccable')" title="Copy Link">&#128203;</button>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <!-- "10 Repo Links" Compact Two-Column List -->
+    <div class="claude-two-column-list">
+      <div style="grid-column: 1 / -1; margin-bottom: 12px; display:flex; justify-content:space-between; align-items:center;">
+        <h3 style="font-family:'Playfair Display',serif; font-size:1.45rem; font-weight:800; color:#141413;">10 Repo Links (Quick Access)</h3>
+        <span style="font-family:'Fira Code',monospace; font-size:0.8rem; color:#E50914; font-weight:700;">10 / 10 Ready</span>
+      </div>
+      <div class="claude-compact-item" onclick="window.open('https://github.com/morluto/rea','_blank')">
+        <div><strong style="color:#E50914;font-family:monospace;margin-right:8px;">#01</strong> <span class="claude-compact-title">REA</span> <div class="claude-compact-tag">Reverse engineer anything with agents</div></div>
+        <button class="claude-btn-copy" onclick="event.stopPropagation();copyRepoLink('https://github.com/morluto/rea')" title="Copy Link">&#128203;</button>
+      </div>
+      <div class="claude-compact-item" onclick="window.open('https://github.com/DietrichGebert/ponytail','_blank')">
+        <div><strong style="color:#E50914;font-family:monospace;margin-right:8px;">#02</strong> <span class="claude-compact-title">Ponytail</span> <div class="claude-compact-tag">Your senior developer, on call</div></div>
+        <button class="claude-btn-copy" onclick="event.stopPropagation();copyRepoLink('https://github.com/DietrichGebert/ponytail')" title="Copy Link">&#128203;</button>
+      </div>
+      <div class="claude-compact-item" onclick="window.open('https://github.com/nutlope/hallmark','_blank')">
+        <div><strong style="color:#E50914;font-family:monospace;margin-right:8px;">#03</strong> <span class="claude-compact-title">Hallmark</span> <div class="claude-compact-tag">Human-quality designs, not AI slop</div></div>
+        <button class="claude-btn-copy" onclick="event.stopPropagation();copyRepoLink('https://github.com/nutlope/hallmark')" title="Copy Link">&#128203;</button>
+      </div>
+      <div class="claude-compact-item" onclick="window.open('https://github.com/pbakaus/impeccable','_blank')">
+        <div><strong style="color:#E50914;font-family:monospace;margin-right:8px;">#04</strong> <span class="claude-compact-title">Impeccable</span> <div class="claude-compact-tag">Polish any interface with one command</div></div>
+        <button class="claude-btn-copy" onclick="event.stopPropagation();copyRepoLink('https://github.com/pbakaus/impeccable')" title="Copy Link">&#128203;</button>
+      </div>
+      <div class="claude-compact-item" onclick="window.open('https://github.com/nextlevelbuilder/ui-ux-pro-max-skill','_blank')">
+        <div><strong style="color:#E50914;font-family:monospace;margin-right:8px;">#05</strong> <span class="claude-compact-title">UI UX Pro Max</span> <div class="claude-compact-tag">Clean, consistent professional UI designs</div></div>
+        <button class="claude-btn-copy" onclick="event.stopPropagation();copyRepoLink('https://github.com/nextlevelbuilder/ui-ux-pro-max-skill')" title="Copy Link">&#128203;</button>
+      </div>
+      <div class="claude-compact-item" onclick="window.open('https://github.com/cathrynlavery/diagram-design','_blank')">
+        <div><strong style="color:#E50914;font-family:monospace;margin-right:8px;">#06</strong> <span class="claude-compact-title">Diagram Design</span> <div class="claude-compact-tag">Interactive technical diagrams</div></div>
+        <button class="claude-btn-copy" onclick="event.stopPropagation();copyRepoLink('https://github.com/cathrynlavery/diagram-design')" title="Copy Link">&#128203;</button>
+      </div>
+      <div class="claude-compact-item" onclick="window.open('https://github.com/blader/humanizer','_blank')">
+        <div><strong style="color:#E50914;font-family:monospace;margin-right:8px;">#07</strong> <span class="claude-compact-title">Humanizer</span> <div class="claude-compact-tag">Turn AI text into human writing</div></div>
+        <button class="claude-btn-copy" onclick="event.stopPropagation();copyRepoLink('https://github.com/blader/humanizer')" title="Copy Link">&#128203;</button>
+      </div>
+      <div class="claude-compact-item" onclick="window.open('https://github.com/onyx-dot-app/onyx','_blank')">
+        <div><strong style="color:#E50914;font-family:monospace;margin-right:8px;">#08</strong> <span class="claude-compact-title">Onyx</span> <div class="claude-compact-tag">Your own AI chat on your documents</div></div>
+        <button class="claude-btn-copy" onclick="event.stopPropagation();copyRepoLink('https://github.com/onyx-dot-app/onyx')" title="Copy Link">&#128203;</button>
+      </div>
+      <div class="claude-compact-item" onclick="window.open('https://github.com/mvanhorn/last30days-skill','_blank')">
+        <div><strong style="color:#E50914;font-family:monospace;margin-right:8px;">#09</strong> <span class="claude-compact-title">Last 30 Days</span> <div class="claude-compact-tag">Latest trends from recent discussions</div></div>
+        <button class="claude-btn-copy" onclick="event.stopPropagation();copyRepoLink('https://github.com/mvanhorn/last30days-skill')" title="Copy Link">&#128203;</button>
+      </div>
+      <div class="claude-compact-item" onclick="window.open('https://github.com/mendableai/firecrawl','_blank')">
+        <div><strong style="color:#E50914;font-family:monospace;margin-right:8px;">#10</strong> <span class="claude-compact-title">Scraping</span> <div class="claude-compact-tag">Scrape websites for research data</div></div>
+        <button class="claude-btn-copy" onclick="event.stopPropagation();copyRepoLink('https://github.com/mendableai/firecrawl')" title="Copy Link">&#128203;</button>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="investors" class="reveal"><div class="wrap split"><div><p class="eyebrow">${t('Investor relations','निवेशक संबंध','علاقات المستثمرين')}</p><h2>${t('Building for the long term.','लंबे समय के लिए निर्माण।','نبني للمستقبل.')}</h2><p>${t('Discuss the business model, growth strategy, governance and strategic partnerships with the corporate team.','बिज़नेस मॉडल, विकास रणनीति, गवर्नेंस और रणनीतिक भागीदारी के लिए कॉर्पोरेट टीम से संपर्क करें।','ناقش نموذج الأعمال واستراتيجية النمو والحوكمة والشراكات الاستراتيجية مع فريق الشركة.')}</p>${cta('Investor',t('Contact investor relations','निवेशक संबंध टीम से संपर्क','تواصل مع علاقات المستثمرين'))}</div><div><details><summary>${t('Reports & presentations','रिपोर्ट और प्रेजेंटेशन','التقارير والعروض')}</summary><p>${t('Verified financial highlights, annual reports and approved presentations have not been published here. Request available documents from the team.','सत्यापित वित्तीय विवरण, वार्षिक रिपोर्ट और स्वीकृत प्रेजेंटेशन यहां प्रकाशित नहीं हैं। उपलब्ध दस्तावेज टीम से मांगें।','لم تنشر هنا البيانات المالية المعتمدة أو التقارير السنوية أو العروض المعتمدة. اطلب الوثائق المتاحة من الفريق.')}</p></details><details><summary>${t('Milestones & operating metrics','प्रगति और संचालन आंकड़े','الإنجازات ومؤشرات التشغيل')}</summary><p>${t('Farmer counts, collection centres, supply volumes and market coverage will be added after verification.','किसान संख्या, संग्रह केंद्र, सप्लाई मात्रा और बाजार कवरेज सत्यापन के बाद जोड़े जाएंगे।','تضاف أعداد المزارعين ومراكز التجميع وحجم التوريد والتغطية السوقية بعد التحقق.')}</p></details><p class="hint" style="margin-top:20px">${t('Information is for corporate purposes and does not constitute an offer, solicitation or guaranteed investment return.','यह जानकारी कॉर्पोरेट परिचय के लिए है। यह निवेश प्रस्ताव, आमंत्रण या गारंटीकृत रिटर्न का दावा नहीं है।','المعلومات لأغراض التعريف بالشركة ولا تمثل عرضاً أو دعوة للاستثمار أو ضماناً للعائد.')}</p><a href="investors.html" style="font-weight:bold;border-bottom:1px solid var(--gold);padding-bottom:4px">${t('See full investor relations page','पूरा निवेशक संबंध पेज देखें','عرض صفحة علاقات المستثمرين')} →</a></div></div></section>
 <section class="band reveal"><div class="wrap grid two reveal-stagger"><article class="card" id="news"><p class="eyebrow">${t('Newsroom','समाचार कक्ष','المركز الإعلامي')}</p><h2>${t('Stories from the network.','नेटवर्क की कहानियां।','قصص من الشبكة.')}</h2><p>${t('Company news, farmer stories, FPO updates, launches and events will appear here once approved. No announcements have been published on this page yet.','स्वीकृति के बाद कंपनी समाचार, किसान कहानियां, FPO अपडेट, लॉन्च और कार्यक्रम यहां आएंगे। अभी इस पेज पर कोई घोषणा प्रकाशित नहीं है।','تنشر هنا أخبار الشركة وقصص المزارعين وتحديثات المنظمات والفعاليات بعد اعتمادها. لا توجد إعلانات منشورة في هذه الصفحة بعد.')}</p>${cta('Corporate',t('Media enquiry','मीडिया पूछताछ','استفسار إعلامي'))}</article><article class="card" id="careers"><p class="eyebrow">${t('Careers','करियर','الوظائف')}</p><h2>${t('Build with Kotwari.','Kotwari के साथ बनाएं।','ابنِ مستقبلك مع كوتواري.')}</h2><p>${t('Sales · Agriculture · Poultry · Dairy · Operations · Quality · Supply Chain · Retail · Finance · Technology · Marketing','सेल्स · कृषि · पोल्ट्री · डेयरी · ऑपरेशंस · गुणवत्ता · सप्लाई चेन · रिटेल · वित्त · टेक्नोलॉजी · मार्केटिंग','المبيعات · الزراعة · الدواجن · الألبان · العمليات · الجودة · الإمداد · التجزئة · المالية · التقنية · التسويق')}</p><p class="hint">${t('No verified vacancies are listed yet. Email your area of interest; attach your CV in your email application.','अभी सत्यापित रिक्तियां सूचीबद्ध नहीं हैं। अपना कार्यक्षेत्र ईमेल करें; CV अपने ईमेल में संलग्न करें।','لا توجد وظائف مؤكدة مدرجة حالياً. أرسل مجال اهتمامك وأرفق سيرتك الذاتية في تطبيق البريد.')}</p><a class="btn outline" href="mailto:${CONFIG.email}?subject=Career%20interest%20-%20Kotwari">${t('Email career interest','करियर रुचि ईमेल करें','أرسल اهتمامك الوظيفي')}</a><a href="careers.html" style="display:inline-block;margin-top:12px;font-weight:bold;border-bottom:1px solid var(--gold);padding-bottom:4px">${t('See all departments','सभी विभाग देखें','عرض جميع الأقسام')} →</a></article></div></section>
 <section id="contact" class="reveal"><div class="wrap split"><div><p class="eyebrow">${l.contact}</p><h2>${t("Let's connect.",'आइए जुड़ें।','لنتواصل.')}</h2><h3>Kotwari International Ltd.</h3><address style="font-style:normal">Kotwari House, Jankipuram-III<br>Kursi Road, Lucknow &ndash; 226021<br>Uttar Pradesh, India</address><a class="contact-line" href="tel:+${CONFIG.phone}">+91 99786 48583</a><a class="contact-line" href="mailto:${CONFIG.email}">${CONFIG.email}</a><a class="contact-line" href="https://www.kotwari.com" target="_blank" rel="noopener noreferrer">www.kotwari.com ↗</a><div class="actions"><a class="btn outline" href="https://www.google.com/maps/search/?api=1&query=Kotwari%20House%20Jankipuram%20III%20Kursi%20Road%20Lucknow%20226021" target="_blank" rel="noopener noreferrer">${t('Find address on Maps','मैप पर पता खोजें','ابحث عن العنوان على الخرائط')} ↗</a></div></div><div class="statement"><h3>${t('One conversation. Many possibilities.','एक बातचीत। अनेक संभावनाएं।','حوار واحد. فرص متعددة.')}</h3><p>${t('Farmer, distributor, retailer, institutional buyer or strategic partner — tell us where you see an opportunity.','किसान, वितरक, रिटेलर, संस्थागत खरीदार या रणनीतिक पार्टनर — हमें बताएं कि आप कहां अवसर देखते हैं।','مزارع أو موزع أو تاجر تجزئة أو مشتر مؤسسي أو شريك استراتيجي — أخبرنا أين ترى الفرصة.')}</p>${cta('Corporate',l.partner)}</div></div></section>
 <section class="dark closing reveal"><div class="wrap"><p class="eyebrow">Kotwari™ · Gao Se Global Tak</p><h2>${t("From the hands of India's farmers to the tables of the world.",'भारत के किसानों के हाथों से दुनिया की मेज़ तक।','من أيدي مزارعي الهند إلى موائد العالم.')}</h2><p class="muted">${t('Building an integrated ecosystem of farmers, products, brands and markets.','किसानों, उत्पादों, ब्रांड और बाजार का एकीकृत नेटवर्क बनाते हुए।','نبني منظومة متكاملة من المزارعين والمنتجات والعلامات والأسواق.')}</p><div class="actions"><a class="btn gold" href="#partners">${l.partner} ↗</a><a class="btn light" href="#businesses">${l.businesses}</a></div></div></section>
 </main>
-<footer><div class="wrap"><div class="footer-grid"><div>${brand()}<p style="margin-top:20px">Kotwari International Ltd.<br>Lucknow, Uttar Pradesh, India</p></div><div><h3>Kotwari</h3>${[['about.html',l.about],['#leadership',t('Leadership','नेतृत्व','القيادة')],['#ecosystem',l.ecosystem],['#impact',t('Farmer impact','किसान प्रभाव','أثرنا الريفي')],['#faq',t('FAQ','अक्सर पूछे जाने वाले प्रश्न','الأسئلة الشائعة')],['sustainability.html',t('Sustainability','सतत विकास','الاستدامة')]].map(x=>`<a href="${x[0]}">${x[1]}</a>`).join('')}</div><div><h3>${l.businesses}</h3>${[['dairy.html','Kotwari Dairy'],['water.html','KooA'],['fmcg.html','Kotwari FMCG'],['retail.html','Kotwari One'],['exports.html','Kotwari Global'],['eggs.html','Kotwari Eggs']].map(x=>`<a href="${x[0]}">${x[1]}</a>`).join('')}</div><div><h3>${t('Corporate','कॉर्पोरेट','الشركة')}</h3>${[['partners.html',l.partner],['investors.html',t('Investors','निवेशक','المستथمرون')],['exports.html',t('Exports','निर्यात','التصدير')],['#news',t('Newsroom','समाचार','الأخبار')],['careers.html',t('Careers','करियर','الوظائف')],['contact.html',l.contact]].map(x=>`<a href="${x[0]}">${x[1]}</a>`).join('')}</div></div><div class="footer-bottom"><span>© ${new Date().getFullYear()} Kotwari International Ltd.</span><span style="display:flex;gap:18px;flex-wrap:wrap"><a href="privacy.html" style="color:inherit;text-decoration:underline">${t('Privacy Policy','गोपनीयता नीति','सीयाسة الخصوصية')}</a><a href="terms.html" style="color:inherit;text-decoration:underline">${t('Terms','शर्तें','الشروط')}</a><a href="cookie-policy.html" style="color:inherit;text-decoration:underline">${t('Cookies','कुकीज़','ملفات تعريف الارتباط')}</a><button class="legal-btn" data-dialog="legal">${t('Disclaimer','अस्वीकरण','إخلاء المسؤولية')}</button></span></div></div></footer>
+<footer><div class="wrap"><div class="footer-grid"><div>${brand()}<p style="margin-top:20px">Kotwari International Ltd.<br>Lucknow, Uttar Pradesh, India</p></div><div><h3>Kotwari</h3>${[['about.html',l.about],['#leadership',t('Leadership','नेतृत्व','القيادة')],['#ecosystem',l.ecosystem],['#impact',t('Farmer impact','किसान प्रभाव','أثرنا الريفي')],['#faq',t('FAQ','अक्सर पूछे जाने वाले प्रश्न','الأسئلة الشائعة')],['sustainability.html',t('Sustainability','सतत विकास','الاستدامة')]].map(x=>`<a href="${x[0]}">${x[1]}</a>`).join('')}</div><div><h3>${l.businesses}</h3>${[['dairy.html','Kotwari Dairy'],['water.html','KooA'],['fmcg.html','Kotwari FMCG'],['retail.html','Kotwari One'],['exports.html','Kotwari Global'],['eggs.html','Kotwari Eggs'],['claude-repos.html',t('Secret Claude Repos','क्लॉड सीक्रेट रेपो','مستودعات كلود')]].map(x=>`<a href="${x[0]}">${x[1]}</a>`).join('')}</div><div><h3>${t('Corporate','कॉर्पोरेट','الشركة')}</h3>${[['partners.html',l.partner],['investors.html',t('Investors','निवेशक','المستथمرون')],['exports.html',t('Exports','निर्यात','التصدير')],['#news',t('Newsroom','समाचार','الأخبار')],['careers.html',t('Careers','करियर','الوظائف')],['contact.html',l.contact]].map(x=>`<a href="${x[0]}">${x[1]}</a>`).join('')}</div></div><div class="footer-bottom"><span>© ${new Date().getFullYear()} Kotwari International Ltd.</span><span style="display:flex;gap:18px;flex-wrap:wrap"><a href="privacy.html" style="color:inherit;text-decoration:underline">${t('Privacy Policy','गोपनीयता नीति','सीयाسة الخصوصية')}</a><a href="terms.html" style="color:inherit;text-decoration:underline">${t('Terms','शर्तें','الشروط')}</a><a href="cookie-policy.html" style="color:inherit;text-decoration:underline">${t('Cookies','कुकीज़','ملفات تعريف الارتباط')}</a><button class="legal-btn" data-dialog="legal">${t('Disclaimer','अस्वीकरण','إخلاء المسؤولية')}</button></span></div></div></footer>
 
 <button class="btn gold float-contact" data-dialog="chat">${t('Talk to Kotwari','Kotwari से बात करें','تحدث مع كوتواري')} ↗</button><div class="mobile-cta"><a href="#partners" data-role="Farmer">${t('Become a farmer partner','किसान पार्टनर बनें','شراكة المزارعين')}</a><button class="legal-btn" data-dialog="portal">${t('Farmer portal','किसान पोर्टल','بوابة المزارع')}</button><a href="tel:+${CONFIG.phone}">${t('Call','कॉल करें','اتصل')}</a></div>
 <dialog id="modal"><div class="dialog-top"><h2 id="modal-title"></h2><button class="close" aria-label="${l.close}">×</button></div><div id="modal-body"></div></dialog>`;
@@ -2946,6 +3325,34 @@ function initProductHeroShowcase(){
     lastTime = performance.now();
   }, {passive: true});
 }
+
+function copyRepoLink(url) {
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(url).then(showToastPopup);
+  } else {
+    var ta = document.createElement('textarea');
+    ta.value = url;
+    ta.style.position = 'fixed';
+    ta.style.left = '-9999px';
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy'); showToastPopup(); } catch(e){}
+    document.body.removeChild(ta);
+  }
+}
+function showToastPopup() {
+  var t = document.getElementById('claudeHomeToast');
+  if(!t) {
+    t = document.createElement('div');
+    t.id = 'claudeHomeToast';
+    t.className = 'claude-toast';
+    t.innerHTML = '&#10003; GitHub link copied to clipboard!';
+    document.body.appendChild(t);
+  }
+  t.classList.add('show');
+  setTimeout(function(){ t.classList.remove('show'); }, 2600);
+}
+
 function openProductModal(idx){
   const p=productData()[idx];
   if(!p)return;
