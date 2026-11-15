@@ -1103,7 +1103,6 @@
       <a href="#packs">Pick Your Pack</a>
       <a href="#packaging">Packaging</a>
       <a href="#farm">The Farm</a>
-      <a href="#calculator">Farmer Desk</a>
       <a class="btn-pill" href="#packs">Order Arabian Collection</a>
     </nav>
 
@@ -1471,51 +1470,6 @@
       </div>
     </div>
   </section>
-
-  <!-- ==========================================================================
-       SECTION 6: POULTRY FARMER EARNINGS CALCULATOR (B2B DESK)
-       ========================================================================== -->
-  <section class="calculator-section" id="calculator">
-    <div class="wrap">
-      <div class="section-header">
-        <span class="section-eyebrow">FARMER PARTNER DESK</span>
-        <h2 class="section-title">Poultry Income Calculator</h2>
-        <p class="section-sub">Are you a poultry farmer or FPO? Calculate your daily and monthly yield with Kotwari guaranteed procurement.</p>
-      </div>
-
-      <div class="calc-card">
-        <div class="calc-grid">
-          <div class="calc-controls">
-            <div class="calc-slider-group">
-              <label>Flock Size (Birds): <span id="lblFlock">5,000</span></label>
-              <input type="range" id="flockSize" min="1000" max="50000" step="500" value="5000">
-            </div>
-
-            <div class="calc-slider-group">
-              <label>Daily Laying Efficiency: <span id="lblEfficiency">88%</span></label>
-              <input type="range" id="layingRate" min="70" max="96" step="1" value="88">
-            </div>
-
-            <div class="calc-slider-group">
-              <label>Procurement Rate per Egg (&#8377;): <span id="lblPrice">&#8377;5.20</span></label>
-              <input type="range" id="eggPrice" min="4.00" max="7.00" step="0.10" value="5.20">
-            </div>
-          </div>
-
-          <div class="calc-display-panel">
-            <h4>Estimated Monthly Revenue</h4>
-            <div class="calc-stat-val" id="monthlyRevenue">&#8377;6,86,400</div>
-            <p class="calc-stat-sub">
-              Based on <strong id="dailyEggs">4,400</strong> eggs (<span id="dailyTrays">147</span> trays) gathered daily.
-            </p>
-            <a class="btn-pill" id="btnShareEggQuote" href="https://wa.me/919978648583" target="_blank" style="width: 100%; justify-content: center;">
-              Enquire for Farm Integration &rarr;
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 </main>
 
 <!-- ==========================================================================
@@ -1750,50 +1704,7 @@ function selectPackType(type) {
   }, 120);
 }
 
-// Poultry Income Calculator
-(function(){
-  var flock = document.getElementById('flockSize');
-  var rate = document.getElementById('layingRate');
-  var price = document.getElementById('eggPrice');
 
-  var lblFlock = document.getElementById('lblFlock');
-  var lblEfficiency = document.getElementById('lblEfficiency');
-  var lblPrice = document.getElementById('lblPrice');
-
-  var dailyEggs = document.getElementById('dailyEggs');
-  var dailyTrays = document.getElementById('dailyTrays');
-  var monthlyRevenue = document.getElementById('monthlyRevenue');
-  var btnQuote = document.getElementById('btnShareEggQuote');
-
-  function updateCalc() {
-    if(!flock || !rate || !price) return;
-    var f = parseInt(flock.value) || 0;
-    var r = parseFloat(rate.value) || 0;
-    var p = parseFloat(price.value) || 0;
-
-    lblFlock.textContent = f.toLocaleString('en-IN');
-    lblEfficiency.textContent = r.toFixed(0) + '%';
-    lblPrice.innerHTML = '&#8377;' + p.toFixed(2);
-
-    var eggsDay = f * (r / 100);
-    var traysDay = eggsDay / 30;
-    var revenueMonth = eggsDay * p * 30;
-
-    dailyEggs.textContent = Math.round(eggsDay).toLocaleString('en-IN');
-    dailyTrays.textContent = Math.round(traysDay).toLocaleString('en-IN');
-    monthlyRevenue.innerHTML = '&#8377;' + Math.round(revenueMonth).toLocaleString('en-IN');
-
-    var text = encodeURIComponent("Hello Kotwari Poultry Desk, I calculated revenue for " + f.toLocaleString('en-IN') + " birds at " + r + "% lay (" + Math.round(eggsDay) + " eggs / " + Math.round(traysDay) + " trays daily). Please share partnership terms.");
-    if (btnQuote) btnQuote.href = "https://wa.me/919978648583?text=" + text;
-  }
-
-  if (flock && rate && price) {
-    flock.addEventListener('input', updateCalc);
-    rate.addEventListener('input', updateCalc);
-    price.addEventListener('input', updateCalc);
-    updateCalc();
-  }
-})();
 </script>
 <script src="glass-dropdown.js"></script>
 <script src="kotwari-lang.js"></script>

@@ -666,64 +666,6 @@ html, body {
   </section>
 
   <!-- Interactive Farmer & Distributor Milk Fat/SNF Rate & Payment Estimator -->
-  <section id="dairy-calculator" class="band-section reveal" style="background:#f0eee4;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
-    <div class="wrap">
-      <div style="text-align:center;max-width:760px;margin:0 auto 36px">
-        <p class="eyebrow">Interactive Dairy Tool</p>
-        <h2>Farmer Milk Rate &amp; Procurement Payout Estimator</h2>
-        <p style="color:var(--muted)">Transparent digital pricing standard based on automated Fat % and SNF % testing at Kotwari Village Collection Centres.</p>
-      </div>
-
-      <div style="background:white;border:1px solid var(--line);border-radius:16px;padding:32px;box-shadow:0 10px 30px rgba(9,40,64,.06);max-width:920px;margin:0 auto">
-        <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));gap:24px;margin-bottom:28px">
-          <div>
-            <label for="milkType" style="display:block;font-size:.85rem;font-weight:bold;color:var(--navy);margin-bottom:8px">Milk Category</label>
-            <select id="milkType" style="width:100%;padding:12px;border:1px solid var(--line);border-radius:6px;font-size:.95rem;background:#faf8f1;color:var(--navy);font-weight:600">
-              <option value="cow">Cow Milk (Standard: 4.0% Fat / 8.5% SNF)</option>
-              <option value="buffalo" selected>Buffalo Milk (Standard: 6.5% Fat / 9.0% SNF)</option>
-              <option value="mixed">Mixed Farm Fresh Milk</option>
-            </select>
-          </div>
-
-          <div>
-            <label for="milkVolume" style="display:block;font-size:.85rem;font-weight:bold;color:var(--navy);margin-bottom:8px">Daily Milk Volume (Litres)</label>
-            <input type="number" id="milkVolume" value="50" min="1" max="10000" style="width:100%;padding:12px;border:1px solid var(--line);border-radius:6px;font-size:.95rem;background:#faf8f1;color:var(--navy);font-weight:600">
-          </div>
-
-          <div>
-            <label for="fatPercent" style="display:block;font-size:.85rem;font-weight:bold;color:var(--navy);margin-bottom:8px">Fat Content (%): <span id="fatVal" style="color:#7a5818">6.5%</span></label>
-            <input type="range" id="fatPercent" min="3.0" max="10.0" step="0.1" value="6.5" style="width:100%;accent-color:#bc944f;cursor:pointer">
-          </div>
-
-          <div>
-            <label for="snfPercent" style="display:block;font-size:.85rem;font-weight:bold;color:var(--navy);margin-bottom:8px">SNF Content (%): <span id="snfVal" style="color:#7a5818">9.0%</span></label>
-            <input type="range" id="snfPercent" min="7.5" max="10.0" step="0.1" value="9.0" style="width:100%;accent-color:#bc944f;cursor:pointer">
-          </div>
-        </div>
-
-        <!-- Real-time Output Cards -->
-        <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));gap:16px;background:var(--navy);padding:24px;border-radius:12px;color:white;text-align:center">
-          <div>
-            <span style="font-size:.78rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gold-light);display:block;margin-bottom:4px">Estimated Rate / Litre</span>
-            <strong id="ratePerLitre" style="font:2.2rem Georgia,serif;color:#ffffff">&#8377;54.60</strong>
-          </div>
-          <div>
-            <span style="font-size:.78rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gold-light);display:block;margin-bottom:4px">Daily Farmer Payout</span>
-            <strong id="dailyPayout" style="font:2.2rem Georgia,serif;color:var(--gold-light)">&#8377;2,730</strong>
-          </div>
-          <div>
-            <span style="font-size:.78rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gold-light);display:block;margin-bottom:4px">Monthly Projected Payout</span>
-            <strong id="monthlyPayout" style="font:2.2rem Georgia,serif;color:#ffffff">&#8377;81,900</strong>
-          </div>
-        </div>
-
-        <div style="margin-top:20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
-          <p style="font-size:.8rem;color:var(--muted);margin:0">* Illustrative standard procurement formula. Actual payments are logged per batch with automated digital receipt.</p>
-          <a class="btn btn-gold" id="btnShareQuote" href="#" target="_blank" rel="noopener noreferrer" style="font-size:.82rem;padding:8px 16px">Connect via WhatsApp for Bulk Procurement &rarr;</a>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- Interactive FAQ Accordion with Schema.org JSON-LD -->
   <section id="dairy-faq" class="reveal" style="background:#faf8f1;padding:64px 0;border-top:1px solid var(--line)">

@@ -582,59 +582,6 @@ html, body {
   </section>
 
   <!-- Interactive Retail Franchise & Store Footprint ROI Estimator -->
-  <section id="retail-calculator" class="band-section reveal" style="background:#f0eee4;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
-    <div class="wrap">
-      <div style="text-align:center;max-width:760px;margin:0 auto 36px">
-        <p class="eyebrow">Interactive Franchise Tool</p>
-        <h2>Retail Format &amp; Store Setup ROI Estimator</h2>
-        <p style="color:var(--muted)">Calculate space requirements, setup investment, and projected monthly store profits for Kotwari One Hypermarket or Protein Breakfast Point franchise.</p>
-      </div>
-
-      <div style="background:white;border:1px solid var(--line);border-radius:16px;padding:32px;box-shadow:0 10px 30px rgba(9,40,64,.06);max-width:920px;margin:0 auto">
-        <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));gap:24px;margin-bottom:28px">
-          <div>
-            <label for="storeFormat" style="display:block;font-size:.85rem;font-weight:bold;color:var(--navy);margin-bottom:8px">Retail Format</label>
-            <select id="storeFormat" style="width:100%;padding:12px;border:1px solid var(--line);border-radius:6px;font-size:.95rem;background:#faf8f1;color:var(--navy);font-weight:600">
-              <option value="kiosk" selected>Protein Breakfast Point (Kiosk / Quick-Service: 150-300 sq.ft)</option>
-              <option value="express">Kotwari Daily Express (Mini Supermarket: 800-1,500 sq.ft)</option>
-              <option value="hyper">Kotwari One Hypermarket (Full Experience: 3,000-8,000 sq.ft)</option>
-            </select>
-          </div>
-
-          <div>
-            <label for="dailyFootfall" style="display:block;font-size:.85rem;font-weight:bold;color:var(--navy);margin-bottom:8px">Estimated Daily Customer Footfall: <span id="footfallVal" style="color:#7a5818">180 Visitors</span></label>
-            <input type="range" id="dailyFootfall" min="50" max="1000" step="10" value="180" style="width:100%;accent-color:#bc944f;cursor:pointer">
-          </div>
-
-          <div>
-            <label for="avgBillVal" style="display:block;font-size:.85rem;font-weight:bold;color:var(--navy);margin-bottom:8px">Average Order Value (&#8377;)</label>
-            <input type="number" id="avgBillVal" value="120" min="40" max="2500" style="width:100%;padding:12px;border:1px solid var(--line);border-radius:6px;font-size:.95rem;background:#faf8f1;color:var(--navy);font-weight:600">
-          </div>
-        </div>
-
-        <!-- Real-time Output Cards -->
-        <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));gap:16px;background:var(--navy);padding:24px;border-radius:12px;color:white;text-align:center">
-          <div>
-            <span style="font-size:.78rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gold-light);display:block;margin-bottom:4px">Monthly Store Revenue</span>
-            <strong id="monthlyRev" style="font:2.2rem Georgia,serif;color:#ffffff">&#8377;6,48,000</strong>
-          </div>
-          <div>
-            <span style="font-size:.78rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gold-light);display:block;margin-bottom:4px">Projected Gross Margin</span>
-            <strong id="grossMarginVal" style="font:2.2rem Georgia,serif;color:var(--gold-light)">&#8377;1,81,440</strong>
-          </div>
-          <div>
-            <span style="font-size:.78rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gold-light);display:block;margin-bottom:4px">Est. Payback Timeline</span>
-            <strong id="paybackMonths" style="font:2.2rem Georgia,serif;color:#ffffff">6 - 9 Months</strong>
-          </div>
-        </div>
-
-        <div style="margin-top:20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
-          <p style="font-size:.8rem;color:var(--muted);margin:0">* Model assumes standard retail gross margin of 28% for QSR &amp; 19% for grocery formats.</p>
-          <a class="btn btn-gold" id="btnShareRetailQuote" href="#" target="_blank" rel="noopener noreferrer" style="font-size:.82rem;padding:8px 16px">Apply for Franchise Location &rarr;</a>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- Interactive Retail Franchise FAQ -->
   <section id="retail-faq" class="reveal" style="background:#faf8f1;padding:64px 0;border-top:1px solid var(--line)">
