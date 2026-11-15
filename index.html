@@ -1705,7 +1705,6 @@ form select option{
   }
 }
 </style>
-  <link rel="stylesheet" href="kotwari-components.css">
 </head>
 
 <body>
@@ -2285,7 +2284,6 @@ $('#app').innerHTML=`
       <a href="#about" class="nav-link">${t('About','हमारे बारे में','من نحن')}</a>
       <a href="#farmers" class="nav-link">${t('Farmers & FPO','किसान व FPO','المزارعون')}</a>
       <a href="#contact" class="nav-link">${t('Contact','संपर्क','اتصل بنا')}</a>
-      <button type="button" class="header-search-btn" onclick="openKotwariSearch()" aria-label="Search Catalog">Search <kbd>Ctrl K</kbd></button>
     </nav><div class="header-tools"><select class="lang" id="language" aria-label="Language / भाषा / اللغة"><option value="en">EN</option><option value="hi">हिंदी</option><option value="ar">العربية</option></select><a class="btn" href="#partners" style="font-weight:700">${l.partner}</a><button class="menu" aria-expanded="false" aria-controls="navigation">${t('Menu','मेनू','القائمة')}</button></div></div></header>
 <main id="main">
 <section class="hero" id="home"><img class="hero-photo" src="${escapeHTML(CONFIG.hero)}" alt="${t('Green agricultural fields in India','भारत में हरे कृषि खेत','حقول زراعية خضراء في الهند')}" fetchpriority="high"><canvas id="heroParticles" class="hero-particles"></canvas><div class="wrap reveal hero-content"><div class="hero-emblem-badge" id="heroEmblemBadge"><span class="gyro-ring gyro-ring-1"></span><span class="gyro-ring gyro-ring-2"></span><span class="gyro-ring gyro-ring-3"><span class="gyro-orbit-dot"></span></span><span class="emblem-ripple"></span><span class="emblem-ripple"></span><span class="emblem-ripple"></span><img class="hero-emblem-img" src="kotwari_emblem_new.png" alt="Kotwari Golden Emblem &mdash; Gao Se Global Tak"></div><p class="eyebrow">${t('An Indian rural-commerce vision','भारतीय ग्रामीण वाणिज्य का विज़न','رؤية هندية للتجارة الريفية')}</p><h1>${t('Gao Se<br><em>Global Tak.</em>','गांव से<br><em>ग्लोबल तक।</em>','من القرية<br><em>إلى العالم.</em>')}</h1><p class="lead">${t('Building India\'s farmer-to-market-to-global ecosystem &mdash; connecting rural production, processing, brands and modern retail into one integrated value chain.','भारत का किसान से बाजार और दुनिया तक का नेटवर्क &mdash; ग्रामीण उत्पादन, प्रोसेसिंग, ब्रांड और आधुनिक रिटेल को एक साझा मूल्य श्रृंखला में जोड़ना।','نبني منظومة تربط المزارع بالسوق والعالم &mdash; ربط الإنتاج الريفي والمعالجة والتجزئة الحديثة في سلسلة قيمة متكاملة.')}</p><div class="actions"><a class="btn gold" href="#businesses">${t('Explore Kotwari','Kotwari को जानें','اكتشف كोटواري')} ↗</a><a class="btn light" href="#partners">${t('Join our network','हमारे नेटवर्क से जुड़ें','انضم إلى شبكتना')}</a><button class="hero-audio-btn" id="heroAudioToggle" type="button" aria-pressed="false" aria-label="${t('Play Audio Introduction','ऑडियो परिचय सुनें','استمع إلى المقدمة الصوتية')}"><span class="audio-eq" aria-hidden="true"><span></span><span></span><span></span><span></span></span><span id="audioLabel">${t('Audio Story','ऑडियो सुनें','تجربة صوتية')}</span></button></div><div class="hero-trust-bar"><span class="trust-item">${t('Village Sourcing','ग्रामीण उत्पादन','إنتاج قروي')}</span><span class="trust-sep" aria-hidden="true"></span><span class="trust-item">️ ${t('Integrated Processing','एकीकृत प्रोसेसिंग','معالجة متكاملة')}</span><span class="trust-sep" aria-hidden="true"></span><span class="trust-item"> ${t('Gao Se Global Tak','गांव से ग्लोबल तक','من القرية إلى العالم')}</span></div></div><div class="audio-toast" id="audioToast" role="status" aria-live="polite"></div><a class="hero-credit" href="https://unsplash.com/photos/an-aerial-view-of-a-green-field-with-water-rz_XeuMi6xs" target="_blank" rel="noopener noreferrer">${t('Illustrative landscape','प्रतीकात्मक दृश्य','منظر توضيحي')} · Kishor Kumar / Unsplash</a></section>
@@ -3729,7 +3727,6 @@ if(window.location.hash){
   }catch(e){}
 }
 </script>
-  <script src="kotwari-components.js"></script>
 </body>
 </html>
 
