@@ -31,6 +31,13 @@
 <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 <link rel="manifest" href="site.webmanifest">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Kotwari">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="application-name" content="Kotwari">
+  <meta name="msapplication-TileColor" content="#092840">
+  <meta name="msapplication-TileImage" content="android-chrome-192x192.png">
 
 <!-- Schema.org JSON-LD Structured Data -->
 <script type="application/ld+json">
@@ -211,7 +218,7 @@
 [hidden]{display:none!important}
 @media(min-width:1000px){.wide{grid-column:span 2}}
 @media(max-width:1100px){.nav{gap:13px}.header-tools>.btn{display:none}.split{gap:36px}}
-@media(max-width:850px){section{padding:42px 0}.menu{display:block}.nav{display:none;position:absolute;top:100%;left:0;right:0;background:var(--ivory);padding:22px 24px;border-bottom:1px solid var(--line);grid-template-columns:1fr 1fr}.nav.open{display:grid}.split,.three{grid-template-columns:1fr}.hero{min-height:auto;padding:36px 0 44px}.hero-emblem-img{width:clamp(100px,22vw,135px)}.glance{grid-template-columns:1fr 1fr}.glance div:nth-child(2){border-inline-end:0}.glance div:nth-child(-n+2){border-bottom:1px solid var(--line)}.flow{grid-template-columns:1fr 1fr}.footer-grid{grid-template-columns:1fr 1fr}.section-head{align-items:start;flex-direction:column;gap:18px}.float-contact{display:none}.mobile-cta{display:flex;position:fixed;bottom:0;left:0;right:0;z-index:25;background:var(--navy);color:white;justify-content:space-around;padding:12px 8px calc(12px + env(safe-area-inset-bottom));font-size:.86rem;border-top:1px solid #426077}body{padding-bottom:60px}}
+@media(max-width:850px){section{padding:42px 0}.menu{display:block;cursor:pointer}.nav{display:none;position:absolute;top:100%;left:0;right:0;background:var(--ivory);padding:18px 24px;border-bottom:2px solid var(--gold);box-shadow:0 14px 30px rgba(9,40,64,.12);z-index:99}.nav.open{display:flex;flex-direction:column;gap:12px}.split,.three{grid-template-columns:1fr}.hero{min-height:auto;padding:36px 0 44px}.hero-emblem-img{width:clamp(100px,22vw,135px)}.glance{grid-template-columns:1fr 1fr}.glance div:nth-child(2){border-inline-end:0}.glance div:nth-child(-n+2){border-bottom:1px solid var(--line)}.flow{grid-template-columns:1fr 1fr}.footer-grid{grid-template-columns:1fr 1fr}.section-head{align-items:start;flex-direction:column;gap:18px}.float-contact{display:none}.mobile-cta{display:flex;position:fixed;bottom:0;left:0;right:0;z-index:25;background:var(--navy);color:white;justify-content:space-around;padding:12px 8px calc(12px + env(safe-area-inset-bottom));font-size:.86rem;border-top:1px solid #426077}body{padding-bottom:60px}}
 @media(max-width:520px){section{padding:32px 0}.wrap{width:calc(100% - 24px)}.header-row{gap:6px;min-height:88px}.brand{padding:3px 0}.brand-emblem-img{width:40px;margin-bottom: -6px}.brand-name{font-size:1.6rem}.brand-name sup{top:-2px;right:1px;font-size:6px}.brand-tag{font-size:6.8px;letter-spacing:0.12em;margin-top:2px;width:100%;text-align-last:justify}.header-tools{gap:6px;flex-shrink:0}.lang{padding:4px 6px;max-width:68px;font-size:.78rem}.menu{display:inline-flex;align-items:center;justify-content:center;padding:6px 11px;font-size:.82rem;min-height:34px}.topbar .wrap span:last-child{display:none}.hero{padding:26px 0 34px}.hero-content{padding:0 4px}.hero-emblem-img{width:78px}.hero .eyebrow{font-size:.68rem;letter-spacing:.1em;margin-bottom: 6px}.hero h1{font-size:2.2rem;margin-bottom:10px}.hero .lead{font-size:.92rem;line-height:1.45;padding:0 4px;margin-bottom:16px}.hero-trust-bar{gap:5px 10px;padding:6px 12px;font-size:.72rem;max-width:100%;margin-bottom:24px}.trust-sep{display:none}.two,.form-grid{grid-template-columns:1fr}.card{padding:20px}.glance div{padding:16px 12px}.glance strong{font-size:1.2rem}.footer-grid{gap:24px}.footer-grid>div:first-child{grid-column:1/-1}.statement{padding:24px}.water-panel{padding:36px 16px}.flow-detail{padding:16px}.hero-credit{font-size:.62rem;bottom:10px;opacity:.75}.btn{padding:12px 17px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}.reveal,.reveal-stagger>*{opacity:1!important;transform:none!important}.hero-stagger,.emblem-ripple,.hero h1 em,.hero-particles,.hero-emblem-badge:before,.gyro-ring{animation:none!important;transition:none!important;opacity:1!important;transform:none!important}.hero h1 em{-webkit-text-fill-color:#f0cf88!important;background:none!important}.hero-particles{display:none!important}}
 @media print{header,.topbar,.float-contact,.mobile-cta,.actions,form,dialog,.cookie-bar{display:none!important}section{padding:25px 0}.hero{min-height:0;color:black;background:white}.hero-photo,.hero:after{display:none}.hero p,.hero .eyebrow{color:black}.glance{margin-top:0}body{padding:0}.dark,footer{color:black;background:white}.dark .muted{color:#333}}
@@ -3381,7 +3388,29 @@ if(btt && !btt._bound){
   });
 }
 $('#language').addEventListener('change',e=>{const data=new FormData($('#enquiry-form'));const consent=$('#enquiry-form input[type=checkbox]').checked;language=e.target.value;window.language=language;try{localStorage.setItem('kotwari_lang',language);document.cookie='kotwari_lang='+language+';path=/;max-age=31536000';document.cookie='googtrans=/en/'+language+';path=/;max-age=31536000';}catch(err){}try{const u=new URL(window.location.href);if(language==='en')u.searchParams.delete('lang');else u.searchParams.set('lang',language);window.history.replaceState({},'',u.toString());}catch(err){}render();if(window.KotwariI18n)window.KotwariI18n.syncLinks(language);$('#role').value=data.get('role');renderFields();for(const [key,value] of data){const el=$('#enquiry-form').elements.namedItem(key);if(el)el.value=value;}$('#enquiry-form input[type=checkbox]').checked=consent;$('#language').focus();});
-$('.menu').addEventListener('click',()=>{const open=$('#navigation').classList.toggle('open');$('.menu').setAttribute('aria-expanded',open);});
+const menuBtn = $('.menu');
+const navEl = $('#navigation');
+if (menuBtn && navEl) {
+  menuBtn.onclick = (e) => {
+    e.stopPropagation();
+    const isOpen = navEl.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', String(isOpen));
+  };
+  // Close menu when a link inside is clicked
+  navEl.querySelectorAll('a').forEach(a => {
+    a.onclick = () => {
+      navEl.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    };
+  });
+  // Close menu when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!navEl.contains(e.target) && !menuBtn.contains(e.target)) {
+      navEl.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    }
+  });
+}
 
 // Wire frosted glass dropdowns
 document.querySelectorAll('.nav-item-dropdown').forEach(dropdown => {

@@ -1,19 +1,16 @@
 /**
  * Kotwari PWA Install & Shortcut Prompt System
- * Automatically listens for the browser's install prompt or displays a 
- * non-intrusive luxury banner asking the user to install Kotwari as an App or create a desktop/mobile shortcut.
+ * Universal support for Chrome, Edge, Safari, iOS, Android, and Desktop
  */
 (function() {
-  // Check if dismissed recently (e.g. within 5 days)
+  // Check if dismissed recently (e.g. within 3 days)
   var dismissedTime = localStorage.getItem('kotwari_pwa_dismissed');
-  if (dismissedTime && (Date.now() - parseInt(dismissedTime, 10)) < (5 * 24 * 60 * 60 * 1000)) {
-    // Recently dismissed, don't nag immediately
-    // Register service worker quietly
+  if (dismissedTime && (Date.now() - parseInt(dismissedTime, 10)) < (3 * 24 * 60 * 60 * 1000)) {
     registerSW();
     return;
   }
 
-  // Check if already in standalone display mode (installed)
+  // Check if already running in standalone display mode (installed)
   if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true) {
     registerSW();
     return;
@@ -36,26 +33,33 @@
   function showInstallPrompt(isNativeCapable) {
     if (document.getElementById('kotwariInstallBanner')) return;
 
+    var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+
     var banner = document.createElement('div');
     banner.id = 'kotwariInstallBanner';
     banner.setAttribute('role', 'dialog');
     banner.setAttribute('aria-label', 'Install Kotwari App');
+
+    var descText = isIOS
+      ? 'Tap Share and select "Add to Home Screen" for instant offline access.'
+      : 'Add Kotwari to your home screen or desktop for fast, offline access.';
+
+    var installBtnText = isIOS ? 'How to Add ↗' : 'Install App &rarr;';
 
     banner.innerHTML = [
       '<div class="kotwari-install-content">',
       '  <img src="android-chrome-192x192.png" alt="Kotwari App Icon" class="kotwari-install-icon">',
       '  <div class="kotwari-install-text">',
       '    <div class="kotwari-install-title">Install Kotwari App</div>',
-      '    <div class="kotwari-install-desc">Add Kotwari to your home screen or desktop for fast, offline access.</div>',
+      '    <div class="kotwari-install-desc">' + descText + '</div>',
       '  </div>',
       '  <div class="kotwari-install-actions">',
       '    <button type="button" class="btn-install-dismiss" id="btnKotwariDismiss" aria-label="Not now">Later</button>',
-      '    <button type="button" class="btn-install-accept" id="btnKotwariInstall">Install App &rarr;</button>',
+      '    <button type="button" class="btn-install-accept" id="btnKotwariInstall">' + installBtnText + '</button>',
       '  </div>',
       '</div>'
     ].join('');
 
-    // Style banner
     var style = document.createElement('style');
     style.textContent = [
       '#kotwariInstallBanner {',
@@ -164,12 +168,11 @@
     document.head.appendChild(style);
     document.body.appendChild(banner);
 
-    // Animate in after a tiny delay
+    // Animate in after 1.5s
     setTimeout(function() {
       banner.classList.add('show');
     }, 1500);
 
-    // Event listeners
     document.getElementById('btnKotwariDismiss').addEventListener('click', function() {
       banner.classList.remove('show');
       setTimeout(function() { banner.remove(); }, 400);
@@ -186,20 +189,19 @@
           deferredPrompt = null;
         });
       } else {
-        // Fallback for browsers that don't support automated prompt (e.g. iOS Safari)
-        alert('To add Kotwari to your Home Screen or Desktop:\\n\\n• On Chrome/Edge: Click the install icon (⊕) in your browser address bar.\\n• On Mobile: Tap the Share or Menu button (⋮) and select "Add to Home Screen".');
+        alert('To install Kotwari on your device:\\n\\n• On Chrome/Edge (Desktop): Click the (⊕) install button in your URL address bar.\\n• On Android: Tap Menu (⋮) and choose "Add to Home screen" or "Install App".\\n• On iPhone/iPad (Safari): Tap the Share button (⎋) and choose "Add to Home Screen".');
       }
       banner.classList.remove('show');
       setTimeout(function() { banner.remove(); }, 400);
     });
   }
 
-  // Trigger prompt fallback after 3.5 seconds if browser didn't fire beforeinstallprompt automatically
+  // Fallback trigger after 3 seconds if beforeinstallprompt didn't fire
   setTimeout(function() {
     if (!deferredPrompt && !document.getElementById('kotwariInstallBanner')) {
       showInstallPrompt(false);
     }
-  }, 3500);
+  }, 3000);
 
   registerSW();
 })();
