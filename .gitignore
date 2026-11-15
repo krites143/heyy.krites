@@ -12,6 +12,8 @@ desktop.ini
 # Temporary & Log files
 *.log
 *.tmp
+*.backup.html
+*.bak
 scratch/
 node_modules/
 .vercel/
