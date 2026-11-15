@@ -1003,120 +1003,56 @@ html, body {
   </section>
 
   <!-- Target Corridors & Markets -->
-  <section class="reveal">
+  <section class="reveal" id="corridors" style="background:#faf8f2;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:70px 0;">
     <div class="wrap">
-      <div class="section-head">
-        <span class="eyebrow">Trade Footprint</span>
-        <h2>Target Expansion Corridors</h2>
-        <p class="muted">
-          Our global outreach focuses on high-demand corridors where Indian quality, taste, and agricultural heritage hold strong market preference.
-      <!-- 3D Interactive Global Trade Visualizer -->
-      <div class="globe-showcase-panel">
-        <div class="globe-stage-wrapper">
-          <div class="globe-stage" id="globeStage" title="Drag to rotate 3D trade globe">
-            <canvas id="tradeGlobeCanvas" width="520" height="520" aria-label="3D Interactive Global Trade Globe"></canvas>
-            <div class="globe-hud">
-              <span class="globe-hud-dot"></span>
-              <span id="globeStatusText">Live Route: Nhava Sheva &rarr; Jebel Ali (Dubai)</span>
-            </div>
-            <div class="globe-controls">
-              <button type="button" id="globeResetBtn" class="globe-ctrl-btn" title="Reset View">&#8635; Center India</button>
-              <button type="button" id="globeAutoBtn" class="globe-ctrl-btn active" title="Toggle Auto-Spin">&#9654; Auto-Rotate</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="corridor-telemetry-panel">
-          <span class="eyebrow" style="color:var(--gold-light);margin-bottom:8px">Interactive Maritime Navigator</span>
-          <h3 style="color:#ffffff;font-size:1.35rem;margin-bottom:10px">Active Export Corridors &amp; Port Terminals</h3>
-          <p style="font-size:0.86rem;color:#cbdbe4;line-height:1.6;margin-bottom:14px">
-            Explore Kotwari's direct oceanic shipping corridors originating from India's primary cargo hubs. Select a destination to rotate the 3D globe and view live transit specs:
-          </p>
-
-          <div class="corridor-btn-list" id="corridorBtnList">
-            <button type="button" class="corridor-btn active" data-dest="dubai">
-              <span></span> <span>Dubai (Jebel Ali)</span>
-            </button>
-            <button type="button" class="corridor-btn" data-dest="ksa">
-              <span></span> <span>Saudi (Dammam/Jeddah)</span>
-            </button>
-            <button type="button" class="corridor-btn" data-dest="doha">
-              <span></span> <span>Doha (Hamad Port)</span>
-            </button>
-            <button type="button" class="corridor-btn" data-dest="singapore">
-              <span></span> <span>Singapore (ASEAN)</span>
-            </button>
-            <button type="button" class="corridor-btn" data-dest="london">
-              <span></span> <span>London Gateway (UK)</span>
-            </button>
-            <button type="button" class="corridor-btn" data-dest="malaysia">
-              <span></span> <span>Port Klang (Malaysia)</span>
-            </button>
-          </div>
-
-          <div class="corridor-detail-card" id="corridorDetailCard">
-            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;border-bottom:1px solid rgba(223,191,131,0.25);padding-bottom:8px">
-              <strong id="telemetryTitle" style="color:#ffffff;font-size:1.02rem">Jebel Ali Port, Dubai (UAE)</strong>
-              <span id="telemetryBadge" class="pill" style="background:rgba(39,174,96,0.2);color:#2ecc71;border-color:rgba(39,174,96,0.4)">Priority Corridor</span>
-            </div>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:0.82rem;margin-bottom:10px">
-              <div><span style="color:#a3b8c2">Departure Gateway:</span><br><strong style="color:#ffffff">Nhava Sheva / Mundra Port</strong></div>
-              <div><span style="color:#a3b8c2">Maritime Transit:</span><br><strong id="telemetryTransit" style="color:#dfbf83">~4 &ndash; 6 Days Direct</strong></div>
-              <div><span style="color:#a3b8c2">Logistics Protocol:</span><br><strong id="telemetryProtocol" style="color:#ffffff">+4°C Reefer &amp; Standard Dry FCL</strong></div>
-              <div><span style="color:#a3b8c2">Primary Commodities:</span><br><strong id="telemetryCargo" style="color:#ffffff">Eggs, KooA Water, Rice &amp; Oils</strong></div>
-            </div>
-            <p id="telemetryDesc" style="font-size:0.82rem;color:#cbdbe4;margin:0;line-height:1.5">
-              Direct containerized liner services running weekly departures from Gujarat and Mumbai deep-water terminals. Custom clearance expedited under GCC food import standards.
-            </p>
-          </div>
-        </div>
+      <div style="text-align:center;max-width:720px;margin:0 auto 48px;">
+        <span class="eyebrow">International Vision</span>
+        <h2>Target Expansion Markets</h2>
+        <p class="muted" style="font-size:1.05rem;line-height:1.6;">
+          Kotwari International is preparing export-compliant supply chains connecting India's rural agricultural hubs to key international demand markets, focused on authentic Indian staples, poultry, and pure foods.
+        </p>
       </div>
 
-      <div class="grid three">
-        <!-- UAE & GCC -->
-        <article class="card corridor-card">
-          <span class="country-badge" aria-hidden="true"> </span>
-          <h3>UAE, Saudi Arabia &amp; GCC</h3>
-          <p>
-            The Gulf region presents high-volume demand across hospitality, catering, supermarket chains, and food service. Primary targets include Dubai, Abu Dhabi, Riyadh, and Jeddah.
+      <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));gap:24px;">
+        <!-- Region 1: UAE & GCC -->
+        <div style="background:#ffffff;border:1px solid var(--line);border-radius:16px;padding:32px 26px;box-shadow:0 4px 16px rgba(9,40,64,0.04);">
+          <span style="display:inline-block;padding:4px 12px;background:rgba(188,148,79,0.15);color:#7a5818;border-radius:999px;font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:16px;">Primary Focus</span>
+          <h3 style="font-family:'Playfair Display',Georgia,serif;font-size:1.45rem;color:var(--navy);margin-bottom:10px;">United Arab Emirates &amp; GCC</h3>
+          <p style="font-size:0.9rem;color:#596977;line-height:1.6;margin-bottom:18px;">
+            Targeting premium retail, institutional kitchens, and the large South Asian diaspora seeking authentic Indian basmati, farm eggs, spices, and bilona ghee.
           </p>
-          <div class="corridor-tags">
-            <span class="tag-pill">Fresh Table Eggs</span>
-            <span class="tag-pill">KooA Mineral Water</span>
-            <span class="tag-pill">Basmati Rice</span>
-            <span class="tag-pill">Spices &amp; Seasonings</span>
-          </div>
-        </article>
+          <div style="font-size:0.8rem;color:#7a5818;font-weight:700;">Key Categories: Rice, Table Eggs, Ghee, Spices</div>
+        </div>
 
-        <!-- South & Southeast Asia -->
-        <article class="card corridor-card">
-          <span class="country-badge" aria-hidden="true"> </span>
-          <h3>South &amp; Southeast Asia</h3>
-          <p>
-            Established maritime shipping routes to Singapore, Malaysia, and regional distribution hubs cater to vibrant retail markets and large Indian diaspora communities.
+        <!-- Region 2: Saudi Arabia -->
+        <div style="background:#ffffff;border:1px solid var(--line);border-radius:16px;padding:32px 26px;box-shadow:0 4px 16px rgba(9,40,64,0.04);">
+          <span style="display:inline-block;padding:4px 12px;background:rgba(9,40,64,0.08);color:var(--navy);border-radius:999px;font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:16px;">Expansion Market</span>
+          <h3 style="font-family:'Playfair Display',Georgia,serif;font-size:1.45rem;color:var(--navy);margin-bottom:10px;">Kingdom of Saudi Arabia</h3>
+          <p style="font-size:0.9rem;color:#596977;line-height:1.6;margin-bottom:18px;">
+            High-volume requirement for FSSAI-certified food grains, turmeric, dry spices, and cold-pressed edible oils compliant with SASO quality benchmarks.
           </p>
-          <div class="corridor-tags">
-            <span class="tag-pill">Pure Mustard Oils</span>
-            <span class="tag-pill">Turmeric &amp; Chillies</span>
-            <span class="tag-pill">Chana Sattu</span>
-            <span class="tag-pill">Traditional Snacks</span>
-          </div>
-        </article>
+          <div style="font-size:0.8rem;color:#7a5818;font-weight:700;">Key Categories: Turmeric, Garam Masala, Mustard Oils</div>
+        </div>
 
-        <!-- Africa & Global Diaspora -->
-        <article class="card corridor-card">
-          <span class="country-badge" aria-hidden="true"> </span>
-          <h3>Africa &amp; International Diaspora</h3>
-          <p>
-            Emerging bilateral trade corridors in East Africa and specialized diaspora food channels in the UK and European hubs seeking authentic, pesticide-tested Indian culinary staples.
+        <!-- Region 3: South-East Asia -->
+        <div style="background:#ffffff;border:1px solid var(--line);border-radius:16px;padding:32px 26px;box-shadow:0 4px 16px rgba(9,40,64,0.04);">
+          <span style="display:inline-block;padding:4px 12px;background:rgba(9,40,64,0.08);color:var(--navy);border-radius:999px;font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:16px;">Expansion Market</span>
+          <h3 style="font-family:'Playfair Display',Georgia,serif;font-size:1.45rem;color:var(--navy);margin-bottom:10px;">South-East Asia</h3>
+          <p style="font-size:0.9rem;color:#596977;line-height:1.6;margin-bottom:18px;">
+            Supplying Indian ethnic superfoods, premium fox nuts (Mithila Makhana), roasted sattu, and authentic regional namkeens to modern supermarkets.
           </p>
-          <div class="corridor-tags">
-            <span class="tag-pill">Aged Basmati</span>
-            <span class="tag-pill">Bulk Pulses &amp; Grains</span>
-            <span class="tag-pill">Speciality Pickles</span>
-            <span class="tag-pill">Desi Ghee</span>
-          </div>
-        </article>
+          <div style="font-size:0.8rem;color:#7a5818;font-weight:700;">Key Categories: Makhana, Chana Sattu, Medjool Dates</div>
+        </div>
+
+        <!-- Region 4: Diaspora & Global -->
+        <div style="background:#ffffff;border:1px solid var(--line);border-radius:16px;padding:32px 26px;box-shadow:0 4px 16px rgba(9,40,64,0.04);">
+          <span style="display:inline-block;padding:4px 12px;background:rgba(9,40,64,0.08);color:var(--navy);border-radius:999px;font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:16px;">Future Corridors</span>
+          <h3 style="font-family:'Playfair Display',Georgia,serif;font-size:1.45rem;color:var(--navy);margin-bottom:10px;">Global Indian Diaspora</h3>
+          <p style="font-size:0.9rem;color:#596977;line-height:1.6;margin-bottom:18px;">
+            Strategic private-label and branded FMCG partnerships for diaspora specialty grocery distribution across UK, Europe, and Africa.
+          </p>
+          <div style="font-size:0.8rem;color:#7a5818;font-weight:700;">Key Categories: Packaged FMCG, Traditional Pickles</div>
+        </div>
       </div>
     </div>
   </section>
