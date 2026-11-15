@@ -972,53 +972,6 @@ html, body {
 </footer>
 
 <script>
-  (function(){
-    const fmcgCategory = document.getElementById('fmcgCategory');
-    const fmcgInvestment = document.getElementById('fmcgInvestment');
-    const fmcgTurnover = document.getElementById('fmcgTurnover');
-    const turnoverVal = document.getElementById('turnoverVal');
-    const monthlySales = document.getElementById('monthlySales');
-    const monthlyMargin = document.getElementById('monthlyMargin');
-    const annualReturn = document.getElementById('annualReturn');
-    const btnShareFmcgQuote = document.getElementById('btnShareFmcgQuote');
-
-    const marginMap = {
-      spices: 0.18,
-      oils: 0.11,
-      sattu: 0.15,
-      snacks: 0.20,
-      pickles: 0.22
-    };
-
-    function calculate(){
-      if(!fmcgCategory || !fmcgInvestment || !fmcgTurnover) return;
-
-      const capital = parseFloat(fmcgInvestment.value) || 0;
-      const turns = parseFloat(fmcgTurnover.value) || 1;
-      const marginRate = marginMap[fmcgCategory.value] || 0.15;
-
-      turnoverVal.textContent = turns.toFixed(1) + ' Cycles';
-
-      const sales = capital * turns;
-      const grossMargin = sales * marginRate;
-      const annualRoi = ((grossMargin * 12) / capital) * 100;
-
-      monthlySales.innerHTML = '&#8377;' + Math.round(sales).toLocaleString('en-IN');
-      monthlyMargin.innerHTML = '&#8377;' + Math.round(grossMargin).toLocaleString('en-IN');
-      annualReturn.textContent = Math.round(annualRoi) + '%';
-
-      const text = encodeURIComponent(`Hello Kotwari FMCG Commercial Desk, I estimated a distributorship turnover for ${fmcgCategory.options[fmcgCategory.selectedIndex].text} with Monthly Capital ₹${(capital/100000).toFixed(1)} Lakhs and ${turns}x turnover (Est. Margin: ₹${Math.round(grossMargin).toLocaleString('en-IN')}/mo). Please share dealership terms and product catalog.`);
-      btnShareFmcgQuote.href = `https://wa.me/919978648583?text=${text}`;
-    }
-
-    if(fmcgCategory && fmcgInvestment && fmcgTurnover){
-      fmcgCategory.addEventListener('change', calculate);
-      fmcgInvestment.addEventListener('change', calculate);
-      fmcgTurnover.addEventListener('input', calculate);
-      calculate();
-    }
-  })();
-</script>
 <script>
 (function(){
   var navToggle = document.querySelector('.mobile-nav-toggle');

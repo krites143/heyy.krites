@@ -675,53 +675,6 @@ html, body {
 
 <script>
   (function(){
-    const storeFormat = document.getElementById('storeFormat');
-    const dailyFootfall = document.getElementById('dailyFootfall');
-    const avgBillVal = document.getElementById('avgBillVal');
-    const footfallVal = document.getElementById('footfallVal');
-    const monthlyRev = document.getElementById('monthlyRev');
-    const grossMarginVal = document.getElementById('grossMarginVal');
-    const paybackMonths = document.getElementById('paybackMonths');
-    const btnShareRetailQuote = document.getElementById('btnShareRetailQuote');
-
-    const formatData = {
-      kiosk: { margin: 0.28, capex: 350000, defBill: 120, payback: '5 - 8 Months' },
-      express: { margin: 0.21, capex: 1200000, defBill: 450, payback: '8 - 14 Months' },
-      hyper: { margin: 0.18, capex: 3500000, defBill: 850, payback: '12 - 20 Months' }
-    };
-
-    function calculate(){
-      if(!storeFormat || !dailyFootfall || !avgBillVal) return;
-
-      const format = formatData[storeFormat.value] || formatData.kiosk;
-      const footfall = parseInt(dailyFootfall.value) || 100;
-      const bill = parseFloat(avgBillVal.value) || 100;
-
-      footfallVal.textContent = footfall + ' Visitors / day';
-
-      const monthlySales = footfall * bill * 30;
-      const grossProfit = monthlySales * format.margin;
-
-      monthlyRev.innerHTML = '&#8377;' + Math.round(monthlySales).toLocaleString('en-IN');
-      grossMarginVal.innerHTML = '&#8377;' + Math.round(grossProfit).toLocaleString('en-IN');
-      paybackMonths.textContent = format.payback;
-
-      const text = encodeURIComponent(`Hello Kotwari Retail Team, I evaluated the franchise ROI for ${storeFormat.options[storeFormat.selectedIndex].text} with ${footfall} daily footfall & ₹${bill} avg ticket size (Projected Gross Margin: ₹${Math.round(grossProfit).toLocaleString('en-IN')}/mo). Please share franchise prospectus and site evaluation checklist.`);
-      btnShareRetailQuote.href = `https://wa.me/919978648583?text=${text}`;
-    }
-
-    if(storeFormat && dailyFootfall && avgBillVal){
-      storeFormat.addEventListener('change', function(){
-        const f = formatData[this.value];
-        if(f) avgBillVal.value = f.defBill;
-        calculate();
-      });
-      dailyFootfall.addEventListener('input', calculate);
-      avgBillVal.addEventListener('input', calculate);
-      calculate();
-    }
-  })();
-</script>
 <script>
 (function(){
   var navToggle = document.querySelector('.mobile-nav-toggle');
