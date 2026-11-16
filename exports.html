@@ -937,6 +937,12 @@ html, body {
 .product-box-img, .card img, .hero-card img{transition:transform .45s cubic-bezier(.16,1,.3,1),filter .45s cubic-bezier(.16,1,.3,1)}
 .product-box:hover .product-box-img, .card:hover img{transform:scale(1.04)}
 </style>
+  <noscript>
+    <style>
+      .reveal { opacity: 1 !important; filter: none !important; transform: none !important; }
+      .reveal-stagger > * { opacity: 1 !important; filter: none !important; transform: none !important; }
+    </style>
+  </noscript>
 </head>
 <body>
 <div id="scrollProgress" aria-hidden="true"></div>
@@ -1542,7 +1548,13 @@ function initCounters(){
 }
   initScrollReveal();
   initCounters();
-    }
+
+  // Safety fallback: ensure any in-viewport .reveal elements are displayed promptly
+  setTimeout(function() {
+    document.querySelectorAll('.reveal:not(.is-visible)').forEach(function(el) {
+      el.classList.add('is-visible');
+    });
+  }, 1000);
 
     // Export Form Submission to WhatsApp / Email with anti-spam & redirect
     const exportForm = document.getElementById('exportForm');
@@ -1623,6 +1635,7 @@ function initCounters(){
           window.location.href = 'thank-you.html';
         }, 1200);
       });
+    }
   </script>
 
 <button id="backToTop" class="back-to-top" aria-label="Back to top" title="Back to top" type="button">&uarr;</button>
