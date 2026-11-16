@@ -797,6 +797,15 @@
   align-items:center;
   gap:16px;
 }
+/* Edge-aligned Header & Topbar: aligns logo and brand cleanly with left border */
+header .wrap,
+.topbar .wrap {
+  width: 100% !important;
+  max-width: 100% !important;
+  padding-left: clamp(16px, 2vw, 32px) !important;
+  padding-right: clamp(16px, 2vw, 32px) !important;
+  margin: 0 auto !important;
+}
 .topbar-brand{
   display:inline-flex;
   align-items:center;
