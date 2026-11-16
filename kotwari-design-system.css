@@ -1,0 +1,595 @@
+/* ==========================================================================
+   KOTWARI INTERNATIONAL ENTERPRISE DESIGN SYSTEM
+   Master Design System & Component Library (Version 2.0.0)
+   Brand Aesthetic: High-Authority Luxury Corporate Agro-Food Enterprise
+   Palette: Deep Navy (#102B3F), Dark Navy (#0B1F30), Warm Cream (#F8F5ED),
+            Elegant Gold (#C5A15B), White (#FFFFFF), Muted Grey (#737B83)
+   ========================================================================== */
+
+:root {
+  /* ========================================================================
+     1. COLOR SYSTEM (Consolidated Enterprise Palette)
+     ======================================================================== */
+  --navy: #102B3F;
+  --navy-deep: #102B3F;
+  --navy-dark: #0B1F30;
+  --navy-light: #184260;
+  --navy-surface: #0e273a;
+  
+  --gold: #C5A15B;
+  --gold-glow: #DFBF83;
+  --gold-light: #F2E4C4;
+  --gold-dark: #9A7A3A;
+  --gold-border: rgba(197, 161, 91, 0.28);
+  --gold-border-subtle: rgba(197, 161, 91, 0.16);
+  --gold-border-strong: rgba(197, 161, 91, 0.55);
+
+  --cream: #F8F5ED;
+  --ivory: #F8F5ED;
+  --white: #FFFFFF;
+  --surface-white: #FFFFFF;
+  --surface-cream: #F5F1E6;
+  
+  --ink: #0B1F30;
+  --ink-secondary: #2C3E50;
+  --muted: #737B83;
+  --muted-light: #8E97A0;
+  --line: rgba(11, 31, 48, 0.10);
+  --line-light: rgba(11, 31, 48, 0.06);
+
+  /* Semantic UI Tokens */
+  --color-text-primary: var(--ink);
+  --color-text-secondary: var(--ink-secondary);
+  --color-text-muted: var(--muted);
+  --color-text-inverse: var(--white);
+  --color-text-gold: var(--gold-dark);
+
+  /* ========================================================================
+     2. TYPOGRAPHIC TOKENS (Editorial Luxury Scale)
+     ======================================================================== */
+  --font-serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+
+  --text-xs: 0.75rem;     /* 12px - Badges, captions, footnotes */
+  --text-sm: 0.875rem;    /* 14px - Meta text, sub-labels, table cells */
+  --text-base: 1rem;      /* 16px - Standard body copy, inputs */
+  --text-lg: 1.125rem;    /* 18px - Card headings, intro leads */
+  --text-xl: 1.35rem;     /* 22px - Section h3, feature titles */
+  --text-2xl: 2.15rem;    /* 34px - Section h2 headings */
+  --text-3xl: 3.5rem;     /* 56px - Hero display titles */
+
+  /* ========================================================================
+     3. ELEVATION, SHADOWS & RADII
+     ======================================================================== */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  --shadow-sm: 0 2px 6px rgba(11, 31, 48, 0.04);
+  --shadow-card: 0 4px 20px rgba(11, 31, 48, 0.05), 0 1px 3px rgba(197, 161, 91, 0.06);
+  --shadow-card-hover: 0 16px 38px rgba(11, 31, 48, 0.10), 0 4px 12px rgba(197, 161, 91, 0.14);
+  --shadow-elevated: 0 24px 60px rgba(11, 31, 48, 0.18), 0 0 0 1px rgba(197, 161, 91, 0.25);
+  --shadow-gold: 0 6px 24px rgba(197, 161, 91, 0.28);
+  --shadow-inset-soft: inset 0 1px 2px rgba(0, 0, 0, 0.05);
+
+  /* Animation & Transition Timings */
+  --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --duration-fast: 0.18s;
+  --duration-normal: 0.28s;
+  --duration-slow: 0.5s;
+}
+
+/* ==========================================================================
+   4. GLOBAL BASE & TYPOGRAPHY ENHANCEMENTS
+   ========================================================================== */
+html {
+  background-color: var(--cream);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.65;
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  background-color: var(--cream);
+  color: var(--ink);
+}
+
+::selection {
+  background: rgba(197, 161, 91, 0.25);
+  color: var(--navy-dark);
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--navy-dark);
+  font-family: var(--font-serif);
+  font-weight: 400;
+  margin: 0 0 16px;
+  letter-spacing: -0.025em;
+}
+
+h1 {
+  font-size: clamp(2.6rem, 6.2vw, 5.0rem);
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+}
+
+h2 {
+  font-size: clamp(1.9rem, 3.6vw, 3.0rem);
+  line-height: 1.15;
+}
+
+h3 {
+  font-size: clamp(1.2rem, 1.8vw, 1.55rem);
+  line-height: 1.35;
+  font-family: var(--font-serif);
+  font-weight: 600;
+}
+
+p {
+  margin: 0 0 16px;
+  color: var(--ink-secondary);
+}
+
+.lead {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: #37474F;
+  max-width: 720px;
+}
+
+.eyebrow {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--gold-dark);
+  margin-bottom: 14px;
+}
+
+.muted {
+  color: var(--muted) !important;
+}
+
+.wrap {
+  width: min(1200px, calc(100% - 48px));
+  margin: 0 auto;
+}
+
+@media (max-width: 600px) {
+  .wrap {
+    width: calc(100% - 32px);
+  }
+}
+
+/* ==========================================================================
+   5. ENTERPRISE HEADER & CORPORATE TOPBAR
+   ========================================================================== */
+.topbar {
+  background: linear-gradient(90deg, #071725 0%, #0B1F30 50%, #071725 100%) !important;
+  color: #E6EDF2 !important;
+  font-size: 0.80rem !important;
+  padding: 8px 0 !important;
+  border-bottom: 1px solid rgba(197, 161, 91, 0.25) !important;
+  position: relative;
+  z-index: 95;
+  letter-spacing: 0.02em;
+}
+
+.topbar .wrap,
+header .wrap,
+header .header-inner,
+header .header-row {
+  width: 100% !important;
+  max-width: 100% !important;
+  padding-left: clamp(16px, 2.5vw, 36px) !important;
+  padding-right: clamp(16px, 2.5vw, 36px) !important;
+  margin: 0 auto !important;
+  box-sizing: border-box !important;
+}
+
+header {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 90 !important;
+  background: rgba(248, 245, 237, 0.95) !important;
+  backdrop-filter: blur(14px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(14px) saturate(180%) !important;
+  border-bottom: 1px solid var(--gold-border-subtle) !important;
+  transition: all var(--duration-normal) var(--ease-smooth) !important;
+}
+
+header.scrolled {
+  background: rgba(248, 245, 237, 0.98) !important;
+  box-shadow: 0 8px 26px rgba(11, 31, 48, 0.07) !important;
+  border-bottom: 1px solid var(--gold-border) !important;
+}
+
+.header-row,
+.header-inner {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 24px !important;
+  min-height: 96px !important;
+  transition: min-height var(--duration-normal) var(--ease-smooth) !important;
+}
+
+header.scrolled .header-row,
+header.scrolled .header-inner {
+  min-height: 86px !important;
+}
+
+/* Brand Identity */
+.brand {
+  display: inline-flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  text-align: center !important;
+  text-decoration: none !important;
+  position: relative !important;
+  padding: 4px 0 !important;
+  color: inherit !important;
+  transition: transform var(--duration-fast) var(--ease-smooth) !important;
+}
+
+.brand-emblem-img {
+  width: 50px !important;
+  height: auto !important;
+  display: block !important;
+  margin: 0 auto -8px !important;
+  filter: drop-shadow(0 2px 6px rgba(197, 161, 91, 0.35)) !important;
+  transition: transform var(--duration-normal) var(--ease-spring) !important;
+}
+
+.brand:hover .brand-emblem-img {
+  transform: translateY(-2px) scale(1.04) !important;
+}
+
+.brand-name {
+  font-family: var(--font-serif) !important;
+  font-weight: 700 !important;
+  font-size: 2.05rem !important;
+  line-height: 1.05 !important;
+  color: var(--navy-dark) !important;
+  letter-spacing: -0.035em !important;
+  display: inline-block !important;
+  position: relative !important;
+}
+
+.brand-name sup {
+  position: absolute !important;
+  top: -3px !important;
+  right: 1px !important;
+  font-family: var(--font-sans) !important;
+  font-size: 7px !important;
+  font-weight: 700 !important;
+  color: var(--gold-dark) !important;
+  letter-spacing: 0 !important;
+}
+
+.brand-tag {
+  display: block !important;
+  width: 100% !important;
+  font-family: var(--font-sans) !important;
+  font-size: 8px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.13em !important;
+  text-transform: uppercase !important;
+  color: var(--gold-dark) !important;
+  margin-top: 3px !important;
+  text-align: justify !important;
+  text-align-last: justify !important;
+}
+
+/* Navigation Links */
+.nav {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+.nav-link,
+header nav a {
+  font-family: var(--font-sans);
+  font-size: 0.90rem;
+  font-weight: 600;
+  color: var(--navy-deep);
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: var(--radius-xs);
+  transition: all var(--duration-fast) ease;
+  position: relative;
+}
+
+.nav-link:hover,
+header nav a:hover {
+  color: var(--gold-dark);
+  background: rgba(197, 161, 91, 0.08);
+}
+
+.nav-link.active,
+header nav a.active {
+  color: var(--navy-dark);
+  font-weight: 700;
+  border-bottom: 2px solid var(--gold);
+  border-radius: 0;
+}
+
+/* ==========================================================================
+   6. LUXURY BUTTON TIERS & ACTIONS
+   ========================================================================== */
+.btn {
+  display: inline-flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 10px !important;
+  min-height: 48px !important;
+  padding: 12px 24px !important;
+  border-radius: var(--radius-xs) !important;
+  font-family: var(--font-sans) !important;
+  font-weight: 700 !important;
+  font-size: 0.90rem !important;
+  letter-spacing: 0.01em !important;
+  text-decoration: none !important;
+  cursor: pointer !important;
+  border: 1.5px solid var(--navy-deep) !important;
+  background-color: var(--navy-deep) !important;
+  color: var(--white) !important;
+  transition: all var(--duration-fast) var(--ease-smooth) !important;
+  box-shadow: 0 2px 8px rgba(11, 31, 48, 0.12) !important;
+}
+
+.btn:hover {
+  background-color: var(--navy-light) !important;
+  border-color: var(--navy-light) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 18px rgba(11, 31, 48, 0.20) !important;
+}
+
+.btn:active {
+  transform: scale(0.98) !important;
+}
+
+/* Primary Gold Shimmer Button */
+.btn.gold,
+.btn-gold,
+.btn-primary {
+  background: linear-gradient(135deg, #C5A15B 0%, #D4B46F 50%, #C5A15B 100%) !important;
+  color: #0B1F30 !important;
+  border: 1.5px solid #C5A15B !important;
+  font-weight: 800 !important;
+  position: relative !important;
+  overflow: hidden !important;
+  box-shadow: 0 4px 14px rgba(197, 161, 91, 0.25) !important;
+}
+
+.btn.gold:hover,
+.btn-gold:hover,
+.btn-primary:hover {
+  background: linear-gradient(135deg, #D4B46F 0%, #DFBF83 50%, #D4B46F 100%) !important;
+  border-color: #DFBF83 !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 24px rgba(197, 161, 91, 0.40) !important;
+}
+
+/* Metallic Continuous Shimmer Animation */
+.btn.gold::after,
+.btn-gold::after,
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -130%;
+  width: 80%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+  transform: skewX(-25deg);
+  animation: btnShimmerSweep 4.5s infinite ease-in-out;
+  pointer-events: none;
+}
+
+@keyframes btnShimmerSweep {
+  0% { left: -130%; }
+  22% { left: 150%; }
+  100% { left: 150%; }
+}
+
+/* Outline / Ghost Button */
+.btn.light,
+.btn.outline,
+.btn-outline {
+  background: transparent !important;
+  color: var(--navy-deep) !important;
+  border: 1.5px solid var(--navy-deep) !important;
+  box-shadow: none !important;
+}
+
+.btn.light:hover,
+.btn.outline:hover,
+.btn-outline:hover {
+  background: var(--navy-deep) !important;
+  color: var(--white) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* ==========================================================================
+   7. CARDS, GRIDS & COMPONENT ELEVATION
+   ========================================================================== */
+.card {
+  background: var(--white) !important;
+  border: 1px solid var(--gold-border-subtle) !important;
+  border-radius: var(--radius-sm) !important;
+  padding: 28px !important;
+  box-shadow: var(--shadow-card) !important;
+  transition: transform var(--duration-normal) var(--ease-spring),
+              box-shadow var(--duration-normal) var(--ease-spring),
+              border-color var(--duration-normal) ease !important;
+}
+
+.card:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: var(--shadow-card-hover) !important;
+  border-color: var(--gold-border) !important;
+}
+
+/* Dark Enterprise Sections (Impact, Supply Chain, Processing) */
+.dark,
+.dark-section {
+  background: linear-gradient(135deg, #091C2B 0%, #102B3F 100%) !important;
+  color: var(--white) !important;
+}
+
+.dark h2,
+.dark h3,
+.dark-section h2,
+.dark-section h3 {
+  color: var(--white) !important;
+}
+
+.dark p,
+.dark-section p {
+  color: #CAD5DF !important;
+}
+
+.dark .card,
+.dark-section .card {
+  background: rgba(11, 31, 48, 0.85) !important;
+  border: 1px solid rgba(197, 161, 91, 0.22) !important;
+  color: var(--white) !important;
+}
+
+.dark .card:hover,
+.dark-section .card:hover {
+  border-color: var(--gold) !important;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.35) !important;
+}
+
+/* Pills & Badges */
+.pill,
+.badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  padding: 5px 13px !important;
+  border: 1px solid var(--gold-border) !important;
+  border-radius: var(--radius-full) !important;
+  font-family: var(--font-sans) !important;
+  font-size: 0.78rem !important;
+  font-weight: 600 !important;
+  background: rgba(197, 161, 91, 0.08) !important;
+  color: var(--navy-deep) !important;
+}
+
+/* ==========================================================================
+   8. INPUTS, FORMS & ACCESSIBILITY
+   ========================================================================== */
+input, textarea, form select {
+  font-family: var(--font-sans) !important;
+  font-size: 0.95rem !important;
+  width: 100% !important;
+  padding: 13px 16px !important;
+  border: 1.5px solid #CFD8DC !important;
+  border-radius: var(--radius-xs) !important;
+  background: var(--white) !important;
+  color: var(--ink) !important;
+  transition: border-color var(--duration-fast) ease, box-shadow var(--duration-fast) ease !important;
+}
+
+input:focus, textarea:focus, form select:focus {
+  outline: none !important;
+  border-color: var(--gold) !important;
+  box-shadow: 0 0 0 3.5px rgba(197, 161, 91, 0.20) !important;
+}
+
+/* ==========================================================================
+   9. FOOTER ARCHITECTURE
+   ========================================================================== */
+footer {
+  background: #071725 !important;
+  color: #C5D1DB !important;
+  padding: 60px 0 30px !important;
+  border-top: 2px solid var(--gold) !important;
+  position: relative;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 40px;
+}
+
+.footer-grid h3 {
+  color: var(--gold-glow) !important;
+  font-family: var(--font-sans) !important;
+  font-size: 0.95rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.06em !important;
+  text-transform: uppercase !important;
+  margin-bottom: 20px !important;
+}
+
+.footer-grid a {
+  display: block;
+  font-size: 0.90rem;
+  color: #A3B5C4;
+  margin-bottom: 10px;
+  text-decoration: none;
+  transition: color var(--duration-fast) ease;
+}
+
+.footer-grid a:hover {
+  color: var(--gold-glow) !important;
+  padding-left: 2px;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.10) !important;
+  margin-top: 45px !important;
+  padding-top: 24px !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  gap: 20px !important;
+  flex-wrap: wrap !important;
+  font-size: 0.82rem !important;
+  color: #8B9FA8 !important;
+}
+
+@media (max-width: 900px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 32px !important;
+  }
+}
+
+@media (max-width: 560px) {
+  .footer-grid {
+    grid-template-columns: 1fr !important;
+    gap: 28px !important;
+  }
+}
+
+/* ==========================================================================
+   10. MICRO-INTERACTIONS & MOTION ACCESSIBILITY
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
