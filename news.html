@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
   <meta charset="utf-8">
@@ -703,8 +703,37 @@
       }
     }
   </style>
+  <!-- NewsArticle Structured Data for Google News -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "NewsArticle",
+        "headline": "Kotwari International Expands Direct Village Sourcing to 120+ Hubs & Ramps Middle East Export Shipments",
+        "image": ["https://www.kotwari.com/kotwari_logo_gold.png"],
+        "datePublished": "2026-11-14T08:00:00+05:30",
+        "dateModified": "2026-11-14T10:00:00+05:30",
+        "author": [{
+          "@type": "Organization",
+          "name": "Kotwari Corporate Communications Bureau"
+        }],
+        "publisher": {
+          "@type": "Organization",
+          "name": "Kotwari International Ltd.",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.kotwari.com/kotwari_emblem_new.png"
+          }
+        },
+        "description": "Consolidating our integrated farm-to-shipping network across Awadh and Purvanchal, Kotwari has commissioned upgraded electronic weigh-grading hubs and secured expanded container bookings for traditional Basmati and cold-pressed mustard oil into UAE and Saudi markets."
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
+<a href="#main" class="skip-to-content">Skip to main content</a>
 
   <!-- Topbar -->
   <div class="topbar">
@@ -722,7 +751,7 @@
   <header>
     <div class="wrap header-inner">
       <a class="brand" href="index.html">
-        <img class="brand-emblem-img" src="kotwari_emblem_new.png" alt="Kotwari Corporate Seal">
+        <img class="brand-emblem-img" src="kotwari_emblem_new.png" alt="Kotwari Corporate Seal" width="44" height="44" loading="lazy" decoding="async">
         <div class="brand-text">
           <span class="brand-name">Kotwari<sup>&trade;</sup></span>
           <span class="brand-tag">Gao Se Global Tak</span>
@@ -774,7 +803,7 @@
       <article class="featured-card">
         <div class="featured-media">
           <div class="featured-media-pattern"></div>
-          <img src="kotwari_logo_gold.png" alt="Kotwari Global Trade Expansion">
+          <img src="kotwari_logo_gold.png" alt="Kotwari Global Trade Expansion" loading="lazy" decoding="async">
         </div>
         <div class="featured-content">
           <div class="article-meta">
@@ -810,7 +839,7 @@
       <!-- Article 1 -->
       <article class="news-card" data-category="agri">
         <div class="card-banner">
-          <img src="kotwari_emblem_wheat.png" alt="Farmer Sourcing">
+          <img src="kotwari_emblem_wheat.png" alt="Farmer Sourcing" loading="lazy" decoding="async">
         </div>
         <div class="card-body">
           <div class="article-meta">
@@ -829,7 +858,7 @@
       <!-- Article 2 -->
       <article class="news-card" data-category="fmcg">
         <div class="card-banner">
-          <img src="kotwari_logo_gold.png" alt="Kotwari FMCG Range">
+          <img src="kotwari_logo_gold.png" alt="Kotwari FMCG Range" loading="lazy" decoding="async">
         </div>
         <div class="card-body">
           <div class="article-meta">
@@ -848,7 +877,7 @@
       <!-- Article 3 -->
       <article class="news-card" data-category="exports">
         <div class="card-banner">
-          <img src="kotwari_emblem_new.png" alt="APEDA Certified Export">
+          <img src="kotwari_emblem_new.png" alt="APEDA Certified Export" loading="lazy" decoding="async">
         </div>
         <div class="card-body">
           <div class="article-meta">
@@ -867,7 +896,7 @@
       <!-- Article 4 -->
       <article class="news-card" data-category="supply">
         <div class="card-banner">
-          <img src="kotwari_emblem_wheat.png" alt="Cold Chain Infrastructure">
+          <img src="kotwari_emblem_wheat.png" alt="Cold Chain Infrastructure" loading="lazy" decoding="async">
         </div>
         <div class="card-body">
           <div class="article-meta">
@@ -886,7 +915,7 @@
       <!-- Article 5 -->
       <article class="news-card" data-category="corporate">
         <div class="card-banner">
-          <img src="kotwari_logo_gold.png" alt="Women in Agriculture">
+          <img src="kotwari_logo_gold.png" alt="Women in Agriculture" loading="lazy" decoding="async">
         </div>
         <div class="card-body">
           <div class="article-meta">
@@ -905,7 +934,7 @@
       <!-- Article 6 -->
       <article class="news-card" data-category="fmcg">
         <div class="card-banner">
-          <img src="kotwari_emblem_new.png" alt="Kotwari One Retail">
+          <img src="kotwari_emblem_new.png" alt="Kotwari One Retail" loading="lazy" decoding="async">
         </div>
         <div class="card-body">
           <div class="article-meta">
@@ -969,7 +998,7 @@
       <div class="footer-grid">
         <div class="footer-col">
           <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
-            <img src="kotwari_emblem_new.png" alt="Kotwari Seal" style="height:36px;width:auto">
+            <img src="kotwari_emblem_new.png" alt="Kotwari Seal" style="height:36px;width:auto" loading="lazy" decoding="async">
             <span style="font-family:var(--font-serif);font-size:1.3rem;font-weight:700;color:#FFFFFF">Kotwari International</span>
           </div>
           <p style="font-size:0.86rem;line-height:1.6;margin-bottom:16px;color:#A0AEC0">
@@ -1033,6 +1062,7 @@
   <script src="kotwari-search.js"></script>
   <script src="kotwari-lang.js"></script>
   <script src="kotwari-consent.js"></script>
+<script src="kotwari-analytics.js"></script>
   <script>
     // Articles Repository Data
     const ARTICLES_DATA = {

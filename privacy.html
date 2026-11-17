@@ -188,11 +188,12 @@ html, body {
   <link rel="stylesheet" href="kotwari-consent.css">
 </head>
 <body>
+<a href="#main" class="skip-to-content">Skip to main content</a>
 <div id="scrollProgress" aria-hidden="true"></div>
 <header>
   <div class="header-inner">
     <a class="brand" href="index.html">
-      <img class="brand-emblem-img" src="kotwari_emblem_new.png" alt="Kotwari Golden Emblem">
+      <img class="brand-emblem-img" src="kotwari_emblem_new.png" alt="Kotwari Golden Emblem" width="44" height="44" loading="lazy" decoding="async">
       <span class="brand-name">Kotwari<sup>&trade;</sup></span>
       <small class="brand-tag">Gao Se Global Tak</small>
     </a>
@@ -206,7 +207,7 @@ html, body {
     <p>How Kotwari International Ltd. handles your information when you use our website.</p>
   </div>
 </div>
-<main>
+<main id="main">
   <div class="wrap">
     <div class="template-notice" style="background:#fffbeb;border:1.5px solid #d97706;border-radius:6px;padding:16px 20px;margin-bottom:24px;color:#92400e;font-size:0.9rem;line-height:1.6">
       <strong>TEMPLATE REVIEW NOTICE:</strong> This Privacy Policy has been generated as a factual disclosure template reflecting the exact technical data collection methods of the kotwari.com website (including business enquiry forms, Google Analytics 4 integration with Google Consent Mode v2, language preference storage, and direct messaging integrations). Please review and verify this document with your legal advisor prior to public launch.
@@ -431,6 +432,7 @@ function initCounters(){
 <script src="glass-dropdown.js"></script>
 <script src="kotwari-search.js"></script>
 <script src="kotwari-consent.js"></script>
+<script src="kotwari-analytics.js"></script>
 <script src="kotwari-lang.js"></script>
   <script src="kotwari-pwa.js"></script>
 </body>

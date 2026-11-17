@@ -307,8 +307,32 @@ html, body {
   <meta name="application-name" content="Kotwari">
   <meta name="msapplication-TileColor" content="#092840">
   <meta name="msapplication-TileImage" content="android-chrome-192x192.png">
+  <!-- ContactPage Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": "Contact Kotwari International Ltd.",
+    "url": "https://www.kotwari.com/contact.html",
+    "mainEntity": {
+      "@type": "Corporation",
+      "name": "Kotwari International Ltd.",
+      "telephone": "+91-9978648583",
+      "email": "kotwarigroup18@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Kotwari House, Jankipuram-III, Kursi Road",
+        "addressLocality": "Lucknow",
+        "addressRegion": "Uttar Pradesh",
+        "postalCode": "226021",
+        "addressCountry": "IN"
+      }
+    }
+  }
+  </script>
 </head>
 <body>
+<a href="#main" class="skip-to-content">Skip to main content</a>
 <div id="scrollProgress" aria-hidden="true"></div>
 
 <div class="topbar"><div class="wrap"><span class="topbar-brand"><span class="topbar-dot" aria-hidden="true">&#10022;</span> <strong>Kotwari International Ltd.</strong> <span class="topbar-tagline">&mdash; Gao Se Global Tak</span></span><span class="topbar-motto"><span class="topbar-icon" aria-hidden="true">&#127793;</span> Corporate Headquarters Contact</span></div></div>
@@ -316,13 +340,13 @@ html, body {
 <header>
   <div class="wrap header-inner">
     <a class="brand" href="index.html">
-      <img class="brand-emblem-img" src="kotwari_emblem_new.png" alt="Kotwari Golden Emblem">
+      <img class="brand-emblem-img" src="kotwari_emblem_new.png" alt="Kotwari Golden Emblem" width="44" height="44" loading="lazy" decoding="async">
       <span class="brand-name">Kotwari<sup>&trade;</sup></span>
       <small class="brand-tag">Gao Se Global Tak</small>
     </a>
     <nav>
       <a class="btn-home" href="index.html">Home</a>
-      <a href="about.html">About</a> | <a href="news.html">News</a> | <a href="careers.html>About Us</a>
+      <a href="about.html">About Us</a>
       <a href="index.html#products">Products</a>
       <a href="contact.html">Contact</a>
       <a href="farmers.html">Farmers &amp; FPO</a>
@@ -332,7 +356,7 @@ html, body {
   </div>
 </header>
 
-<main>
+<main id="main">
   <!-- Hero Section -->
   <section class="hero-section">
     <div class="wrap">
@@ -488,7 +512,7 @@ html, body {
     <div class="footer-grid">
       <div>
         <a class="brand" href="index.html">
-          <img class="brand-emblem-img" src="kotwari_emblem_new.png" alt="Kotwari Golden Emblem">
+          <img class="brand-emblem-img" src="kotwari_emblem_new.png" alt="Kotwari Golden Emblem" width="44" height="44" loading="lazy" decoding="async">
           <span class="brand-name">Kotwari<sup>&trade;</sup></span>
           <small class="brand-tag">Gao Se Global Tak</small>
         </a>
@@ -511,7 +535,9 @@ html, body {
 
       <div>
         <h3>Quick Navigation</h3>
-        <a href="about.html">About</a> | <a href="news.html">News</a> | <a href="careers.html>About Kotwari</a>
+        <a href="about.html">About Kotwari</a>
+        <a href="news.html">News &amp; Insights</a>
+        <a href="careers.html">Careers</a>
         <a href="farmers.html">Farmer Ecosystem</a>
         <a href="fpo.html">FPO Network</a>
         <a href="partners.html">Partnership Hub</a>
@@ -740,6 +766,7 @@ function initCounters(){
 </script>
 <script src="kotwari-search.js"></script>
 <script src="kotwari-consent.js"></script>
+<script src="kotwari-analytics.js"></script>
 <script src="glass-dropdown.js"></script>
 <script src="kotwari-lang.js"></script>
   <script src="kotwari-pwa.js"></script>

@@ -1751,6 +1751,7 @@ form select option{
 </head>
 
 <body>
+<a href="#main" class="skip-to-content">Skip to main content</a>
 <div id="scrollProgress" aria-hidden="true"></div>
 <button id="backToTop" class="back-to-top" aria-label="Back to top" title="Back to top" type="button">↑</button>
 <div id="app"></div>
@@ -1783,6 +1784,7 @@ form select option{
 
 <script src="kotwari-search.js"></script>
 <script src="kotwari-consent.js"></script>
+<script src="kotwari-analytics.js"></script>
 <script src="glass-dropdown.js"></script>
 <script src="kotwari-lang.js"></script>
 <script>
@@ -2297,7 +2299,7 @@ const productData=()=>[
 const roles=()=>[
 ['Farmer',t('Farmer','किसान','مزارع')],['FPO',t('FPO','किसान उत्पादक संगठन','منظمة منتجين')],['Distributor',t('Distributor','वितरक','موزع')],['Retailer',t('Retailer','रिटेलर','تاجر تجزئة')],['Franchise',t('Franchise partner','फ्रेंचाइज़ पार्टनर','شريك امتياز')],['Supplier',t('Supplier','आपूर्तिकर्ता','مورد')],['Processing',t('Processing partner','प्रोसेसिंग पार्टनर','شريك معالجة')],['Logistics',t('Logistics partner','लॉजिस्टिक्स पार्टनर','شريك لوجستي')],['Institutional',t('Institutional buyer','संस्थागत खरीदार','مشتر مؤسسي')],['Export',t('Exporter / Importer','निर्यातक / आयातक','مصدر / مستورد')],['Investor',t('Investor / Strategic partner','निवेशक / रणनीतिक पार्टनर','مستثمر / شريك استراتيجي')],['Corporate',t('Corporate / Media','कॉर्पोरेट / मीडिया','الشركات / الإعلام')]
 ];
-function brand(href='#home'){return `<a class="brand" href="${href}"><img class="brand-emblem-img" src="kotwari_emblem_new.png" alt="Kotwari Golden Emblem"><span class="brand-name">Kotwari<sup>&trade;</sup></span><small class="brand-tag">Gao Se Global Tak</small></a>`}
+function brand(href='#home'){return `<a class="brand" href="${href}"><img class="brand-emblem-img" src="kotwari_emblem_new.png" alt="Kotwari Golden Emblem" width="44" height="44" loading="lazy" decoding="async"><span class="brand-name">Kotwari<sup>&trade;</sup></span><small class="brand-tag">Gao Se Global Tak</small></a>`}
 function cta(role,text){return `<a class="btn" href="#partners" data-role="${role}">${text||labels().enquire} <span aria-hidden="true">↗</span></a>`}
 function sectionTitle(kicker,title){return `<div class="section-head"><div><p class="eyebrow">${kicker}</p><h2>${title}</h2></div></div>`}
 function updateTabsPill(tablist,activeTab,immediate){
@@ -2825,7 +2827,7 @@ function initProductHeroShowcase(){
   const nextItem = chosen[1 % total];
   const nextCardHtml = `
     <div class="nph-next-card" id="nph-next-card" role="button" aria-label="${t('Next Up','अगला','التالي')}">
-      <img class="nph-next-thumb" id="nph-next-thumb" src="${encodeURI(nextItem.thumb)}" alt="${escapeHTML(nextItem.product.name)}">
+      <img class="nph-next-thumb" id="nph-next-thumb" src="${encodeURI(nextItem.thumb)}" alt="${escapeHTML(nextItem.product.name)}" loading="lazy" decoding="async">
       <div class="nph-next-meta">
         <span class="nph-next-label">${t('Next Up ›','अगला ›','التالي ›')}</span>
         <span class="nph-next-name" id="nph-next-name">${escapeHTML(nextItem.product.name)}</span>

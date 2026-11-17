@@ -1,4 +1,4 @@
-/* ==========================================================================
+﻿/* ==========================================================================
    KOTWARI INTERNATIONAL ENTERPRISE DESIGN SYSTEM
    Master Design System & Component Library (Version 2.0.0)
    Brand Aesthetic: High-Authority Luxury Corporate Agro-Food Enterprise
@@ -880,4 +880,73 @@ footer .brand .brand-tag,
     grid-template-columns: 1fr;
     gap: 32px;
   }
+}
+/* ==========================================================================
+   PERFORMANCE & ACCESSIBILITY ENHANCEMENTS (WCAG 2.2 AA & CORE WEB VITALS)
+   ========================================================================== */
+
+/* Accessibility: Skip to Content Bypass */
+.skip-to-content {
+  position: fixed;
+  top: -9999px;
+  left: 16px;
+  background: var(--navy-dark, #0B1F30);
+  color: #FFFFFF;
+  padding: 12px 20px;
+  border: 2px solid var(--gold, #C5A15B);
+  border-radius: var(--radius-sm, 8px);
+  font-family: var(--font-sans, 'Plus Jakarta Sans', system-ui, sans-serif);
+  font-weight: 700;
+  font-size: 0.92rem;
+  z-index: 9999999;
+  text-decoration: none;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.skip-to-content:focus {
+  top: 16px;
+  outline: 3px solid var(--gold-glow, #DFBF83);
+}
+
+/* Accessibility: Strict Focus Visible Indicator */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2.5px solid var(--gold, #C5A15B) !important;
+  outline-offset: 3px !important;
+}
+
+/* Accessibility: Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  *, *:before, *:after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .btn-gold::after, .btn.gold::after, .btn-primary::after,
+  .gyro-ring, .gyro-orbit-dot, .emblem-ripple, #heroParticles, canvas.hero-particles {
+    animation: none !important;
+    display: none !important;
+  }
+}
+
+/* Performance: Render Pipeline & Layout Stability */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.brand-emblem-img {
+  aspect-ratio: 1 / 1;
+}
+
+/* Image zoom safety */
+.card img, .product-box img {
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
