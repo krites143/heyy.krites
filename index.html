@@ -501,33 +501,9 @@
 [dir=rtl] .product-search-input{
   padding:12px 40px 12px 38px;
 }
-.search-kbd-hint{
-  position:absolute;
-  right:38px;
-  top:50%;
-  transform:translateY(-50%);
-  background:rgba(9,40,64,.05);
-  border:1px solid rgba(9,40,64,.12);
-  border-radius:6px;
-  padding:2px 7px;
-  font-size:.72rem;
-  font-family:monospace;
-  font-weight:600;
-  color:var(--muted);
-  pointer-events:none;
-  line-height:1.2;
-  transition:opacity .2s ease;
-}
-[dir=rtl] .search-kbd-hint{
-  right:auto;
-  left:38px;
-}
-.product-search-input:focus ~ .search-kbd-hint,
-.product-search-input:not(:placeholder-shown) ~ .search-kbd-hint{
-  opacity:0;
-}
-@media(max-width:540px){
-  .search-kbd-hint{display:none}
+.search-kbd-hint,
+.search-hint-key{
+  display:none !important;
 }
 .product-search-input:focus{
   border-color:var(--gold);
@@ -2333,13 +2309,12 @@ $('#app').innerHTML=`
       <a href="#farmers" class="nav-link">${t('Farmers & FPO','किसान व FPO','المزارعون')}</a>
       <a href="#contact" class="nav-link">${t('Contact','संपर्क','اتصل بنا')}</a>
     </nav><div class="header-tools">
-  <button type="button" class="search-trigger-btn" aria-label="Search website" title="Search (Ctrl+K)">
+  <button type="button" class="search-trigger-btn" aria-label="Search website" title="Search website">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <circle cx="11" cy="11" r="8"></circle>
       <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
     </svg>
     <span class="search-label-text">Search</span>
-    <span class="search-hint-key" aria-hidden="true">⌘K</span>
   </button>
   <select class="lang" id="language" aria-label="Language selector">
     <option value="en">EN</option>
@@ -2354,7 +2329,7 @@ $('#app').innerHTML=`
 
 
 
-<section id="products" class="band reveal"><div class="wrap">${sectionTitle('Kotwari FMCG',t('Good food. Everyday possibilities.','अच्छा भोजन। हर दिन नई संभावनाएं।','غذاء طيب. خيارات يومية.'))}<div id="product-hero-showcase" class="product-hero-showcase" role="region" aria-label="${t('Featured Product Showcase','विशेष उत्पाद शोकेस','عرض المنتجات المميزة')}"></div><div class="product-toolbar"><div class="product-search-wrapper"><span class="product-search-icon" aria-hidden="true"></span><input type="search" id="product-search-input" class="product-search-input" placeholder="${t('Search foods, spices, rice, tea, oil, snacks...','खाद्य उत्पाद, मसाले, चावल, चाय, तेल, स्नैक्स खोजें...','ابحث عن الأغذية، التوابل، الأرز، الشاي، الزيوت...')}" value="${escapeHTML(searchQuery)}" aria-label="${t('Search FMCG Products','उत्पाद खोजें','البحث في المنتجات')}"><kbd class="search-kbd-hint">Ctrl K</kbd><button type="button" id="product-search-clear" class="product-search-clear" aria-label="${t('Clear search','खोज साफ करें','مسح البحث')}" ${searchQuery?'':'hidden'}>×</button></div><div class="product-toolbar-meta"><span id="product-count-badge" class="product-count-badge"></span><a href="#partners" data-role="Distributor" class="product-catalog-btn"> ${t('Request B2B Catalog','B2B कैटलॉग मांगें','طلب كتالوج الجملة')}</a></div></div><div class="t-tabs-wrapper"><div class="filters t-tabs" role="tablist" aria-label="${l.products}"><span class="t-tabs-pill" aria-hidden="true"></span>${categories().map(c=>`<button class="filter t-tab" role="tab" data-filter="${c[0]}" aria-selected="${selectedCategory===c[0]}">${c[1]}</button>`).join('')}</div></div><div class="grid three" id="product-grid"></div><div id="product-expand-container"></div><p class="hint" style="margin-top:22px">${t('Portfolio overview. Ask our team for available SKUs, pack sizes, pricing and verified product specifications.','उत्पाद पोर्टफोलियो का परिचय। उपलब्ध SKU, पैक साइज़, कीमत और सत्यापित विवरण के लिए संपर्क करें।','نظرة على محفظة المنتجات. تواصل معنا لمعرفة الأصناف والأحجام والأسعار والمواصفات المعتمدة المتاحة.')}</p></div></section>
+<section id="products" class="band reveal"><div class="wrap">${sectionTitle('Kotwari FMCG',t('Good food. Everyday possibilities.','अच्छा भोजन। हर दिन नई संभावनाएं।','غذاء طيب. خيارات يومية.'))}<div id="product-hero-showcase" class="product-hero-showcase" role="region" aria-label="${t('Featured Product Showcase','विशेष उत्पाद शोकेस','عرض المنتجات المميزة')}"></div><div class="product-toolbar"><div class="product-search-wrapper"><span class="product-search-icon" aria-hidden="true"></span><input type="search" id="product-search-input" class="product-search-input" placeholder="${t('Search foods, spices, rice, tea, oil, snacks...','खाद्य उत्पाद, मसाले, चावल, चाय, तेल, स्नैक्स खोजें...','ابحث عن الأغذية، التوابل، الأرز، الشاي، الزيوت...')}" value="${escapeHTML(searchQuery)}" aria-label="${t('Search FMCG Products','उत्पाद खोजें','البحث في المنتجات')}"><button type="button" id="product-search-clear" class="product-search-clear" aria-label="${t('Clear search','खोज साफ करें','مسح البحث')}" ${searchQuery?'':'hidden'}>×</button></div><div class="product-toolbar-meta"><span id="product-count-badge" class="product-count-badge"></span><a href="#partners" data-role="Distributor" class="product-catalog-btn"> ${t('Request B2B Catalog','B2B कैटलॉग मांगें','طلب كتالوج الجملة')}</a></div></div><div class="t-tabs-wrapper"><div class="filters t-tabs" role="tablist" aria-label="${l.products}"><span class="t-tabs-pill" aria-hidden="true"></span>${categories().map(c=>`<button class="filter t-tab" role="tab" data-filter="${c[0]}" aria-selected="${selectedCategory===c[0]}">${c[1]}</button>`).join('')}</div></div><div class="grid three" id="product-grid"></div><div id="product-expand-container"></div><p class="hint" style="margin-top:22px">${t('Portfolio overview. Ask our team for available SKUs, pack sizes, pricing and verified product specifications.','उत्पाद पोर्टफोलियो का परिचय। उपलब्ध SKU, पैक साइज़, कीमत और सत्यापित विवरण के लिए संपर्क करें।','نظرة على محفظة المنتجات. تواصل معنا لمعرفة الأصناف والأحجام والأسعار والمواصفات المعتمدة المتاحة.')}</p></div></section>
 
 <section id="quality" class="reveal"><div class="wrap">${sectionTitle(t('Quality & traceability','गुणवत्ता और ट्रेसबिलिटी','الجودة والتتبع'),t('Trust, at every step.','हर कदम पर भरोसा।','الثقة في كل خطوة.'))}<p class="lead muted">${t('The quality framework is designed around source checks, inspection, grading, testing, processing and batch records. QR-enabled product traceability is part of the future roadmap.','गुणवत्ता ढांचा स्रोत जांच, निरीक्षण, ग्रेडिंग, परीक्षण, प्रोसेसिंग और बैच रिकॉर्ड पर आधारित है। QR आधारित ट्रेसबिलिटी भविष्य की योजना का हिस्सा है।','يرتكز إطار الجودة على التحقق من المصدر والفحص والفرز والاختبارات والمعالجة وسجلات الدفعات. التتبع عبر رمز QR ضمن الخطة المستقبلية.')}</p><div class="steps">${[t('Source','स्रोत','المصدر'),t('Inspect','निरीक्षण','الفحص'),t('Grade & test','ग्रेडिंग और जांच','الفرز والاختبار'),t('Process','प्रोसेसिंग','المعالجة'),t('Pack & batch','पैकिंग और बैच','التعبئة والدفعة'),t('Distribute','वितरण','التوزيع')].map(x=>`<span>${x}</span>`).join('')}</div><p class="hint">${t('Certifications and regulatory details: to be updated after verification. No public batch lookup is connected yet.','प्रमाणपत्र और नियामक विवरण सत्यापन के बाद अपडेट होंगे। सार्वजनिक बैच खोज अभी उपलब्ध नहीं है।','تحدث الشهادات والبيانات التنظيمية बाद التحقق. خدمة البحث عن الدفعات غير متصلة حالياً.')}</p><div class="grid three impact" id="impact">${[[t('Rural entrepreneurship','ग्रामीण उद्यमिता','रीada الأعمال الريفية'),t('Creating pathways for farmers, women and young entrepreneurs.','किसानों, महिलाओं और युवा उद्यमियों के लिए अवसर की दिशा।','إيجاد مسارات للمزارعين والنساء ورواد الأعمال الشباب.')],[t('Local opportunity','स्थानीय अवसर','فرص محلية'),t('A vision for village enterprise, skills and local employment.','ग्रामीण उद्यम, कौशल और स्थानीय रोजगार का विज़न।','رؤية للمشاريع القروية والمهارات والتوظيف المحلي.')],[t('Responsible growth','जिम्मेदार विकास','نمو مسؤول'),t('Working toward efficient supply chains and responsible packaging.','कुशल आपूर्ति श्रृंखला और जिम्मेदार पैकेजिंग की दिशा में प्रयास।','التوجه نحو سلاسل إمداد فعالة وتعبئة مسؤولة.')]].map(x=>`<div><h3>${x[0]}</h3><p class="muted">${x[1]}</p></div>`).join('')}</div></div></section>
 
