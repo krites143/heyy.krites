@@ -45,6 +45,44 @@
   // ═══════════════════════════════════════════════════════════════
   // 2. HERO SECTION CHOREOGRAPHY & CINEMATIC HEADLINES
   // ═══════════════════════════════════════════════════════════════
+  function splitHeadlineWords(el) {
+    if (prefersReducedMotion) return;
+    try {
+      var walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null, false);
+      var textNodes = [];
+      var node;
+      while ((node = walker.nextNode())) {
+        if (node.nodeValue.trim().length > 0) {
+          textNodes.push(node);
+        }
+      }
+
+      var wordIndex = 0;
+      textNodes.forEach(function (textNode) {
+        var words = textNode.nodeValue.split(/(\s+)/);
+        var frag = document.createDocumentFragment();
+        words.forEach(function (w) {
+          if (/^\s+$/.test(w)) {
+            frag.appendChild(document.createTextNode(w));
+          } else if (w.length > 0) {
+            var maskSpan = document.createElement('span');
+            maskSpan.className = 'km-word-mask';
+            var wordSpan = document.createElement('span');
+            wordSpan.className = 'km-word';
+            wordSpan.textContent = w;
+            wordSpan.style.transitionDelay = (0.10 + (wordIndex * 0.055)) + 's';
+            maskSpan.appendChild(wordSpan);
+            frag.appendChild(maskSpan);
+            wordIndex++;
+          }
+        });
+        textNode.parentNode.replaceChild(frag, textNode);
+      });
+    } catch (e) {
+      // Fallback: leave text untouched on any parsing anomaly
+    }
+  }
+
   function initHeroEntrance() {
     var hero = document.querySelector('.hero, .hero-section, #home, header + main > section:first-of-type');
     if (!hero) return;
@@ -52,6 +90,13 @@
     if (prefersReducedMotion) {
       hero.classList.add('km-hero-active');
       return;
+    }
+
+    // Word-by-word reveal for hero headline
+    var h1 = hero.querySelector('h1');
+    if (h1 && !h1.getAttribute('data-km-split')) {
+      h1.setAttribute('data-km-split', 'true');
+      splitHeadlineWords(h1);
     }
 
     // Auto-tag hero children with stagger classes if not set
@@ -292,13 +337,13 @@
 
       // Only transition internal HTML routes
       if (!href ||
-          href.startsWith('#') ||
-          href.startsWith('mailto:') ||
-          href.startsWith('tel:') ||
-          href.startsWith('javascript:') ||
-          target === '_blank' ||
-          link.hasAttribute('download') ||
-          href.endsWith('.pdf')) {
+        href.startsWith('#') ||
+        href.startsWith('mailto:') ||
+        href.startsWith('tel:') ||
+        href.startsWith('javascript:') ||
+        target === '_blank' ||
+        link.hasAttribute('download') ||
+        href.endsWith('.pdf')) {
         return;
       }
 
@@ -365,28 +410,143 @@
   }
 
   // ═══════════════════════════════════════════════════════════════
-  // 9. MOBILE NAVIGATION SMOOTH POLISH
+  // 9. ENTERPRISE MOBILE NAVIGATION SYSTEM
   // ═══════════════════════════════════════════════════════════════
+  var mobileMenuState = {
+    isOpen: false
+  };
+
+  function updateMobileMenuUI(isOpen) {
+    mobileMenuState.isOpen = isOpen;
+    var nav = document.querySelector('nav#navigation, header nav, .header-nav, .nav-menu');
+    var btn = document.querySelector('.menu, .mobile-nav-toggle, #menuToggle, #mobileNavToggle, [aria-controls="navigation"]');
+    var backdrop = document.getElementById('kmNavBackdrop');
+    var header = document.querySelector('header');
+
+    if (btn) {
+      btn.setAttribute('aria-expanded', String(isOpen));
+      var textEl = btn.querySelector('.km-menu-text');
+      if (textEl) {
+        var lang = document.documentElement.lang || 'en';
+        var labels = {
+          en: { menu: 'Menu', close: 'Close' },
+          hi: { menu: 'मेनू', close: 'बंद करें' },
+          ar: { menu: 'القائمة', close: 'إغلاق' }
+        };
+        var current = labels[lang] || labels.en;
+        textEl.textContent = isOpen ? current.close : current.menu;
+      } else {
+        if (btn.innerHTML.indexOf('&#10005;') !== -1 || btn.innerHTML.indexOf('Menu') !== -1 || btn.innerHTML.indexOf('Close') !== -1) {
+          btn.innerHTML = isOpen ? '&#10005; Close' : '&#9776; Menu';
+        }
+      }
+    }
+
+    if (nav) {
+      if (isOpen) {
+        nav.classList.add('open', 'mobile-open', 'is-open');
+      } else {
+        nav.classList.remove('open', 'mobile-open', 'is-open');
+      }
+    }
+
+    if (header) {
+      header.classList.toggle('km-nav-active', isOpen);
+    }
+
+    if (backdrop) {
+      backdrop.classList.toggle('is-active', isOpen);
+    }
+
+    document.body.classList.toggle('km-nav-locked', isOpen);
+    document.documentElement.classList.toggle('km-nav-locked', isOpen);
+  }
+
+  function openMobileMenu() {
+    updateMobileMenuUI(true);
+  }
+
+  function closeMobileMenu() {
+    updateMobileMenuUI(false);
+  }
+
+  function toggleMobileMenu() {
+    var nav = document.querySelector('nav#navigation, header nav, .header-nav, .nav-menu');
+    var isOpen = nav ? (nav.classList.contains('open') || nav.classList.contains('mobile-open') || nav.classList.contains('is-open')) : mobileMenuState.isOpen;
+    updateMobileMenuUI(!isOpen);
+  }
+
+  function syncMenuFromDOM() {
+    var nav = document.querySelector('nav#navigation, header nav, .header-nav, .nav-menu');
+    if (!nav) return;
+    var isOpen = nav.classList.contains('open') || nav.classList.contains('mobile-open') || nav.classList.contains('is-open');
+    updateMobileMenuUI(isOpen);
+  }
+
   function initMobileMenuPolish() {
-    var menuBtn = document.querySelector('.menu, button[aria-controls="navigation"], .menu-toggle');
-    var nav = document.querySelector('nav#navigation, header nav, .nav-menu');
-    if (!menuBtn || !nav) return;
+    // Create or locate the backdrop overlay
+    var backdrop = document.getElementById('kmNavBackdrop');
+    if (!backdrop) {
+      backdrop = document.createElement('div');
+      backdrop.id = 'kmNavBackdrop';
+      backdrop.className = 'km-nav-backdrop';
+      backdrop.setAttribute('aria-hidden', 'true');
+      document.body.appendChild(backdrop);
+    }
 
-    menuBtn.addEventListener('click', function () {
-      var isExpanded = menuBtn.getAttribute('aria-expanded') === 'true';
-      menuBtn.setAttribute('aria-expanded', String(!isExpanded));
-      nav.classList.toggle('open', !isExpanded);
-      document.body.classList.toggle('nav-locked', !isExpanded);
-    });
+    // Global Event Delegation for mobile menu toggles
+    if (!window._kmNavDelegationBound) {
+      window._kmNavDelegationBound = true;
+      document.addEventListener('click', function (e) {
+        // 1. Tapping backdrop closes menu
+        if (e.target && (e.target.id === 'kmNavBackdrop' || e.target.classList.contains('km-nav-backdrop'))) {
+          e.preventDefault();
+          closeMobileMenu();
+          return;
+        }
 
-    // Close on navigation link click
-    nav.querySelectorAll('a').forEach(function (link) {
-      link.addEventListener('click', function () {
-        menuBtn.setAttribute('aria-expanded', 'false');
-        nav.classList.remove('open');
-        document.body.classList.remove('nav-locked');
+        // 2. Tapping any link inside open mobile navigation closes menu
+        var navLink = e.target.closest('nav#navigation a, header nav a, .header-nav a, .nav-menu a');
+        if (navLink && mobileMenuState.isOpen) {
+          closeMobileMenu();
+          return;
+        }
+
+        // 3. Tapping the hamburger button toggles menu
+        var menuBtn = e.target.closest('.menu, .mobile-nav-toggle, #menuToggle, #mobileNavToggle, [aria-controls="navigation"], .menu-toggle');
+        if (menuBtn) {
+          if (menuBtn.classList.contains('menu') && !menuBtn.classList.contains('mobile-nav-toggle')) {
+            e.preventDefault();
+            e.stopPropagation();
+            toggleMobileMenu();
+          } else {
+            setTimeout(syncMenuFromDOM, 10);
+          }
+        }
       });
-    });
+    }
+
+    // Keyboard navigation: Escape key closes menu
+    if (!window._kmNavEscapeBound) {
+      window._kmNavEscapeBound = true;
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && mobileMenuState.isOpen) {
+          closeMobileMenu();
+          var btn = document.querySelector('.menu, .mobile-nav-toggle, #menuToggle, #mobileNavToggle');
+          if (btn) btn.focus();
+        }
+      });
+    }
+
+    // Close menu when viewport resizes above mobile breakpoint (900px)
+    if (!window._kmNavResizeBound) {
+      window._kmNavResizeBound = true;
+      window.addEventListener('resize', function () {
+        if (window.innerWidth > 900 && mobileMenuState.isOpen) {
+          closeMobileMenu();
+        }
+      }, { passive: true });
+    }
   }
 
   // ═══════════════════════════════════════════════════════════════
@@ -481,12 +641,16 @@
 
   // Global handle for dynamic content refreshes
   window.KotwariMotion = {
+    openMobileMenu: openMobileMenu,
+    closeMobileMenu: closeMobileMenu,
+    toggleMobileMenu: toggleMobileMenu,
     refresh: function () {
       initScrollReveals();
       initCounters();
       initHeroEntrance();
       initButtonArrows();
       initDesktopParallax();
+      initMobileMenuPolish();
     }
   };
 })();

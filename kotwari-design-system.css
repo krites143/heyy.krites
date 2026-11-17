@@ -414,17 +414,25 @@ header nav .btn-nav,
     display: inline-flex !important;
   }
 
-  .nav:not(.open),
-  header nav:not(.open),
-  .header-inner nav:not(.open),
-  .header-row nav:not(.open) {
+  .nav:not(.open):not(.mobile-open):not(.is-open),
+  header nav:not(.open):not(.mobile-open):not(.is-open),
+  .header-inner nav:not(.open):not(.mobile-open):not(.is-open),
+  .header-row nav:not(.open):not(.mobile-open):not(.is-open) {
     display: none !important;
   }
 
   .nav.open,
+  .nav.mobile-open,
+  .nav.is-open,
   header nav.open,
+  header nav.mobile-open,
+  header nav.is-open,
   .header-inner nav.open,
-  .header-row nav.open {
+  .header-inner nav.mobile-open,
+  .header-inner nav.is-open,
+  .header-row nav.open,
+  .header-row nav.mobile-open,
+  .header-row nav.is-open {
     display: flex !important;
     position: absolute !important;
     top: 100% !important;
@@ -443,9 +451,17 @@ header nav .btn-nav,
   }
 
   .nav.open a,
+  .nav.mobile-open a,
+  .nav.is-open a,
   header nav.open a,
+  header nav.mobile-open a,
+  header nav.is-open a,
   .header-inner nav.open a,
-  .header-row nav.open a {
+  .header-inner nav.mobile-open a,
+  .header-inner nav.is-open a,
+  .header-row nav.open a,
+  .header-row nav.mobile-open a,
+  .header-row nav.is-open a {
     width: 100% !important;
     padding: 12px 18px !important;
     background: rgba(11, 31, 48, 0.04) !important;

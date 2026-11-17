@@ -223,8 +223,8 @@
 [dir=rtl] .business:hover a .arrow{transform:scaleX(-1) translate(-3px,-3px)}
 [hidden]{display:none!important}
 @media(min-width:1000px){.wide{grid-column:span 2}}
-@media(max-width:1100px){.nav{gap:13px}.header-tools>.btn{display:none}.split{gap:36px}}
-@media(max-width:850px){
+@media(max-width:1100px){.nav{gap:13px}.header-tools>.btn{display:none !important}.split{gap:36px}}
+@media(max-width:900px){
   section{padding:42px 0}
   .menu{display:inline-flex;align-items:center;justify-content:center;padding:8px 14px;min-height:38px;font-size:.86rem;font-weight:700;border:1px solid var(--line);border-radius:6px;background:#ffffff;color:var(--navy);box-shadow:0 2px 6px rgba(9,40,64,.06);cursor:pointer}
   .menu[aria-expanded="true"]{background:var(--navy);color:#ffffff;border-color:var(--navy)}
@@ -2299,9 +2299,10 @@ $('#app').innerHTML=`
 <header><div class="wrap header-row">${brand()}<nav id="navigation" class="nav" aria-label="${t('Main navigation','मुख्य नेविगेशन','التنقل الرئيسي')}">
       <a href="#home" class="nav-link active" aria-current="page">${t('Home','होम','الرئيسية')}</a>
       <a href="#products" class="nav-link">${t('Products','उत्पाद','المنتجات')}</a>
-      <a href="#about" class="nav-link">${t('About','हमारे बारे में','من نحن')}</a>
+      <a href="#about" class="nav-link">${t('About','हमारे बारे में','मन نحن')}</a>
       <a href="#farmers" class="nav-link">${t('Farmers & FPO','किसान व FPO','المزارعون')}</a>
       <a href="#contact" class="nav-link">${t('Contact','संपर्क','اتصل بنا')}</a>
+      <a href="#partners" class="mobile-partner-cta btn btn-gold">${l.partner} &rarr;</a>
     </nav><div class="header-tools">
   <button type="button" class="search-trigger-btn" aria-label="Search website" title="Search website">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -2313,7 +2314,7 @@ $('#app').innerHTML=`
   <select class="lang" id="language" aria-label="Language selector">
     <option value="en">EN</option>
     <option value="hi">हिंदी</option>
-  </select><a class="btn" href="#partners" style="font-weight:700">${l.partner}</a><button class="menu" aria-expanded="false" aria-controls="navigation">${t('Menu','मेनू','القائمة')}</button></div></div></header>
+  </select><a class="btn" href="#partners" style="font-weight:700">${l.partner}</a><button type="button" class="menu" id="menuToggle" aria-expanded="false" aria-controls="navigation" aria-label="${t('Toggle navigation menu','नेविगेशन मेनू टॉगल करें','تبديل قائمة التنقل')}"><span class="km-hamburger-icon" aria-hidden="true"><span class="km-hamburger-line"></span><span class="km-hamburger-line"></span><span class="km-hamburger-line"></span></span><span class="km-menu-text">${t('Menu','मेनू','القائمة')}</span></button></div></div></header>
 <main id="main">
 <section class="hero" id="home"><img class="hero-photo" src="${escapeHTML(CONFIG.hero)}" alt="${t('Green agricultural fields in India','भारत में हरे कृषि खेत','حقول زراعية خضراء في الهند')}" fetchpriority="high"><canvas id="heroParticles" class="hero-particles"></canvas><div class="wrap reveal hero-content"><div class="hero-emblem-badge" id="heroEmblemBadge"><span class="gyro-ring gyro-ring-1"></span><span class="gyro-ring gyro-ring-2"></span><span class="gyro-ring gyro-ring-3"><span class="gyro-orbit-dot"></span></span><span class="emblem-ripple"></span><span class="emblem-ripple"></span><span class="emblem-ripple"></span><img class="hero-emblem-img" src="kotwari_emblem_new.png" alt="Kotwari Golden Emblem &mdash; Gao Se Global Tak"></div><p class="eyebrow">${t('An Indian rural-commerce vision','भारतीय ग्रामीण वाणिज्य का विज़न','رؤية هندية للتجارة الريفية')}</p><h1>${t('Gao Se<br><em>Global Tak.</em>','गांव से<br><em>ग्लोबल तक।</em>','من القرية<br><em>إلى العالم.</em>')}</h1><p class="lead">${t('Building India\'s farmer-to-market-to-global ecosystem &mdash; connecting rural production, processing, brands and modern retail into one integrated value chain.','भारत का किसान से बाजार और दुनिया तक का नेटवर्क &mdash; ग्रामीण उत्पादन, प्रोसेसिंग, ब्रांड और आधुनिक रिटेल को एक साझा मूल्य श्रृंखला में जोड़ना।','نبني منظومة تربط المزارع بالسوق والعالم &mdash; ربط الإنتاج الريفي والمعالجة والتجزئة الحديثة في سلسلة قيمة متكاملة.')}</p><div class="actions"><a class="btn gold" href="#businesses">${t('Explore Kotwari','Kotwari को जानें','اكتشف كोटواري')} ↗</a><a class="btn light" href="#partners">${t('Join our network','हमारे नेटवर्क से जुड़ें','انضم إلى شبكتना')}</a><button class="hero-audio-btn" id="heroAudioToggle" type="button" aria-pressed="false" aria-label="${t('Play Audio Introduction','ऑडियो परिचय सुनें','استمع إلى المقدمة الصوتية')}"><span class="audio-eq" aria-hidden="true"><span></span><span></span><span></span><span></span></span><span id="audioLabel">${t('Audio Story','ऑडियो सुनें','تجربة صوتية')}</span></button></div><div class="hero-trust-bar"><span class="trust-item">${t('Village Sourcing','ग्रामीण उत्पादन','إنتاج قروي')}</span><span class="trust-sep" aria-hidden="true"></span><span class="trust-item">️ ${t('Integrated Processing','एकीकृत प्रोसेसिंग','معالجة متكاملة')}</span><span class="trust-sep" aria-hidden="true"></span><span class="trust-item"> ${t('Gao Se Global Tak','गांव से ग्लोबल तक','من القرية إلى العالم')}</span></div></div><div class="audio-toast" id="audioToast" role="status" aria-live="polite"></div><a class="hero-credit" href="https://unsplash.com/photos/an-aerial-view-of-a-green-field-with-water-rz_XeuMi6xs" target="_blank" rel="noopener noreferrer">${t('Illustrative landscape','प्रतीकात्मक दृश्य','منظر توضيحي')} · Kishor Kumar / Unsplash</a></section>
 
@@ -3423,31 +3424,9 @@ if(btt && !btt._bound){
   });
 }
 $('#language').addEventListener('change',e=>{const form=$('#enquiry-form');const data=form?new FormData(form):null;const chk=form?form.querySelector('input[type=checkbox]'):null;const consent=chk?chk.checked:false;language=e.target.value;window.language=language;try{localStorage.setItem('kotwari_lang',language);document.cookie='kotwari_lang='+language+';path=/;max-age=31536000';document.cookie='googtrans=/en/'+language+';path=/;max-age=31536000';}catch(err){}try{const u=new URL(window.location.href);if(language==='en')u.searchParams.delete('lang');else u.searchParams.set('lang',language);window.history.replaceState({},'',u.toString());}catch(err){}render();if(window.KotwariI18n)window.KotwariI18n.syncLinks(language);if(form&&data){const roleEl=$('#role');if(roleEl)roleEl.value=data.get('role')||'';renderFields();for(const [key,value] of data){const el=form.elements.namedItem(key);if(el)el.value=value;}const postChk=form.querySelector('input[type=checkbox]');if(postChk)postChk.checked=consent;}const langSelect=$('#language');if(langSelect)langSelect.focus();});
-const menuBtn = $('.menu');
-if(menuBtn){
-  menuBtn.onclick = (e) => {
-    e.stopPropagation();
-    const nav = $('#navigation');
-    if(nav){
-      const open = nav.classList.toggle('open');
-      menuBtn.setAttribute('aria-expanded', String(open));
-      menuBtn.innerHTML = open ? '&#10005; ' + t('Close','बंद करें','إغلاق') : t('Menu','मेनू','القائمة');
-    }
-  };
-}
-if(!window._navOutsideClickBound){
-  window._navOutsideClickBound = true;
-  document.addEventListener('click', (e) => {
-    const nav = document.getElementById('navigation');
-    const btn = document.querySelector('.menu');
-    if(nav && btn && nav.classList.contains('open')){
-      if(!nav.contains(e.target) && !btn.contains(e.target)){
-        nav.classList.remove('open');
-        btn.setAttribute('aria-expanded', 'false');
-        btn.innerHTML = t('Menu','मेनू','القائمة');
-      }
-    }
-  });
+// Mobile navigation is managed centrally and resiliently by KotwariMotion
+if(window.KotwariMotion && typeof window.KotwariMotion.refresh === 'function'){
+  window.KotwariMotion.refresh();
 }
 
 // Wire frosted glass dropdowns
@@ -3510,12 +3489,15 @@ document.querySelectorAll('.glass-mega-dropdown a').forEach(a => {
 const searchInput=$('#product-search-input');
 document.querySelectorAll('#navigation a').forEach(a => {
   a.addEventListener('click', () => {
-    const nav = document.getElementById('navigation');
-    if(nav) nav.classList.remove('open');
-    const menuBtn = document.querySelector('.menu');
-    if(menuBtn) {
-      menuBtn.setAttribute('aria-expanded', 'false');
-      menuBtn.innerHTML = t('Menu','मेनू','القائمة');
+    if(window.KotwariMotion && typeof window.KotwariMotion.closeMobileMenu === 'function'){
+      window.KotwariMotion.closeMobileMenu();
+    } else {
+      const nav = document.getElementById('navigation');
+      if(nav) nav.classList.remove('open');
+      const menuBtn = document.querySelector('.menu');
+      if(menuBtn) {
+        menuBtn.setAttribute('aria-expanded', 'false');
+      }
     }
   });
 });
@@ -3583,7 +3565,7 @@ function openDialog(type){
   }
   modal.showModal();
 }
-$('#app').onclick=e=>{const stage=e.target.closest('[data-stage]');if(stage){const i=Number(stage.dataset.stage);const sLinks=['farmers.html','fpo.html','farmers.html#collection','dairy.html','about.html','exports.html','retail.html','exports.html'];const sDetail=document.querySelector('.flow-detail');if(sDetail)sDetail.classList.add('km-stage-fade');setTimeout(()=>{if($('#stage-title'))$('#stage-title').textContent=stages()[i][0];if($('#stage-copy'))$('#stage-copy').textContent=stages()[i][1];const sL=$('#stage-link');if(sL&&sLinks[i])sL.href=sLinks[i];if(sDetail)sDetail.classList.remove('km-stage-fade');},160);document.querySelectorAll('.stage').forEach(b=>b.setAttribute('aria-pressed',b===stage));}const filter=e.target.closest('[data-filter]');if(filter){selectedCategory=filter.dataset.filter;const tablist=filter.closest('.t-tabs');if(tablist){tablist.querySelectorAll('.t-tab').forEach(b=>{const isSel=(b===filter);b.setAttribute('aria-selected',isSel);});updateTabsPill(tablist,filter,false);filter.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});}else{document.querySelectorAll('.filter').forEach(b=>b.setAttribute('aria-selected',b===filter));}renderProducts();}const zone=e.target.closest('[data-zone]');if(zone)setZone(Number(zone.dataset.zone));const pModal=e.target.closest('[data-product-idx]');if(pModal){openProductModal(Number(pModal.dataset.productIdx));}const role=e.target.closest('[data-role]');if(role){$('#role').value=role.dataset.role;$('#role').dispatchEvent(new Event('change',{bubbles:true}));renderFields();if(role.dataset.product){const msgArea=$('#enquiry-form textarea[name="message"]');if(msgArea){msgArea.value=`Enquiry for ${role.dataset.product}:\nI am interested in distributorship / supply. Please share product catalogue, MOQs, and pricing.`}}}const modal=e.target.closest('[data-dialog]');if(modal)openDialog(modal.dataset.dialog);if(e.target.closest('a[href^="#"]')){$('#navigation').classList.remove('open');$('.menu').setAttribute('aria-expanded','false');}};
+$('#app').onclick=e=>{const stage=e.target.closest('[data-stage]');if(stage){const i=Number(stage.dataset.stage);const sLinks=['farmers.html','fpo.html','farmers.html#collection','dairy.html','about.html','exports.html','retail.html','exports.html'];const sDetail=document.querySelector('.flow-detail');if(sDetail)sDetail.classList.add('km-stage-fade');setTimeout(()=>{if($('#stage-title'))$('#stage-title').textContent=stages()[i][0];if($('#stage-copy'))$('#stage-copy').textContent=stages()[i][1];const sL=$('#stage-link');if(sL&&sLinks[i])sL.href=sLinks[i];if(sDetail)sDetail.classList.remove('km-stage-fade');},160);document.querySelectorAll('.stage').forEach(b=>b.setAttribute('aria-pressed',b===stage));}const filter=e.target.closest('[data-filter]');if(filter){selectedCategory=filter.dataset.filter;const tablist=filter.closest('.t-tabs');if(tablist){tablist.querySelectorAll('.t-tab').forEach(b=>{const isSel=(b===filter);b.setAttribute('aria-selected',isSel);});updateTabsPill(tablist,filter,false);filter.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});}else{document.querySelectorAll('.filter').forEach(b=>b.setAttribute('aria-selected',b===filter));}renderProducts();}const zone=e.target.closest('[data-zone]');if(zone)setZone(Number(zone.dataset.zone));const pModal=e.target.closest('[data-product-idx]');if(pModal){openProductModal(Number(pModal.dataset.productIdx));}const role=e.target.closest('[data-role]');if(role){$('#role').value=role.dataset.role;$('#role').dispatchEvent(new Event('change',{bubbles:true}));renderFields();if(role.dataset.product){const msgArea=$('#enquiry-form textarea[name="message"]');if(msgArea){msgArea.value=`Enquiry for ${role.dataset.product}:\nI am interested in distributorship / supply. Please share product catalogue, MOQs, and pricing.`}}}const modal=e.target.closest('[data-dialog]');if(modal)openDialog(modal.dataset.dialog);if(e.target.closest('a[href^="#"]')){if(window.KotwariMotion&&typeof window.KotwariMotion.closeMobileMenu==='function')window.KotwariMotion.closeMobileMenu();else{$('#navigation').classList.remove('open');$('.menu').setAttribute('aria-expanded','false');}}};
 $('#app').addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.closest('.dairy-card,[data-product-idx]')){e.preventDefault();(e.target.closest('.dairy-card,[data-product-idx]')).click();}});
 $('#role').addEventListener('change',renderFields);$('.close').addEventListener('click',()=>$('#modal').close());
 
