@@ -1,0 +1,441 @@
+/**
+ * Kotwari International Ltd. — Global Search System Styles
+ * Design System tokens: Navy (#102B3F), Dark Navy (#0B1F30), Gold (#C5A15B), Cream (#F8F5ED)
+ */
+
+/* Header Search Trigger Button */
+.search-trigger-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(197, 161, 91, 0.35);
+  color: #FFFFFF;
+  padding: 7px 14px;
+  border-radius: 9999px;
+  font-family: var(--font-sans, 'Plus Jakarta Sans', system-ui, sans-serif);
+  font-size: 0.82rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  line-height: 1;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.search-trigger-btn:hover {
+  background: rgba(197, 161, 91, 0.18);
+  border-color: var(--color-gold, #C5A15B);
+  color: #FFFFFF;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(11, 31, 48, 0.2);
+}
+
+.search-trigger-btn svg {
+  width: 15px;
+  height: 15px;
+  stroke: var(--color-gold, #C5A15B);
+  transition: stroke 0.2s ease;
+  flex-shrink: 0;
+}
+
+.search-trigger-btn:hover svg {
+  stroke: #FFFFFF;
+}
+
+.search-trigger-btn .search-label-text {
+  display: inline-block;
+}
+
+.search-trigger-btn .search-hint-key {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.70rem;
+  font-weight: 600;
+  padding: 2px 6px;
+  background: rgba(11, 31, 48, 0.45);
+  border: 1px solid rgba(197, 161, 91, 0.3);
+  border-radius: 4px;
+  color: #DFBF83;
+  margin-left: 2px;
+}
+
+/* Light background headers adaptation (if header has white background) */
+header:not(.dark-header) .search-trigger-btn {
+  background: rgba(16, 43, 63, 0.05);
+  border-color: rgba(16, 43, 63, 0.2);
+  color: #102B3F;
+}
+header:not(.dark-header) .search-trigger-btn:hover {
+  background: rgba(197, 161, 91, 0.15);
+  border-color: #C5A15B;
+  color: #102B3F;
+}
+header:not(.dark-header) .search-trigger-btn svg {
+  stroke: #102B3F;
+}
+header:not(.dark-header) .search-trigger-btn .search-hint-key {
+  background: rgba(16, 43, 63, 0.08);
+  border-color: rgba(16, 43, 63, 0.15);
+  color: #102B3F;
+}
+
+@media (max-width: 768px) {
+  .search-trigger-btn {
+    padding: 7px 10px;
+  }
+  .search-trigger-btn .search-label-text,
+  .search-trigger-btn .search-hint-key {
+    display: none;
+  }
+}
+
+/* Search Modal Overlay */
+.kotwari-search-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(11, 31, 48, 0.78);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 100000;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 60px 20px 40px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.25s;
+  box-sizing: border-box;
+}
+
+.kotwari-search-overlay.is-active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Search Dialog Container */
+.kotwari-search-dialog {
+  width: 100%;
+  max-width: 680px;
+  background: #FFFFFF;
+  border-radius: 16px;
+  box-shadow: 0 24px 60px rgba(11, 31, 48, 0.35), 0 0 0 1px rgba(197, 161, 91, 0.35);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transform: translateY(-20px) scale(0.98);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  max-height: calc(100vh - 120px);
+}
+
+.kotwari-search-overlay.is-active .kotwari-search-dialog {
+  transform: translateY(0) scale(1);
+}
+
+/* Search Header & Input Bar */
+.kotwari-search-header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 16px 20px;
+  background: #F8F5ED;
+  border-bottom: 1px solid rgba(197, 161, 91, 0.25);
+}
+
+.kotwari-search-icon-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  color: #C5A15B;
+  flex-shrink: 0;
+  margin-right: 12px;
+}
+
+.kotwari-search-icon-wrap svg {
+  width: 22px;
+  height: 22px;
+}
+
+.kotwari-search-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: var(--font-sans, 'Plus Jakarta Sans', system-ui, sans-serif);
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: #102B3F;
+  padding: 4px 0;
+}
+
+.kotwari-search-input::placeholder {
+  color: #737B83;
+  font-weight: 400;
+}
+
+.kotwari-search-clear-btn {
+  background: none;
+  border: none;
+  color: #737B83;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  visibility: hidden;
+}
+
+.kotwari-search-clear-btn.is-visible {
+  visibility: visible;
+}
+
+.kotwari-search-clear-btn:hover {
+  background: rgba(11, 31, 48, 0.08);
+  color: #102B3F;
+}
+
+.kotwari-search-close-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #737B83;
+  background: rgba(11, 31, 48, 0.06);
+  border: 1px solid rgba(11, 31, 48, 0.12);
+  padding: 4px 8px;
+  border-radius: 6px;
+  margin-left: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.kotwari-search-close-badge:hover {
+  background: rgba(197, 161, 91, 0.2);
+  color: #102B3F;
+  border-color: #C5A15B;
+}
+
+/* Suggestions & Quick Chips */
+.kotwari-search-suggestions {
+  padding: 12px 20px;
+  background: #FFFFFF;
+  border-bottom: 1px solid rgba(11, 31, 48, 0.06);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.kotwari-search-suggestions::-webkit-scrollbar {
+  display: none;
+}
+
+.kotwari-search-sug-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #C5A15B;
+  white-space: nowrap;
+}
+
+.kotwari-search-chip {
+  background: #F8F5ED;
+  border: 1px solid rgba(197, 161, 91, 0.3);
+  color: #102B3F;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.kotwari-search-chip:hover {
+  background: #102B3F;
+  color: #FFFFFF;
+  border-color: #102B3F;
+}
+
+/* Results Container */
+.kotwari-search-results {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px 16px;
+  max-height: 480px;
+  scroll-behavior: smooth;
+}
+
+.kotwari-search-results::-webkit-scrollbar {
+  width: 6px;
+}
+.kotwari-search-results::-webkit-scrollbar-track {
+  background: #F8F5ED;
+}
+.kotwari-search-results::-webkit-scrollbar-thumb {
+  background: rgba(197, 161, 91, 0.4);
+  border-radius: 3px;
+}
+
+/* Result Item */
+.kotwari-search-item {
+  display: block;
+  text-decoration: none;
+  padding: 14px 16px;
+  border-radius: 10px;
+  margin-bottom: 6px;
+  border: 1px solid transparent;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  background: #FFFFFF;
+}
+
+.kotwari-search-item:hover,
+.kotwari-search-item.is-selected {
+  background: #F8F5ED;
+  border-color: rgba(197, 161, 91, 0.4);
+  transform: translateX(4px);
+  box-shadow: 0 4px 12px rgba(11, 31, 48, 0.05);
+}
+
+.kotwari-search-item-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.kotwari-search-badge {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 2px 7px;
+  border-radius: 4px;
+  background: rgba(197, 161, 91, 0.15);
+  color: #8C6A28;
+  border: 1px solid rgba(197, 161, 91, 0.3);
+}
+
+.kotwari-search-item-path {
+  font-size: 0.75rem;
+  color: #737B83;
+}
+
+.kotwari-search-item-title {
+  font-family: var(--font-serif, 'Playfair Display', serif);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #102B3F;
+  margin: 0 0 4px 0;
+  line-height: 1.3;
+}
+
+.kotwari-search-item-desc {
+  font-size: 0.84rem;
+  color: #556270;
+  margin: 0;
+  line-height: 1.45;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Keyword Highlighting */
+.kotwari-search-item mark {
+  background: rgba(197, 161, 91, 0.28);
+  color: #102B3F;
+  font-weight: 700;
+  padding: 0 2px;
+  border-radius: 2px;
+}
+
+/* Empty State */
+.kotwari-search-empty {
+  text-align: center;
+  padding: 44px 20px;
+  color: #737B83;
+}
+
+.kotwari-search-empty-icon {
+  font-size: 2.5rem;
+  margin-bottom: 12px;
+  opacity: 0.7;
+}
+
+.kotwari-search-empty h4 {
+  font-family: var(--font-serif, 'Playfair Display', serif);
+  font-size: 1.25rem;
+  color: #102B3F;
+  margin: 0 0 8px;
+}
+
+.kotwari-search-empty p {
+  font-size: 0.88rem;
+  max-width: 380px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+/* Search Footer Bar */
+.kotwari-search-footer {
+  padding: 10px 20px;
+  background: #F8F5ED;
+  border-top: 1px solid rgba(197, 161, 91, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: #737B83;
+}
+
+.kotwari-search-keys {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.kotwari-search-key-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.kotwari-search-kbd {
+  display: inline-block;
+  padding: 2px 5px;
+  background: #FFFFFF;
+  border: 1px solid rgba(11, 31, 48, 0.15);
+  border-radius: 4px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #102B3F;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+@media (max-width: 600px) {
+  .kotwari-search-overlay {
+    padding: 0;
+    align-items: stretch;
+  }
+  .kotwari-search-dialog {
+    max-height: 100vh;
+    height: 100vh;
+    border-radius: 0;
+  }
+  .kotwari-search-footer {
+    display: none;
+  }
+}

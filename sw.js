@@ -1,6 +1,6 @@
 // Kotwari Service Worker (PWA)
 // Safe network-first strategy for HTML pages ensuring page navigation is never hijacked
-const CACHE_NAME = 'kotwari-pwa-v3';
+const CACHE_NAME = 'kotwari-pwa-v4';
 
 // Only precache immutable static branding assets
 const PRECACHE_STATIC_ASSETS = [

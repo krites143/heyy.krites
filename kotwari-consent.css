@@ -1,0 +1,298 @@
+/**
+ * Kotwari International Ltd. — Cookie & Privacy Consent Suite Styles
+ * Palette: Dark Navy (#0B1F30), Navy (#102B3F), Gold (#C5A15B), Cream (#F8F5ED)
+ */
+
+/* Floating Bottom Consent Banner */
+.kotwari-consent-banner {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  max-width: 960px;
+  margin: 0 auto;
+  background: rgba(11, 31, 48, 0.96);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1.5px solid var(--color-gold, #C5A15B);
+  border-radius: 14px;
+  padding: 18px 24px;
+  color: #E2E8F0;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+  z-index: 99990;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+  font-family: var(--font-sans, 'Plus Jakarta Sans', system-ui, sans-serif);
+  font-size: 0.88rem;
+  line-height: 1.55;
+  box-sizing: border-box;
+  transform: translateY(120%);
+  opacity: 0;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s;
+}
+
+.kotwari-consent-banner.is-visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.consent-banner-text {
+  flex: 1;
+  min-width: 280px;
+}
+
+.consent-banner-text strong {
+  color: #FFFFFF;
+}
+
+.consent-banner-text a {
+  color: var(--color-gold-glow, #DFBF83);
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+
+.consent-banner-text a:hover {
+  color: #FFFFFF;
+}
+
+.consent-btn-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.consent-btn {
+  font-family: inherit;
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 9px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.consent-btn-accept {
+  background: var(--color-gold, #C5A15B);
+  color: #0B1F30;
+  border: 1px solid var(--color-gold, #C5A15B);
+}
+
+.consent-btn-accept:hover {
+  background: #FFFFFF;
+  border-color: #FFFFFF;
+  color: #102B3F;
+  box-shadow: 0 4px 14px rgba(197, 161, 91, 0.4);
+}
+
+.consent-btn-decline {
+  background: transparent;
+  color: #CBD5E0;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.consent-btn-decline:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #FFFFFF;
+  border-color: #FFFFFF;
+}
+
+.consent-btn-customize {
+  background: none;
+  border: none;
+  color: #DFBF83;
+  text-decoration: underline;
+  padding: 8px 10px;
+  cursor: pointer;
+  font-size: 0.80rem;
+  font-weight: 600;
+}
+
+.consent-btn-customize:hover {
+  color: #FFFFFF;
+}
+
+/* Customization Preferences Modal */
+.kotwari-consent-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(11, 31, 48, 0.82);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 100020;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.3s;
+}
+
+.kotwari-consent-modal-overlay.is-active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.kotwari-consent-modal-dialog {
+  background: #FFFFFF;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 620px;
+  max-height: calc(100vh - 60px);
+  overflow-y: auto;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(197, 161, 91, 0.4);
+  padding: 32px;
+  position: relative;
+  font-family: var(--font-sans, 'Plus Jakarta Sans', system-ui, sans-serif);
+  color: #102B3F;
+}
+
+.consent-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(11, 31, 48, 0.1);
+}
+
+.consent-modal-header h3 {
+  font-family: var(--font-serif, 'Playfair Display', serif);
+  font-size: 1.45rem;
+  color: #102B3F;
+  margin: 0 0 4px;
+}
+
+.consent-modal-close {
+  background: rgba(11, 31, 48, 0.06);
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #102B3F;
+  font-size: 1rem;
+  transition: all 0.2s;
+}
+
+.consent-modal-close:hover {
+  background: #102B3F;
+  color: #FFFFFF;
+}
+
+.consent-category-card {
+  background: #F8F5ED;
+  border-radius: 10px;
+  border: 1px solid rgba(197, 161, 91, 0.25);
+  padding: 16px 20px;
+  margin-bottom: 14px;
+}
+
+.consent-category-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.consent-category-name {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #102B3F;
+}
+
+.consent-badge-locked {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #8C6A28;
+  background: rgba(197, 161, 91, 0.18);
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+/* Custom Switch */
+.consent-switch {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+}
+
+.consent-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.consent-slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background-color: #CBD5E0;
+  transition: 0.25s;
+  border-radius: 24px;
+}
+
+.consent-slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.25s;
+  border-radius: 50%;
+}
+
+.consent-switch input:checked + .consent-slider {
+  background-color: var(--color-gold, #C5A15B);
+}
+
+.consent-switch input:checked + .consent-slider:before {
+  transform: translateX(20px);
+}
+
+.consent-category-desc {
+  font-size: 0.84rem;
+  color: #556270;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.consent-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 24px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(11, 31, 48, 0.1);
+}
+
+@media (max-width: 600px) {
+  .kotwari-consent-banner {
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+    padding: 16px;
+  }
+  .consent-btn-group {
+    width: 100%;
+    justify-content: stretch;
+  }
+  .consent-btn {
+    flex: 1;
+    text-align: center;
+  }
+}

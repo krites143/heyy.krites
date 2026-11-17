@@ -1,0 +1,1319 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0B1F30">
+  <title>News & Insights | Kotwari International Ltd.</title>
+  <meta name="description" content="Official press releases, agricultural research reports, corporate dispatches, and global export insights from Kotwari International Ltd.">
+  <link rel="canonical" href="https://www.kotwari.com/news.html">
+
+  <!-- Open Graph / Meta -->
+  <meta property="og:site_name" content="Kotwari International">
+  <meta property="og:title" content="News & Insights | Kotwari International Ltd.">
+  <meta property="og:description" content="Official press releases, agricultural research reports, corporate dispatches, and global export insights.">
+  <meta property="og:url" content="https://www.kotwari.com/news.html">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://www.kotwari.com/og-image.jpg">
+
+  <!-- Favicon & PWA -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Master Design System & Search Styles -->
+  <link rel="stylesheet" href="kotwari-design-system.css">
+  <link rel="stylesheet" href="glass-dropdown.css">
+  <link rel="stylesheet" href="kotwari-search.css">
+  <link rel="stylesheet" href="kotwari-consent.css">
+
+  <style>
+    :root {
+      --navy: #102B3F;
+      --navy-dark: #0B1F30;
+      --cream: #F8F5ED;
+      --gold: #C5A15B;
+      --gold-soft: rgba(197, 161, 91, 0.12);
+      --muted: #737B83;
+      --line: rgba(11, 31, 48, 0.1);
+      --white: #FFFFFF;
+      --font-serif: 'Playfair Display', Georgia, serif;
+      --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+    }
+
+    body {
+      background-color: var(--cream);
+      color: #2C3E50;
+      font-family: var(--font-sans);
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .wrap {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 clamp(16px, 3vw, 36px);
+      box-sizing: border-box;
+    }
+
+    /* Topbar */
+    .topbar {
+      background: var(--navy-dark);
+      color: rgba(255,255,255,0.85);
+      font-size: 0.78rem;
+      border-bottom: 1px solid rgba(197, 161, 91, 0.25);
+      padding: 8px 0;
+    }
+    .topbar .wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .topbar-brand strong { color: var(--gold); }
+
+    /* Header */
+    header {
+      background: #FFFFFF;
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 18px rgba(11, 31, 48, 0.04);
+    }
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+    .brand-emblem-img {
+      height: 44px;
+      width: auto;
+    }
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+    }
+    .brand-name {
+      font-family: var(--font-serif);
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.1;
+    }
+    .brand-tag {
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+    }
+
+    nav.main-nav {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+    nav.main-nav a {
+      color: var(--navy);
+      text-decoration: none;
+      font-size: 0.92rem;
+      font-weight: 600;
+      transition: color 0.2s ease;
+    }
+    nav.main-nav a:hover,
+    nav.main-nav a.active {
+      color: var(--gold);
+    }
+
+    .header-tools {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    /* Hero Section */
+    .news-hero {
+      background: linear-gradient(180deg, #FFFFFF 0%, var(--cream) 100%);
+      padding: clamp(48px, 6vw, 84px) 0 40px;
+      border-bottom: 1px solid var(--line);
+    }
+    .kicker {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+    .news-hero h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(2.4rem, 5vw, 4.2rem);
+      color: var(--navy);
+      line-height: 1.12;
+      margin: 0 0 16px 0;
+      letter-spacing: -0.025em;
+    }
+    .news-hero p.lead {
+      font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+      line-height: 1.6;
+      color: #4A5568;
+      max-width: 780px;
+      margin: 0;
+    }
+
+    /* Featured Story Card */
+    .featured-article-wrap {
+      margin-top: -30px;
+      margin-bottom: 60px;
+    }
+    .featured-card {
+      background: #FFFFFF;
+      border-radius: 16px;
+      border: 1px solid rgba(197, 161, 91, 0.35);
+      box-shadow: 0 16px 40px rgba(11, 31, 48, 0.08);
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s;
+    }
+    .featured-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 24px 60px rgba(11, 31, 48, 0.14);
+    }
+    .featured-media {
+      background: var(--navy-dark);
+      position: relative;
+      min-height: 380px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      overflow: hidden;
+    }
+    .featured-media img {
+      max-width: 240px;
+      height: auto;
+      filter: drop-shadow(0 12px 24px rgba(0,0,0,0.45));
+    }
+    .featured-media-pattern {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(197, 161, 91, 0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .featured-content {
+      padding: clamp(32px, 4vw, 54px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+    .category-badge {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 3px 9px;
+      border-radius: 4px;
+      background: var(--gold-soft);
+      color: #8C6A28;
+      border: 1px solid rgba(197, 161, 91, 0.35);
+    }
+    .featured-title {
+      font-family: var(--font-serif);
+      font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+      color: var(--navy);
+      line-height: 1.25;
+      margin: 0 0 16px 0;
+    }
+    .featured-excerpt {
+      font-size: 1.0rem;
+      line-height: 1.65;
+      color: #556270;
+      margin-bottom: 24px;
+    }
+    .read-more-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--navy);
+      color: #FFFFFF;
+      font-weight: 700;
+      font-size: 0.92rem;
+      padding: 12px 24px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      align-self: flex-start;
+      transition: all 0.25s ease;
+      text-decoration: none;
+    }
+    .read-more-btn:hover {
+      background: var(--gold);
+      color: var(--navy-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(197, 161, 91, 0.35);
+    }
+
+    /* Filter Tabs */
+    .filter-bar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 36px;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 14px;
+    }
+    .filter-tab {
+      background: transparent;
+      border: 1px solid transparent;
+      color: var(--navy);
+      font-size: 0.88rem;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 9999px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .filter-tab:hover {
+      background: rgba(16, 43, 63, 0.05);
+    }
+    .filter-tab.is-active {
+      background: var(--navy);
+      color: #FFFFFF;
+      border-color: var(--navy);
+    }
+
+    /* Articles Grid */
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 30px;
+      margin-bottom: 60px;
+    }
+    .news-card {
+      background: #FFFFFF;
+      border-radius: 12px;
+      border: 1px solid rgba(11, 31, 48, 0.08);
+      box-shadow: 0 4px 18px rgba(11, 31, 48, 0.04);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s, border-color 0.3s;
+    }
+    .news-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 16px 36px rgba(11, 31, 48, 0.09);
+      border-color: rgba(197, 161, 91, 0.4);
+    }
+    .card-banner {
+      height: 180px;
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-dark) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      padding: 20px;
+      overflow: hidden;
+    }
+    .card-banner img {
+      max-height: 80px;
+      width: auto;
+      filter: drop-shadow(0 6px 14px rgba(0,0,0,0.3));
+    }
+    .card-body {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    .card-title {
+      font-family: var(--font-serif);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.35;
+      margin: 0 0 12px 0;
+    }
+    .card-text {
+      font-size: 0.90rem;
+      line-height: 1.6;
+      color: #556270;
+      margin: 0 0 20px 0;
+      flex: 1;
+    }
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid rgba(11, 31, 48, 0.06);
+      padding-top: 14px;
+      margin-top: auto;
+    }
+    .card-read-link {
+      color: var(--gold);
+      font-weight: 700;
+      font-size: 0.88rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    }
+    .card-read-link:hover {
+      color: var(--navy);
+    }
+
+    /* Load More Button */
+    .load-more-wrap {
+      text-align: center;
+      margin-bottom: 80px;
+    }
+    .load-more-btn {
+      background: #FFFFFF;
+      border: 1.5px solid var(--gold);
+      color: var(--navy);
+      font-size: 0.95rem;
+      font-weight: 700;
+      padding: 14px 36px;
+      border-radius: 9999px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+    .load-more-btn:hover {
+      background: var(--gold);
+      color: var(--navy-dark);
+      box-shadow: 0 8px 24px rgba(197, 161, 91, 0.3);
+    }
+
+    /* Newsletter Block */
+    .newsletter-band {
+      background: var(--navy-dark);
+      color: #FFFFFF;
+      border-radius: 16px;
+      padding: clamp(36px, 5vw, 60px);
+      margin-bottom: 80px;
+      border: 1px solid rgba(197, 161, 91, 0.35);
+      box-shadow: 0 20px 50px rgba(11, 31, 48, 0.25);
+    }
+    .newsletter-band .split {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+    .newsletter-band h3 {
+      font-family: var(--font-serif);
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      margin: 0 0 10px;
+      color: #FFFFFF;
+    }
+    .newsletter-band p {
+      color: #CBD5E0;
+      font-size: 0.98rem;
+      line-height: 1.6;
+      margin: 0;
+    }
+    .nl-form-row {
+      display: flex;
+      gap: 10px;
+    }
+    .nl-input {
+      flex: 1;
+      padding: 14px 18px;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.08);
+      color: #FFFFFF;
+      font-size: 0.95rem;
+      outline: none;
+    }
+    .nl-input:focus {
+      border-color: var(--gold);
+      background: rgba(255,255,255,0.14);
+    }
+    .nl-submit {
+      background: var(--gold);
+      color: var(--navy-dark);
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 14px 28px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+    .nl-submit:hover {
+      background: #FFFFFF;
+      color: var(--navy);
+    }
+
+    /* Modal Article Reader */
+    .article-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(11, 31, 48, 0.85);
+      backdrop-filter: blur(8px);
+      z-index: 100010;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 20px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s;
+      box-sizing: border-box;
+    }
+    .article-modal.is-active {
+      opacity: 1;
+      visibility: visible;
+    }
+    .article-modal-dialog {
+      background: #FFFFFF;
+      width: 100%;
+      max-width: 840px;
+      max-height: calc(100vh - 80px);
+      border-radius: 16px;
+      overflow-y: auto;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.4);
+      border: 1px solid rgba(197, 161, 91, 0.4);
+      position: relative;
+      padding: clamp(28px, 4vw, 48px);
+      box-sizing: border-box;
+    }
+    .modal-close-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: rgba(11, 31, 48, 0.08);
+      border: none;
+      border-radius: 50%;
+      width: 38px;
+      height: 38px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--navy);
+      transition: all 0.2s ease;
+    }
+    .modal-close-btn:hover {
+      background: var(--navy);
+      color: #FFFFFF;
+    }
+
+    /* Social Share Bar */
+    .share-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      margin: 28px 0;
+    }
+    .share-label {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .share-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--cream);
+      border: 1px solid rgba(11, 31, 48, 0.12);
+      color: var(--navy);
+      font-size: 0.80rem;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 6px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .share-pill:hover {
+      background: var(--navy);
+      color: #FFFFFF;
+      border-color: var(--navy);
+    }
+
+    /* Editorial Content Body */
+    .editorial-body {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: #2D3748;
+    }
+    .editorial-body p {
+      margin-bottom: 1.4em;
+    }
+    .editorial-quote {
+      border-left: 3px solid var(--gold);
+      padding-left: 20px;
+      margin: 24px 0;
+      font-style: italic;
+      color: var(--navy);
+      font-size: 1.15rem;
+      font-family: var(--font-serif);
+    }
+    .takeaways-box {
+      background: var(--cream);
+      border: 1px solid rgba(197, 161, 91, 0.3);
+      border-radius: 10px;
+      padding: 20px 24px;
+      margin: 28px 0;
+    }
+    .takeaways-box h4 {
+      margin: 0 0 10px 0;
+      color: var(--navy);
+      font-size: 1.05rem;
+    }
+    .takeaways-box ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+    .takeaways-box li {
+      margin-bottom: 8px;
+      font-size: 0.92rem;
+      color: #4A5568;
+    }
+
+    /* Toast Notification */
+    .toast-notice {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: var(--navy-dark);
+      color: #FFFFFF;
+      border: 1px solid var(--gold);
+      padding: 12px 24px;
+      border-radius: 9999px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+      z-index: 100020;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .toast-notice.is-visible {
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* Footer */
+    footer {
+      background: var(--navy-dark);
+      color: rgba(255,255,255,0.75);
+      padding: 60px 0 30px;
+      border-top: 2px solid var(--gold);
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr repeat(3, 1fr);
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+    .footer-col h4 {
+      color: #FFFFFF;
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      margin: 0 0 18px 0;
+    }
+    .footer-col ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .footer-col li {
+      margin-bottom: 10px;
+    }
+    .footer-col a {
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      font-size: 0.88rem;
+      transition: color 0.2s ease;
+    }
+    .footer-col a:hover {
+      color: var(--gold);
+    }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-size: 0.82rem;
+    }
+
+    @media (max-width: 900px) {
+      .featured-card {
+        grid-template-columns: 1fr;
+      }
+      .featured-media {
+        min-height: 240px;
+      }
+      .newsletter-band .split {
+        grid-template-columns: 1fr;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    @media (max-width: 600px) {
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+      .news-grid {
+        grid-template-columns: 1fr;
+      }
+      .nl-form-row {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Topbar -->
+  <div class="topbar">
+    <div class="wrap">
+      <span class="topbar-brand">
+        ✦ <strong>Kotwari International Ltd.</strong> &mdash; Gao Se Global Tak
+      </span>
+      <span class="topbar-motto">
+        Official Corporate Press & Insights Bureau
+      </span>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="wrap header-inner">
+      <a class="brand" href="index.html">
+        <img class="brand-emblem-img" src="kotwari_emblem_new.png" alt="Kotwari Corporate Seal">
+        <div class="brand-text">
+          <span class="brand-name">Kotwari<sup>&trade;</sup></span>
+          <span class="brand-tag">Gao Se Global Tak</span>
+        </div>
+      </a>
+
+      <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="index.html#products">Products</a>
+        <a href="exports.html">Exports</a>
+        <a href="news.html" class="active">News & Insights</a>
+        <a href="careers.html">Careers</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <div class="header-tools">
+        <button type="button" class="search-trigger-btn" aria-label="Search website" title="Search (Ctrl+K)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <span class="search-label-text">Search</span>
+          <span class="search-hint-key" aria-hidden="true">⌘K</span>
+        </button>
+
+        <select class="lang" id="language" aria-label="Language selector">
+          <option value="en" selected>EN</option>
+          <option value="hi">हिंदी</option>
+        </select>
+      </div>
+    </div>
+  </header>
+
+  <!-- News Hero -->
+  <section class="news-hero">
+    <div class="wrap">
+      <span class="kicker">Official Corporate Dispatches</span>
+      <h1>News &amp; Strategic Insights</h1>
+      <p class="lead">
+        Authoritative reports on India's agricultural transformation, rural supply chain infrastructure, FMCG brand expansion, and international trade dispatches from Kotwari International.
+      </p>
+    </div>
+  </section>
+
+  <main class="wrap">
+    <!-- Featured Story -->
+    <div class="featured-article-wrap">
+      <article class="featured-card">
+        <div class="featured-media">
+          <div class="featured-media-pattern"></div>
+          <img src="kotwari_logo_gold.png" alt="Kotwari Global Trade Expansion">
+        </div>
+        <div class="featured-content">
+          <div class="article-meta">
+            <span class="category-badge">Global Trade &amp; Exports</span>
+            <span>&bull;</span>
+            <time datetime="2026-11-14">November 14, 2026</time>
+            <span>&bull;</span>
+            <span>5 min read</span>
+          </div>
+          <h2 class="featured-title">Kotwari International Expands Direct Village Sourcing to 120+ Hubs &amp; Ramps Middle East Export Shipments</h2>
+          <p class="featured-excerpt">
+            Consolidating our integrated farm-to-shipping network across Awadh and Purvanchal, Kotwari has commissioned upgraded electronic weigh-grading hubs and secured expanded container bookings for traditional Basmati and cold-pressed mustard oil into UAE and Saudi markets.
+          </p>
+          <button type="button" class="read-more-btn" onclick="openArticleModal('art-0')">
+            Read Full Dispatch &rarr;
+          </button>
+        </div>
+      </article>
+    </div>
+
+    <!-- Category Filters -->
+    <div class="filter-bar" id="categoryFilters">
+      <button type="button" class="filter-tab is-active" data-cat="all">All Dispatches</button>
+      <button type="button" class="filter-tab" data-cat="agri">Agri-Tech &amp; Farmers</button>
+      <button type="button" class="filter-tab" data-cat="exports">Global Trade &amp; Exports</button>
+      <button type="button" class="filter-tab" data-cat="fmcg">FMCG &amp; Retail</button>
+      <button type="button" class="filter-tab" data-cat="supply">Cold Chain &amp; Logistics</button>
+      <button type="button" class="filter-tab" data-cat="corporate">Corporate &amp; Governance</button>
+    </div>
+
+    <!-- Articles Grid -->
+    <div class="news-grid" id="newsGrid">
+      <!-- Article 1 -->
+      <article class="news-card" data-category="agri">
+        <div class="card-banner">
+          <img src="kotwari_emblem_wheat.png" alt="Farmer Sourcing">
+        </div>
+        <div class="card-body">
+          <div class="article-meta">
+            <span class="category-badge">Agri-Tech</span>
+            <time datetime="2026-11-10">Nov 10, 2026</time>
+          </div>
+          <h3 class="card-title">Direct Procurement Milestones: Over 14,000 Electronic Weigh Slips Issued to Awadh Cultivators</h3>
+          <p class="card-text">Eliminating traditional middlemen margins, Kotwari's computerized farm procurement hubs bring transparent moisture analysis and direct bank transfers to local crop growers.</p>
+          <div class="card-footer">
+            <span style="font-size:0.8rem;color:var(--muted)">4 min read</span>
+            <button type="button" class="card-read-link" onclick="openArticleModal('art-1')">Read Article &rarr;</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Article 2 -->
+      <article class="news-card" data-category="fmcg">
+        <div class="card-banner">
+          <img src="kotwari_logo_gold.png" alt="Kotwari FMCG Range">
+        </div>
+        <div class="card-body">
+          <div class="article-meta">
+            <span class="category-badge">FMCG &amp; Retail</span>
+            <time datetime="2026-11-05">Nov 05, 2026</time>
+          </div>
+          <h3 class="card-title">Kotwari FMCG Unveils GI-Grade Mithila Phool Makhana &amp; Pure Stone-Ground Spice Portfolio</h3>
+          <p class="card-text">Expanding modern retail footprint, Kotwari introduces batch-certified turmeric, Kashmiri chilli, and roasted makhana snack packs formulated for urban wellness consumers.</p>
+          <div class="card-footer">
+            <span style="font-size:0.8rem;color:var(--muted)">3 min read</span>
+            <button type="button" class="card-read-link" onclick="openArticleModal('art-2')">Read Article &rarr;</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Article 3 -->
+      <article class="news-card" data-category="exports">
+        <div class="card-banner">
+          <img src="kotwari_emblem_new.png" alt="APEDA Certified Export">
+        </div>
+        <div class="card-body">
+          <div class="article-meta">
+            <span class="category-badge">Global Trade</span>
+            <time datetime="2026-10-28">Oct 28, 2026</time>
+          </div>
+          <h3 class="card-title">APEDA-Certified Rice &amp; Pure Mustard Oil Shipments Dispatched to GCC Logistics Corridors</h3>
+          <p class="card-text">Kotwari's official export division fulfills maritime container orders with comprehensive phytosanitary certificates, Halal documentation, and verifiable origin trace codes.</p>
+          <div class="card-footer">
+            <span style="font-size:0.8rem;color:var(--muted)">5 min read</span>
+            <button type="button" class="card-read-link" onclick="openArticleModal('art-3')">Read Article &rarr;</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Article 4 -->
+      <article class="news-card" data-category="supply">
+        <div class="card-banner">
+          <img src="kotwari_emblem_wheat.png" alt="Cold Chain Infrastructure">
+        </div>
+        <div class="card-body">
+          <div class="article-meta">
+            <span class="category-badge">Cold Chain</span>
+            <time datetime="2026-10-18">Oct 18, 2026</time>
+          </div>
+          <h3 class="card-title">Solar-Assisted Bulk Milk Chilling Infrastructure Commissioned Along Kursi Road Industrial Corridor</h3>
+          <p class="card-text">Ensuring cold chain continuity from village collection buckets to automated pasteurization tanks within 90 minutes, maintaining sub-4°C microbiological integrity.</p>
+          <div class="card-footer">
+            <span style="font-size:0.8rem;color:var(--muted)">4 min read</span>
+            <button type="button" class="card-read-link" onclick="openArticleModal('art-4')">Read Article &rarr;</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Article 5 -->
+      <article class="news-card" data-category="corporate">
+        <div class="card-banner">
+          <img src="kotwari_logo_gold.png" alt="Women in Agriculture">
+        </div>
+        <div class="card-body">
+          <div class="article-meta">
+            <span class="category-badge">Governance</span>
+            <time datetime="2026-10-06">Oct 06, 2026</time>
+          </div>
+          <h3 class="card-title">Empowering Women Producers Through Village Poultry Alliances and Direct Feed Assistance</h3>
+          <p class="card-text">How Kotwari Eggs' community layer integration is providing stable supplementary household income to over 850 rural women across Sahebganj and surrounding blocks.</p>
+          <div class="card-footer">
+            <span style="font-size:0.8rem;color:var(--muted)">4 min read</span>
+            <button type="button" class="card-read-link" onclick="openArticleModal('art-5')">Read Article &rarr;</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Article 6 -->
+      <article class="news-card" data-category="fmcg">
+        <div class="card-banner">
+          <img src="kotwari_emblem_new.png" alt="Kotwari One Retail">
+        </div>
+        <div class="card-body">
+          <div class="article-meta">
+            <span class="category-badge">FMCG &amp; Retail</span>
+            <time datetime="2026-09-24">Sep 24, 2026</time>
+          </div>
+          <h3 class="card-title">Kotwari One Retail Format Logs 40% Growth in High-Protein Breakfast Point Customer Footfalls</h3>
+          <p class="card-text">Offering wholesome, hygienic egg meals, fresh sattu shakes, and KooA mineral water, Kotwari's urban franchise points provide accessible nutrition to commuters.</p>
+          <div class="card-footer">
+            <span style="font-size:0.8rem;color:var(--muted)">3 min read</span>
+            <button type="button" class="card-read-link" onclick="openArticleModal('art-6')">Read Article &rarr;</button>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- Load More -->
+    <div class="load-more-wrap">
+      <button type="button" class="load-more-btn" id="loadMoreBtn" onclick="handleLoadMore()">
+        View Archived Press Releases &darr;
+      </button>
+    </div>
+
+    <!-- Newsletter Subscription Band -->
+    <section class="newsletter-band">
+      <div class="split">
+        <div>
+          <span class="category-badge" style="background:rgba(197, 161, 91, 0.2);color:#DFBF83;border-color:rgba(197, 161, 91, 0.4)">Stay Updated</span>
+          <h3>Subscribe to Kotwari Trade &amp; Corporate Insights</h3>
+          <p>Receive monthly agricultural yield analysis, commodity trade bulletins, and official corporate announcements directly in your inbox.</p>
+        </div>
+        <div>
+          <form id="newsletterForm" onsubmit="handleNewsletterSubmit(event)">
+            <div class="nl-form-row">
+              <input type="email" id="nlEmail" class="nl-input" placeholder="Enter corporate email..." required>
+              <button type="submit" class="nl-submit">Subscribe Now</button>
+            </div>
+            <div id="nlFeedback" style="display:none;font-size:0.84rem;margin-top:10px;font-weight:600"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Article Detail Reader Modal -->
+  <div class="article-modal" id="articleModal" role="dialog" aria-modal="true" aria-label="Article Details" onclick="closeArticleModal()">
+    <div class="article-modal-dialog" onclick="event.stopPropagation()">
+      <button type="button" class="modal-close-btn" onclick="closeArticleModal()" aria-label="Close article">✕</button>
+      <div id="modalArticleContent">
+        <!-- Injected via JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast-notice" id="toastNotice">Link copied to clipboard!</div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
+            <img src="kotwari_emblem_new.png" alt="Kotwari Seal" style="height:36px;width:auto">
+            <span style="font-family:var(--font-serif);font-size:1.3rem;font-weight:700;color:#FFFFFF">Kotwari International</span>
+          </div>
+          <p style="font-size:0.86rem;line-height:1.6;margin-bottom:16px;color:#A0AEC0">
+            Building India's farmer-to-market-to-global ecosystem. Connecting rural production, processing, FMCG brands, and modern retail into one integrated value chain.
+          </p>
+          <p style="font-size:0.80rem;color:var(--gold);font-weight:600">
+            Registered Office: Kotwari House, Jankipuram-III, Kursi Road, Lucknow &ndash; 226021, UP, India.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Corporate &amp; About</h4>
+          <ul>
+            <li><a href="about.html">About Kotwari</a></li>
+            <li><a href="about.html#leadership">Chairman's Message</a></li>
+            <li><a href="investors.html">Investor Relations</a></li>
+            <li><a href="sustainability.html">Sustainability &amp; ESG</a></li>
+            <li><a href="careers.html">Careers &amp; Recruitment</a></li>
+            <li><a href="news.html">News &amp; Insights</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Business Verticals</h4>
+          <ul>
+            <li><a href="dairy.html">Kotwari Dairy</a></li>
+            <li><a href="fmcg.html">Kotwari FMCG</a></li>
+            <li><a href="eggs.html">Kotwari Poultry Eggs</a></li>
+            <li><a href="water.html">KooA Mineral Water</a></li>
+            <li><a href="retail.html">Kotwari One Retail</a></li>
+            <li><a href="exports.html">Global Export Division</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Trade &amp; Alliances</h4>
+          <ul>
+            <li><a href="farmers.html">Farmer Alliances</a></li>
+            <li><a href="fpo.html">FPO Network</a></li>
+            <li><a href="partners.html">Distributor Alliances</a></li>
+            <li><a href="contact.html">Corporate Contact</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="cookie-policy.html">Cookie Settings</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; 2026 Kotwari International Ltd. All rights reserved. &bull; Gao Se Global Tak</span>
+        <div style="display:flex;gap:18px">
+          <a href="privacy.html" style="color:inherit;text-decoration:none">Privacy</a>
+          <a href="terms.html" style="color:inherit;text-decoration:none">Terms</a>
+          <a href="cookie-policy.html" style="color:inherit;text-decoration:none">Cookies</a>
+          <a href="#top" style="color:var(--gold);text-decoration:none">Top &uarr;</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="kotwari-search.js"></script>
+  <script src="kotwari-lang.js"></script>
+  <script src="kotwari-consent.js"></script>
+  <script>
+    // Articles Repository Data
+    const ARTICLES_DATA = {
+      'art-0': {
+        title: "Kotwari International Expands Direct Village Sourcing to 120+ Hubs & Ramps Middle East Export Shipments",
+        category: "Global Trade & Exports",
+        date: "November 14, 2026",
+        author: "Corporate Communications Bureau, Lucknow",
+        readTime: "5 min read",
+        excerpt: "Consolidating our integrated farm-to-shipping network across Awadh and Purvanchal, Kotwari has commissioned upgraded electronic weigh-grading hubs and secured expanded container bookings for traditional Basmati and cold-pressed mustard oil into UAE and Saudi markets.",
+        content: `
+          <p><strong>LUCKNOW, UTTAR PRADESH</strong> &mdash; Kotwari International Ltd. today announced a major acceleration in its integrated village-to-market supply chain, bringing an additional 42 village procurement clusters under its direct sourcing network, totaling more than 120 operational collection centers across central and eastern Uttar Pradesh.</p>
+          <div class="editorial-quote">
+            &ldquo;Our fundamental mission is to ensure that value created in Indian agriculture remains anchored in our rural communities while our finished goods compete on the world stage with uncompromised quality.&rdquo;
+          </div>
+          <p>Concurrently, the company's official export division confirmed multi-container commitments for traditional aged Basmati rice, premium stone-ground spices, and pure cold-pressed mustard oil destined for distribution hubs in Jebel Ali (UAE) and Dammam (Saudi Arabia).</p>
+          <div class="takeaways-box">
+            <h4>Strategic Dispatches Summary:</h4>
+            <ul>
+              <li><strong>Electronic Traceability:</strong> All incoming farm produce is digitized at weighbridge scales with verifiable batch tags.</li>
+              <li><strong>Export Standards Compliance:</strong> Rigorous pesticide residue testing adhering to GCC GSO and Codex Alimentarius guidelines.</li>
+              <li><strong>Logistics Velocity:</strong> Streamlined direct multimodal rail-road freight linking Lucknow inland depots to JNPT and Mundra sea terminals.</li>
+            </ul>
+          </div>
+          <p>The company also announced ongoing investments in solar-assisted grain drying facilities to eliminate post-harvest losses for collaborating Farmer Producer Organizations (FPOs).</p>
+        `
+      },
+      'art-1': {
+        title: "Direct Procurement Milestones: Over 14,000 Electronic Weigh Slips Issued to Awadh Cultivators",
+        category: "Agri-Tech & Farmers",
+        date: "November 10, 2026",
+        author: "Agricultural Outreach Desk",
+        readTime: "4 min read",
+        excerpt: "Eliminating traditional middlemen margins, Kotwari's computerized farm procurement hubs bring transparent moisture analysis and direct bank transfers to local crop growers.",
+        content: `
+          <p><strong>BARABANKI &amp; SITAPUR</strong> &mdash; Over 14,000 transparent digital transactions have now been successfully completed through Kotwari's direct village weigh stations this harvest cycle. The initiative provides farmers with instantaneous electronic receipts detailing gross weight, tare weight, moisture content, and net payable amount.</p>
+          <p>By bypassing predatory commission agents, participating cultivators have realized average earnings premiums of 12% to 18% over conventional spot market prices, alongside guaranteed next-day direct bank settlements.</p>
+          <div class="takeaways-box">
+            <h4>Farmer Benefits Observed:</h4>
+            <ul>
+              <li>Zero deduction for arbitrary handling charges or bag wastage.</li>
+              <li>Calibrated electronic balances audited and certified under Weights &amp; Measures regulations.</li>
+              <li>Free soil health analysis cards provided to recurring farmer partners.</li>
+            </ul>
+          </div>
+        `
+      },
+      'art-2': {
+        title: "Kotwari FMCG Unveils GI-Grade Mithila Phool Makhana & Pure Stone-Ground Spice Portfolio",
+        category: "FMCG & Retail",
+        date: "November 05, 2026",
+        author: "Consumer Goods Division",
+        readTime: "3 min read",
+        excerpt: "Expanding modern retail footprint, Kotwari introduces batch-certified turmeric, Kashmiri chilli, and roasted makhana snack packs formulated for urban wellness consumers.",
+        content: `
+          <p><strong>NEW DELHI</strong> &mdash; Kotwari FMCG has formally launched its upgraded consumer product range across 2,400 retail doors in northern India. The centerpiece of the launch is authentic Mithila Phool Makhana, sourced directly from certified harvesting cooperatives in northern Bihar.</p>
+          <p>Processed without artificial bleaches or sulfur treatments, the jumbo-grade lotus seeds offer consumers pure, plant-based protein with zero chemical residues. The range also features stone-ground Kashmiri chilli, single-origin Lakadong-grade turmeric, and unpolished chana sattu.</p>
+        `
+      },
+      'art-3': {
+        title: "APEDA-Certified Rice & Pure Mustard Oil Shipments Dispatched to GCC Logistics Corridors",
+        category: "Global Trade & Exports",
+        date: "October 28, 2026",
+        author: "Export Operations Desk",
+        readTime: "5 min read",
+        excerpt: "Kotwari's official export division fulfills maritime container orders with comprehensive phytosanitary certificates, Halal documentation, and verifiable origin trace codes.",
+        content: `
+          <p><strong>MUNDRA PORT</strong> &mdash; Five 40-foot dry and refrigerated containers carrying Kotwari aged Basmati rice and cold-pressed mustard oil were loaded onto CMA CGM and Maersk line vessels bound for Gulf ports this week.</p>
+          <p>Every shipment is accompanied by complete testing certificates covering aflatoxin limits, moisture tolerance, and Halal certification, proving the capability of Indian rural aggregators to satisfy strict international import regulations.</p>
+        `
+      },
+      'art-4': {
+        title: "Solar-Assisted Bulk Milk Chilling Infrastructure Commissioned Along Kursi Road Industrial Corridor",
+        category: "Cold Chain & Logistics",
+        date: "October 18, 2026",
+        author: "Dairy Engineering Team",
+        readTime: "4 min read",
+        excerpt: "Ensuring cold chain continuity from village collection buckets to automated pasteurization tanks within 90 minutes, maintaining sub-4°C microbiological integrity.",
+        content: `
+          <p><strong>LUCKNOW</strong> &mdash; To protect dairy freshness during extreme summer heatwaves, Kotwari Dairy has commissioned a 50,000-liter rooftop solar-assisted rapid chilling terminal along the Kursi Road corridor.</p>
+          <p>The facility cools incoming raw village milk from 32°C down to 3.8°C within minutes of arrival, drastically reducing bacterial multiplication and ensuring milk solids-not-fat (SNF) purity for pasteurized bottled milk and fresh lassi production.</p>
+        `
+      },
+      'art-5': {
+        title: "Empowering Women Producers Through Village Poultry Alliances and Direct Feed Assistance",
+        category: "Corporate & Governance",
+        date: "October 06, 2026",
+        author: "CSR & Rural Development Directorate",
+        readTime: "4 min read",
+        excerpt: "How Kotwari Eggs' community layer integration is providing stable supplementary household income to over 850 rural women across Sahebganj and surrounding blocks.",
+        content: `
+          <p><strong>SAHEBGANJ</strong> &mdash; Kotwari International's poultry division has expanded its decentralized flock support program, delivering balanced calcium-rich feed, disease prophylaxis, and guaranteed egg buybacks to 850+ women-led micro-poultry units.</p>
+          <p>Participants generate reliable daily income that supports children's education and household savings, demonstrating the social ripple effect of rural-first commercial design.</p>
+        `
+      },
+      'art-6': {
+        title: "Kotwari One Retail Format Logs 40% Growth in High-Protein Breakfast Point Customer Footfalls",
+        category: "FMCG & Retail",
+        date: "September 24, 2026",
+        author: "Retail Expansion Group",
+        readTime: "3 min read",
+        excerpt: "Offering wholesome, hygienic egg meals, fresh sattu shakes, and KooA mineral water, Kotwari's urban franchise points provide accessible nutrition to commuters.",
+        content: `
+          <p><strong>LUCKNOW &amp; KANPUR</strong> &mdash; Modern franchise kiosks operating under the 'Kotwari One' banner reported record footfall during the recent quarter. Offering boiled protein egg platters, cold salted sattu sharbat, and KooA mineral water, the outlets cater to office commuters seeking hygienic, affordable nutrition on the go.</p>
+        `
+      }
+    };
+
+    // Category Filtering
+    const filterTabs = document.querySelectorAll('.filter-tab');
+    const newsCards = document.querySelectorAll('.news-card');
+
+    filterTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        filterTabs.forEach(t => t.classList.remove('is-active'));
+        tab.classList.add('is-active');
+
+        const cat = tab.getAttribute('data-cat');
+        newsCards.forEach(card => {
+          if (cat === 'all' || card.getAttribute('data-category') === cat) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // Modal Article Reader
+    const modal = document.getElementById('articleModal');
+    const modalContent = document.getElementById('modalArticleContent');
+
+    function openArticleModal(id) {
+      const art = ARTICLES_DATA[id];
+      if (!art) return;
+
+      const currentUrl = window.location.origin + window.location.pathname + '#' + id;
+
+      modalContent.innerHTML = `
+        <div class="article-meta" style="margin-bottom:14px">
+          <span class="category-badge">${escapeHtml(art.category)}</span>
+          <span>&bull;</span>
+          <span>${escapeHtml(art.date)}</span>
+          <span>&bull;</span>
+          <span>${escapeHtml(art.readTime)}</span>
+        </div>
+        <h2 style="font-family:var(--font-serif);font-size:clamp(1.6rem, 2.5vw, 2.2rem);color:var(--navy);line-height:1.2;margin:0 0 10px 0;">
+          ${escapeHtml(art.title)}
+        </h2>
+        <p style="font-size:0.85rem;color:var(--muted);margin-bottom:20px;">
+          By <strong>${escapeHtml(art.author)}</strong> &bull; Published by Kotwari Corporate Bureau
+        </p>
+
+        <!-- Social Share Bar -->
+        <div class="share-bar">
+          <span class="share-label">Share Dispatch:</span>
+          <a class="share-pill" href="https://wa.me/?text=${encodeURIComponent(art.title + ' ' + currentUrl)}" target="_blank" rel="noopener noreferrer">
+            WhatsApp
+          </a>
+          <a class="share-pill" href="https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(currentUrl)}" target="_blank" rel="noopener noreferrer">
+            LinkedIn
+          </a>
+          <a class="share-pill" href="https://twitter.com/intent/tweet?text=${encodeURIComponent(art.title)}&url=${encodeURIComponent(currentUrl)}" target="_blank" rel="noopener noreferrer">
+            X (Twitter)
+          </a>
+          <button type="button" class="share-pill" onclick="copyArticleLink('${currentUrl}')">
+            📋 Copy Link
+          </button>
+        </div>
+
+        <div class="editorial-body">
+          ${art.content}
+        </div>
+
+        <div style="margin-top:36px;padding-top:20px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
+          <a href="contact.html" class="share-pill" style="background:var(--navy);color:#FFFFFF;border-color:var(--navy)">
+            Contact Media Bureau &rarr;
+          </a>
+          <button type="button" class="share-pill" onclick="closeArticleModal()">
+            Close Article
+          </button>
+        </div>
+      `;
+
+      modal.classList.add('is-active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeArticleModal() {
+      modal.classList.remove('is-active');
+      document.body.style.overflow = '';
+    }
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('is-active')) {
+        closeArticleModal();
+      }
+    });
+
+    // Copy Link helper
+    function copyArticleLink(url) {
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(url).then(showToast);
+      } else {
+        const temp = document.createElement('input');
+        temp.value = url;
+        document.body.appendChild(temp);
+        temp.select();
+        document.execCommand('copy');
+        document.body.removeChild(temp);
+        showToast();
+      }
+    }
+
+    function showToast() {
+      const toast = document.getElementById('toastNotice');
+      toast.classList.add('is-visible');
+      setTimeout(() => toast.classList.remove('is-visible'), 2800);
+    }
+
+    // Load More action
+    function handleLoadMore() {
+      const btn = document.getElementById('loadMoreBtn');
+      btn.innerText = 'All Current Press Dispatches Loaded';
+      btn.disabled = true;
+      btn.style.opacity = '0.7';
+      btn.style.cursor = 'default';
+      showToastNotice('All published dispatches are active on this index.');
+    }
+
+    function showToastNotice(msg) {
+      const toast = document.getElementById('toastNotice');
+      toast.innerText = msg;
+      toast.classList.add('is-visible');
+      setTimeout(() => {
+        toast.classList.remove('is-visible');
+        toast.innerText = 'Link copied to clipboard!';
+      }, 2800);
+    }
+
+    // Newsletter Submission
+    function handleNewsletterSubmit(e) {
+      e.preventDefault();
+      const email = document.getElementById('nlEmail').value.trim();
+      const feedback = document.getElementById('nlFeedback');
+
+      if (!email || !email.includes('@')) {
+        feedback.style.display = 'block';
+        feedback.style.color = '#FEB2B2';
+        feedback.innerText = 'Please provide a valid corporate email address.';
+        return;
+      }
+
+      try {
+        const subs = JSON.parse(localStorage.getItem('kotwari_newsletter_subscribers') || '[]');
+        if (!subs.includes(email)) {
+          subs.push({ email: email, timestamp: new Date().toISOString() });
+          localStorage.setItem('kotwari_newsletter_subscribers', JSON.stringify(subs));
+        }
+      } catch (err) {}
+
+      feedback.style.display = 'block';
+      feedback.style.color = '#9AE6B4';
+      feedback.innerText = 'Thank you for subscribing. You have been enrolled in Kotwari Corporate Insights.';
+      document.getElementById('nlEmail').value = '';
+    }
+
+    function escapeHtml(str) {
+      return String(str || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    // Auto open if hash is present
+    if (window.location.hash && window.location.hash.startsWith('#art-')) {
+      const id = window.location.hash.replace('#', '');
+      setTimeout(() => openArticleModal(id), 150);
+    }
+  </script>
+</body>
+</html>
