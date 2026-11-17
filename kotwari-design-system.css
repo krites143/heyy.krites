@@ -624,7 +624,9 @@ header nav .btn-nav,
 /* ==========================================================================
    8. INPUTS, FORMS & ACCESSIBILITY
    ========================================================================== */
-input, textarea, form select {
+input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type="button"]):not([type="reset"]):not([type="hidden"]):not([type="file"]):not([type="range"]):not([type="color"]),
+textarea,
+form select {
   font-family: var(--font-sans) !important;
   font-size: 0.95rem !important;
   width: 100% !important;
@@ -636,10 +638,83 @@ input, textarea, form select {
   transition: border-color var(--duration-fast) ease, box-shadow var(--duration-fast) ease !important;
 }
 
-input:focus, textarea:focus, form select:focus {
+input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type="button"]):not([type="reset"]):not([type="hidden"]):not([type="file"]):not([type="range"]):not([type="color"]):focus,
+textarea:focus,
+form select:focus {
   outline: none !important;
   border-color: var(--gold) !important;
   box-shadow: 0 0 0 3.5px rgba(197, 161, 91, 0.20) !important;
+}
+
+/* Dedicated Checkbox & Radio Controls */
+input[type="checkbox"],
+input[type="radio"] {
+  width: 20px !important;
+  min-width: 20px !important;
+  max-width: 20px !important;
+  height: 20px !important;
+  min-height: 20px !important;
+  max-height: 20px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 1.5px solid #CFD8DC !important;
+  border-radius: 4px !important;
+  background-color: var(--white) !important;
+  cursor: pointer !important;
+  flex-shrink: 0 !important;
+  accent-color: var(--gold, #C5A15B) !important;
+  display: inline-block !important;
+  vertical-align: middle !important;
+}
+
+input[type="radio"] {
+  border-radius: 50% !important;
+}
+
+/* Form Consent / Terms & Conditions Checkbox Row */
+.consent {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: flex-start !important;
+  gap: 12px !important;
+  min-height: 44px !important;
+  font-size: 0.88rem !important;
+  line-height: 1.5 !important;
+  margin-top: 18px !important;
+  margin-bottom: 8px !important;
+  cursor: pointer !important;
+  user-select: none !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.consent input[type="checkbox"],
+.consent input {
+  width: 20px !important;
+  min-width: 20px !important;
+  max-width: 20px !important;
+  height: 20px !important;
+  min-height: 20px !important;
+  max-height: 20px !important;
+  padding: 0 !important;
+  margin: 2px 0 0 0 !important;
+  flex-shrink: 0 !important;
+  cursor: pointer !important;
+  accent-color: var(--gold, #C5A15B) !important;
+  border: 1.5px solid #CFD8DC !important;
+  border-radius: 4px !important;
+  background-color: #FFFFFF !important;
+  box-sizing: border-box !important;
+}
+
+.consent span {
+  flex: 1 1 auto !important;
+  color: var(--ink, #0B1F30) !important;
+  font-size: 0.88rem !important;
+  line-height: 1.5 !important;
+  text-align: start !important;
+  word-break: normal !important;
+  overflow-wrap: break-word !important;
 }
 
 /* ==========================================================================
