@@ -275,13 +275,7 @@
 @keyframes logoFloat{0%{transform:translateZ(26px) translateY(0)}100%{transform:translateZ(26px) translateY(-7px)}}
 .hero h1 em{
   display:inline-block;
-  background:linear-gradient(110deg,#c59b27 0%,#f3e5ab 18%,#fff8db 32%,#d4af37 48%,#fffdf2 62%,#e5c158 78%,#aa7c11 100%);
-  background-size:200% 100%;
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-  background-clip:text;
-  animation:liquidGoldSweep 3.8s cubic-bezier(0.4,0,0.2,1) infinite;
-  filter:drop-shadow(0 2px 14px rgba(223,191,131,.45));
+  color:#f0cf88;
   font-style:normal;
   font-weight:400;
 }
@@ -2546,7 +2540,7 @@ function renderProducts(){
       </article>
     `;
   }).join('');
-  initScrollReveal();initHeroParticles();initEmblemTilt();
+  initScrollReveal();initHeroParticles();initEmblemTilt();if(window.KotwariMotion&&typeof window.KotwariMotion.refresh==='function')window.KotwariMotion.refresh();
 }
 
 let productHeroState = {

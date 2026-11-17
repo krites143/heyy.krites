@@ -43,7 +43,7 @@
   }
 
   // ═══════════════════════════════════════════════════════════════
-  // 2. HERO SECTION CHOREOGRAPHY
+  // 2. HERO SECTION CHOREOGRAPHY & CINEMATIC HEADLINES
   // ═══════════════════════════════════════════════════════════════
   function initHeroEntrance() {
     var hero = document.querySelector('.hero, .hero-section, #home, header + main > section:first-of-type');
@@ -55,7 +55,7 @@
     }
 
     // Auto-tag hero children with stagger classes if not set
-    var targets = hero.querySelectorAll('.eyebrow, .hero-badge, h1, .lead, p.lead, p.muted, .actions, .cta-group, .hero-card, .brand-emblem-img, .emblem-badge');
+    var targets = hero.querySelectorAll('.eyebrow, .hero-badge, h1, .lead, p.lead, p.muted, .actions, .cta-group, .hero-card, .brand-emblem-img, .emblem-badge, .hero-trust-bar');
     targets.forEach(function (el) {
       if (!el.classList.contains('km-hero-stagger')) {
         el.classList.add('km-hero-stagger');
@@ -81,6 +81,14 @@
   // 3. SCROLL-DRIVEN REVEAL SYSTEM (IntersectionObserver)
   // ═══════════════════════════════════════════════════════════════
   function initScrollReveals() {
+    // Auto-tag common content sections if not tagged
+    var autoTargets = document.querySelectorAll('main > section:not(.hero):not(.hero-section):not(#home), .timeline-item, .faq-item, .features-grid > div, .doc-card, .resource-card');
+    autoTargets.forEach(function (el) {
+      if (!el.classList.contains('reveal') && !el.classList.contains('km-reveal')) {
+        el.classList.add('km-reveal');
+      }
+    });
+
     var revealElements = document.querySelectorAll('.km-reveal, .km-reveal-up, .km-reveal-scale, .km-reveal-stagger, .km-img-reveal, .reveal, .reveal-stagger');
     if (!revealElements.length) return;
 
@@ -382,6 +390,72 @@
   }
 
   // ═══════════════════════════════════════════════════════════════
+  // 10. STICKY HEADER ELEVATION ON SCROLL
+  // ═══════════════════════════════════════════════════════════════
+  function initStickyHeader() {
+    var header = document.querySelector('header');
+    if (!header) return;
+
+    var isScrolled = false;
+    function checkScroll() {
+      var current = window.scrollY > 30;
+      if (current !== isScrolled) {
+        isScrolled = current;
+        header.classList.toggle('is-scrolled', isScrolled);
+      }
+    }
+
+    window.addEventListener('scroll', checkScroll, { passive: true });
+    checkScroll();
+  }
+
+  // ═══════════════════════════════════════════════════════════════
+  // 11. SUBTLE HARDWARE-ACCELERATED DESKTOP PARALLAX
+  // ═══════════════════════════════════════════════════════════════
+  function initDesktopParallax() {
+    if (prefersReducedMotion) return;
+    if (window.innerWidth < 1024 || !window.matchMedia('(hover: hover)').matches) return;
+
+    var heroPhoto = document.querySelector('.hero-photo, .hero-img, .hero-bg-img, .km-parallax');
+    if (!heroPhoto) return;
+
+    var ticking = false;
+    function updateParallax() {
+      var scrollY = window.scrollY;
+      if (scrollY < window.innerHeight) {
+        var offset = Math.round(scrollY * 0.12);
+        heroPhoto.style.transform = 'translate3d(0, ' + offset + 'px, 0) scale(1.04)';
+      }
+      ticking = false;
+    }
+
+    window.addEventListener('scroll', function () {
+      if (!ticking) {
+        window.requestAnimationFrame(updateParallax);
+        ticking = true;
+      }
+    }, { passive: true });
+  }
+
+  // ═══════════════════════════════════════════════════════════════
+  // 12. BUTTON & LINK DIRECTIONAL ARROW MICRO-INTERACTIONS
+  // ═══════════════════════════════════════════════════════════════
+  function initButtonArrows() {
+    var buttons = document.querySelectorAll('.btn, .product-catalog-btn, .card .btn, a.btn');
+    buttons.forEach(function (btn) {
+      if (btn.querySelector('.arrow, .arrow-diagonal')) return;
+      var html = btn.innerHTML;
+      if (html.indexOf('↗') !== -1) {
+        btn.innerHTML = html.replace('↗', '<span class="arrow-diagonal" aria-hidden="true">↗</span>');
+      } else if (html.indexOf('→') !== -1) {
+        btn.innerHTML = html.replace('→', '<span class="arrow" aria-hidden="true">→</span>');
+      } else if (html.indexOf('&rarr;') !== -1) {
+        btn.innerHTML = html.replace('&rarr;', '<span class="arrow" aria-hidden="true">&rarr;</span>');
+      }
+    });
+  }
+
+  // ═══════════════════════════════════════════════════════════════
   // INITIALIZATION ON DOM READY
   // ═══════════════════════════════════════════════════════════════
   function init() {
@@ -394,6 +468,9 @@
     initFormFeedback();
     initDownloadFeedback();
     initMobileMenuPolish();
+    initStickyHeader();
+    initDesktopParallax();
+    initButtonArrows();
   }
 
   if (document.readyState === 'loading') {
@@ -408,6 +485,8 @@
       initScrollReveals();
       initCounters();
       initHeroEntrance();
+      initButtonArrows();
+      initDesktopParallax();
     }
   };
 })();
