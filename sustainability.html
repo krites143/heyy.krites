@@ -27,7 +27,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    *{box-sizing:border-box;margin:0;padding:0}body{font:16px/1.75 'Plus Jakarta Sans',Arial,sans-serif;background:#faf8f1;color:#183143}h1,h2,h3,p{margin-bottom:16px}h1,h2,h3{font-family:'Playfair Display',Georgia,serif;font-weight:600;line-height:1.2}a{color:#092840}img{max-width:100%;display:block}
+    *{box-sizing:border-box;margin:0;padding:0}body{font:16px/1.75 'Plus Jakarta Sans',system-ui,sans-serif;background:#faf8f1;color:#183143}h1,h2,h3,p{margin-bottom:16px}h1,h2,h3{font-family:'Playfair Display',Georgia,serif;font-weight:600;line-height:1.2}a{color:#092840}img{max-width:100%;display:block}
     .wrap{width:min(1100px,calc(100% - 48px));margin:auto}
     .eyebrow{font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;font-weight:bold;color:#7a5818;margin-bottom:14px;display:block}
     header{background:rgba(250,248,241,.98);border-bottom:1px solid #dedfd9;position:sticky;top:0;z-index:20;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);transition:background .3s ease,box-shadow .3s ease,border-color .3s ease}
@@ -38,14 +38,14 @@
     .brand-emblem-img{width:52px;height:auto;display:block;margin:0 auto -9px;filter:drop-shadow(0 2px 5px rgba(188,148,79,.35));transition:transform .3s ease}
     .brand:hover .brand-emblem-img{transform:translateY(-2px) scale(1.03)}
     .brand-name{font:2.15rem/1 'Playfair Display',Georgia,serif;color:#183143;letter-spacing:-.035em;display:inline-flex;align-items:baseline}
-    .brand-name sup{font-size:10px;vertical-align:top;margin-left:2px;font-family:'Plus Jakarta Sans',Arial,sans-serif;color:#7a5818;font-weight:600}
-    .brand-tag{display:block;font:8.5px 'Plus Jakarta Sans',Arial,sans-serif;letter-spacing:.22em;text-transform:uppercase;color:#7a5818;margin-top:3px;font-weight:700}
+    .brand-name sup{font-size:10px;vertical-align:top;margin-left:2px;font-family:'Plus Jakarta Sans',system-ui,sans-serif;color:#7a5818;font-weight:600}
+    .brand-tag{display:block;font:8.5px 'Plus Jakarta Sans',system-ui,sans-serif;letter-spacing:.22em;text-transform:uppercase;color:#7a5818;margin-top:3px;font-weight:700}
     footer .brand, .footer-grid .brand{display:inline-flex !important;flex-direction:column !important;align-items:center !important;text-align:center !important;text-decoration:none !important;padding:0 !important;margin-bottom:14px !important}
     footer .brand .brand-emblem-img, .footer-grid .brand .brand-emblem-img{width:48px !important;height:auto !important;display:block !important;margin:0 auto -2px auto !important;filter:drop-shadow(0 2px 6px rgba(188,148,79,.35)) !important;transition:transform .3s ease !important}
     footer .brand:hover .brand-emblem-img, .footer-grid .brand:hover .brand-emblem-img{transform:translateY(-2px) scale(1.04) !important}
     footer .brand .brand-name, .footer-grid .brand .brand-name{display:inline-block !important;font-family:'Playfair Display',Georgia,serif !important;font-size:1.95rem !important;line-height:1.1 !important;color:#ffffff !important;letter-spacing:-0.02em !important;font-weight:700 !important;position:relative !important}
     footer .brand .brand-name sup, .footer-grid .brand .brand-name sup{color:#dfbf83 !important;font-size:7px !important;line-height:1 !important;position:absolute !important;top:-3px !important;right:1.5px !important;font-weight:700 !important;letter-spacing:0 !important;margin-left:0 !important}
-    footer .brand .brand-tag, .footer-grid .brand .brand-tag{display:block !important;width:100% !important;font-family:'Plus Jakarta Sans',Arial,sans-serif !important;font-size:8px !important;letter-spacing:0.125em !important;text-transform:uppercase !important;color:#dfbf83 !important;margin-top:4px !important;font-weight:700 !important;text-align:justify !important;text-align-last:justify !important}
+    footer .brand .brand-tag, .footer-grid .brand .brand-tag{display:block !important;width:100% !important;font-family:'Plus Jakarta Sans',system-ui,sans-serif !important;font-size:8px !important;letter-spacing:0.125em !important;text-transform:uppercase !important;color:#dfbf83 !important;margin-top:4px !important;font-weight:700 !important;text-align:justify !important;text-align-last:justify !important}
     .topbar{background:#092840;color:#d9e3e8;font-size:.78rem;padding:7px 0;text-align:center}
     .hero-section{background-color:#092840;color:#ffffff;padding:90px 0 100px;position:relative;overflow:hidden}
     .hero-section::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,#092840 60%,#123f62)}
@@ -62,7 +62,7 @@
     .three{grid-template-columns:repeat(3,1fr)}
     .two{grid-template-columns:repeat(2,1fr)}
     .split{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
-    .btn{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:12px 24px;border:1px solid #092840;border-radius:4px;background:#092840;color:white;font-weight:bold;font-size:.9rem;text-decoration:none;font-family:Arial,sans-serif}
+    .btn{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:12px 24px;border:1px solid #092840;border-radius:4px;background:#092840;color:white;font-weight:bold;font-size:.9rem;text-decoration:none;font-family:inherit}
     .btn:hover{background:#123f62}
     .btn-gold{background:#bc944f;color:#092840;border-color:#bc944f}
     .feature-list{list-style:none;padding:0}.feature-list li{padding:10px 0;border-bottom:1px solid #dedfd9}.feature-list li::before{content:'✓ ';color:#8b682b;font-weight:bold}
@@ -352,27 +352,27 @@ html, body {
     <h2>Our focus areas</h2>
     <div class="grid three reveal-stagger">
       <div class="card">
-        <h3>?? Farmer Income Opportunities</h3>
+        <h3>Farmer Income Opportunities</h3>
         <p>Structured agreements, collection, quality premiums and market linkage create reliable income pathways for partner farmers and FPO members.</p>
       </div>
       <div class="card">
-        <h3>??? Rural Entrepreneurship</h3>
+        <h3>Rural Entrepreneurship</h3>
         <p>Collection centres, FPOs and distribution partnerships enable village-level businesses &mdash; turning rural producers into organised market participants.</p>
       </div>
       <div class="card">
-        <h3>???? Women Participation</h3>
+        <h3>Women Participation</h3>
         <p>Opportunities for women farmers, FPO members and rural entrepreneurs within the Kotwari network, supporting gender-inclusive agricultural development.</p>
       </div>
       <div class="card">
-        <h3>?? Youth &amp; Skill Development</h3>
+        <h3>Youth &amp; Skill Development</h3>
         <p>Training, quality standards and supply-chain roles for young rural workers &mdash; building skills that support long-term livelihoods and local employment.</p>
       </div>
       <div class="card">
-        <h3>?? Local Employment</h3>
+        <h3>Local Employment</h3>
         <p>Processing, collection, packaging and distribution operations create local job opportunities in rural and peri-urban communities.</p>
       </div>
       <div class="card">
-        <h3>?? Responsible Supply Chains</h3>
+        <h3>Responsible Supply Chains</h3>
         <p>Efficient logistics, reduced waste, and traceability frameworks to improve supply-chain responsibility from farm to consumer.</p>
       </div>
     </div>
