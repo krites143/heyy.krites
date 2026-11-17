@@ -205,24 +205,26 @@ header:not(.dark-header) .search-trigger-btn .search-hint-key {
 .kotwari-search-close-badge {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  font-size: 0.72rem;
-  font-weight: 600;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
   color: #737B83;
-  background: rgba(11, 31, 48, 0.06);
-  border: 1px solid rgba(11, 31, 48, 0.12);
-  padding: 4px 8px;
-  border-radius: 6px;
+  background: rgba(11, 31, 48, 0.05);
+  border: 1px solid rgba(11, 31, 48, 0.10);
+  border-radius: 50%;
   margin-left: 10px;
   cursor: pointer;
   transition: all 0.2s ease;
   user-select: none;
+  padding: 0;
+  flex-shrink: 0;
 }
 
 .kotwari-search-close-badge:hover {
-  background: rgba(197, 161, 91, 0.2);
-  color: #102B3F;
-  border-color: #C5A15B;
+  background: #102B3F;
+  color: #FFFFFF;
+  border-color: #102B3F;
+  transform: scale(1.05);
 }
 
 /* Suggestions & Quick Chips */
@@ -293,7 +295,7 @@ header:not(.dark-header) .search-trigger-btn .search-hint-key {
 .kotwari-search-item {
   display: block;
   text-decoration: none;
-  padding: 14px 16px;
+  padding: 14px 18px;
   border-radius: 10px;
   margin-bottom: 6px;
   border: 1px solid transparent;
@@ -306,51 +308,68 @@ header:not(.dark-header) .search-trigger-btn .search-hint-key {
   background: #F8F5ED;
   border-color: rgba(197, 161, 91, 0.4);
   transform: translateX(4px);
-  box-shadow: 0 4px 12px rgba(11, 31, 48, 0.05);
+  box-shadow: 0 4px 14px rgba(11, 31, 48, 0.06);
 }
 
 .kotwari-search-item-meta {
   display: flex;
   align-items: center;
-  gap: 8px;
-  margin-bottom: 4px;
+  margin-bottom: 3px;
 }
 
 .kotwari-search-badge {
+  display: inline-block;
+  font-family: var(--font-sans, 'Plus Jakarta Sans', system-ui, sans-serif);
   font-size: 0.68rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  padding: 2px 7px;
-  border-radius: 4px;
-  background: rgba(197, 161, 91, 0.15);
-  color: #8C6A28;
-  border: 1px solid rgba(197, 161, 91, 0.3);
+  letter-spacing: 0.09em;
+  color: #C5A15B;
+  margin-bottom: 2px;
+  padding: 0;
+  background: transparent;
+  border: none;
 }
 
 .kotwari-search-item-path {
-  font-size: 0.75rem;
-  color: #737B83;
+  display: none !important;
 }
 
 .kotwari-search-item-title {
   font-family: var(--font-serif, 'Playfair Display', serif);
-  font-size: 1.05rem;
+  font-size: 1.10rem;
   font-weight: 700;
   color: #102B3F;
-  margin: 0 0 4px 0;
-  line-height: 1.3;
+  margin: 0 0 5px 0;
+  line-height: 1.35;
+  transition: color 0.15s ease;
+}
+
+.kotwari-search-item:hover .kotwari-search-item-title,
+.kotwari-search-item.is-selected .kotwari-search-item-title {
+  color: #0B1F30;
 }
 
 .kotwari-search-item-desc {
-  font-size: 0.84rem;
+  font-family: var(--font-sans, 'Plus Jakarta Sans', system-ui, sans-serif);
+  font-size: 0.86rem;
   color: #556270;
   margin: 0;
-  line-height: 1.45;
+  line-height: 1.5;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+.kotwari-search-heading-label {
+  padding: 6px 12px 10px;
+  font-family: var(--font-sans, 'Plus Jakarta Sans', system-ui, sans-serif);
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: #C5A15B;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
 }
 
 /* Keyword Highlighting */
@@ -358,8 +377,8 @@ header:not(.dark-header) .search-trigger-btn .search-hint-key {
   background: rgba(197, 161, 91, 0.28);
   color: #102B3F;
   font-weight: 700;
-  padding: 0 2px;
-  border-radius: 2px;
+  padding: 0 3px;
+  border-radius: 3px;
 }
 
 /* Empty State */
@@ -389,40 +408,43 @@ header:not(.dark-header) .search-trigger-btn .search-hint-key {
   line-height: 1.5;
 }
 
-/* Search Footer Bar */
+/* Search Footer Bar — Refined Clean Corporate Layout */
 .kotwari-search-footer {
-  padding: 10px 20px;
+  padding: 12px 22px;
   background: #F8F5ED;
-  border-top: 1px solid rgba(197, 161, 91, 0.2);
+  border-top: 1px solid rgba(197, 161, 91, 0.22);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 0.75rem;
+  font-size: 0.78rem;
   color: #737B83;
 }
 
-.kotwari-search-keys {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-
-.kotwari-search-key-item {
+.kotwari-search-footer-brand {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
+  gap: 8px;
+  color: #102B3F;
+  font-family: var(--font-sans, 'Plus Jakarta Sans', system-ui, sans-serif);
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
 }
 
-.kotwari-search-kbd {
-  display: inline-block;
-  padding: 2px 5px;
-  background: #FFFFFF;
-  border: 1px solid rgba(11, 31, 48, 0.15);
-  border-radius: 4px;
-  font-size: 0.68rem;
-  font-weight: 700;
-  color: #102B3F;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+.kotwari-search-footer-emblem {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+  border-radius: 50%;
+}
+
+.kotwari-search-footer-meta {
+  font-family: var(--font-sans, 'Plus Jakarta Sans', system-ui, sans-serif);
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: #C5A15B;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 @media (max-width: 600px) {
@@ -436,6 +458,6 @@ header:not(.dark-header) .search-trigger-btn .search-hint-key {
     border-radius: 0;
   }
   .kotwari-search-footer {
-    display: none;
+    padding: 10px 16px;
   }
 }

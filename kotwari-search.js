@@ -426,9 +426,12 @@
           </div>
           <input type="text" class="kotwari-search-input" id="kotwari-search-input" placeholder="Search pages, products, exports, careers..." autocomplete="off" spellcheck="false">
           <button type="button" class="kotwari-search-clear-btn" id="kotwari-search-clear" aria-label="Clear search">✕</button>
-          <div class="kotwari-search-close-badge" id="kotwari-search-close" title="Close Search (Esc)">
-            <span>ESC</span>
-          </div>
+          <button type="button" class="kotwari-search-close-badge" id="kotwari-search-close" aria-label="Close search" title="Close search">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
         </div>
 
         <div class="kotwari-search-suggestions">
@@ -441,12 +444,11 @@
         </div>
 
         <div class="kotwari-search-footer">
-          <div class="kotwari-search-keys">
-            <span class="kotwari-search-key-item"><kbd class="kotwari-search-kbd">↑</kbd><kbd class="kotwari-search-kbd">↓</kbd> to navigate</span>
-            <span class="kotwari-search-key-item"><kbd class="kotwari-search-kbd">↵</kbd> to select</span>
-            <span class="kotwari-search-key-item"><kbd class="kotwari-search-kbd">ESC</kbd> to close</span>
+          <div class="kotwari-search-footer-brand">
+            <img src="kotwari_emblem_new.png" alt="Kotwari Emblem" class="kotwari-search-footer-emblem" width="16" height="16">
+            <span>Kotwari International Ltd.</span>
           </div>
-          <span style="color:#C5A15B;font-weight:600">Kotwari International</span>
+          <div class="kotwari-search-footer-meta" id="kotwari-search-count">Gao Se Global Tak</div>
         </div>
       </div>
     `;
@@ -565,7 +567,6 @@
         <a href="${item.url}" class="kotwari-search-item" data-index="${idx}">
           <div class="kotwari-search-item-meta">
             <span class="kotwari-search-badge">${escapeHtml(item.category)}</span>
-            <span class="kotwari-search-item-path">${escapeHtml(item.url)}</span>
           </div>
           <h3 class="kotwari-search-item-title">${highlightMatches(escapeHtml(item.title), query)}</h3>
           <p class="kotwari-search-item-desc">${highlightMatches(escapeHtml(item.desc), query)}</p>
@@ -574,6 +575,10 @@
     });
 
     resultsContainer.innerHTML = html;
+    const countEl = document.getElementById('kotwari-search-count');
+    if (countEl) {
+      countEl.textContent = `${results.length} ${results.length === 1 ? 'result' : 'results'}`;
+    }
   }
 
   function renderInitialSuggestions() {
@@ -581,13 +586,12 @@
     currentResults = SEARCH_INDEX.slice(0, 8);
     activeIndex = -1;
 
-    let html = `<div style="padding:4px 8px 10px;font-size:0.75rem;font-weight:700;color:#C5A15B;text-transform:uppercase;letter-spacing:0.08em">Suggested Destinations</div>`;
+    let html = `<div class="kotwari-search-heading-label">Suggested Destinations</div>`;
     currentResults.forEach((item, idx) => {
       html += `
         <a href="${item.url}" class="kotwari-search-item" data-index="${idx}">
           <div class="kotwari-search-item-meta">
             <span class="kotwari-search-badge">${escapeHtml(item.category)}</span>
-            <span class="kotwari-search-item-path">${escapeHtml(item.url)}</span>
           </div>
           <h3 class="kotwari-search-item-title">${escapeHtml(item.title)}</h3>
           <p class="kotwari-search-item-desc">${escapeHtml(item.desc)}</p>
@@ -596,6 +600,10 @@
     });
 
     resultsContainer.innerHTML = html;
+    const countEl = document.getElementById('kotwari-search-count');
+    if (countEl) {
+      countEl.textContent = 'Gao Se Global Tak';
+    }
   }
 
   // Keyboard navigation inside list
