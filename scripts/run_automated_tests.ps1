@@ -1,4 +1,4 @@
-﻿# ==============================================================================
+# ==============================================================================
 # Kotwari International Ltd. — Automated Quality & Regression Test Suite
 # Tests: Route validation, HTML semantics, SEO parity, Link health, PDF integrity
 # ==============================================================================
