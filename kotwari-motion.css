@@ -1,0 +1,654 @@
+/**
+ * Kotwari International Ltd. — Advanced Motion & Interaction Design System
+ * File: kotwari-motion.css
+ * Enterprise-grade, GPU-accelerated motion tokens, micro-interactions,
+ * hero entrances, scroll reveals, and responsive transitions.
+ */
+
+:root {
+  /* Motion & Interaction Easing Tokens */
+  --km-ease-editorial: cubic-bezier(0.16, 1, 0.3, 1);
+  --km-ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --km-ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+  --km-ease-cinematic: cubic-bezier(0.65, 0, 0.35, 1);
+  --km-ease-bounce-soft: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+  /* Standard Duration Hierarchy */
+  --km-dur-instant: 120ms;
+  --km-dur-fast: 220ms;
+  --km-dur-normal: 400ms;
+  --km-dur-slow: 750ms;
+  --km-dur-cinematic: 1200ms;
+
+  /* Brand Dynamic Interaction Colors */
+  --km-gold-glow: rgba(197, 161, 91, 0.35);
+  --km-navy-shadow: rgba(11, 31, 48, 0.12);
+  --km-focus-ring: rgba(197, 161, 91, 0.45);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   1. HARDWARE-ACCELERATED READING SCROLL PROGRESS BAR
+   ═══════════════════════════════════════════════════════════════ */
+#km-scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, #c5a15b, #f3e5c8, #dfbf83, #c5a15b);
+  box-shadow: 0 0 12px rgba(197, 161, 91, 0.7);
+  z-index: 100000;
+  transform-origin: left center;
+  transform: scaleX(0);
+  pointer-events: none;
+  will-change: transform;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   2. SEAMLESS PAGE TRANSITION OVERLAY
+   ═══════════════════════════════════════════════════════════════ */
+#km-page-transition {
+  position: fixed;
+  inset: 0;
+  background: #0b1f30;
+  z-index: 999999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.32s var(--km-ease-editorial);
+  will-change: opacity;
+}
+
+#km-page-transition.is-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   3. HERO SECTION ENTRANCE & ATMOSPHERIC ANIMATIONS
+   ═══════════════════════════════════════════════════════════════ */
+/* Staggered entrance choreographies */
+.km-hero-stagger {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.85s var(--km-ease-editorial), transform 0.85s var(--km-ease-editorial);
+  will-change: opacity, transform;
+}
+
+.km-hero-active .km-hero-stagger:nth-child(1) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.08s;
+}
+
+.km-hero-active .km-hero-stagger:nth-child(2) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.18s;
+}
+
+.km-hero-active .km-hero-stagger:nth-child(3) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.28s;
+}
+
+.km-hero-active .km-hero-stagger:nth-child(4) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.38s;
+}
+
+.km-hero-active .km-hero-stagger:nth-child(5) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.48s;
+}
+
+/* Brand Emblem Breathing Glow & Ambient Float */
+.km-emblem-glow {
+  position: relative;
+  display: inline-block;
+  animation: kmEmblemFloat 6s ease-in-out infinite;
+}
+
+.km-emblem-glow::after {
+  content: '';
+  position: absolute;
+  inset: -12px;
+  background: radial-gradient(circle, rgba(197, 161, 91, 0.32) 0%, rgba(197, 161, 91, 0) 70%);
+  border-radius: 50%;
+  z-index: -1;
+  animation: kmPulseGlow 3.5s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes kmEmblemFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes kmPulseGlow {
+  0% { transform: scale(0.92); opacity: 0.45; }
+  100% { transform: scale(1.18); opacity: 0.95; }
+}
+
+/* Subtle Cinematic Background Drift for Hero Photography */
+.km-hero-cinematic {
+  animation: kmCinematicZoom 22s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+@keyframes kmCinematicZoom {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.055); }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   4. SCROLL-DRIVEN REVEAL & STAGGER ENGINE
+   ═══════════════════════════════════════════════════════════════ */
+/* General Reveal Element */
+.km-reveal,
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.75s var(--km-ease-editorial), transform 0.75s var(--km-ease-editorial);
+  will-change: opacity, transform;
+}
+
+.km-reveal.is-revealed,
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Slide in from Left */
+.km-reveal-left {
+  opacity: 0;
+  transform: translateX(-32px);
+  transition: opacity 0.8s var(--km-ease-editorial), transform 0.8s var(--km-ease-editorial);
+  will-change: opacity, transform;
+}
+
+.km-reveal-left.is-revealed {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Slide in from Right */
+.km-reveal-right {
+  opacity: 0;
+  transform: translateX(32px);
+  transition: opacity 0.8s var(--km-ease-editorial), transform 0.8s var(--km-ease-editorial);
+  will-change: opacity, transform;
+}
+
+.km-reveal-right.is-revealed {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Scale Up Reveal */
+.km-reveal-scale {
+  opacity: 0;
+  transform: scale(0.94);
+  transition: opacity 0.75s var(--km-ease-editorial), transform 0.75s var(--km-ease-editorial);
+  will-change: opacity, transform;
+}
+
+.km-reveal-scale.is-revealed {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Staggered Children Reveal */
+.km-reveal-stagger > *,
+.reveal-stagger > * {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.65s var(--km-ease-editorial), transform 0.65s var(--km-ease-editorial);
+  will-change: opacity, transform;
+}
+
+.km-reveal-stagger.is-revealed > *,
+.reveal-stagger.is-visible > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.km-reveal-stagger.is-revealed > *:nth-child(1), .reveal-stagger.is-visible > *:nth-child(1) { transition-delay: 0.05s; }
+.km-reveal-stagger.is-revealed > *:nth-child(2), .reveal-stagger.is-visible > *:nth-child(2) { transition-delay: 0.11s; }
+.km-reveal-stagger.is-revealed > *:nth-child(3), .reveal-stagger.is-visible > *:nth-child(3) { transition-delay: 0.17s; }
+.km-reveal-stagger.is-revealed > *:nth-child(4), .reveal-stagger.is-visible > *:nth-child(4) { transition-delay: 0.23s; }
+.km-reveal-stagger.is-revealed > *:nth-child(5), .reveal-stagger.is-visible > *:nth-child(5) { transition-delay: 0.29s; }
+.km-reveal-stagger.is-revealed > *:nth-child(6), .reveal-stagger.is-visible > *:nth-child(6) { transition-delay: 0.35s; }
+.km-reveal-stagger.is-revealed > *:nth-child(7), .reveal-stagger.is-visible > *:nth-child(7) { transition-delay: 0.41s; }
+.km-reveal-stagger.is-revealed > *:nth-child(8), .reveal-stagger.is-visible > *:nth-child(8) { transition-delay: 0.47s; }
+
+/* Image Clip Reveal */
+.km-img-reveal {
+  overflow: hidden;
+  position: relative;
+}
+
+.km-img-reveal img {
+  transform: scale(1.08);
+  transition: transform 0.9s var(--km-ease-editorial);
+  will-change: transform;
+}
+
+.km-img-reveal.is-revealed img {
+  transform: scale(1);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   5. PREMIUM HOVER INTERACTIONS
+   ═══════════════════════════════════════════════════════════════ */
+/* Header Navigation Sliding Gold Line */
+header nav a,
+.nav-link {
+  position: relative;
+  transition: color var(--km-dur-fast) ease;
+}
+
+header nav a::after,
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #c5a15b;
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform 0.3s var(--km-ease-editorial);
+  border-radius: 1px;
+}
+
+header nav a:hover::after,
+header nav a.active::after,
+.nav-link:hover::after,
+.nav-link.active::after {
+  transform: scaleX(1);
+  transform-origin: left center;
+}
+
+/* Luxury Button Interactions */
+.btn,
+.btn-gold,
+.btn-primary {
+  position: relative;
+  overflow: hidden;
+  transition: transform var(--km-dur-fast) var(--km-ease-editorial),
+              box-shadow var(--km-dur-fast) var(--km-ease-editorial),
+              background var(--km-dur-fast) ease,
+              border-color var(--km-dur-fast) ease !important;
+  will-change: transform, box-shadow;
+}
+
+.btn:hover,
+.btn-gold:hover,
+.btn-primary:hover {
+  transform: translateY(-2.5px);
+  box-shadow: 0 10px 24px rgba(11, 31, 48, 0.18), 0 0 0 1px rgba(197, 161, 91, 0.3) inset;
+}
+
+.btn:active,
+.btn-gold:active,
+.btn-primary:active {
+  transform: translateY(1px) scale(0.985);
+  box-shadow: 0 4px 12px rgba(11, 31, 48, 0.12);
+}
+
+/* Subtle Metallic Sheen Sweep */
+.btn-gold::after,
+.btn-primary::after,
+.btn.gold::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -130%;
+  width: 70%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.42), transparent);
+  transform: skewX(-25deg);
+  animation: kmBtnShimmerSweep 5s infinite ease-in-out;
+  pointer-events: none;
+}
+
+.btn-gold:hover::after,
+.btn-primary:hover::after,
+.btn.gold:hover::after {
+  animation: kmBtnShimmerSweep 1.1s ease-in-out;
+}
+
+@keyframes kmBtnShimmerSweep {
+  0% { left: -130%; }
+  22% { left: 140%; }
+  100% { left: 140%; }
+}
+
+/* Enterprise Cards & Products Depth Elevation */
+.card,
+.product-box,
+.stat-box,
+.hero-card,
+.sattu-box {
+  transition: transform var(--km-dur-normal) var(--km-ease-editorial),
+              box-shadow var(--km-dur-normal) var(--km-ease-editorial),
+              border-color var(--km-dur-fast) ease !important;
+  will-change: transform, box-shadow;
+}
+
+.card:hover,
+.product-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 42px rgba(11, 31, 48, 0.13), 0 0 0 1px rgba(197, 161, 91, 0.35);
+  border-color: #c5a15b !important;
+}
+
+.card img,
+.product-box img,
+.product-box-img {
+  transition: transform 0.6s var(--km-ease-editorial) !important;
+  will-change: transform;
+}
+
+.card:hover img,
+.product-box:hover img,
+.product-box:hover .product-box-img {
+  transform: scale(1.038);
+}
+
+/* Leadership Profiles Zoom & Focus */
+.leader-card {
+  transition: transform var(--km-dur-normal) var(--km-ease-editorial),
+              box-shadow var(--km-dur-normal) var(--km-ease-editorial);
+}
+
+.leader-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 22px 48px rgba(11, 31, 48, 0.16), 0 0 0 1.5px rgba(197, 161, 91, 0.4);
+}
+
+.leader-card img {
+  transition: transform 0.7s var(--km-ease-editorial);
+}
+
+.leader-card:hover img {
+  transform: scale(1.045);
+}
+
+/* News & Article Cards */
+.news-card {
+  transition: transform var(--km-dur-normal) var(--km-ease-editorial),
+              box-shadow var(--km-dur-normal) var(--km-ease-editorial);
+}
+
+.news-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 18px 40px rgba(11, 31, 48, 0.12);
+}
+
+.news-card:hover h3,
+.news-card:hover .news-title {
+  color: #c5a15b;
+}
+
+/* Resource Download Cards */
+.doc-card,
+.resource-card {
+  position: relative;
+  transition: all var(--km-dur-fast) var(--km-ease-editorial);
+}
+
+.doc-card:hover,
+.resource-card:hover {
+  transform: translateY(-4px);
+  border-color: #c5a15b;
+  box-shadow: 0 14px 32px rgba(11, 31, 48, 0.1);
+}
+
+.doc-card .doc-icon,
+.resource-card svg {
+  transition: transform var(--km-dur-fast) var(--km-ease-spring);
+}
+
+.doc-card:hover .doc-icon,
+.resource-card:hover svg {
+  transform: translateY(-2px) scale(1.12);
+}
+
+/* Footer Link Slide Indentation */
+footer a,
+.footer-grid a {
+  display: inline-block;
+  transition: transform var(--km-dur-fast) ease, color var(--km-dur-fast) ease;
+}
+
+footer a:hover,
+.footer-grid a:hover {
+  transform: translateX(4px);
+  color: #c5a15b !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   6. INTERACTIVE VALUE CHAIN & BUSINESS ECOSYSTEM
+   ═══════════════════════════════════════════════════════════════ */
+.flow {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding: 12px 4px 20px;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: #c5a15b transparent;
+}
+
+.flow::-webkit-scrollbar {
+  height: 4px;
+}
+
+.flow::-webkit-scrollbar-thumb {
+  background: #c5a15b;
+  border-radius: 4px;
+}
+
+.stage {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 18px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 9999px;
+  color: #cbdbe4;
+  font-family: inherit;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--km-dur-fast) var(--km-ease-editorial);
+  white-space: nowrap;
+}
+
+.stage span {
+  font-size: 0.76rem;
+  color: #c5a15b;
+  font-weight: 700;
+}
+
+.stage:hover {
+  background: rgba(197, 161, 91, 0.12);
+  border-color: #c5a15b;
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.stage[aria-pressed="true"] {
+  background: #c5a15b;
+  border-color: #c5a15b;
+  color: #0b1f30;
+  box-shadow: 0 4px 18px rgba(197, 161, 91, 0.45);
+  transform: translateY(-1px);
+}
+
+.stage[aria-pressed="true"] span {
+  color: #0b1f30;
+}
+
+.flow-detail {
+  position: relative;
+  margin-top: 24px;
+  padding: 28px 32px;
+  background: rgba(16, 43, 63, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(197, 161, 91, 0.28);
+  border-radius: 16px;
+  transition: opacity 0.35s var(--km-ease-editorial), transform 0.35s var(--km-ease-editorial);
+}
+
+.flow-detail.km-stage-fade {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   7. FORM & MICRO-INTERACTION FEEDBACK STATES
+   ═══════════════════════════════════════════════════════════════ */
+/* Input Focus Aura Glow */
+input:not([type="checkbox"]):not([type="radio"]),
+textarea,
+select {
+  transition: border-color var(--km-dur-fast) ease,
+              box-shadow var(--km-dur-fast) ease,
+              background var(--km-dur-fast) ease !important;
+}
+
+input:not([type="checkbox"]):not([type="radio"]):focus,
+textarea:focus,
+select:focus {
+  border-color: #c5a15b !important;
+  box-shadow: 0 0 0 3px rgba(197, 161, 91, 0.25), 0 4px 14px rgba(11, 31, 48, 0.08) !important;
+  outline: none !important;
+}
+
+/* Micro Spinner for Form Submissions */
+.km-spinner {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: kmSpinnerRotate 0.65s linear infinite;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+@keyframes kmSpinnerRotate {
+  to { transform: rotate(360deg); }
+}
+
+/* Download Action Feedback Toast */
+.km-download-toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: #0b1f30;
+  color: #f8f5ed;
+  border: 1px solid #c5a15b;
+  border-radius: 12px;
+  padding: 12px 20px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 12px 32px rgba(11, 31, 48, 0.35);
+  z-index: 1000000;
+  transform: translateY(100px);
+  opacity: 0;
+  transition: transform 0.35s var(--km-ease-spring), opacity 0.35s ease;
+  pointer-events: none;
+}
+
+.km-download-toast.is-visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Accordion Smooth Height Transition */
+.faq-item details {
+  transition: background var(--km-dur-fast) ease;
+}
+
+.faq-item details summary {
+  cursor: pointer;
+  user-select: none;
+  transition: color var(--km-dur-fast) ease;
+}
+
+.faq-item details summary::-webkit-details-marker {
+  display: none;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   8. MOBILE RESPONSIVE DRAWER & TOUCH POLISH
+   ═══════════════════════════════════════════════════════════════ */
+@media (max-width: 900px) {
+  nav#navigation {
+    transition: transform 0.4s var(--km-ease-editorial), opacity 0.3s ease;
+    will-change: transform, opacity;
+  }
+
+  /* Prevent blur lag on mobile screens */
+  .km-reveal,
+  .reveal {
+    transition-duration: 0.55s !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   9. ACCESSIBILITY OVERRIDE: PREFERS REDUCED MOTION
+   ═══════════════════════════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  #km-scroll-progress,
+  #km-page-transition,
+  .km-download-toast {
+    display: none !important;
+  }
+
+  .km-reveal,
+  .km-reveal-up,
+  .km-reveal-left,
+  .km-reveal-right,
+  .km-reveal-scale,
+  .km-reveal-stagger > *,
+  .reveal,
+  .reveal-stagger > *,
+  .km-hero-stagger {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    transition: none !important;
+  }
+
+  .km-hero-cinematic,
+  .km-emblem-glow,
+  .km-emblem-glow::after,
+  .btn-gold::after,
+  .btn-primary::after {
+    animation: none !important;
+  }
+}

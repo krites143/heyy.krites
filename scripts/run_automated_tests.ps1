@@ -1,45 +1,50 @@
 # ==============================================================================
-# Kotwari International Ltd. — Automated Quality & Regression Test Suite
-# Tests: Route validation, HTML semantics, SEO parity, Link health, PDF integrity
+# Kotwari International Ltd. - Automated Quality and Regression Test Suite
+# Tests: Route validation, HTML semantics, SEO parity, Link health, PDF integrity, Motion assets
 # ==============================================================================
 
-Write-Host "`n=======================================================" -ForegroundColor Cyan
-Write-Host " KOTWARI INTERNATIONAL LTD. — AUTOMATED QA TEST SUITE" -ForegroundColor Cyan
-Write-Host "=======================================================`n" -ForegroundColor Cyan
+Write-Host ""
+Write-Host "=======================================================" -ForegroundColor Cyan
+Write-Host " KOTWARI INTERNATIONAL LTD. - AUTOMATED QA TEST SUITE" -ForegroundColor Cyan
+Write-Host "=======================================================" -ForegroundColor Cyan
+Write-Host ""
 
 $root = "d:\kotwari"
 $htmlFiles = Get-ChildItem -Path $root -Filter "*.html" -File
 $failures = @()
 $warnings = @()
 
-# --- TEST SUITE 1: HTML STRUCTURE & ESSENTIAL METADATA ---
-Write-Host "--- TEST SUITE 1: HTML Structure & Accessibility Audit ($($htmlFiles.Count) pages) ---" -ForegroundColor Yellow
+# --- TEST SUITE 1: HTML STRUCTURE & METADATA ---
+$pageCount = $htmlFiles.Count
+Write-Host "--- TEST SUITE 1: HTML Structure, Metadata and Motion Engine Audit ($pageCount pages) ---" -ForegroundColor Yellow
 $passedPages = 0
 
 foreach ($f in $htmlFiles) {
     $content = [System.IO.File]::ReadAllText($f.FullName, [System.Text.Encoding]::UTF8)
     $pageErrors = @()
 
-    if ($content -notmatch '<!DOCTYPE\s+html>') { $pageErrors += "Missing <!DOCTYPE html>" }
-    if ($content -notmatch '<html\s+lang=') { $pageErrors += "Missing <html lang=>" }
-    if ($content -notmatch '<meta\s+charset=') { $pageErrors += "Missing <meta charset=>" }
+    if ($content -notmatch '<!DOCTYPE\s+html>') { $pageErrors += "Missing DOCTYPE" }
+    if ($content -notmatch '<html\s+lang=') { $pageErrors += "Missing html lang" }
+    if ($content -notmatch '<meta\s+charset=') { $pageErrors += "Missing meta charset" }
     if ($content -notmatch '<meta\s+name="viewport"') { $pageErrors += "Missing viewport meta tag" }
-    if ($content -notmatch '<title>[^<]+</title>') { $pageErrors += "Missing or empty <title>" }
+    if ($content -notmatch '<title>[^<]+</title>') { $pageErrors += "Missing or empty title" }
     if ($content -notmatch '<meta\s+name="description"') { $pageErrors += "Missing meta description" }
     if ($content -notmatch '<link\s+rel="canonical"') { $pageErrors += "Missing canonical link" }
     if ($content -notmatch 'class="skip-to-content"') { $pageErrors += "Missing accessibility skip link" }
     if ($content -notmatch 'kotwari-search\.js') { $pageErrors += "Missing kotwari-search.js" }
     if ($content -notmatch 'kotwari-consent\.js') { $pageErrors += "Missing kotwari-consent.js" }
     if ($content -notmatch 'kotwari-analytics\.js') { $pageErrors += "Missing kotwari-analytics.js" }
+    if ($content -notmatch 'kotwari-motion\.css') { $pageErrors += "Missing kotwari-motion.css" }
+    if ($content -notmatch 'kotwari-motion\.js') { $pageErrors += "Missing kotwari-motion.js" }
 
     if ($pageErrors.Count -gt 0) {
-        $failures += "Page $($f.Name): " + ($pageErrors -join ", ")
+        $failures += ("Page " + $f.Name + ": " + ($pageErrors -join ", "))
         Write-Host "  [FAIL] $($f.Name)" -ForegroundColor Red
     } else {
         $passedPages++
     }
 }
-Write-Host "  -> $passedPages of $($htmlFiles.Count) pages passed complete structure audit.`n" -ForegroundColor Green
+Write-Host "  -> $passedPages of $pageCount pages passed complete structure and motion engine audit.`n" -ForegroundColor Green
 
 
 # --- TEST SUITE 2: INTERNAL LINK HEALTH CHECK ---
@@ -49,16 +54,17 @@ $totalLinksChecked = 0
 
 foreach ($f in $htmlFiles) {
     $content = [System.IO.File]::ReadAllText($f.FullName, [System.Text.Encoding]::UTF8)
-    $matches = [System.Text.RegularExpressions.Regex]::Matches($content, 'href=["'']([^"'']+)["'']')
+    $regex = New-Object System.Text.RegularExpressions.Regex('href="([^"]+)"')
+    $matches = $regex.Matches($content)
 
     foreach ($m in $matches) {
         $href = $m.Groups[1].Value.Trim()
-        # Skip external, hash-only, mailto, tel, javascript
-        if ($href -match '^(https?://|mailto:|tel:|javascript:|#|\/\/|\$\{)' -or $href -match '\$\{' -or [string]::IsNullOrWhiteSpace($href)) {
+        # Skip external, hash-only, mailto, tel, javascript, template variables
+        if ($href -match '^(https?://|mailto:|tel:|javascript:|#|\/\/|\$\{)' -or $href.Contains('${') -or [string]::IsNullOrWhiteSpace($href)) {
             continue
         }
 
-        # Strip query params & hash
+        # Strip query params and hash
         $cleanPath = $href.Split('#')[0].Split('?')[0]
         if ([string]::IsNullOrWhiteSpace($cleanPath)) { continue }
 
@@ -66,7 +72,7 @@ foreach ($f in $htmlFiles) {
         $targetFile = Join-Path $root $cleanPath.Replace('/', '\')
 
         if (!(Test-Path $targetFile)) {
-            $brokenLinks += "$($f.Name) -> $href (Target not found: $targetFile)"
+            $brokenLinks += ($f.Name + " -> " + $href + " (Target not found: " + $targetFile + ")")
         }
     }
 }
@@ -108,8 +114,8 @@ foreach ($pdf in $pdfDocs) {
 Write-Host ""
 
 
-# --- TEST SUITE 4: SITEMAP & ROBOTS.TXT AUDIT ---
-Write-Host "--- TEST SUITE 4: SEO Indexability & Sitemap Parity ---" -ForegroundColor Yellow
+# --- TEST SUITE 4: SITEMAP AND ROBOTS.TXT AUDIT ---
+Write-Host "--- TEST SUITE 4: SEO Indexability and Sitemap Parity ---" -ForegroundColor Yellow
 $sitemapPath = Join-Path $root "sitemap.xml"
 $robotsPath = Join-Path $root "robots.txt"
 
@@ -145,4 +151,5 @@ if ($failures.Count -eq 0) {
     Write-Host " TESTS FAILED: $($failures.Count) errors encountered" -ForegroundColor Red
     $failures | ForEach-Object { Write-Host "  - $_" -ForegroundColor Red }
 }
-Write-Host "=======================================================`n" -ForegroundColor Cyan
+Write-Host "=======================================================" -ForegroundColor Cyan
+Write-Host ""

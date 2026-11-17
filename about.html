@@ -314,6 +314,7 @@ html, body {
   <link rel="stylesheet" href="glass-dropdown.css">
   <link rel="stylesheet" href="kotwari-search.css">
   <link rel="stylesheet" href="kotwari-consent.css">
+  <link rel="stylesheet" href="kotwari-motion.css">
 </head>
 <body>
 <a href="#main" class="skip-to-content">Skip to main content</a>
@@ -624,19 +625,33 @@ html, body {
     var d = chainData[idx];
     if(!d) return;
 
-    document.getElementById('chainStep').textContent = d.step;
-    document.getElementById('chainTitle').textContent = d.title;
-    document.getElementById('chainIcon').textContent = d.icon;
-    document.getElementById('chainDesc').textContent = d.desc;
+    var card = document.getElementById('chainDisplayCard');
+    if (card) {
+      card.style.transition = 'opacity 0.18s ease, transform 0.18s ease';
+      card.style.opacity = '0.35';
+      card.style.transform = 'translateY(6px)';
+    }
 
-    var pContainer = document.getElementById('chainPills');
-    pContainer.innerHTML = '';
-    d.pills.forEach(function(p){
-      var sp = document.createElement('span');
-      sp.style.cssText = 'background:rgba(255,255,255,0.1);color:white;padding:4px 12px;border-radius:20px;font-size:.78rem;border:1px solid rgba(255,255,255,0.2)';
-      sp.textContent = p;
-      pContainer.appendChild(sp);
-    });
+    setTimeout(function() {
+      document.getElementById('chainStep').textContent = d.step;
+      document.getElementById('chainTitle').textContent = d.title;
+      document.getElementById('chainIcon').textContent = d.icon;
+      document.getElementById('chainDesc').textContent = d.desc;
+
+      var pContainer = document.getElementById('chainPills');
+      pContainer.innerHTML = '';
+      d.pills.forEach(function(p){
+        var sp = document.createElement('span');
+        sp.style.cssText = 'background:rgba(255,255,255,0.1);color:white;padding:4px 12px;border-radius:20px;font-size:.78rem;border:1px solid rgba(255,255,255,0.2)';
+        sp.textContent = p;
+        pContainer.appendChild(sp);
+      });
+
+      if (card) {
+        card.style.opacity = '1';
+        card.style.transform = 'translateY(0)';
+      }
+    }, 150);
 
     var buttons = document.querySelectorAll('.chain-btn');
     buttons.forEach(function(b){
@@ -816,6 +831,7 @@ function initCounters(){
 <script src="glass-dropdown.js"></script>
 <script src="kotwari-lang.js"></script>
   <script src="kotwari-pwa.js"></script>
+  <script src="kotwari-motion.js"></script>
 </body>
 </html>
 

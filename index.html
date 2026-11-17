@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
 <meta charset="UTF-8">
@@ -1748,6 +1748,7 @@ form select option{
   }
 }
 </style>
+  <link rel="stylesheet" href="kotwari-motion.css">
 </head>
 
 <body>
@@ -3613,7 +3614,7 @@ function openDialog(type){
   }
   modal.showModal();
 }
-$('#app').onclick=e=>{const stage=e.target.closest('[data-stage]');if(stage){const i=Number(stage.dataset.stage);$('#stage-title').textContent=stages()[i][0];$('#stage-copy').textContent=stages()[i][1];document.querySelectorAll('.stage').forEach(b=>b.setAttribute('aria-pressed',b===stage));}const filter=e.target.closest('[data-filter]');if(filter){selectedCategory=filter.dataset.filter;const tablist=filter.closest('.t-tabs');if(tablist){tablist.querySelectorAll('.t-tab').forEach(b=>{const isSel=(b===filter);b.setAttribute('aria-selected',isSel);});updateTabsPill(tablist,filter,false);filter.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});}else{document.querySelectorAll('.filter').forEach(b=>b.setAttribute('aria-selected',b===filter));}renderProducts();}const zone=e.target.closest('[data-zone]');if(zone)setZone(Number(zone.dataset.zone));const pModal=e.target.closest('[data-product-idx]');if(pModal){openProductModal(Number(pModal.dataset.productIdx));}const role=e.target.closest('[data-role]');if(role){$('#role').value=role.dataset.role;$('#role').dispatchEvent(new Event('change',{bubbles:true}));renderFields();if(role.dataset.product){const msgArea=$('#enquiry-form textarea[name="message"]');if(msgArea){msgArea.value=`Enquiry for ${role.dataset.product}:\nI am interested in distributorship / supply. Please share product catalogue, MOQs, and pricing.`}}}const modal=e.target.closest('[data-dialog]');if(modal)openDialog(modal.dataset.dialog);if(e.target.closest('a[href^="#"]')){$('#navigation').classList.remove('open');$('.menu').setAttribute('aria-expanded','false');}};
+$('#app').onclick=e=>{const stage=e.target.closest('[data-stage]');if(stage){const i=Number(stage.dataset.stage);const sLinks=['farmers.html','fpo.html','farmers.html#collection','dairy.html','about.html','exports.html','retail.html','exports.html'];const sDetail=document.querySelector('.flow-detail');if(sDetail)sDetail.classList.add('km-stage-fade');setTimeout(()=>{if($('#stage-title'))$('#stage-title').textContent=stages()[i][0];if($('#stage-copy'))$('#stage-copy').textContent=stages()[i][1];const sL=$('#stage-link');if(sL&&sLinks[i])sL.href=sLinks[i];if(sDetail)sDetail.classList.remove('km-stage-fade');},160);document.querySelectorAll('.stage').forEach(b=>b.setAttribute('aria-pressed',b===stage));}const filter=e.target.closest('[data-filter]');if(filter){selectedCategory=filter.dataset.filter;const tablist=filter.closest('.t-tabs');if(tablist){tablist.querySelectorAll('.t-tab').forEach(b=>{const isSel=(b===filter);b.setAttribute('aria-selected',isSel);});updateTabsPill(tablist,filter,false);filter.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});}else{document.querySelectorAll('.filter').forEach(b=>b.setAttribute('aria-selected',b===filter));}renderProducts();}const zone=e.target.closest('[data-zone]');if(zone)setZone(Number(zone.dataset.zone));const pModal=e.target.closest('[data-product-idx]');if(pModal){openProductModal(Number(pModal.dataset.productIdx));}const role=e.target.closest('[data-role]');if(role){$('#role').value=role.dataset.role;$('#role').dispatchEvent(new Event('change',{bubbles:true}));renderFields();if(role.dataset.product){const msgArea=$('#enquiry-form textarea[name="message"]');if(msgArea){msgArea.value=`Enquiry for ${role.dataset.product}:\nI am interested in distributorship / supply. Please share product catalogue, MOQs, and pricing.`}}}const modal=e.target.closest('[data-dialog]');if(modal)openDialog(modal.dataset.dialog);if(e.target.closest('a[href^="#"]')){$('#navigation').classList.remove('open');$('.menu').setAttribute('aria-expanded','false');}};
 $('#app').addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.closest('.dairy-card,[data-product-idx]')){e.preventDefault();(e.target.closest('.dairy-card,[data-product-idx]')).click();}});
 $('#role').addEventListener('change',renderFields);$('.close').addEventListener('click',()=>$('#modal').close());
 
@@ -3852,6 +3853,7 @@ if(window.location.hash){
 }
 </script>
   <script src="kotwari-pwa.js"></script>
+  <script src="kotwari-motion.js"></script>
 </body>
 </html>
 
